@@ -148,6 +148,14 @@ fn returns_falsey_value_for_is_camel_case_when_kebab() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_camel_case_when_class() {
+    let mock_string: String = "DataMapperIsAReallyReallyLongString".to_string();
+    let asserted_bool: bool = is_camel_case(mock_string);
+    println!("{}",asserted_bool);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
 fn returns_truthy_value_for_is_camel_case_when_camel() {
     let mock_string: String = "dataMapperIsAReallyReallyLongString".to_string();
     let asserted_bool: bool = is_camel_case(mock_string);
@@ -171,6 +179,14 @@ fn returns_truthy_value_for_is_kebab_case_when_kebab() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_kebab_case_when_class() {
+    let mock_string: String = "DataMapperIsAReallyReallyLongString".to_string();
+    let asserted_bool: bool = is_kebab_case(mock_string);
+    println!("{}",asserted_bool);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
 fn returns_falsey_value_for_is_kebab_case_when_camel() {
     let mock_string: String = "dataMapperIsAReallyReallyLongString".to_string();
     let asserted_bool: bool = is_kebab_case(mock_string);
@@ -188,6 +204,14 @@ fn returns_falsey_value_for_is_kebab_case_when_snake() {
 #[test] #[allow(non_snake_case)]
 fn returns_falsey_value_for_is_snake_case_when_kebab() {
     let mock_string: String = "data-mapper-string-that-is-really-really-long".to_string();
+    let asserted_bool: bool = is_snake_case(mock_string);
+    println!("{}",asserted_bool);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_snake_case_when_class() {
+    let mock_string: String = "DataMapperIsAReallyReallyLongString".to_string();
     let asserted_bool: bool = is_snake_case(mock_string);
     println!("{}",asserted_bool);
     assert!(asserted_bool == false);
