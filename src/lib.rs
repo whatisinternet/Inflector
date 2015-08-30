@@ -52,6 +52,16 @@ fn to_snake_case<'a>(non_snake_case_string: String) -> String {
 }
 
 fn to_kebab_case<'a>(non_kebab_case_string: String) -> String {
+    let mut kebab_string: String = non_kebab_case_string.clone();
+    if is_camel_case(non_kebab_case_string.clone()) {
+        kebab_string = to_kebab_from_camel(non_kebab_case_string.clone());
+    }else if is_snake_case(non_kebab_case_string.clone()) {
+        kebab_string = to_kebab_from_snake(non_kebab_case_string.clone());
+    }
+    return kebab_string;
+}
+
+fn to_kebab_from_camel<'a>(non_kebab_case_string: String) -> String {
     let mut result:String = "".to_string();
     let mut first_character: bool = true;
     for character in non_kebab_case_string.chars() {
@@ -63,6 +73,9 @@ fn to_kebab_case<'a>(non_kebab_case_string: String) -> String {
         }
     }
     return result
+}
+fn to_kebab_from_snake<'a>(non_kebab_case_string: String) -> String {
+    return non_kebab_case_string.replace("_", "-");
 }
 
 fn is_class_case<'a>(test_string: String) -> bool{
@@ -256,17 +269,17 @@ fn snake_case_dataMapper_as_data_mapper() {
     assert!(asserted_string == expected_string);
 }
 
-// #[test] #[allow(non_snake_case)]
-// fn kebab_case_data_mapper_as_data_mapper() {
-//     let mock_string: String = "data_mapper".to_string();
-//     let expected_string: String = "data-mapper".to_string();
-//     let asserted_string: String = to_kebab_case(mock_string);
-//     assert!(asserted_string == expected_string);
-// }
+#[test] #[allow(non_snake_case)]
+fn kebab_case_data_mapper_as_data_mapper() {
+    let mock_string: String = "data_mapper".to_string();
+    let expected_string: String = "data-mapper".to_string();
+    let asserted_string: String = to_kebab_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
 
 #[test] #[allow(non_snake_case)]
 fn kebab_case_dataMapper_as_data_mapper() {
-    let mock_string: String = "DataMapper".to_string();
+    let mock_string: String = "dataMapper".to_string();
     let expected_string: String = "data-mapper".to_string();
     let asserted_string: String = to_kebab_case(mock_string);
     assert!(asserted_string == expected_string);
