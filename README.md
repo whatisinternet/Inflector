@@ -36,7 +36,7 @@ fn main() {
 -----
 # Methods:
 
-The methods work in a very basic sense.
+The methods work in a very basic sense and will evolve to be correct over time.
 
 For example:
 ```rust
@@ -51,22 +51,18 @@ to_snake_case("camel-case".to_string())
 ```rust
 to_class_case (String) -> String
 ```
-Converts strings to ClassCase.
 
 ```rust
 to_camel_case (String) -> String
 ```
-Converts strings to camelCase.
 
 ```rust
 to_snake_case (String) -> String
 ```
-Converts strings to snake_case.
 
 ```rust
 to_kebab_case (String) -> String
 ```
-Converts strings to kebab-case.
 
 ```rust
 is_class_case(String) -> bool
