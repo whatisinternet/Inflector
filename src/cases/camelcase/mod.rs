@@ -1,7 +1,7 @@
 use std::ascii::*;
 use regex::Regex;
 
-use classcase::is_class_case;
+use cases::classcase::is_class_case;
 
 pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
     let mut result:String = "".to_string();

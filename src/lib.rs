@@ -3,22 +3,23 @@ extern crate regex;
 use std::ascii::*;
 use regex::Regex;
 
-mod classcase;
-mod camelcase;
-mod snakecase;
-mod kebabcase;
+mod cases;
+// mod classcase;
+// mod camelcase;
+// mod snakecase;
+// mod kebabcase;
 
-use classcase::to_class_case;
-use classcase::is_class_case;
+use cases::classcase::to_class_case;
+use cases::classcase::is_class_case;
 
-use camelcase::to_camel_case;
-use camelcase::is_camel_case;
+use cases::camelcase::to_camel_case;
+use cases::camelcase::is_camel_case;
 
-use snakecase::to_snake_case;
-use snakecase::is_snake_case;
+use cases::snakecase::to_snake_case;
+use cases::snakecase::is_snake_case;
 
-use kebabcase::to_kebab_case;
-use kebabcase::is_kebab_case;
+use cases::kebabcase::to_kebab_case;
+use cases::kebabcase::is_kebab_case;
 
 
 #[test] #[allow(non_snake_case)]
@@ -149,7 +150,7 @@ fn returns_truthy_value_for_is_snake_case_when_snake() {
 fn ClassCase_data_mapper_as_DataMapper() {
     let mock_string: String = "data_mapper".to_string();
     let expected_string: String = "DataMapper".to_string();
-    let asserted_string: String = classcase::to_class_case(mock_string);
+    let asserted_string: String = to_class_case(mock_string);
     assert!(asserted_string == expected_string);
 }
 

@@ -1,9 +1,9 @@
 use std::ascii::*;
 use regex::Regex;
 
-use classcase::is_class_case;
-use snakecase::is_snake_case;
-use camelcase::is_camel_case;
+use cases::classcase::is_class_case;
+use cases::snakecase::is_snake_case;
+use cases::camelcase::is_camel_case;
 
 pub fn is_kebab_case<'a>(test_string: String) -> bool{
     let kebab_matcher = Regex::new(r"(?:[^_]?=^|[-])([a-z]+)").unwrap();
