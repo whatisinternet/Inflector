@@ -4,10 +4,6 @@ use std::ascii::*;
 use regex::Regex;
 
 mod cases;
-// mod classcase;
-// mod camelcase;
-// mod snakecase;
-// mod kebabcase;
 
 use cases::classcase::to_class_case;
 use cases::classcase::is_class_case;
