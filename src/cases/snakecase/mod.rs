@@ -25,3 +25,7 @@ pub fn is_snake_case<'a>(test_string: String) -> bool{
         }
     return is_snake_case;
 }
+
+
+#[cfg(test)]
+mod snakecase_test;
