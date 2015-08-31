@@ -24,6 +24,19 @@ progress.
 extern crate inflector;
 
 use inflector::*;
+
+// use inflector::cases::classcase::to_class_case;
+// use inflector::cases::classcase::is_class_case;
+
+// use inflector::cases::camelcase::to_camel_case;
+// use inflector::cases::camelcase::is_camel_case;
+
+// use inflector::cases::snakecase::to_snake_case;
+// use inflector::cases::snakecase::is_snake_case;
+
+// use inflector::cases::kebabcase::to_kebab_case;
+// use inflector::cases::kebabcase::is_kebab_case;
+
 ...
 fn main() {
 ...
@@ -35,18 +48,6 @@ fn main() {
 
 -----
 # Methods:
-
-The methods work in a very basic sense and will evolve to be correct over time.
-
-For example:
-```rust
-to_snake_case("camelCase".to_string())
-// --> "camel_case"
-//
-// However
-to_snake_case("camel-case".to_string())
-// --> "camel-case"
-```
 
 ```rust
 to_class_case (String) -> String
