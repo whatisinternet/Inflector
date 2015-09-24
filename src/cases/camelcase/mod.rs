@@ -7,8 +7,11 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
     let mut result:String = "".to_string();
     let mut new_word: bool = false;
 
+    if is_class_case(non_camelized_string.clone()) {
+        // let split_string =
+    }
     for character in non_camelized_string.chars() {
-        if character.to_string() == "_" {
+        if character.to_string() == "_" || character.to_string() == "-" {
             new_word = true;
         } else if new_word {
             result = format!("{}{}", result, character.to_ascii_uppercase());
