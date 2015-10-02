@@ -6,7 +6,7 @@ pub fn to_class_case<'a>(non_class_case_string: String) -> String {
     let mut new_word: bool = true;
 
     for character in non_class_case_string.chars() {
-        if character.to_string() == "_" {
+        if character.to_string() == "_" || character.to_string() == "-"  {
             new_word = true;
         } else if new_word {
             result = format!("{}{}", result, character.to_ascii_uppercase());
