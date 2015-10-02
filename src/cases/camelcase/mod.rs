@@ -4,24 +4,44 @@ use regex::Regex;
 use cases::classcase::is_class_case;
 
 pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
-    let mut result:String = "".to_string();
-    let mut new_word: bool = false;
-
     if is_class_case(non_camelized_string.clone()) {
-        // let split_string =
+        return to_camel_from_class(non_camelized_string.clone());
+    } else {
+        return to_camel_from_snake_or_kebab(non_camelized_string.clone());
     }
-    for character in non_camelized_string.chars() {
-        if character.to_string() == "_" || character.to_string() == "-" {
-            new_word = true;
-        } else if new_word {
-            result = format!("{}{}", result, character.to_ascii_uppercase());
-            new_word = false;
-        } else {
-            result = format!("{}{}", result, character.to_ascii_lowercase());
-        }
-    }
-    return result
 }
+
+    fn to_camel_from_snake_or_kebab<'a>(non_camelized_string: String) -> String{
+        let mut result:String = "".to_string();
+        let mut new_word: bool = false;
+
+        for character in non_camelized_string.chars() {
+            if character.to_string() == "_" || character.to_string() == "-" {
+                new_word = true;
+            } else if new_word {
+                result = format!("{}{}", result, character.to_ascii_uppercase());
+                new_word = false;
+            } else {
+                result = format!("{}{}", result, character.to_ascii_lowercase());
+            }
+        }
+        return result
+    }
+
+    fn to_camel_from_class<'a>(non_camelized_string: String) -> String {
+        let mut result:String = "".to_string();
+        let mut first_character: bool = true;
+
+        for character in non_camelized_string.chars() {
+            if character == character.to_ascii_uppercase() && !first_character {
+                result = format!("{}{}", result, character);
+            } else {
+                result = format!("{}{}", result, character.to_ascii_lowercase());
+                first_character = false;
+            }
+        }
+        return result
+    }
 
 pub fn is_camel_case<'a>(test_string: String) -> bool{
     let camel_matcher = Regex::new(r"(^|[A-Z])([^-|^_]*[a-z]+)").unwrap();
