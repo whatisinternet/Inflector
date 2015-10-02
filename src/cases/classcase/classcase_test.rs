@@ -9,6 +9,14 @@ fn ClassCase_data_dash_mapper_as_DataMapper() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn ClassCase_dataMapper_as_DataMapper() {
+    let mock_string: String = "dataMapper".to_string();
+    let expected_string: String = "DataMapper".to_string();
+    let asserted_string: String = to_class_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
 fn ClassCase_data_mapper_as_DataMapper() {
     let mock_string: String = "data_mapper".to_string();
     let expected_string: String = "DataMapper".to_string();
