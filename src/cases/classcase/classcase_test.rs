@@ -1,6 +1,14 @@
 use cases::classcase::*;
 
 #[test] #[allow(non_snake_case)]
+fn ClassCase_DataMapper_as_DataMapper() {
+    let mock_string: String = "DataMapper".to_string();
+    let expected_string: String = "DataMapper".to_string();
+    let asserted_string: String = to_class_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
 fn ClassCase_data_dash_mapper_as_DataMapper() {
     let mock_string: String = "data-mapper".to_string();
     let expected_string: String = "DataMapper".to_string();

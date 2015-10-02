@@ -1,6 +1,14 @@
 use cases::kebabcase::*;
 
 #[test] #[allow(non_snake_case)]
+fn kebab_case_data_dash_mapper_as_data_dash_mapper() {
+    let mock_string: String = "data-mapper".to_string();
+    let expected_string: String = "data-mapper".to_string();
+    let asserted_string: String = to_kebab_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
 fn kebab_case_data_mapper_as_data_mapper() {
     let mock_string: String = "data_mapper".to_string();
     let expected_string: String = "data-mapper".to_string();

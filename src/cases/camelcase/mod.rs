@@ -4,7 +4,9 @@ use regex::Regex;
 use cases::classcase::is_class_case;
 
 pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
-    if is_class_case(non_camelized_string.clone()) {
+    if is_camel_case(non_camelized_string.clone()) {
+        return non_camelized_string
+    } else if is_class_case(non_camelized_string.clone()) {
         return to_camel_from_class(non_camelized_string.clone());
     } else {
         return to_camel_from_snake_or_kebab(non_camelized_string.clone());

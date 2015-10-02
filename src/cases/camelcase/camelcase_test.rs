@@ -1,6 +1,14 @@
 use cases::camelcase::*;
 
 #[test] #[allow(non_snake_case)]
+fn camelize_dataMapper_as_dataMapper() {
+    let mock_string: String = "dataMapper".to_string();
+    let expected_string: String = "dataMapper".to_string();
+    let asserted_string: String = to_camel_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
 fn camelize_data_mapper_as_dataMapper() {
     let mock_string: String = "data_mapper".to_string();
     let expected_string: String = "dataMapper".to_string();

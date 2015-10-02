@@ -2,17 +2,21 @@ use std::ascii::*;
 use regex::Regex;
 
 pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
-    let mut result:String = "".to_string();
-    let mut first_character: bool = true;
-    for character in non_snake_case_string.chars() {
-        if character == character.to_ascii_uppercase() && !first_character {
-            result = format!("{}_{}", result, character.to_ascii_lowercase());
-        } else {
-            result = format!("{}{}", result, character.to_ascii_lowercase());
-            first_character = false;
+    if is_snake_case(non_snake_case_string.clone()) {
+        return non_snake_case_string
+    } else {
+        let mut result:String = "".to_string();
+        let mut first_character: bool = true;
+        for character in non_snake_case_string.chars() {
+            if character == character.to_ascii_uppercase() && !first_character {
+                result = format!("{}_{}", result, character.to_ascii_lowercase());
+            } else {
+                result = format!("{}{}", result, character.to_ascii_lowercase());
+                first_character = false;
+            }
         }
+        return result
     }
-    return result
 }
 
 pub fn is_snake_case<'a>(test_string: String) -> bool{
