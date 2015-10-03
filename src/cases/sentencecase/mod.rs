@@ -28,7 +28,6 @@ pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
                 first_character = false;
             }
         }
-        println!("{}", result);
         return result
     }
 
