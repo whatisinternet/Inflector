@@ -15,6 +15,22 @@ let class_cased: String = to_upper_case(to_lower_case(to_class_case(to_camel_cas
 ```
 
 -----
+## TODO:
+
+- [x] Snake case
+- [x] Kebab case
+- [x] Camel case
+- [x] Class case
+- [x] Sentence case
+- [x] Upper case
+- [x] Lower case
+- [] Table case
+- [] Pluralize
+- [] Singularize
+- [] Ordinalize and reverse
+- [] Constantize and reverse
+
+-----
 
 ## Installation:
 
@@ -67,19 +83,19 @@ fn main() {
 # Methods:
 
 ```rust
-to_class_case (String) -> String
+to_class_case(String) -> String
 ```
 
 ```rust
-to_camel_case (String) -> String
+to_camel_case(String) -> String
 ```
 
 ```rust
-to_snake_case (String) -> String
+to_snake_case(String) -> String
 ```
 
 ```rust
-to_kebab_case (String) -> String
+to_kebab_case(String) -> String
 ```
 
 ```rust
