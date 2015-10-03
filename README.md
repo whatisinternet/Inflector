@@ -6,6 +6,14 @@ Status](https://travis-ci.org/whatisinternet/inflector.svg)](https://travis-ci.o
 Provides ActiveSupport style inflection for Rust. Still very much a work in
 progress.
 
+Unlike ActiveSupport in Rails: Any supported case will be able to transition into any other supported case. For example:
+
+```rust
+...
+let class_cased: String = to_upper_case(to_lower_case(to_class_case(to_camel_case(to_snake_case(to_kebab_case("SomeString")))))); //-> "SOMESTRING"
+...
+```
+
 -----
 
 ## Installation:
@@ -37,6 +45,15 @@ use inflector::*;
 // use inflector::cases::kebabcase::to_kebab_case;
 // use inflector::cases::kebabcase::is_kebab_case;
 
+// use cases::sentencecase::to_sentence_case;
+// use cases::sentencecase::is_sentence_case;
+
+// use cases::uppercase::to_upper_case;
+// use cases::uppercase::is_upper_case;
+
+// use cases::lowercase::to_lower_case;
+// use cases::lowercase::is_lower_case;
+
 ...
 fn main() {
 ...
@@ -66,6 +83,18 @@ to_kebab_case (String) -> String
 ```
 
 ```rust
+to_sentence_case(String) -> String
+```
+
+```rust
+to_upper_case(String) -> String
+```
+
+```rust
+to_lower_case(String) -> String
+```
+
+```rust
 is_class_case(String) -> bool
 ```
 
@@ -79,6 +108,18 @@ is_snake_case(String) -> bool
 
 ```rust
 is_kebab_case(String) -> bool
+```
+
+```rust
+is_sentence_case(String) -> bool
+```
+
+```rust
+is_upper_case(String) -> bool
+```
+
+```rust
+is_lower_case(String) -> bool
 ```
 
 ## Contributing
