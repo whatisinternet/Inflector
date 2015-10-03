@@ -24,11 +24,11 @@ let class_cased: String = to_upper_case(to_lower_case(to_class_case(to_camel_cas
 - [x] Sentence case
 - [x] Upper case
 - [x] Lower case
-- [] Table case
-- [] Pluralize
-- [] Singularize
-- [] Ordinalize and reverse
-- [] Constantize and reverse
+- [ ] Table case
+- [ ] Pluralize
+- [ ] Singularize
+- [ ] Ordinalize and reverse
+- [ ] Constantize and reverse
 
 -----
 
