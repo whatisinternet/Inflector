@@ -13,5 +13,12 @@ pub mod cases;
 //
 // use cases::kebabcase::to_kebab_case;
 // use cases::kebabcase::is_kebab_case;
-
-
+//
+// use cases::sentencecase::to_sentence_case;
+// use cases::sentencecase::is_sentence_case;
+//
+// use cases::uppercase::to_upper_case;
+// use cases::uppercase::is_upper_case;
+//
+// use cases::lowercase::to_lower_case;
+// use cases::lowercase::is_lower_case;

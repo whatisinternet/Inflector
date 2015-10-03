@@ -25,7 +25,7 @@ fn returns_falsey_value_for_is_sentence_case_when_camel() {
 fn returns_falsey_value_for_is_sentence_case_when_snake() {
     let mock_string: String = "data_mapper_string_that_is_really_really_long".to_string();
     let asserted_bool: bool = is_sentence_case(mock_string);
-    assert!(asserted_bool == true);
+    assert!(asserted_bool == false);
 }
 
 #[test] #[allow(non_snake_case)]

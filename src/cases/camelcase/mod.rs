@@ -18,7 +18,9 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
         let mut new_word: bool = false;
 
         for character in non_camelized_string.chars() {
-            if character.to_string() == "_" || character.to_string() == "-" {
+            if character.to_string() == "_"
+                || character.to_string() == "-"
+                || character.to_string() == " " {
                 new_word = true;
             } else if new_word {
                 result = format!("{}{}", result, character.to_ascii_uppercase());
@@ -46,8 +48,8 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
     }
 
 pub fn is_camel_case<'a>(test_string: String) -> bool{
-    let camel_matcher = Regex::new(r"(^|[A-Z])([^-|^_]*[a-z]+)").unwrap();
-    let kebab_snake_matcher = Regex::new(r"[-|_]").unwrap();
+    let camel_matcher = Regex::new(r"(^|[A-Z])([^-|^_|^ ]*[a-z]+)").unwrap();
+    let kebab_snake_matcher = Regex::new(r"[-|_| ]").unwrap();
     let mut is_camel_case = false;
     if camel_matcher.is_match(test_string.as_ref())
         && !kebab_snake_matcher.is_match(test_string.as_ref())
