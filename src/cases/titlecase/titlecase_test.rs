@@ -32,7 +32,7 @@ fn returns_falsey_value_for_is_title_case_when_snake() {
 fn returns_falsey_value_for_is_title_case_when_sentence() {
     let mock_string: String = "Data mapper string that is really really long".to_string();
     let asserted_bool: bool = is_title_case(mock_string);
-    assert!(asserted_bool == true);
+    assert!(asserted_bool == false);
 }
 
 #[test] #[allow(non_snake_case)]

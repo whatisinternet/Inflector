@@ -34,26 +34,32 @@ pub fn to_title_case<'a>(non_title_case_string: String) -> String {
     fn to_title_from_snake_or_kebab<'a>(non_title_case_string: String) -> String {
         let mut result:String = "".to_string();
         let mut first_character: bool = true;
+        let mut new_word: bool = true;
         for character in non_title_case_string.chars() {
-            if character.to_string() != "_" && character.to_string() != "-" && !first_character {
+            if new_word && !first_character {
+                result = format!("{}{}", result, character.to_ascii_uppercase());
+                new_word = false;
+            } else if character.to_string() != "_" && character.to_string() != "-" && !first_character {
                 result = format!("{}{}", result, character.to_ascii_lowercase());
             } else if character.to_string() == "_" || character.to_string() == "-" {
                 result = format!("{} ", result);
+                new_word = true;
             } else {
                 result = format!("{}{}", result, character.to_ascii_uppercase());
                 first_character = false;
+                new_word = false;
             }
         }
+        println!("{}", result);
         return result
     }
 
 pub fn is_title_case<'a>(test_string: String) -> bool{
-    let title_matcher= Regex::new(r"(^[A-Z])([^-|^_]*[a-z]+)").unwrap();
+    let title_matcher= Regex::new(r"(^[A-Z][a-z]+)([^-|^_]*[ ][A-Z][a-z]+)").unwrap();
     let mut is_title_case= false;
-    if title_matcher.is_match(test_string.as_ref())
-        && !is_class_case(test_string.clone()){
-            is_title_case = true;
-        }
+    if title_matcher.is_match(test_string.as_ref()) {
+        is_title_case = true;
+    }
     return is_title_case;
 }
 
