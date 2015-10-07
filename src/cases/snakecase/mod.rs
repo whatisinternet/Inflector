@@ -5,6 +5,7 @@ use cases::classcase::is_class_case;
 use cases::kebabcase::is_kebab_case;
 use cases::camelcase::is_camel_case;
 use cases::sentencecase::is_sentence_case;
+use cases::titlecase::is_title_case;
 use cases::lowercase::to_lower_case;
 
 pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
@@ -14,6 +15,8 @@ pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
     }else if is_kebab_case(non_snake_case_string.clone()) {
         snake_string = to_snake_from_kebab(non_snake_case_string.clone());
     }else if is_sentence_case(non_snake_case_string.clone()) {
+        snake_string = to_snake_from_sentence(non_snake_case_string.clone());
+    }else if is_title_case(non_snake_case_string.clone()) {
         snake_string = to_snake_from_sentence(non_snake_case_string.clone());
     }else if is_class_case(non_snake_case_string.clone()) {
         snake_string = to_snake_from_camel_or_class(non_snake_case_string.clone());

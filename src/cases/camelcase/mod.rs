@@ -2,46 +2,28 @@ use std::ascii::*;
 use regex::Regex;
 
 use cases::classcase::is_class_case;
+use cases::snakecase::to_snake_case;
 
 pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
     if is_camel_case(non_camelized_string.clone()) {
         return non_camelized_string
-    } else if is_class_case(non_camelized_string.clone()) {
-        return to_camel_from_class(non_camelized_string.clone());
     } else {
-        return to_camel_from_snake_or_kebab(non_camelized_string.clone());
+        return to_camel_from_snake(to_snake_case(non_camelized_string));
     }
 }
 
-    fn to_camel_from_snake_or_kebab<'a>(non_camelized_string: String) -> String{
+    fn to_camel_from_snake<'a>(non_camelized_string: String) -> String{
         let mut result:String = "".to_string();
         let mut new_word: bool = false;
 
         for character in non_camelized_string.chars() {
-            if character.to_string() == "_"
-                || character.to_string() == "-"
-                || character.to_string() == " " {
+            if character.to_string() == "_" {
                 new_word = true;
             } else if new_word {
                 result = format!("{}{}", result, character.to_ascii_uppercase());
                 new_word = false;
             } else {
                 result = format!("{}{}", result, character.to_ascii_lowercase());
-            }
-        }
-        return result
-    }
-
-    fn to_camel_from_class<'a>(non_camelized_string: String) -> String {
-        let mut result:String = "".to_string();
-        let mut first_character: bool = true;
-
-        for character in non_camelized_string.chars() {
-            if character == character.to_ascii_uppercase() && !first_character {
-                result = format!("{}{}", result, character);
-            } else {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-                first_character = false;
             }
         }
         return result

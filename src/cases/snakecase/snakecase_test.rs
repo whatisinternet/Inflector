@@ -22,6 +22,13 @@ fn returns_falsey_value_for_is_snake_case_when_class() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_snake_case_when_title() {
+    let mock_string: String = "Data Mapper Is A Really Really Long String".to_string();
+    let asserted_bool: bool = is_snake_case(mock_string);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
 fn returns_falsey_value_for_is_snake_case_when_camel() {
     let mock_string: String = "dataMapperIsAReallyReallyLongString".to_string();
     let asserted_bool: bool = is_snake_case(mock_string);
@@ -44,8 +51,16 @@ fn snake_case_data_mapper_as_data_mapper() {
 }
 
 #[test] #[allow(non_snake_case)]
-fn snake_case_data_space_mapper_as_data_mapper() {
+fn snake_case_Data_space_mapper_as_data_mapper() {
     let mock_string: String = "Data mapper".to_string();
+    let expected_string: String = "data_mapper".to_string();
+    let asserted_string: String = to_snake_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
+fn snake_case_Data_space_Mapper_as_data_mapper() {
+    let mock_string: String = "Data Mapper".to_string();
     let expected_string: String = "data_mapper".to_string();
     let asserted_string: String = to_snake_case(mock_string);
     assert!(asserted_string == expected_string);
