@@ -3,7 +3,7 @@
 [![Build
 Status](https://travis-ci.org/whatisinternet/inflector.svg)](https://travis-ci.org/whatisinternet/inflector)
 
-Adds String based inflections for Rust. Support for snake, kebab, camel,
+Adds String based inflections for Rust. Snake, kebab, camel,
 sentence, class, title, upper, and lower cases are supported as both traits and
 pure functions acting on String types.
 
