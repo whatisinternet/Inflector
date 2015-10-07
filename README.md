@@ -22,6 +22,7 @@ let class_cased: String = to_upper_case(to_lower_case(to_class_case(to_camel_cas
 - [x] Camel case
 - [x] Class case
 - [x] Sentence case
+- [x] Title case
 - [x] Upper case
 - [x] Lower case
 - [ ] Table case
@@ -64,6 +65,9 @@ use inflector::*;
 // use cases::sentencecase::to_sentence_case;
 // use cases::sentencecase::is_sentence_case;
 
+// use cases::titlecase::to_title_case;
+// use cases::titlecase::is_title_case;
+
 // use cases::uppercase::to_upper_case;
 // use cases::uppercase::is_upper_case;
 
@@ -103,6 +107,10 @@ to_sentence_case(String) -> String
 ```
 
 ```rust
+to_title_case(String) -> String
+```
+
+```rust
 to_upper_case(String) -> String
 ```
 
@@ -128,6 +136,10 @@ is_kebab_case(String) -> bool
 
 ```rust
 is_sentence_case(String) -> bool
+```
+
+```rust
+is_title_case(String) -> bool
 ```
 
 ```rust
