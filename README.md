@@ -3,20 +3,14 @@
 [![Build
 Status](https://travis-ci.org/whatisinternet/inflector.svg)](https://travis-ci.org/whatisinternet/inflector)
 
-Provides ActiveSupport style inflection for Rust. Still very much a work in
-progress.
-
-Unlike ActiveSupport in Rails: Any supported case will be able to transition into any other supported case. For example:
-
-```rust
-...
-let class_cased: String = to_upper_case(to_lower_case(to_class_case(to_camel_case(to_snake_case(to_kebab_case("SomeString")))))); //-> "SOMESTRING"
-...
-```
+Adds String based inflections for Rust. Support for snake, kebab, camel,
+sentence, class, title, upper, and lower cases are supported as both traits and
+pure functions acting on String types.
 
 -----
 ## TODO:
 
+- [x] Traits for String
 - [x] Snake case
 - [x] Kebab case
 - [x] Camel case
@@ -78,6 +72,10 @@ use inflector::*;
 fn main() {
 ...
   let camel_case_string: String = to_camel_case("some_string".to_string());
+...
+// Or
+...
+  let camel_case_string: String = "some_string".to_string().to_camel_case();
 ...
 }
 
