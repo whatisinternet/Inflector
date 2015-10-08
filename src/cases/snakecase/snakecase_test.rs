@@ -43,6 +43,20 @@ fn returns_truthy_value_for_is_snake_case_when_snake() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn returns_truthy_value_for_is_snake_case_when_snake_with_a_number() {
+    let mock_string: String = "data_mapper1_string_that_is_really_really_long".to_string();
+    let asserted_bool: bool = is_snake_case(mock_string);
+    assert!(asserted_bool == true);
+}
+
+#[test] #[allow(non_snake_case)]
+fn returns_truthy_value_for_is_snake_case_when_snake_with_a_number_snaked() {
+    let mock_string: String = "data_mapper_1_string_that_is_really_really_long".to_string();
+    let asserted_bool: bool = is_snake_case(mock_string);
+    assert!(asserted_bool == true);
+}
+
+#[test] #[allow(non_snake_case)]
 fn snake_case_data_mapper_as_data_mapper() {
     let mock_string: String = "data_mapper".to_string();
     let expected_string: String = "data_mapper".to_string();
@@ -78,6 +92,14 @@ fn snake_case_DataMapper_as_data_mapper() {
 fn snake_case_dataMapper_as_data_mapper() {
     let mock_string: String = "dataMapper".to_string();
     let expected_string: String = "data_mapper".to_string();
+    let asserted_string: String = to_snake_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
+fn snake_case_dataMapper3_as_data_mapper() {
+    let mock_string: String = "dataMapper3".to_string();
+    let expected_string: String = "data_mapper_3".to_string();
     let asserted_string: String = to_snake_case(mock_string);
     assert!(asserted_string == expected_string);
 }
