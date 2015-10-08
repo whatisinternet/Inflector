@@ -9,6 +9,22 @@ fn should_return_the_orgional_string_if_not_a_number_ordinalize(){
 }
 
 #[test]
+fn should_ordinalize_0_point_1_as_0_point_1(){
+    let mock_string: String = "0.1".to_string();
+    let expected_string: String = "0.1".to_string();
+    let asserted_string: String = ordinalize(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test]
+fn should_ordinalize_negative_1_as_negative_1st(){
+    let mock_string: String = "-1".to_string();
+    let expected_string: String = "-1st".to_string();
+    let asserted_string: String = ordinalize(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test]
 fn should_ordinalize_0_as_0th(){
     let mock_string: String = "0".to_string();
     let expected_string: String = "0th".to_string();
