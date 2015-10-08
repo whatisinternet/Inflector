@@ -97,7 +97,7 @@ fn should_ordinalize_12002_as_12002nd(){
 }
 
 #[test]
-fn should_ordinalize_12003_as_12003th(){
+fn should_ordinalize_12003_as_12003rd(){
     let mock_string: String = "12003".to_string();
     let expected_string: String = "12003rd".to_string();
     let asserted_string: String = ordinalize(mock_string);
