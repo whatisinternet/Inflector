@@ -1,6 +1,7 @@
 extern crate regex;
 
 pub mod cases;
+pub mod numbers;
 
 use cases::classcase::to_class_case;
 use cases::classcase::is_class_case;
