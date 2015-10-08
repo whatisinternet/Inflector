@@ -10,6 +10,7 @@ pure functions acting on String types.
 ## TODO:
 
 - [x] Traits for String
+- [x] Traits for str
 - [x] Snake case
 - [x] Kebab case
 - [x] Camel case
