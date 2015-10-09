@@ -1,6 +1,7 @@
 extern crate regex;
 
 pub mod cases;
+pub mod numbers;
 
 use cases::classcase::to_class_case;
 use cases::classcase::is_class_case;
@@ -25,6 +26,9 @@ use cases::uppercase::is_upper_case;
 
 use cases::lowercase::to_lower_case;
 use cases::lowercase::is_lower_case;
+
+use numbers::ordinalize::ordinalize;
+use numbers::deordinalize::deordinalize;
 
 
 pub trait Inflector {
@@ -51,6 +55,9 @@ pub trait Inflector {
 
     fn to_lower_case<'a>(&self) -> String;
     fn is_lower_case<'a>(&self) -> bool;
+
+    fn ordinalize<'a>(&self) -> String;
+    fn deordinalize<'a>(&self) -> String;
 }
 
 impl<'c> Inflector for String {
@@ -102,6 +109,12 @@ impl<'c> Inflector for String {
     fn is_lower_case(&self) -> bool{
         return is_lower_case(self.to_string());
     }
+    fn ordinalize(&self) -> String{
+        return ordinalize(self.to_string());
+    }
+    fn deordinalize(&self) -> String{
+        return deordinalize(self.to_string());
+    }
 }
 
 impl<'c> Inflector for str {
@@ -152,6 +165,12 @@ impl<'c> Inflector for str {
     }
     fn is_lower_case(&self) -> bool{
         return is_lower_case(self.to_string());
+    }
+    fn ordinalize(&self) -> String{
+        return ordinalize(self.to_string());
+    }
+    fn deordinalize(&self) -> String{
+        return deordinalize(self.to_string());
     }
 }
 
@@ -236,6 +255,16 @@ fn string_trait_is_lower_case() {
 }
 
 #[test]
+fn string_trait_ordinalize() {
+    assert_eq!("1".to_string().ordinalize(), "1st".to_string());
+}
+
+#[test]
+fn string_trait_deordinalize() {
+    assert_eq!("1st".to_string().deordinalize(), "1".to_string());
+}
+
+#[test]
 fn str_trait_to_class_case() {
     assert_eq!("foo".to_class_case(), "Foo".to_string());
 }
@@ -313,4 +342,14 @@ fn str_trait_to_lower_case() {
 #[test]
 fn str_trait_is_lower_case() {
     assert_eq!("foo".is_lower_case(), true);
+}
+
+#[test]
+fn str_trait_ordinalize() {
+    assert_eq!("1".ordinalize(), "1st".to_string());
+}
+
+#[test]
+fn str_trait_deordinalize() {
+    assert_eq!("1st".deordinalize(), "1".to_string());
 }

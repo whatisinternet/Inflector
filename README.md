@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector)
 
 Adds String based inflections for Rust. Snake, kebab, camel,
-sentence, class, title, upper, and lower cases are supported as both traits and
-pure functions acting on String types.
+sentence, class, title, upper, and lower cases as well as ordinalize and
+deordinalize  are supported as both traits and pure functions acting on String
+ types.
 
 -----
 ## TODO:
@@ -19,11 +20,11 @@ pure functions acting on String types.
 - [x] Title case
 - [x] Upper case
 - [x] Lower case
-- [ ] Table case
+- [x] Ordinalize and reverse
+- [ ] Foreign key
 - [ ] Pluralize
 - [ ] Singularize
-- [ ] Ordinalize and reverse
-- [ ] Constantize and reverse
+- [ ] Table case
 
 -----
 
@@ -32,7 +33,7 @@ pure functions acting on String types.
 ### Compile yourself:
 
 1. Install [Rust and cargo](http://doc.crates.io/)
-2. git clone git@github.com:whatisinternet/inflector.git
+2. git clone https://github.com/whatisinternet/inflector
 3. Library: cd inflector && cargo build --release --lib
 4. You can find the library in target/release
 
@@ -56,17 +57,23 @@ use inflector::*;
 // use inflector::cases::kebabcase::to_kebab_case;
 // use inflector::cases::kebabcase::is_kebab_case;
 
-// use cases::sentencecase::to_sentence_case;
-// use cases::sentencecase::is_sentence_case;
+// use inflector::cases::sentencecase::to_sentence_case;
+// use inflector::cases::sentencecase::is_sentence_case;
 
-// use cases::titlecase::to_title_case;
-// use cases::titlecase::is_title_case;
+// use inflector::cases::titlecase::to_title_case;
+// use inflector::cases::titlecase::is_title_case;
 
-// use cases::uppercase::to_upper_case;
-// use cases::uppercase::is_upper_case;
+// use inflector::cases::uppercase::to_upper_case;
+// use inflector::cases::uppercase::is_upper_case;
 
-// use cases::lowercase::to_lower_case;
-// use cases::lowercase::is_lower_case;
+// use inflector::cases::lowercase::to_lower_case;
+// use inflector::cases::lowercase::is_lower_case;
+
+// use inflector::cases::::to_lower_case;
+// use inflector::cases::lowercase::is_lower_case;
+
+// use inflector::numbers::ordinalize::ordinalize;
+// use inflector::numbers::deordinalize::deordinalize;
 
 ...
 fn main() {
@@ -114,6 +121,14 @@ to_upper_case(String) -> String
 
 ```rust
 to_lower_case(String) -> String
+```
+
+```rust
+ordinalize(String) -> String
+```
+
+```rust
+deordinalize(String) -> String
 ```
 
 ```rust
