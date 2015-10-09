@@ -2,6 +2,7 @@ extern crate regex;
 
 pub mod cases;
 pub mod numbers;
+pub mod suffix;
 
 use cases::classcase::to_class_case;
 use cases::classcase::is_class_case;
@@ -29,6 +30,9 @@ use cases::lowercase::is_lower_case;
 
 use numbers::ordinalize::ordinalize;
 use numbers::deordinalize::deordinalize;
+
+use suffix::foreignkey::to_foreign_key;
+use suffix::foreignkey::is_foreign_key;
 
 
 pub trait Inflector {
@@ -58,6 +62,9 @@ pub trait Inflector {
 
     fn ordinalize<'a>(&self) -> String;
     fn deordinalize<'a>(&self) -> String;
+
+    fn to_foreign_key<'a>(&self) -> String;
+    fn is_foreign_key<'a>(&self) -> bool;
 }
 
 impl<'c> Inflector for String {
@@ -115,6 +122,12 @@ impl<'c> Inflector for String {
     fn deordinalize(&self) -> String{
         return deordinalize(self.to_string());
     }
+    fn to_foreign_key(&self) -> String{
+        return to_foreign_key(self.to_string());
+    }
+    fn is_foreign_key(&self) -> bool{
+        return is_foreign_key(self.to_string());
+    }
 }
 
 impl<'c> Inflector for str {
@@ -171,6 +184,12 @@ impl<'c> Inflector for str {
     }
     fn deordinalize(&self) -> String{
         return deordinalize(self.to_string());
+    }
+    fn to_foreign_key(&self) -> String{
+        return to_foreign_key(self.to_string());
+    }
+    fn is_foreign_key(&self) -> bool{
+        return is_foreign_key(self.to_string());
     }
 }
 
@@ -265,6 +284,11 @@ fn string_trait_deordinalize() {
 }
 
 #[test]
+fn string_trait_to_foreign_key() {
+    assert_eq!("Foo::Bar".to_string().to_foreign_key(), "bar_id".to_string());
+}
+
+#[test]
 fn str_trait_to_class_case() {
     assert_eq!("foo".to_class_case(), "Foo".to_string());
 }
@@ -352,4 +376,9 @@ fn str_trait_ordinalize() {
 #[test]
 fn str_trait_deordinalize() {
     assert_eq!("1st".deordinalize(), "1".to_string());
+}
+
+#[test]
+fn str_trait_to_foreign_key() {
+    assert_eq!("Foo::Bar".to_foreign_key(), "bar_id".to_string());
 }
