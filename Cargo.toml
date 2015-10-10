@@ -10,9 +10,7 @@ homepage = "https://github.com/whatisinternet/inflector"
 description = """
 Adds String based inflections for Rust. Snake, kebab, camel, sentence, class, title, upper, and lower cases as well as ordinalize, deordinalize, demodulize, and foreign key are supported as both traits and pure functions acting on String types.
 """
-keywords = ["inflection", "case", "snake", "kebab", "camel", "sentence",
-"class", "title", "upper", "lower",  "ordinalize", "deordinalize", "demodulize",
-"foreign_key"]
+keywords = ["inflection", "case", "String", "Inflection", "change"]
 
 
 [lib]
