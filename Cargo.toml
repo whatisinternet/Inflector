@@ -7,7 +7,7 @@ readme = "README.md"
 repository = "https://github.com/whatisinternet/inflector"
 documentation = "https://github.com/whatisinternet/inflector"
 homepage = "https://github.com/whatisinternet/inflector"
-license="MIT"
+license="BSD-2-Clause"
 description = """
 Adds String based inflections for Rust. Snake, kebab, camel, sentence, class, title, upper, and lower cases as well as ordinalize, deordinalize, demodulize, and foreign key are supported as both traits and pure functions acting on String types.
 """
