@@ -3,9 +3,9 @@
 [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector)
 
 Adds String based inflections for Rust. Snake, kebab, camel,
-sentence, class, title, upper, and lower cases as well as ordinalize and
-deordinalize  are supported as both traits and pure functions acting on String
- types.
+sentence, class, title, upper, and lower cases as well as ordinalize,
+deordinalize, demodulize, and foreign key are supported as both traits and pure functions
+acting on String types.
 
 -----
 ## TODO:
@@ -21,7 +21,8 @@ deordinalize  are supported as both traits and pure functions acting on String
 - [x] Upper case
 - [x] Lower case
 - [x] Ordinalize and reverse
-- [ ] Foreign key
+- [x] Foreign key
+- [x] Demodulize
 - [ ] Pluralize
 - [ ] Singularize
 - [ ] Table case
@@ -75,6 +76,11 @@ use inflector::*;
 // use inflector::numbers::ordinalize::ordinalize;
 // use inflector::numbers::deordinalize::deordinalize;
 
+// use inflector::suffix::foreignkey::to_foreign_key;
+// use inflector::suffix::foreignkey::is_foreign_key;
+
+// use inflector::string::demodulize::demodulize;
+// use inflector::string::deconstantize::deconstantize;
 ...
 fn main() {
 ...
@@ -132,6 +138,19 @@ deordinalize(String) -> String
 ```
 
 ```rust
+demodulize(String) -> String
+```
+
+```rust
+deconstantize(String) -> String
+```
+
+```rust
+to_foreign_key(String) -> String
+```
+
+
+```rust
 is_class_case(String) -> bool
 ```
 
@@ -161,6 +180,10 @@ is_upper_case(String) -> bool
 
 ```rust
 is_lower_case(String) -> bool
+```
+
+```rust
+is_foreign_key(String) -> bool
 ```
 
 ## Contributing
