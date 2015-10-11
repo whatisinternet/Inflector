@@ -4,7 +4,7 @@
 
 Adds String based inflections for Rust. Snake, kebab, camel,
 sentence, class, title, upper, and lower cases as well as ordinalize,
-deordinalize, demodulize, and foreign key are supported as both traits and pure functions
+deordinalize, demodulize, deconstantize, and foreign key are supported as both traits and pure functions
 acting on String types.
 
 -----
@@ -23,6 +23,7 @@ acting on String types.
 - [x] Ordinalize and reverse
 - [x] Foreign key
 - [x] Demodulize
+- [x] Deconstantize
 - [ ] Pluralize
 - [ ] Singularize
 - [ ] Table case
@@ -42,9 +43,27 @@ acting on String types.
 
 ```rust
 ...
+// to use methods like String.to_lower_case();
 extern crate inflector;
+use inflector::Inflector;
+...
+fn main() {
+...
+  let camel_case_string: String = to_camel_case("some_string".to_string());
+...
+...
+  let camel_case_string: String = "some_string".to_string().to_camel_case();
+...
+}
 
-use inflector::*;
+```
+
+Or
+
+```rust
+...
+// to use methods like to_lower_case(String);
+extern crate inflector;
 
 // use inflector::cases::classcase::to_class_case;
 // use inflector::cases::classcase::is_class_case;
@@ -85,10 +104,6 @@ use inflector::*;
 fn main() {
 ...
   let camel_case_string: String = to_camel_case("some_string".to_string());
-...
-// Or
-...
-  let camel_case_string: String = "some_string".to_string().to_camel_case();
 ...
 }
 
