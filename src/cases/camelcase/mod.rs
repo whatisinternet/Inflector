@@ -24,7 +24,6 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
             let end_of_word: String = string_chars.iter().cloned().collect::<String>();
             out_string = format!("{}{}{}", out_string, first_char, end_of_word);
         }
-        println!("{}", out_string);
         return out_string;
     }
 
