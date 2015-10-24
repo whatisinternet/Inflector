@@ -20,4 +20,4 @@ name = "inflector"
 path = "src/lib.rs"
 
 [dependencies]
-regex = "0.1.8"
+regex = "0.1.41"
