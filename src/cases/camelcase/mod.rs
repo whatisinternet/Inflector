@@ -5,11 +5,7 @@ use cases::snakecase::to_snake_case;
 use cases::uppercase::to_upper_case;
 
 pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
-    if is_camel_case(non_camelized_string.clone()) {
-        return non_camelized_string
-    } else {
-        return to_camel_from_snake(to_snake_case(non_camelized_string));
-    }
+    return to_camel_from_snake(to_snake_case(non_camelized_string));
 }
 
     fn to_camel_from_snake<'a>(non_camelized_string: String) -> String{

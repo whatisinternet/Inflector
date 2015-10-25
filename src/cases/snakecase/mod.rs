@@ -3,9 +3,9 @@ use regex::Regex;
 use cases::lowercase::to_lower_case;
 
 pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
-    if is_snake_case(non_snake_case_string.clone()) {
-        return non_snake_case_string;
-    } else if non_snake_case_string.contains(" ") || non_snake_case_string.contains("-") {
+    if non_snake_case_string.contains(" ")
+        || non_snake_case_string.contains("_")
+        || non_snake_case_string.contains("-") {
         return to_snake_from_sentence_or_kebab(non_snake_case_string);
     } else {
         return to_snake_from_camel_or_class(non_snake_case_string);
