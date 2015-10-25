@@ -25,7 +25,7 @@ pub fn to_title_case<'a>(non_title_case_string: String) -> String {
     }
 
 pub fn is_title_case<'a>(test_string: String) -> bool{
-    let title_matcher= Regex::new(r"(^[A-Z][a-z]+)([^-|^_]*[ ][A-Z][a-z]+)").unwrap();
+    let title_matcher= Regex::new(r"(^[A-Z][a-z0-9]+)([^-|^_]*[ ][A-Z][a-z0-9]+)").unwrap();
     let mut is_title_case= false;
     if title_matcher.is_match(test_string.as_ref()) {
         is_title_case = true;

@@ -24,7 +24,7 @@ pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
     }
 
 pub fn is_sentence_case<'a>(test_string: String) -> bool{
-    let sentence_matcher= Regex::new(r"(^[A-Z])([^-|^_]*[ ][^A-Z][a-z]+)").unwrap();
+    let sentence_matcher= Regex::new(r"(^[A-Z])([^-|^_]*[ ][^A-Z][a-z0-9]+)").unwrap();
     let mut is_sentence_case= false;
     if sentence_matcher.is_match(test_string.as_ref())
         && !is_class_case(test_string.clone()){

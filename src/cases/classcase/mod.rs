@@ -24,7 +24,7 @@ pub fn to_class_case<'a>(non_class_case_string: String) -> String {
     }
 
 pub fn is_class_case<'a>(test_string: String) -> bool{
-    let class_matcher = Regex::new(r"(^[A-Z])([^-|^_|^ ]*[a-z]+)").unwrap();
+    let class_matcher = Regex::new(r"(^[A-Z])([^-|^_|^ ]*[a-z0-9]+)").unwrap();
     let space_matcher = Regex::new(r" +").unwrap();
     if class_matcher.is_match(test_string.as_ref()) && !space_matcher.is_match(test_string.as_ref()){
         return true;
