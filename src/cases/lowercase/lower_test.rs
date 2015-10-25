@@ -14,6 +14,12 @@ fn returns_truthy_value_for_is_lower_case_when_lowercase() {
     let asserted_bool: bool = is_lower_case(mock_string);
     assert!(asserted_bool == true);
 }
+#[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_lower_case_when_Startcased() {
+    let mock_string: String = "Datamapperisareallyreallylongstring".to_string();
+    let asserted_bool: bool = is_lower_case(mock_string);
+    assert!(asserted_bool == false);
+}
 
 #[test] #[allow(non_snake_case)]
 fn returns_falsey_value_for_is_lower_case_when_uppercase() {

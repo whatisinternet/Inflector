@@ -57,6 +57,20 @@ fn camelize_DataMapper3_as_dataMapper3() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_camel_case_when_start_cased() {
+    let mock_string: String = "Data".to_string();
+    let asserted_bool: bool = is_camel_case(mock_string);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_camel_case_when_lower_case() {
+    let mock_string: String = "data".to_string();
+    let asserted_bool: bool = is_camel_case(mock_string);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
 fn returns_falsey_value_for_is_camel_case_when_kebab() {
     let mock_string: String = "data-mapper-string-that-is-really-really-long".to_string();
     let asserted_bool: bool = is_camel_case(mock_string);

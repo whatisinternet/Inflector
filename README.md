@@ -35,7 +35,7 @@ acting on String types.
 ### As a [crate](http://crates.io)
 ```toml
 [dependencies]
-Inflector = "0.1.2"
+Inflector = "0.1.4"
 ```
 
 ### Compile yourself:

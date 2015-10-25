@@ -48,6 +48,20 @@ fn ClassCase_Data_space_mapper_as_DataMapper() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn returns_truthy_value_for_is_class_case_when_start_cased() {
+    let mock_string: String = "Data".to_string();
+    let asserted_bool: bool = is_class_case(mock_string);
+    assert!(asserted_bool == true);
+}
+
+#[test] #[allow(non_snake_case)]
+fn returns_falsey_value_for_is_class_case_when_downcased() {
+    let mock_string: String = "data".to_string();
+    let asserted_bool: bool = is_class_case(mock_string);
+    assert!(asserted_bool == false);
+}
+
+#[test] #[allow(non_snake_case)]
 fn returns_truthy_value_for_is_class_case_when_class() {
     let mock_string: String = "DataMapperIsAReallyReallyLongString".to_string();
     let asserted_bool: bool = is_class_case(mock_string);
