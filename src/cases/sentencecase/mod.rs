@@ -1,50 +1,33 @@
-use std::ascii::*;
 use regex::Regex;
 
 use cases::classcase::is_class_case;
-use cases::camelcase::is_camel_case;
+use cases::snakecase::to_snake_case;
+use cases::uppercase::to_upper_case;
 
 pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
     if is_sentence_case(non_sentence_case_string.clone()) {
         return non_sentence_case_string
-    } else if
-        is_camel_case(non_sentence_case_string.clone())
-        || is_class_case(non_sentence_case_string.clone()){
-        return to_sentence_from_class_or_camel(non_sentence_case_string)
     } else {
-        return to_sentence_from_snake_or_kebab(non_sentence_case_string)
+        return to_sentence_from_snake_or_kebab(to_snake_case(non_sentence_case_string));
     }
 }
-    fn to_sentence_from_class_or_camel<'a>(non_sentence_case_string: String) -> String {
-        let mut result:String = "".to_string();
-        let mut first_character: bool = true;
-        for character in non_sentence_case_string.chars() {
-            if character == character.to_ascii_uppercase() && !first_character {
-                result = format!("{} {}", result, character.to_ascii_lowercase());
-            } else if !first_character {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-            } else {
-                result = format!("{}{}", result, character.to_ascii_uppercase());
-                first_character = false;
-            }
-        }
-        return result
-    }
+    fn to_sentence_from_snake_or_kebab<'a>(non_sentence_case_string: String) -> String{
+        let mut split_string: Vec<&str> = non_sentence_case_string.split("_").collect();
+        let first_word: &str = split_string.remove(0);
+        let mut string_chars: Vec<char> = first_word.chars().collect();
+        let mut out_string: String = "".to_string();
 
-    fn to_sentence_from_snake_or_kebab<'a>(non_sentence_case_string: String) -> String {
-        let mut result:String = "".to_string();
-        let mut first_character: bool = true;
-        for character in non_sentence_case_string.chars() {
-            if character.to_string() != "_" && character.to_string() != "-" && !first_character {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-            } else if character.to_string() == "_" || character.to_string() == "-" {
-                result = format!("{} ", result);
-            } else {
-                result = format!("{}{}", result, character.to_ascii_uppercase());
-                first_character = false;
-            }
+        if first_word != "" {
+            let first_char: &str = &to_upper_case(string_chars.iter().nth(0).unwrap().to_string());
+            string_chars.remove(0);
+            let end_of_word: &str = &string_chars.iter().cloned().collect::<String>();
+            out_string =  first_char.to_string() + end_of_word;
         }
-        return result
+
+        for string in split_string {
+            out_string = out_string + " " +  string;
+        }
+        return out_string;
     }
 
 pub fn is_sentence_case<'a>(test_string: String) -> bool{
