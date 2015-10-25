@@ -1,29 +1,28 @@
-use std::ascii::*;
 use regex::Regex;
 
-use cases::camelcase::to_camel_case;
+use cases::snakecase::to_snake_case;
+use cases::uppercase::to_upper_case;
 
 pub fn to_title_case<'a>(non_title_case_string: String) -> String {
     if is_title_case(non_title_case_string.clone()) {
         return non_title_case_string
     } else {
-        return to_title_from_camel(to_camel_case(non_title_case_string));
+        return to_title_from_snake(to_snake_case(non_title_case_string));
     }
 }
-    fn to_title_from_camel<'a>(non_title_case_string: String) -> String {
-        let mut result:String = "".to_string();
-        let mut first_character: bool = true;
-        for character in non_title_case_string.chars() {
-            if character == character.to_ascii_uppercase() && !first_character {
-                result = format!("{} {}", result, character);
-            } else if !first_character {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-            } else {
-                result = format!("{}{}", result, character.to_ascii_uppercase());
-                first_character = false;
+    fn to_title_from_snake<'a>(non_camelized_string: String) -> String{
+        let split_string: Vec<&str> = non_camelized_string.split("_").collect();
+        let mut out_string: String = "".to_string();
+        for string in split_string {
+            if string != "" {
+                let mut string_chars: Vec<char> = string.chars().collect();
+                let first_char: &str = &to_upper_case(string_chars.iter().nth(0).unwrap().to_string());
+                string_chars.remove(0);
+                let end_of_word: &str = &string_chars.iter().cloned().collect::<String>();
+                out_string = out_string + " " + first_char + end_of_word;
             }
         }
-        return result
+        return out_string.trim().to_string();
     }
 
 pub fn is_title_case<'a>(test_string: String) -> bool{
