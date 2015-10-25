@@ -1,3 +1,4 @@
+use std::ascii::*;
 use regex::Regex;
 
 use cases::lowercase::to_lower_case;
@@ -12,10 +13,23 @@ pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
     }
 }
     fn to_snake_from_camel_or_class <'a>(non_snake_case_string: String) -> String {
-        let re = Regex::new(r"(?P<a>[A-Z0-9])").unwrap();
-        let result: String = re.replace_all(&non_snake_case_string, "_$a$b").to_string();
-        return to_lower_case(result.trim_left_matches("_").to_string());
+        let mut result:String = "".to_string();
+        let mut first_character: bool = true;
+        for character in non_snake_case_string.chars() {
+            if character == character.to_ascii_uppercase() && !first_character {
+                result = format!("{}_{}", result, character.to_ascii_lowercase());
+            } else {
+                result = format!("{}{}", result, character.to_ascii_lowercase());
+                first_character = false;
+            }
+        }
+        return result
     }
+    // fn to_snake_from_camel_or_class <'a>(non_snake_case_string: String) -> String {
+    //     let re = Regex::new(r"(?P<a>[A-Z0-9])").unwrap();
+    //     let result: String = re.replace_all(&non_snake_case_string, "_$a$b").to_string();
+    //     return to_lower_case(result.trim_left_matches("_").to_string());
+    // }
 
     fn to_snake_from_sentence_or_kebab<'a>(non_snake_case_string: String) -> String {
         return to_lower_case(non_snake_case_string.replace(" ", "_").replace("-", "_"));
