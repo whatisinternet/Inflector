@@ -3,8 +3,12 @@ use regex::Regex;
 
 pub fn to_lower_case<'a>(non_camelized_string: String) -> String {
     let mut result:String = "".to_string();
-    for character in non_camelized_string.chars() {
-        result = format!("{}{}", result, character.to_ascii_lowercase());
+    if !is_lower_case(non_camelized_string.clone()) {
+        for character in non_camelized_string.chars() {
+            result = format!("{}{}", result, character.to_ascii_lowercase());
+        }
+    } else {
+        result = non_camelized_string;
     }
     return result
 }
