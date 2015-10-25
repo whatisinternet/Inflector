@@ -16,14 +16,12 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
         let mut split_string: Vec<&str> = non_camelized_string.split("_").collect();
         let mut out_string: String = split_string.remove(0).to_string();
         for string in split_string {
-            if string != "" && !is_camel_case(string.to_string()) {
+            if string != "" {
                 let mut string_chars: Vec<char> = string.chars().collect();
                 let first_char: &str = &to_upper_case(string_chars.iter().nth(0).unwrap().to_string());
                 string_chars.remove(0);
                 let end_of_word: &str = &string_chars.iter().cloned().collect::<String>();
                 out_string = out_string + first_char + end_of_word;
-            } else {
-                out_string = out_string + string;
             }
         }
         return out_string;
