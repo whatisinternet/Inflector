@@ -11,7 +11,7 @@ pub fn to_title_case<'a>(non_title_case_string: String) -> String {
     }
 }
     fn to_title_from_snake<'a>(non_camelized_string: String) -> String{
-        let mut split_string: Vec<&str> = non_camelized_string.split("_").collect();
+        let split_string: Vec<&str> = non_camelized_string.split("_").collect();
         let mut out_string: String = "".to_string();
         for string in split_string {
             if string != "" {
