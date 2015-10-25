@@ -65,6 +65,14 @@ fn snake_case_data_mapper_as_data_mapper() {
 }
 
 #[test] #[allow(non_snake_case)]
+fn snake_case_HTTP_Data_space_mapper_as_data_mapper() {
+    let mock_string: String = "HTTP Data mapper".to_string();
+    let expected_string: String = "http_data_mapper".to_string();
+    let asserted_string: String = to_snake_case(mock_string);
+    assert!(asserted_string == expected_string);
+}
+
+#[test] #[allow(non_snake_case)]
 fn snake_case_Data_space_mapper_as_data_mapper() {
     let mock_string: String = "Data mapper".to_string();
     let expected_string: String = "data_mapper".to_string();
