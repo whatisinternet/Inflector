@@ -32,6 +32,12 @@ acting on String types.
 
 ## Installation:
 
+### As a [crate](http://crates.io)
+```toml
+[dependencies]
+Inflector = "0.1.2"
+```
+
 ### Compile yourself:
 
 1. Install [Rust and cargo](http://doc.crates.io/)
@@ -48,9 +54,6 @@ extern crate inflector;
 use inflector::Inflector;
 ...
 fn main() {
-...
-  let camel_case_string: String = to_camel_case("some_string".to_string());
-...
 ...
   let camel_case_string: String = "some_string".to_string().to_camel_case();
 ...
