@@ -1,8 +1,39 @@
+//! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+//!
+//! Adds String based inflections for Rust. Snake, kebab, camel,
+//! sentence, class, title, upper, and lower cases as well as ordinalize,
+//! deordinalize, demodulize, deconstantize, and foreign key are supported as both traits and pure functions
+//! acting on String types.
+//!
+//! ```rust
+//! use inflector::Inflector;
+//! #[test]
+//! fn should_convert_to_and_verify_camel_cased_string() {
+//!   let camel_case_string: String = "some_string".to_camel_case();
+//!   let is_camel_cased: bool= camel_case_string.is_camel_case();
+//!   assert!(is_camel_cased == true);
+//! }
+//! ```
 extern crate regex;
-
+/// Provides case inflections
+/// - Camel case
+/// - Class case
+/// - Kebab case
+/// - Lower case
+/// - Sentence case
+/// - Snake case
+/// - Upper case
 pub mod cases;
+/// Provides number inflections
+/// - Ordinalize
+/// - Deordinalize
 pub mod numbers;
+/// Provides suffix inflections
+/// - Foreign key
 pub mod suffix;
+/// Provides string inflections
+/// - Deconstantize
+/// - Demodulize
 pub mod string;
 
 use cases::classcase::to_class_case;

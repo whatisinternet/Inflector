@@ -163,6 +163,3 @@ pub fn is_title_case<'a>(test_string: String) -> bool{
     }
     return is_title_case;
 }
-
-#[cfg(test)]
-mod titlecase_test;

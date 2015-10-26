@@ -157,6 +157,3 @@ pub fn to_kebab_case<'a>(non_kebab_case_string: String) -> String {
     fn to_kebab_from_snake<'a>(non_kebab_case_string: String) -> String {
         return non_kebab_case_string.replace("_", "-");
     }
-
-#[cfg(test)]
-mod kebabcase_test;

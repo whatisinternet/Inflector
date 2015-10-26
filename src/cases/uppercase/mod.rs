@@ -23,7 +23,7 @@ pub fn to_upper_case<'a>(non_camelized_string: String) -> String {
     return result
 }
 
-/// Determines if a `String` is uppercase
+/// Determines if a `String` is UPPERCASE
 ///
 /// #Examples
 /// ```
@@ -65,6 +65,3 @@ pub fn is_upper_case<'a>(test_string: String) -> bool{
     }
     return is_upper_case;
 }
-
-#[cfg(test)]
-mod upper_test;

@@ -156,6 +156,3 @@ pub fn deordinalize<'a>(non_ordinalized_string: String) -> String {
             .to_string();
     }
 }
-
-#[cfg(test)]
-mod deordinalize_test;

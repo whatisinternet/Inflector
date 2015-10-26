@@ -211,6 +211,3 @@ pub fn is_class_case<'a>(test_string: String) -> bool{
     }
     return false;
 }
-
-#[cfg(test)]
-mod classcase_test;

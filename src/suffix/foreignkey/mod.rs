@@ -195,7 +195,3 @@ pub fn is_foreign_key<'a>(test_string: String) -> bool{
         }
     return is_foreign_key;
 }
-
-
-#[cfg(test)]
-mod foreignkey_test;

@@ -64,6 +64,3 @@ pub fn is_lower_case<'a>(test_string: String) -> bool{
     }
     return is_lower_case;
 }
-
-#[cfg(test)]
-mod lower_test;

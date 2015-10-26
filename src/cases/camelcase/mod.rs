@@ -217,6 +217,3 @@ pub fn is_camel_case<'a>(test_string: String) -> bool{
         }
     return false;
 }
-
-#[cfg(test)]
-mod camelcase_test;

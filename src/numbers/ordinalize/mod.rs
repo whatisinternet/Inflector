@@ -176,6 +176,3 @@ pub fn ordinalize<'a>(non_ordinalized_string: String) -> String {
         _ => format!("{}{}", non_ordinalized_string, "th"),
     }
 }
-
-#[cfg(test)]
-mod ordinalize_test;

@@ -55,6 +55,3 @@ pub fn demodulize<'a>(non_demodulize_string: String) -> String {
         return non_demodulize_string;
     }
 }
-
-#[cfg(test)]
-mod demodulize_test;

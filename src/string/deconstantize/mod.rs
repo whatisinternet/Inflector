@@ -59,6 +59,3 @@ pub fn deconstantize<'a>(non_deconstantized_string: String) -> String {
         return "".to_string();
     }
 }
-
-#[cfg(test)]
-mod deconstantize_test;

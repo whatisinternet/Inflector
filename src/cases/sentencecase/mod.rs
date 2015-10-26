@@ -173,7 +173,3 @@ pub fn is_sentence_case<'a>(test_string: String) -> bool{
         }
     return is_sentence_case;
 }
-
-
-#[cfg(test)]
-mod sentencecase_test;
