@@ -44,6 +44,17 @@ use cases::snakecase::to_snake_case;
 /// use inflector::cases::sentencecase::to_sentence_case;
 ///
 /// #[test] #[allow(non_snake_case)]
+/// fn sentence_case_FOO_BAR_as_foo_bar() {
+///     let mock_string: String = "FOO_BAR".to_string();
+///     let expected_string: String = "Foo bar".to_string();
+///     let asserted_string: String = to_sentence_case(mock_string);
+///     assert!(asserted_string == expected_string);
+/// }
+/// ```
+/// ```
+/// use inflector::cases::sentencecase::to_sentence_case;
+///
+/// #[test] #[allow(non_snake_case)]
 /// fn sentence_case_foo_bar_as_foo_bar() {
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "Foo bar".to_string();
@@ -120,6 +131,16 @@ pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
 /// #[test] #[allow(non_snake_case)]
 /// fn returns_falsey_value_for_is_sentence_case_when_title() {
 ///     let mock_string: String = "Foo Bar Is A Really Really Long String".to_string();
+///     let asserted_bool: bool = is_sentence_case(mock_string);
+///     assert!(asserted_bool == false);
+/// }
+/// ```
+/// ```
+/// use inflector::cases::sentencecase::is_sentence_case;
+///
+/// #[test] #[allow(non_snake_case)]
+/// fn returns_falsey_value_for_is_sentence_case_when_screaming_snake() {
+///     let mock_string: String = "FOO_BAR_STRING_THAT_IS_REALLY_REALLY_LONG".to_string();
 ///     let asserted_bool: bool = is_sentence_case(mock_string);
 ///     assert!(asserted_bool == false);
 /// }

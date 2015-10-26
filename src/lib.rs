@@ -20,6 +20,7 @@ extern crate regex;
 /// - Class case
 /// - Kebab case
 /// - Lower case
+/// - Screaming snake case
 /// - Sentence case
 /// - Snake case
 /// - Upper case
@@ -44,6 +45,10 @@ use cases::camelcase::is_camel_case;
 
 use cases::snakecase::to_snake_case;
 use cases::snakecase::is_snake_case;
+
+use cases::screamingsnakecase::to_screaming_snake_case;
+use cases::screamingsnakecase::is_screaming_snake_case;
+
 
 use cases::kebabcase::to_kebab_case;
 use cases::kebabcase::is_kebab_case;
@@ -79,6 +84,9 @@ pub trait Inflector {
 
     fn to_snake_case<'a>(&self) -> String;
     fn is_snake_case<'a>(&self) -> bool;
+
+    fn to_screaming_snake_case<'a>(&self) -> String;
+    fn is_screaming_snake_case<'a>(&self) -> bool;
 
     fn to_kebab_case<'a>(&self) -> String;
     fn is_kebab_case<'a>(&self) -> bool;
@@ -117,6 +125,12 @@ impl<'c> Inflector for String {
     }
     fn is_camel_case(&self) -> bool{
         return is_camel_case(self.to_string());
+    }
+    fn to_screaming_snake_case(&self) -> String{
+        return to_screaming_snake_case(self.to_string());
+    }
+    fn is_screaming_snake_case(&self) -> bool{
+        return is_screaming_snake_case(self.to_string());
     }
     fn to_snake_case(&self) -> String{
         return to_snake_case(self.to_string());
@@ -186,6 +200,12 @@ impl<'c> Inflector for str {
     }
     fn is_camel_case(&self) -> bool{
         return is_camel_case(self.to_string());
+    }
+    fn to_screaming_snake_case(&self) -> String{
+        return to_screaming_snake_case(self.to_string());
+    }
+    fn is_screaming_snake_case(&self) -> bool{
+        return is_screaming_snake_case(self.to_string());
     }
     fn to_snake_case(&self) -> String{
         return to_snake_case(self.to_string());

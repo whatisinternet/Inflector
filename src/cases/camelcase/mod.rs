@@ -22,6 +22,17 @@ use cases::snakecase::to_snake_case;
 /// use inflector::cases::camelcase::to_camel_case;
 ///
 /// #[test] #[allow(non_snake_case)]
+/// fn camelize_FOO_BAR_as_fooBar() {
+///     let mock_string: String = "FOO_BAR".to_string();
+///     let expected_string: String = "fooBar".to_string();
+///     let asserted_string: String = to_camel_case(mock_string);
+///     assert!(asserted_string == expected_string);
+/// }
+/// ```
+/// ```
+/// use inflector::cases::camelcase::to_camel_case;
+///
+/// #[test] #[allow(non_snake_case)]
 /// fn camelize_Foo_Bar_as_fooBar() {
 ///     let mock_string: String = "Foo Bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -172,6 +183,17 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
 ///     let mock_string: String = "fooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == true);
+/// }
+///
+/// ```
+/// ```
+/// use inflector::cases::camelcase::is_camel_case;
+///
+/// #[test] #[allow(non_snake_case)]
+/// fn returns_falsey_value_for_is_camel_case_when_screaming_snake() {
+///     let mock_string: String = "FOO_BAR_STRING_THAT_IS_REALLY_REALLY_LONG".to_string();
+///     let asserted_bool: bool = is_camel_case(mock_string);
+///     assert!(asserted_bool == false);
 /// }
 ///
 /// ```
