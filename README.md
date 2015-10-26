@@ -19,6 +19,7 @@ Documentation can be found here at the README or via rust docs below.
 
 - [x] Traits for String
 - [x] Traits for str
+- [x] Screaming snake case
 - [x] Snake case
 - [x] Kebab case
 - [x] Camel case
@@ -81,6 +82,9 @@ extern crate inflector;
 // use inflector::cases::camelcase::to_camel_case;
 // use inflector::cases::camelcase::is_camel_case;
 
+// use inflector::cases::screamingsnakecase::to_screamingsnake_case;
+// use inflector::cases::screamingsnakecase::is_screamingsnake_case;
+
 // use inflector::cases::snakecase::to_snake_case;
 // use inflector::cases::snakecase::is_snake_case;
 
@@ -128,6 +132,10 @@ to_class_case(String) -> String
 
 ```rust
 to_camel_case(String) -> String
+```
+
+```rust
+to_screaming_snake_case(String) -> String
 ```
 
 ```rust
@@ -181,6 +189,10 @@ is_class_case(String) -> bool
 
 ```rust
 is_camel_case(String) -> bool
+```
+
+```rust
+is_screaming_snake_case(String) -> bool
 ```
 
 ```rust
