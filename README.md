@@ -43,7 +43,7 @@ Documentation can be found here at the README or via rust docs below.
 ### As a [crate](http://crates.io)
 ```toml
 [dependencies]
-Inflector = "0.1.5"
+Inflector = "0.1.6"
 ```
 
 ### Compile yourself:
