@@ -21,6 +21,18 @@ use cases::snakecase::to_snake_case;
 /// use inflector::cases::kebabcase::to_kebab_case;
 ///
 /// #[test] #[allow(non_snake_case)]
+/// fn kebab_case_FOO_BAR_as_foo_bar() {
+///     let mock_string: String = "FOO_BAR".to_string();
+///     let expected_string: String = "foo-bar".to_string();
+///     let asserted_string: String = to_kebab_case(mock_string);
+///     assert!(asserted_string == expected_string);
+/// }
+/// ```
+///
+/// ```
+/// use inflector::cases::kebabcase::to_kebab_case;
+///
+/// #[test] #[allow(non_snake_case)]
 /// fn kebab_case_foo_bar_as_foo_bar() {
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "foo-bar".to_string();
@@ -114,6 +126,17 @@ pub fn is_kebab_case<'a>(test_string: String) -> bool{
 /// #[test] #[allow(non_snake_case)]
 /// fn returns_falsey_value_for_is_kebab_case_when_camel() {
 ///     let mock_string: String = "fooBarIsAReallyReallyLongString".to_string();
+///     let asserted_bool: bool = is_kebab_case(mock_string);
+///     assert!(asserted_bool == false);
+/// }
+/// ```
+///
+/// ```
+/// use inflector::cases::kebabcase::is_kebab_case;
+///
+/// #[test] #[allow(non_snake_case)]
+/// fn returns_falsey_value_for_is_kebab_case_when_screaming_snake() {
+///     let mock_string: String = "FOO_BAR_STRING_THAT_IS_REALLY_REALLY_LONG".to_string();
 ///     let asserted_bool: bool = is_kebab_case(mock_string);
 ///     assert!(asserted_bool == false);
 /// }

@@ -13,6 +13,11 @@ pub mod camelcase;
 /// Example string "snake_case"
 pub mod snakecase;
 
+/// Provides conversion to and detection of screaming snake case strings.
+///
+/// Example string "SCREAMING_SNAKE_CASE"
+pub mod screamingsnakecase;
+
 /// Provides conversion to and detection of kebab case strings.
 ///
 /// Example string "kebab-case"
