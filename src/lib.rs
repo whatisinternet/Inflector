@@ -1,8 +1,39 @@
+//! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+//!
+//! Adds String based inflections for Rust. Snake, kebab, camel,
+//! sentence, class, title, upper, and lower cases as well as ordinalize,
+//! deordinalize, demodulize, deconstantize, and foreign key are supported as both traits and pure functions
+//! acting on String types.
+//!
+//! ```rust
+//! use inflector::Inflector;
+//! #[test]
+//! fn should_convert_to_and_verify_camel_cased_string() {
+//!   let camel_case_string: String = "some_string".to_camel_case();
+//!   let is_camel_cased: bool= camel_case_string.is_camel_case();
+//!   assert!(is_camel_cased == true);
+//! }
+//! ```
 extern crate regex;
-
+/// Provides case inflections
+/// - Camel case
+/// - Class case
+/// - Kebab case
+/// - Lower case
+/// - Sentence case
+/// - Snake case
+/// - Upper case
 pub mod cases;
+/// Provides number inflections
+/// - Ordinalize
+/// - Deordinalize
 pub mod numbers;
+/// Provides suffix inflections
+/// - Foreign key
 pub mod suffix;
+/// Provides string inflections
+/// - Deconstantize
+/// - Demodulize
 pub mod string;
 
 use cases::classcase::to_class_case;
@@ -210,214 +241,4 @@ impl<'c> Inflector for str {
     fn deconstantize(&self) -> String{
         return deconstantize(self.to_string());
     }
-}
-
-#[test]
-fn string_trait_to_class_case() {
-    assert_eq!("foo".to_string().to_class_case(), "Foo".to_string());
-}
-
-#[test]
-fn string_trait_is_class_case() {
-    assert_eq!("FooFoo".to_string().is_class_case(), true);
-}
-
-#[test]
-fn string_trait_to_camel_case() {
-    assert_eq!("fooFoo".to_string().to_camel_case(), "fooFoo".to_string());
-}
-
-#[test]
-fn string_trait_is_camel_case() {
-    assert_eq!("fooFoo".to_string().is_camel_case(), true);
-}
-
-#[test]
-fn string_trait_to_snake_case() {
-    assert_eq!("fooFoo".to_string().to_snake_case(), "foo_foo".to_string());
-}
-
-#[test]
-fn string_trait_is_snake_case() {
-    assert_eq!("foo_foo".to_string().is_snake_case(), true);
-}
-
-#[test]
-fn string_trait_to_kebab_case() {
-    assert_eq!("fooFoo".to_string().to_kebab_case(), "foo-foo".to_string());
-}
-
-#[test]
-fn string_trait_is_kebab_case() {
-    assert_eq!("foo-foo".to_string().is_kebab_case(), true);
-}
-
-#[test]
-fn string_trait_to_sentence_case() {
-    assert_eq!("fooFoo".to_string().to_sentence_case(), "Foo foo".to_string());
-}
-
-#[test]
-fn string_trait_is_sentence_case() {
-    assert_eq!("Foo foo".to_string().is_sentence_case(), true);
-}
-
-#[test]
-fn string_trait_to_title_case() {
-    assert_eq!("fooFoo".to_string().to_title_case(), "Foo Foo".to_string());
-}
-
-#[test]
-fn string_trait_is_title_case() {
-    assert_eq!("Foo Foo".to_string().is_title_case(), true);
-}
-
-#[test]
-fn string_trait_to_upper_case() {
-    assert_eq!("fooFoo".to_string().to_upper_case(), "FOOFOO".to_string());
-}
-
-#[test]
-fn string_trait_is_upper_case() {
-    assert_eq!("FOOFOO".to_string().is_upper_case(), true);
-}
-
-#[test]
-fn string_trait_to_lower_case() {
-    assert_eq!("fooFoo".to_string().to_lower_case(), "foofoo".to_string());
-}
-
-#[test]
-fn string_trait_is_lower_case() {
-    assert_eq!("foo".to_string().is_lower_case(), true);
-}
-
-#[test]
-fn string_trait_ordinalize() {
-    assert_eq!("1".to_string().ordinalize(), "1st".to_string());
-}
-
-#[test]
-fn string_trait_deordinalize() {
-    assert_eq!("1st".to_string().deordinalize(), "1".to_string());
-}
-
-#[test]
-fn string_trait_to_foreign_key() {
-    assert_eq!("Foo::Bar".to_string().to_foreign_key(), "bar_id".to_string());
-}
-
-#[test]
-fn string_trait_demodulize() {
-    assert_eq!("Foo::Bar".to_string().demodulize(), "Bar".to_string());
-}
-
-#[test]
-fn string_trait_deconstantize() {
-    assert_eq!("Foo::Bar".to_string().deconstantize(), "Foo".to_string());
-}
-
-#[test]
-fn str_trait_to_class_case() {
-    assert_eq!("foo".to_class_case(), "Foo".to_string());
-}
-
-#[test]
-fn str_trait_is_class_case() {
-    assert_eq!("FooFoo".is_class_case(), true);
-}
-
-#[test]
-fn str_trait_to_camel_case() {
-    assert_eq!("fooFoo".to_camel_case(), "fooFoo".to_string());
-}
-
-#[test]
-fn str_trait_is_camel_case() {
-    assert_eq!("fooFoo".is_camel_case(), true);
-}
-
-#[test]
-fn str_trait_to_snake_case() {
-    assert_eq!("fooFoo".to_snake_case(), "foo_foo".to_string());
-}
-
-#[test]
-fn str_trait_is_snake_case() {
-    assert_eq!("foo_foo".is_snake_case(), true);
-}
-
-#[test]
-fn str_trait_to_kebab_case() {
-    assert_eq!("fooFoo".to_kebab_case(), "foo-foo".to_string());
-}
-
-#[test]
-fn str_trait_is_kebab_case() {
-    assert_eq!("foo-foo".is_kebab_case(), true);
-}
-
-#[test]
-fn str_trait_to_sentence_case() {
-    assert_eq!("fooFoo".to_sentence_case(), "Foo foo".to_string());
-}
-
-#[test]
-fn str_trait_is_sentence_case() {
-    assert_eq!("Foo foo".is_sentence_case(), true);
-}
-
-#[test]
-fn str_trait_to_title_case() {
-    assert_eq!("fooFoo".to_title_case(), "Foo Foo".to_string());
-}
-
-#[test]
-fn str_trait_is_title_case() {
-    assert_eq!("Foo Foo".is_title_case(), true);
-}
-
-#[test]
-fn str_trait_to_upper_case() {
-    assert_eq!("fooFoo".to_upper_case(), "FOOFOO".to_string());
-}
-
-#[test]
-fn str_trait_is_upper_case() {
-    assert_eq!("FOOFOO".is_upper_case(), true);
-}
-
-#[test]
-fn str_trait_to_lower_case() {
-    assert_eq!("fooFoo".to_lower_case(), "foofoo".to_string());
-}
-
-#[test]
-fn str_trait_is_lower_case() {
-    assert_eq!("foo".is_lower_case(), true);
-}
-
-#[test]
-fn str_trait_ordinalize() {
-    assert_eq!("1".ordinalize(), "1st".to_string());
-}
-
-#[test]
-fn str_trait_deordinalize() {
-    assert_eq!("1st".deordinalize(), "1".to_string());
-}
-
-#[test]
-fn str_trait_to_foreign_key() {
-    assert_eq!("Foo::Bar".to_foreign_key(), "bar_id".to_string());
-}
-
-#[test]
-fn str_trait_demodulize() {
-    assert_eq!("Foo::Bar".demodulize(), "Bar".to_string());
-}
-
-#[test]
-fn str_trait_deconstantize() {
-    assert_eq!("Foo::Bar".deconstantize(), "Foo".to_string());
 }

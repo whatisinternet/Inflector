@@ -8,6 +8,13 @@ deordinalize, demodulize, deconstantize, and foreign key are supported as both t
 acting on String types.
 
 -----
+## Documentation:
+
+Documentation can be found here at the README or via rust docs below.
+
+[Rust docs with examples](http://whatisinternet.github.io/inflector/doc/inflector/)
+
+-----
 ## TODO:
 
 - [x] Traits for String
@@ -35,7 +42,7 @@ acting on String types.
 ### As a [crate](http://crates.io)
 ```toml
 [dependencies]
-Inflector = "0.1.4"
+Inflector = "0.1.5"
 ```
 
 ### Compile yourself:
