@@ -117,6 +117,17 @@ fn string_trait_deconstantize() {
 }
 
 #[test]
+fn string_trait_to_plural() {
+    assert_eq!("crate".to_string().to_plural(), "crates".to_string());
+}
+
+
+
+//-----------------------------------------------------------------------------------------//
+
+
+
+#[test]
 fn str_trait_to_class_case() {
     assert_eq!("foo".to_class_case(), "Foo".to_string());
 }
@@ -230,3 +241,7 @@ fn str_trait_deconstantize() {
     assert_eq!("Foo::Bar".deconstantize(), "Foo".to_string());
 }
 
+#[test]
+fn str_trait_to_plural() {
+    assert_eq!("ox".to_plural(), "oxen".to_string());
+}

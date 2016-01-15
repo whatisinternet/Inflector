@@ -1,4 +1,4 @@
-//! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+//! [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 //!
 //! Adds String based inflections for Rust. Snake, kebab, camel,
 //! sentence, class, title, upper, and lower cases as well as ordinalize,
@@ -37,6 +37,7 @@ pub mod suffix;
 /// - Demodulize
 pub mod string;
 
+
 use cases::classcase::to_class_case;
 use cases::classcase::is_class_case;
 
@@ -74,6 +75,7 @@ use suffix::foreignkey::is_foreign_key;
 use string::demodulize::demodulize;
 use string::deconstantize::deconstantize;
 
+use string::pluralize::to_plural;
 
 pub trait Inflector {
     fn to_class_case<'a>(&self) -> String;
@@ -111,6 +113,8 @@ pub trait Inflector {
 
     fn demodulize<'a>(&self) -> String;
     fn deconstantize<'a>(&self) -> String;
+
+    fn to_plural<'a>(&self) -> String;
 }
 
 impl<'c> Inflector for String {
@@ -186,6 +190,9 @@ impl<'c> Inflector for String {
     fn deconstantize(&self) -> String{
         return deconstantize(self.to_string());
     }
+    fn to_plural(&self) -> String{
+        return to_plural(self.to_string());
+    }
 }
 
 impl<'c> Inflector for str {
@@ -260,5 +267,9 @@ impl<'c> Inflector for str {
     }
     fn deconstantize(&self) -> String{
         return deconstantize(self.to_string());
+    }
+
+    fn to_plural(&self) -> String{
+        return to_plural(self.to_string());
     }
 }
