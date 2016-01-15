@@ -1,10 +1,11 @@
 # Rust Inflector
 
-[![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+
+[![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 
 Adds String based inflections for Rust. Snake, kebab, camel,
 sentence, class, title, upper, and lower cases as well as ordinalize,
-deordinalize, demodulize, deconstantize, foreign key, and pluralize are supported as both traits and pure functions
+deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize are supported as both traits and pure functions
 acting on String types.
 
 -----
@@ -33,8 +34,8 @@ Documentation can be found here at the README or via rust docs below.
 - [x] Demodulize
 - [x] Deconstantize
 - [x] Pluralize
+- [x] Table case
 - [ ] Singularize
-- [ ] Table case
 
 -----
 
@@ -97,6 +98,9 @@ extern crate inflector;
 // use inflector::cases::titlecase::to_title_case;
 // use inflector::cases::titlecase::is_title_case;
 
+// use inflector::cases::tablecase::to_table_case;
+// use inflector::cases::tablecase::is_table_case;
+
 // use inflector::cases::uppercase::to_upper_case;
 // use inflector::cases::uppercase::is_upper_case;
 
@@ -154,6 +158,10 @@ to_sentence_case(String) -> String
 
 ```rust
 to_title_case(String) -> String
+```
+
+```rust
+to_table_case(String) -> String
 ```
 
 ```rust
@@ -217,6 +225,10 @@ is_title_case(String) -> bool
 ```
 
 ```rust
+is_table_case(String) -> bool
+```
+
+```rust
 is_upper_case(String) -> bool
 ```
 
@@ -229,6 +241,8 @@ is_foreign_key(String) -> bool
 ```
 
 ## Contributing
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 1. Fork it ( https://github.com/whatisinternet/inflector/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
