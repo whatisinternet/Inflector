@@ -1,10 +1,10 @@
 # Rust Inflector
 
-[![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+[![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 
 Adds String based inflections for Rust. Snake, kebab, camel,
 sentence, class, title, upper, and lower cases as well as ordinalize,
-deordinalize, demodulize, deconstantize, and foreign key are supported as both traits and pure functions
+deordinalize, demodulize, deconstantize, foreign key, and pluralize are supported as both traits and pure functions
 acting on String types.
 
 -----
@@ -32,7 +32,7 @@ Documentation can be found here at the README or via rust docs below.
 - [x] Foreign key
 - [x] Demodulize
 - [x] Deconstantize
-- [ ] Pluralize
+- [x] Pluralize
 - [ ] Singularize
 - [ ] Table case
 
@@ -43,7 +43,7 @@ Documentation can be found here at the README or via rust docs below.
 ### As a [crate](http://crates.io)
 ```toml
 [dependencies]
-Inflector = "0.1.6"
+Inflector = "0.1.7"
 ```
 
 ### Compile yourself:
@@ -114,6 +114,8 @@ extern crate inflector;
 
 // use inflector::string::demodulize::demodulize;
 // use inflector::string::deconstantize::deconstantize;
+
+// use inflector::string::pluralize::to_plural;
 ...
 fn main() {
 ...
@@ -182,6 +184,9 @@ deconstantize(String) -> String
 to_foreign_key(String) -> String
 ```
 
+```rust
+to_plural(String) -> String
+```
 
 ```rust
 is_class_case(String) -> bool
