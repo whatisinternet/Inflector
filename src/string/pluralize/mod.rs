@@ -2,7 +2,6 @@ use regex::Regex;
 
 const PLURAL_RULES: [&'static str; 20] = [
     "en",
-    "s",
     "es",
     "i",
     "i",
@@ -20,7 +19,8 @@ const PLURAL_RULES: [&'static str; 20] = [
     "ice",
     "ice",
     "",
-    "zes"
+    "zes",
+    ""
 ];
 
 const UNACCONTABLE_WORDS: [&'static str; 202] = [
@@ -339,7 +339,6 @@ pub fn to_plural<'a>(non_plural_string: String) -> String {
     fn plural_rules_regexes<'a>() -> [Regex; 20] {
         return [
             Regex::new(r"^(ox)$").unwrap(),
-            Regex::new(r"s$").unwrap(),
             Regex::new(r"^(ax|test)is$").unwrap(),
             Regex::new(r"(octop|vir)us$").unwrap(),
             Regex::new(r"(octop|vir)i$").unwrap(),
@@ -357,7 +356,8 @@ pub fn to_plural<'a>(non_plural_string: String) -> String {
             Regex::new(r"(m|l)ouse$").unwrap(),
             Regex::new(r"(m|l)ice$").unwrap(),
             Regex::new(r"^(oxen)$").unwrap(),
-            Regex::new(r"(quiz)$").unwrap()
+            Regex::new(r"(quiz)$").unwrap(),
+            Regex::new(r"s$").unwrap(),
         ];
 
     }

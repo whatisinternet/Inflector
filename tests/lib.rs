@@ -23,6 +23,16 @@ fn string_trait_is_camel_case() {
 }
 
 #[test]
+fn string_trait_to_table_case() {
+    assert_eq!("fooFoo".to_string().to_table_case(), "foo_foos".to_string());
+}
+
+#[test]
+fn string_trait_is_table_case() {
+    assert_eq!("foo_foos".to_string().is_table_case(), true);
+}
+
+#[test]
 fn string_trait_to_screaming_snake_case() {
     assert_eq!("fooFoo".to_string().to_screaming_snake_case(), "FOO_FOO".to_string());
 }
@@ -145,6 +155,16 @@ fn str_trait_to_camel_case() {
 #[test]
 fn str_trait_is_camel_case() {
     assert_eq!("fooFoo".is_camel_case(), true);
+}
+
+#[test]
+fn str_trait_to_table_case() {
+    assert_eq!("fooFoo".to_table_case(), "foo_foos".to_string());
+}
+
+#[test]
+fn str_trait_is_table_case() {
+    assert_eq!("foo_foos".is_table_case(), true);
 }
 
 #[test]
