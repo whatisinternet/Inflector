@@ -1,3 +1,4 @@
+#![deny(warnings)]
 //! [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 //!
 //! Adds String based inflections for Rust. Snake, kebab, camel,
