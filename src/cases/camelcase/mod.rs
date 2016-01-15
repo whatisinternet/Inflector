@@ -209,7 +209,6 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
 ///     let mock_string: String = "Foo Bar Is A Really Really Long String".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-///
 /// ```
 pub fn is_camel_case<'a>(test_string: String) -> bool{
     let camel_matcher = Regex::new(r"(^|[A-Z])([^-|^_|^ ]*[a-z0-9]+[A-Z][a-z0-9]+)").unwrap();

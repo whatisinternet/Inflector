@@ -258,68 +258,68 @@ const UNACCONTABLE_WORDS: [&'static str; 202] = [
 /// ```
 /// use inflector::string::pluralize::to_plural;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn pluralize_foo_bar_to_foo_bars() {
+///
+/// // pluralize_foo_bar_to_foo_bars() {
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "foo_bars".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::string::pluralize::to_plural;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn pluralizes_ox_to_oxen() {
+///
+/// // pluralizes_ox_to_oxen() {
 ///     let mock_string: String = "ox".to_string();
 ///     let expected_string: String = "oxen".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::string::pluralize::to_plural;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn pluralizes_crate_to_crates() {
+///
+/// // pluralizes_crate_to_crates() {
 ///     let mock_string: String = "crate".to_string();
 ///     let expected_string: String = "crates".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::string::pluralize::to_plural;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn pluralizes_boxes_to_boxes() {
+///
+/// // pluralizes_boxes_to_boxes() {
 ///     let mock_string: String = "boxes".to_string();
 ///     let expected_string: String = "boxes".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::string::pluralize::to_plural;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn does_not_pluralize_vengence() {
-///     let mock_string: String = "vengence".to_string();
-///     let expected_string: String = "vengence".to_string();
+///
+/// // does_not_pluralize_vengeance) {
+///     let mock_string: String = "vengeance".to_string();
+///     let expected_string: String = "vengeance".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::string::pluralize::to_plural;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn does_not_pluralize_yoga() {
+///
+/// // does_not_pluralize_yoga() {
 ///     let mock_string: String = "yoga".to_string();
 ///     let expected_string: String = "yoga".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 ///
 pub fn to_plural<'a>(non_plural_string: String) -> String {
