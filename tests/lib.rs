@@ -131,6 +131,11 @@ fn string_trait_to_plural() {
     assert_eq!("crate".to_string().to_plural(), "crates".to_string());
 }
 
+#[test]
+fn string_trait_to_singular() {
+    assert_eq!("crates".to_string().to_singular(), "crate".to_string());
+}
+
 
 
 //-----------------------------------------------------------------------------------------//
@@ -264,4 +269,9 @@ fn str_trait_deconstantize() {
 #[test]
 fn str_trait_to_plural() {
     assert_eq!("ox".to_plural(), "oxen".to_string());
+}
+
+#[test]
+fn str_trait_to_singular() {
+    assert_eq!("oxen".to_singular(), "ox".to_string());
 }

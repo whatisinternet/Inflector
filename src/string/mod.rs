@@ -10,3 +10,7 @@ pub mod deconstantize;
 ///
 /// Example string "FooBar" -> "FooBars"
 pub mod pluralize;
+/// Provides conversion to singular strings.
+///
+/// Example string "FooBars" -> "FooBar"
+pub mod singularize;

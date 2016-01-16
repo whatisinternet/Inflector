@@ -1,4 +1,5 @@
 #![deny(warnings)]
+
 //! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 //!
 //! Adds String based inflections for Rust. Snake, kebab, camel,
@@ -8,12 +9,9 @@
 //!
 //! ```rust
 //! use inflector::Inflector;
-//! #[test]
-//! fn should_convert_to_and_verify_camel_cased_string() {
-//!   let camel_case_string: String = "some_string".to_camel_case();
-//!   let is_camel_cased: bool= camel_case_string.is_camel_case();
-//!   assert!(is_camel_cased == true);
-//! }
+//! let camel_case_string: String = "some_string".to_camel_case();
+//! let is_camel_cased: bool= camel_case_string.is_camel_case();
+//! assert!(is_camel_cased == true);
 //! ```
 extern crate regex;
 /// Provides case inflections
@@ -37,6 +35,8 @@ pub mod suffix;
 /// Provides string inflections
 /// - Deconstantize
 /// - Demodulize
+/// - Pluralize
+/// - Singularize
 pub mod string;
 
 
@@ -80,6 +80,7 @@ use string::demodulize::demodulize;
 use string::deconstantize::deconstantize;
 
 use string::pluralize::to_plural;
+use string::singularize::to_singular;
 
 pub trait Inflector {
     fn to_class_case<'a>(&self) -> String;
@@ -122,6 +123,7 @@ pub trait Inflector {
     fn deconstantize<'a>(&self) -> String;
 
     fn to_plural<'a>(&self) -> String;
+    fn to_singular<'a>(&self) -> String;
 }
 
 impl<'c> Inflector for String {
@@ -205,6 +207,9 @@ impl<'c> Inflector for String {
     }
     fn to_plural(&self) -> String{
         return to_plural(self.to_string());
+    }
+    fn to_singular(&self) -> String{
+        return to_singular(self.to_string());
     }
 }
 
@@ -290,5 +295,9 @@ impl<'c> Inflector for str {
 
     fn to_plural(&self) -> String{
         return to_plural(self.to_string());
+    }
+
+    fn to_singular(&self) -> String{
+        return to_singular(self.to_string());
     }
 }
