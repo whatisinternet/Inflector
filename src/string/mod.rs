@@ -14,3 +14,5 @@ pub mod pluralize;
 ///
 /// Example string "FooBars" -> "FooBar"
 pub mod singularize;
+
+mod constants;
