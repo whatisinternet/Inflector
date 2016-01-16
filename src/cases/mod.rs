@@ -33,6 +33,11 @@ pub mod sentencecase;
 /// Example string "Title Case"
 pub mod titlecase;
 
+/// Provides conversion to and detection of table case strings.
+///
+/// Example string "table_cases"
+pub mod tablecase;
+
 /// Provides conversion to upper case strings.
 ///
 /// Example string "UPPERCASE"

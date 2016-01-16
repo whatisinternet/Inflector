@@ -23,6 +23,16 @@ fn string_trait_is_camel_case() {
 }
 
 #[test]
+fn string_trait_to_table_case() {
+    assert_eq!("fooFoo".to_string().to_table_case(), "foo_foos".to_string());
+}
+
+#[test]
+fn string_trait_is_table_case() {
+    assert_eq!("foo_foos".to_string().is_table_case(), true);
+}
+
+#[test]
 fn string_trait_to_screaming_snake_case() {
     assert_eq!("fooFoo".to_string().to_screaming_snake_case(), "FOO_FOO".to_string());
 }
@@ -117,6 +127,22 @@ fn string_trait_deconstantize() {
 }
 
 #[test]
+fn string_trait_to_plural() {
+    assert_eq!("crate".to_string().to_plural(), "crates".to_string());
+}
+
+#[test]
+fn string_trait_to_singular() {
+    assert_eq!("crates".to_string().to_singular(), "crate".to_string());
+}
+
+
+
+//-----------------------------------------------------------------------------------------//
+
+
+
+#[test]
 fn str_trait_to_class_case() {
     assert_eq!("foo".to_class_case(), "Foo".to_string());
 }
@@ -134,6 +160,16 @@ fn str_trait_to_camel_case() {
 #[test]
 fn str_trait_is_camel_case() {
     assert_eq!("fooFoo".is_camel_case(), true);
+}
+
+#[test]
+fn str_trait_to_table_case() {
+    assert_eq!("fooFoo".to_table_case(), "foo_foos".to_string());
+}
+
+#[test]
+fn str_trait_is_table_case() {
+    assert_eq!("foo_foos".is_table_case(), true);
 }
 
 #[test]
@@ -230,3 +266,12 @@ fn str_trait_deconstantize() {
     assert_eq!("Foo::Bar".deconstantize(), "Foo".to_string());
 }
 
+#[test]
+fn str_trait_to_plural() {
+    assert_eq!("ox".to_plural(), "oxen".to_string());
+}
+
+#[test]
+fn str_trait_to_singular() {
+    assert_eq!("oxen".to_singular(), "ox".to_string());
+}

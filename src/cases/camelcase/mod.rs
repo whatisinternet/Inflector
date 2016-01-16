@@ -10,90 +10,82 @@ use cases::snakecase::to_snake_case;
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_fooBar_as_fooBar() {
+/// // camelize_fooBar_as_fooBar() {
 ///     let mock_string: String = "fooBar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_FOO_BAR_as_fooBar() {
+/// // camelize_FOO_BAR_as_fooBar() {
 ///     let mock_string: String = "FOO_BAR".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_Foo_Bar_as_fooBar() {
+/// // camelize_Foo_Bar_as_fooBar() {
 ///     let mock_string: String = "Foo Bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_foo_bar_as_fooBar() {
+/// // camelize_foo_bar_as_fooBar() {
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_Foo_space_bar_as_fooBar() {
+/// // camelize_Foo_space_bar_as_fooBar() {
 ///     let mock_string: String = "Foo bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_foo_dash_bar_as_fooBar() {
+/// // camelize_foo_dash_bar_as_fooBar() {
 ///     let mock_string: String = "foo-bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_FooBar_as_fooBar() {
+/// // camelize_FooBar_as_fooBar() {
 ///     let mock_string: String = "FooBar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::to_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn camelize_FooBar3_as_fooBar3() {
+/// // camelize_FooBar3_as_fooBar3() {
 ///     let mock_string: String = "FooBar3".to_string();
 ///     let expected_string: String = "fooBar3".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
-/// }
+///
 /// ```
 pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
     return to_camel_from_snake(to_snake_case(non_camelized_string));
@@ -122,112 +114,101 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_start_cased() {
+/// // returns_falsey_value_for_is_camel_case_when_start_cased() {
 ///     let mock_string: String = "Foo".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_lower_case() {
+/// // returns_falsey_value_for_is_camel_case_when_lower_case() {
 ///     let mock_string: String = "foo".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_kebab() {
+/// // returns_falsey_value_for_is_camel_case_when_kebab() {
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_class() {
+/// // returns_falsey_value_for_is_camel_case_when_class() {
 ///     let mock_string: String = "FooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_truthy_value_for_is_camel_case_when_camel_with_number() {
+/// // returns_truthy_value_for_is_camel_case_when_camel_with_number() {
 ///     let mock_string: String = "fooBarIsAReallyReally3LongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == true);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_truthy_value_for_is_camel_case_when_camel() {
+/// // returns_truthy_value_for_is_camel_case_when_camel() {
 ///     let mock_string: String = "fooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == true);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_screaming_snake() {
+/// // returns_falsey_value_for_is_camel_case_when_screaming_snake() {
 ///     let mock_string: String = "FOO_BAR_STRING_THAT_IS_REALLY_REALLY_LONG".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_snake() {
+/// // returns_falsey_value_for_is_camel_case_when_snake() {
 ///     let mock_string: String = "foo_bar_string_that_is_really_really_long".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_sentence() {
+/// // returns_falsey_value_for_is_camel_case_when_sentence() {
 ///     let mock_string: String = "Foo bar string that is really really long".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
+///
 ///
 /// ```
 /// ```
 /// use inflector::cases::camelcase::is_camel_case;
 ///
-/// #[test] #[allow(non_snake_case)]
-/// fn returns_falsey_value_for_is_camel_case_when_title() {
+/// // returns_falsey_value_for_is_camel_case_when_title() {
 ///     let mock_string: String = "Foo Bar Is A Really Really Long String".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
-/// }
 /// ```
 pub fn is_camel_case<'a>(test_string: String) -> bool{
     let camel_matcher = Regex::new(r"(^|[A-Z])([^-|^_|^ ]*[a-z0-9]+[A-Z][a-z0-9]+)").unwrap();

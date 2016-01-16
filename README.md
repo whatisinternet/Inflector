@@ -1,10 +1,11 @@
 # Rust Inflector
 
+
 [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 
 Adds String based inflections for Rust. Snake, kebab, camel,
 sentence, class, title, upper, and lower cases as well as ordinalize,
-deordinalize, demodulize, deconstantize, and foreign key are supported as both traits and pure functions
+deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize/singularize are supported as both traits and pure functions
 acting on String types.
 
 -----
@@ -15,35 +16,13 @@ Documentation can be found here at the README or via rust docs below.
 [Rust docs with examples](http://whatisinternet.github.io/inflector/doc/inflector/)
 
 -----
-## TODO:
-
-- [x] Traits for String
-- [x] Traits for str
-- [x] Screaming snake case
-- [x] Snake case
-- [x] Kebab case
-- [x] Camel case
-- [x] Class case
-- [x] Sentence case
-- [x] Title case
-- [x] Upper case
-- [x] Lower case
-- [x] Ordinalize and reverse
-- [x] Foreign key
-- [x] Demodulize
-- [x] Deconstantize
-- [ ] Pluralize
-- [ ] Singularize
-- [ ] Table case
-
------
 
 ## Installation:
 
 ### As a [crate](http://crates.io)
 ```toml
 [dependencies]
-Inflector = "0.1.6"
+Inflector = "0.2.0"
 ```
 
 ### Compile yourself:
@@ -97,6 +76,9 @@ extern crate inflector;
 // use inflector::cases::titlecase::to_title_case;
 // use inflector::cases::titlecase::is_title_case;
 
+// use inflector::cases::tablecase::to_table_case;
+// use inflector::cases::tablecase::is_table_case;
+
 // use inflector::cases::uppercase::to_upper_case;
 // use inflector::cases::uppercase::is_upper_case;
 
@@ -114,6 +96,9 @@ extern crate inflector;
 
 // use inflector::string::demodulize::demodulize;
 // use inflector::string::deconstantize::deconstantize;
+
+// use inflector::string::pluralize::to_plural;
+// use inflector::string::singularize::to_singular;
 ...
 fn main() {
 ...
@@ -155,6 +140,10 @@ to_title_case(String) -> String
 ```
 
 ```rust
+to_table_case(String) -> String
+```
+
+```rust
 to_upper_case(String) -> String
 ```
 
@@ -182,6 +171,13 @@ deconstantize(String) -> String
 to_foreign_key(String) -> String
 ```
 
+```rust
+to_plural(String) -> String
+```
+
+```rust
+to_singular(String) -> String
+```
 
 ```rust
 is_class_case(String) -> bool
@@ -212,6 +208,10 @@ is_title_case(String) -> bool
 ```
 
 ```rust
+is_table_case(String) -> bool
+```
+
+```rust
 is_upper_case(String) -> bool
 ```
 
@@ -224,6 +224,8 @@ is_foreign_key(String) -> bool
 ```
 
 ## Contributing
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 1. Fork it ( https://github.com/whatisinternet/inflector/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
