@@ -44,7 +44,7 @@ Documentation can be found here at the README or via rust docs below.
 ### As a [crate](http://crates.io)
 ```toml
 [dependencies]
-Inflector = "0.1.7"
+Inflector = "0.2.0"
 ```
 
 ### Compile yourself:
