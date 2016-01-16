@@ -16,28 +16,6 @@ Documentation can be found here at the README or via rust docs below.
 [Rust docs with examples](http://whatisinternet.github.io/inflector/doc/inflector/)
 
 -----
-## TODO:
-
-- [x] Traits for String
-- [x] Traits for str
-- [x] Screaming snake case
-- [x] Snake case
-- [x] Kebab case
-- [x] Camel case
-- [x] Class case
-- [x] Sentence case
-- [x] Title case
-- [x] Upper case
-- [x] Lower case
-- [x] Ordinalize and reverse
-- [x] Foreign key
-- [x] Demodulize
-- [x] Deconstantize
-- [x] Pluralize
-- [x] Table case
-- [x] Singularize
-
------
 
 ## Installation:
 
