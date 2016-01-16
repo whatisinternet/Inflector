@@ -5,7 +5,7 @@
 
 Adds String based inflections for Rust. Snake, kebab, camel,
 sentence, class, title, upper, and lower cases as well as ordinalize,
-deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize are supported as both traits and pure functions
+deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize/singularize are supported as both traits and pure functions
 acting on String types.
 
 -----
@@ -35,7 +35,7 @@ Documentation can be found here at the README or via rust docs below.
 - [x] Deconstantize
 - [x] Pluralize
 - [x] Table case
-- [ ] Singularize
+- [x] Singularize
 
 -----
 
@@ -120,6 +120,7 @@ extern crate inflector;
 // use inflector::string::deconstantize::deconstantize;
 
 // use inflector::string::pluralize::to_plural;
+// use inflector::string::singularize::to_singular;
 ...
 fn main() {
 ...
@@ -194,6 +195,10 @@ to_foreign_key(String) -> String
 
 ```rust
 to_plural(String) -> String
+```
+
+```rust
+to_singular(String) -> String
 ```
 
 ```rust
