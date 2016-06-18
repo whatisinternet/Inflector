@@ -155,7 +155,7 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn ordinalize<'a>(non_ordinalized_string: String) -> String {
+pub fn ordinalize(non_ordinalized_string: String) -> String {
     let chars: Vec<char>= non_ordinalized_string.clone().chars().collect();
     let last_number: char= chars[chars.len() - 1];
     if !last_number.is_numeric() {
@@ -165,7 +165,7 @@ pub fn ordinalize<'a>(non_ordinalized_string: String) -> String {
         let second_last_number: char= chars[chars.len() - 2];
         if second_last_number == '1'{
             return format!("{}{}", non_ordinalized_string, "th");
-        } else if non_ordinalized_string.contains(".") {
+        } else if non_ordinalized_string.contains('.') {
             return non_ordinalized_string;
         }
     }

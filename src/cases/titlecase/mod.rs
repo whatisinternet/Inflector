@@ -3,7 +3,7 @@ use regex::Regex;
 
 use cases::snakecase::to_snake_case;
 
-/// Converts a `String` to Title Case `String`
+/// Converts a `String` to `Title Case` `String`
 ///
 /// #Examples
 /// ```
@@ -72,11 +72,11 @@ use cases::snakecase::to_snake_case;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_title_case<'a>(non_title_case_string: String) -> String {
-    return to_title_from_snake(to_snake_case(non_title_case_string));
+pub fn to_title_case(non_title_case_string: String) -> String {
+    to_title_from_snake(to_snake_case(non_title_case_string))
 }
 
-    fn to_title_from_snake<'a>(non_sentence_case_string: String) -> String {
+    fn to_title_from_snake(non_sentence_case_string: String) -> String {
         let mut result:String = "".to_string();
         let mut first_character: bool = true;
         for character in non_sentence_case_string.chars() {
@@ -90,10 +90,10 @@ pub fn to_title_case<'a>(non_title_case_string: String) -> String {
                 first_character = false;
             }
         }
-        return result.trim().to_string();
+        result.trim().to_string()
     }
 
-/// Determines if a `String` is Title Case
+/// Determines if a `String` is `Title Case`
 ///
 /// #Examples
 /// ```
@@ -176,11 +176,10 @@ pub fn to_title_case<'a>(non_title_case_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_title_case<'a>(test_string: String) -> bool{
+pub fn is_title_case(test_string: String) -> bool{
     let title_matcher= Regex::new(r"(^[A-Z][a-z0-9]+)([^-|^_]*[ ][A-Z][a-z0-9]+)").unwrap();
-    let mut is_title_case= false;
     if title_matcher.is_match(test_string.as_ref()) {
-        is_title_case = true;
+        return true;
     }
-    return is_title_case;
+    false
 }

@@ -1,4 +1,7 @@
 #![deny(warnings)]
+#![feature(plugin)]
+#![plugin(clippy)]
+#![allow(doc_markdown)]
 
 //! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 //!
@@ -83,221 +86,221 @@ use string::pluralize::to_plural;
 use string::singularize::to_singular;
 
 pub trait Inflector {
-    fn to_class_case<'a>(&self) -> String;
-    fn is_class_case<'a>(&self) -> bool;
+    fn to_class_case(&self) -> String;
+    fn is_class_case(&self) -> bool;
 
-    fn to_camel_case<'a>(&self) -> String;
-    fn is_camel_case<'a>(&self) -> bool;
+    fn to_camel_case(&self) -> String;
+    fn is_camel_case(&self) -> bool;
 
-    fn to_table_case<'a>(&self) -> String;
-    fn is_table_case<'a>(&self) -> bool;
+    fn to_table_case(&self) -> String;
+    fn is_table_case(&self) -> bool;
 
-    fn to_snake_case<'a>(&self) -> String;
-    fn is_snake_case<'a>(&self) -> bool;
+    fn to_snake_case(&self) -> String;
+    fn is_snake_case(&self) -> bool;
 
-    fn to_screaming_snake_case<'a>(&self) -> String;
-    fn is_screaming_snake_case<'a>(&self) -> bool;
+    fn to_screaming_snake_case(&self) -> String;
+    fn is_screaming_snake_case(&self) -> bool;
 
-    fn to_kebab_case<'a>(&self) -> String;
-    fn is_kebab_case<'a>(&self) -> bool;
+    fn to_kebab_case(&self) -> String;
+    fn is_kebab_case(&self) -> bool;
 
-    fn to_sentence_case<'a>(&self) -> String;
-    fn is_sentence_case<'a>(&self) -> bool;
+    fn to_sentence_case(&self) -> String;
+    fn is_sentence_case(&self) -> bool;
 
-    fn to_title_case<'a>(&self) -> String;
-    fn is_title_case<'a>(&self) -> bool;
+    fn to_title_case(&self) -> String;
+    fn is_title_case(&self) -> bool;
 
-    fn to_upper_case<'a>(&self) -> String;
-    fn is_upper_case<'a>(&self) -> bool;
+    fn to_upper_case(&self) -> String;
+    fn is_upper_case(&self) -> bool;
 
-    fn to_lower_case<'a>(&self) -> String;
-    fn is_lower_case<'a>(&self) -> bool;
+    fn to_lower_case(&self) -> String;
+    fn is_lower_case(&self) -> bool;
 
-    fn ordinalize<'a>(&self) -> String;
-    fn deordinalize<'a>(&self) -> String;
+    fn ordinalize(&self) -> String;
+    fn deordinalize(&self) -> String;
 
-    fn to_foreign_key<'a>(&self) -> String;
-    fn is_foreign_key<'a>(&self) -> bool;
+    fn to_foreign_key(&self) -> String;
+    fn is_foreign_key(&self) -> bool;
 
-    fn demodulize<'a>(&self) -> String;
-    fn deconstantize<'a>(&self) -> String;
+    fn demodulize(&self) -> String;
+    fn deconstantize(&self) -> String;
 
-    fn to_plural<'a>(&self) -> String;
-    fn to_singular<'a>(&self) -> String;
+    fn to_plural(&self) -> String;
+    fn to_singular(&self) -> String;
 }
 
 impl<'c> Inflector for String {
     fn to_class_case(&self) -> String{
-        return to_class_case(self.to_string());
+        to_class_case(self.to_string())
     }
     fn is_class_case(&self) -> bool{
-        return is_class_case(self.to_string());
+        is_class_case(self.to_string())
     }
     fn to_camel_case(&self) -> String{
-        return to_camel_case(self.to_string());
+        to_camel_case(self.to_string())
     }
     fn is_camel_case(&self) -> bool{
-        return is_camel_case(self.to_string());
+        is_camel_case(self.to_string())
     }
     fn to_table_case(&self) -> String{
-        return to_table_case(self.to_string());
+        to_table_case(self.to_string())
     }
     fn is_table_case(&self) -> bool{
-        return is_table_case(self.to_string());
+        is_table_case(self.to_string())
     }
     fn to_screaming_snake_case(&self) -> String{
-        return to_screaming_snake_case(self.to_string());
+        to_screaming_snake_case(self.to_string())
     }
     fn is_screaming_snake_case(&self) -> bool{
-        return is_screaming_snake_case(self.to_string());
+        is_screaming_snake_case(self.to_string())
     }
     fn to_snake_case(&self) -> String{
-        return to_snake_case(self.to_string());
+        to_snake_case(self.to_string())
     }
     fn is_snake_case(&self) -> bool{
-        return is_snake_case(self.to_string());
+        is_snake_case(self.to_string())
     }
     fn to_kebab_case(&self) -> String{
-        return to_kebab_case(self.to_string());
+        to_kebab_case(self.to_string())
     }
     fn is_kebab_case(&self) -> bool{
-        return is_kebab_case(self.to_string());
+        is_kebab_case(self.to_string())
     }
     fn to_sentence_case(&self) -> String{
-        return to_sentence_case(self.to_string());
+        to_sentence_case(self.to_string())
     }
     fn is_sentence_case(&self) -> bool{
-        return is_sentence_case(self.to_string());
+        is_sentence_case(self.to_string())
     }
     fn to_title_case(&self) -> String{
-        return to_title_case(self.to_string());
+        to_title_case(self.to_string())
     }
     fn is_title_case(&self) -> bool{
-        return is_title_case(self.to_string());
+        is_title_case(self.to_string())
     }
     fn to_upper_case(&self) -> String{
-        return to_upper_case(self.to_string());
+        to_upper_case(self.to_string())
     }
     fn is_upper_case(&self) -> bool{
-        return is_upper_case(self.to_string());
+        is_upper_case(self.to_string())
     }
     fn to_lower_case(&self) -> String{
-        return to_lower_case(self.to_string());
+        to_lower_case(self.to_string())
     }
     fn is_lower_case(&self) -> bool{
-        return is_lower_case(self.to_string());
+        is_lower_case(self.to_string())
     }
     fn ordinalize(&self) -> String{
-        return ordinalize(self.to_string());
+        ordinalize(self.to_string())
     }
     fn deordinalize(&self) -> String{
-        return deordinalize(self.to_string());
+        deordinalize(self.to_string())
     }
     fn to_foreign_key(&self) -> String{
-        return to_foreign_key(self.to_string());
+        to_foreign_key(self.to_string())
     }
     fn is_foreign_key(&self) -> bool{
-        return is_foreign_key(self.to_string());
+        is_foreign_key(self.to_string())
     }
     fn demodulize(&self) -> String{
-        return demodulize(self.to_string());
+        demodulize(self.to_string())
     }
     fn deconstantize(&self) -> String{
-        return deconstantize(self.to_string());
+        deconstantize(self.to_string())
     }
     fn to_plural(&self) -> String{
-        return to_plural(self.to_string());
+        to_plural(self.to_string())
     }
     fn to_singular(&self) -> String{
-        return to_singular(self.to_string());
+        to_singular(self.to_string())
     }
 }
 
 impl<'c> Inflector for str {
     fn to_class_case(&self) -> String{
-        return to_class_case(self.to_string());
+        to_class_case(self.to_string())
     }
     fn is_class_case(&self) -> bool{
-        return is_class_case(self.to_string());
+        is_class_case(self.to_string())
     }
     fn to_camel_case(&self) -> String{
-        return to_camel_case(self.to_string());
+        to_camel_case(self.to_string())
     }
     fn is_camel_case(&self) -> bool{
-        return is_camel_case(self.to_string());
+        is_camel_case(self.to_string())
     }
     fn to_table_case(&self) -> String{
-        return to_table_case(self.to_string());
+        to_table_case(self.to_string())
     }
     fn is_table_case(&self) -> bool{
-        return is_table_case(self.to_string());
+        is_table_case(self.to_string())
     }
     fn to_screaming_snake_case(&self) -> String{
-        return to_screaming_snake_case(self.to_string());
+        to_screaming_snake_case(self.to_string())
     }
     fn is_screaming_snake_case(&self) -> bool{
-        return is_screaming_snake_case(self.to_string());
+        is_screaming_snake_case(self.to_string())
     }
     fn to_snake_case(&self) -> String{
-        return to_snake_case(self.to_string());
+        to_snake_case(self.to_string())
     }
     fn is_snake_case(&self) -> bool{
-        return is_snake_case(self.to_string());
+        is_snake_case(self.to_string())
     }
     fn to_kebab_case(&self) -> String{
-        return to_kebab_case(self.to_string());
+        to_kebab_case(self.to_string())
     }
     fn is_kebab_case(&self) -> bool{
-        return is_kebab_case(self.to_string());
+        is_kebab_case(self.to_string())
     }
     fn to_sentence_case(&self) -> String{
-        return to_sentence_case(self.to_string());
+        to_sentence_case(self.to_string())
     }
     fn is_sentence_case(&self) -> bool{
-        return is_sentence_case(self.to_string());
+        is_sentence_case(self.to_string())
     }
     fn to_title_case(&self) -> String{
-        return to_title_case(self.to_string());
+        to_title_case(self.to_string())
     }
     fn is_title_case(&self) -> bool{
-        return is_title_case(self.to_string());
+        is_title_case(self.to_string())
     }
     fn to_upper_case(&self) -> String{
-        return to_upper_case(self.to_string());
+        to_upper_case(self.to_string())
     }
     fn is_upper_case(&self) -> bool{
-        return is_upper_case(self.to_string());
+        is_upper_case(self.to_string())
     }
     fn to_lower_case(&self) -> String{
-        return to_lower_case(self.to_string());
+        to_lower_case(self.to_string())
     }
     fn is_lower_case(&self) -> bool{
-        return is_lower_case(self.to_string());
+        is_lower_case(self.to_string())
     }
     fn ordinalize(&self) -> String{
-        return ordinalize(self.to_string());
+        ordinalize(self.to_string())
     }
     fn deordinalize(&self) -> String{
-        return deordinalize(self.to_string());
+        deordinalize(self.to_string())
     }
     fn to_foreign_key(&self) -> String{
-        return to_foreign_key(self.to_string());
+        to_foreign_key(self.to_string())
     }
     fn is_foreign_key(&self) -> bool{
-        return is_foreign_key(self.to_string());
+        is_foreign_key(self.to_string())
     }
     fn demodulize(&self) -> String{
-        return demodulize(self.to_string());
+        demodulize(self.to_string())
     }
     fn deconstantize(&self) -> String{
-        return deconstantize(self.to_string());
+        deconstantize(self.to_string())
     }
 
     fn to_plural(&self) -> String{
-        return to_plural(self.to_string());
+        to_plural(self.to_string())
     }
 
     fn to_singular(&self) -> String{
-        return to_singular(self.to_string());
+        to_singular(self.to_string())
     }
 }

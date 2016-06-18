@@ -1,3 +1,5 @@
+#![allow(needless_return)]
+#![allow(trivial_regex)]
 use regex::Regex;
 use regex::{Captures};
 use string::constants::UNACCONTABLE_WORDS;
@@ -103,21 +105,21 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// ```
 ///
-pub fn to_singular<'a>(non_singular_string: String) -> String {
+pub fn to_singular(non_singular_string: String) -> String {
     if UNACCONTABLE_WORDS.contains(&non_singular_string.as_ref()) {
-        return non_singular_string;
+        non_singular_string
     } else {
         let safe_out_string: String = non_singular_string.to_string();
         let maybe_regex_match: Option<String> = singularize_string(non_singular_string);
-        return maybe_regex_match.unwrap_or(safe_out_string);
+        maybe_regex_match.unwrap_or(safe_out_string)
     }
 }
 
-    fn singularize_string<'a>(non_singular_string: String) -> Option<String> {
+    fn singularize_string(non_singular_string: String) -> Option<String> {
         let singular_regexes: [Regex; 27] = singular_rules_regexes();
         for singular_index in 0..singular_regexes.len() {
             let maybe_match: Option<String> = singularize_string_from_capture_groups_if_match(
-                non_singular_string.to_string(), singular_index.clone());
+                non_singular_string.to_string(), singular_index);
 
             if maybe_match.is_some() {
                 return Some(maybe_match.unwrap_or(non_singular_string));
@@ -126,23 +128,22 @@ pub fn to_singular<'a>(non_singular_string: String) -> String {
         return None;
     }
 
-        fn singularize_string_from_capture_groups_if_match<'a>(non_singular_string: String,
+        fn singularize_string_from_capture_groups_if_match(non_singular_string: String,
                                                         singular_index: usize) -> Option<String> {
             let singular_regexes: [Regex; 27] = singular_rules_regexes();
 
-            if singular_regexes[singular_index].is_match(&non_singular_string.as_ref()) {
+            if singular_regexes[singular_index].is_match(&non_singular_string) {
 
                 let cap: Captures = singular_regexes[singular_index].captures(
-                    &non_singular_string.as_ref()).unwrap();
+                    &non_singular_string).unwrap();
 
-                return Some(singularize_string_from_capture_groups(cap, singular_index));
-
+                Some(singularize_string_from_capture_groups(cap, singular_index))
             } else {
-                return None;
+                None
             }
         }
 
-            fn singularize_string_from_capture_groups<'a>(capture_groups: Captures,
+            fn singularize_string_from_capture_groups(capture_groups: Captures,
                                                             singular_index: usize) -> String {
                 if capture_groups.len() > 2 {
 
@@ -158,8 +159,8 @@ pub fn to_singular<'a>(non_singular_string: String) -> String {
                 }
             }
 
-            fn singular_rules_regexes<'a>() -> [Regex; 27] {
-                return [
+            fn singular_rules_regexes() -> [Regex; 27] {
+                [
                     Regex::new(r"(n)ews$").unwrap(),
                     Regex::new(r"(\w*)(o)es$").unwrap(),
                     Regex::new(r"(\w*)([ti])a$").unwrap(),
@@ -187,7 +188,7 @@ pub fn to_singular<'a>(non_singular_string: String) -> String {
                     Regex::new(r"(database)s$").unwrap(),
                     Regex::new(r"(\w*)s$").unwrap(),
                     Regex::new(r"(\w*)(ss)$").unwrap()
-                ];
+                ]
 
             }
 
@@ -240,7 +241,7 @@ fn singularize_string_from_capture_groups_should_return_a_singularized_string() 
     let singular_regexes: [Regex; 27] = singular_rules_regexes();
     let singular_index: usize = 20;
     let cap: Captures = singular_regexes[singular_index].captures(
-        &test_string.as_ref()).unwrap();
+        &test_string).unwrap();
     let asserted_string: String = singularize_string_from_capture_groups(cap,singular_index);
     assert!(expected_string == asserted_string);
 

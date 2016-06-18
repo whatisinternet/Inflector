@@ -12,7 +12,7 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_lower_case<'a>(non_lower_string : String) -> String {
+pub fn to_lower_case(non_lower_string : String) -> String {
     // See https://github.com/calebmer/inflections/blob/master/src/case.rs#L37 for where this
     // implementation comes from.
     non_lower_string
@@ -54,6 +54,6 @@ pub fn to_lower_case<'a>(non_lower_string : String) -> String {
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-pub fn is_lower_case<'a>(test_string: String) -> bool{
-    return test_string == to_lower_case(test_string.clone())
+pub fn is_lower_case(test_string: String) -> bool{
+    test_string == to_lower_case(test_string.clone())
 }

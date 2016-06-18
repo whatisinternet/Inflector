@@ -144,15 +144,15 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn deordinalize<'a>(non_ordinalized_string: String) -> String {
-    if non_ordinalized_string.contains(".")  {
-        return non_ordinalized_string;
+pub fn deordinalize(non_ordinalized_string: String) -> String {
+    if non_ordinalized_string.contains('.')  {
+        non_ordinalized_string
     } else {
-        return non_ordinalized_string
+        non_ordinalized_string
             .trim_right_matches("st")
             .trim_right_matches("nd")
             .trim_right_matches("rd")
             .trim_right_matches("th")
-            .to_string();
+            .to_string()
     }
 }

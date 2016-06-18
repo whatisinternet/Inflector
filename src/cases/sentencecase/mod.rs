@@ -4,7 +4,7 @@ use regex::Regex;
 use cases::classcase::is_class_case;
 use cases::snakecase::to_snake_case;
 
-/// Converts a `String` to Sentence case `String`
+/// Converts a `String` to `Sentence case` `String`
 ///
 /// #Examples
 /// ```
@@ -73,10 +73,10 @@ use cases::snakecase::to_snake_case;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
-    return to_sentence_from_snake(to_snake_case(non_sentence_case_string));
+pub fn to_sentence_case(non_sentence_case_string: String) -> String {
+    to_sentence_from_snake(to_snake_case(non_sentence_case_string))
 }
-    fn to_sentence_from_snake<'a>(non_sentence_case_string: String) -> String {
+    fn to_sentence_from_snake(non_sentence_case_string: String) -> String {
         let mut result:String = "".to_string();
         let mut first_character: bool = true;
         for character in non_sentence_case_string.chars() {
@@ -89,10 +89,10 @@ pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
                 first_character = false;
             }
         }
-        return result
+        result
     }
 
-/// Determines of a `String` is Sentence case
+/// Determines of a `String` is `Sentence case`
 ///
 /// #Examples
 /// ```
@@ -185,12 +185,11 @@ pub fn to_sentence_case<'a>(non_sentence_case_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_sentence_case<'a>(test_string: String) -> bool{
+pub fn is_sentence_case(test_string: String) -> bool{
     let sentence_matcher= Regex::new(r"(^[A-Z])([^-|^_]*[ ][^A-Z][a-z0-9]+)").unwrap();
-    let mut is_sentence_case= false;
     if sentence_matcher.is_match(test_string.as_ref())
         && !is_class_case(test_string.clone()){
-            is_sentence_case = true;
+            return true;
         }
-    return is_sentence_case;
+    false
 }

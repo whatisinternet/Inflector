@@ -4,7 +4,7 @@ use regex::Regex;
 use cases::snakecase::to_snake_case;
 use string::singularize::to_singular;
 
-/// Converts a `String` to ClassCase `String`
+/// Converts a `String` to `ClassCase` `String`
 ///
 /// #Examples
 /// ```
@@ -104,10 +104,10 @@ use string::singularize::to_singular;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_class_case<'a>(non_class_case_string: String) -> String {
-    return to_class_from_snake(to_snake_case(non_class_case_string));
+pub fn to_class_case(non_class_case_string: String) -> String {
+    to_class_from_snake(to_snake_case(non_class_case_string))
 }
-    fn to_class_from_snake<'a>(non_class_case_string: String) -> String {
+    fn to_class_from_snake(non_class_case_string: String) -> String {
         let singularized_word: String = to_singular(non_class_case_string);
         let mut result:String = "".to_string();
         let mut new_word: bool = true;
@@ -122,10 +122,10 @@ pub fn to_class_case<'a>(non_class_case_string: String) -> String {
                 result = format!("{}{}", result, character.to_ascii_lowercase());
             }
         }
-        return result
+        result
     }
 
-/// Determines if a `String` is ClassCase `bool`
+/// Determines if a `String` is `ClassCase` `bool`
 ///
 /// #Examples
 /// ```
@@ -248,7 +248,7 @@ pub fn to_class_case<'a>(non_class_case_string: String) -> String {
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-pub fn is_class_case<'a>(test_string: String) -> bool{
+pub fn is_class_case(test_string: String) -> bool{
     let class_matcher = Regex::new(r"(^[A-Z])([^-|^_|^ ]*[a-z0-9]+)").unwrap();
     let space_matcher = Regex::new(r" +").unwrap();
     let singularized_word: String = to_singular(test_string.clone());
@@ -257,5 +257,5 @@ pub fn is_class_case<'a>(test_string: String) -> bool{
         && singularized_word == test_string{
         return true;
     }
-    return false;
+    false
 }

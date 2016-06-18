@@ -2,7 +2,7 @@ use cases::snakecase::to_snake_case;
 use cases::sentencecase::to_sentence_case;
 use string::pluralize::to_plural;
 
-/// Converts a `String` to table-case `String`
+/// Converts a `String` to `table-case` `String`
 ///
 /// #Examples
 /// ```
@@ -74,22 +74,22 @@ use string::pluralize::to_plural;
 /// let asserted_string: String = to_table_case(mock_string);
 /// assert!(asserted_string == expected_string);
 /// ```
-pub fn to_table_case<'a>(non_table_case_string: String) -> String {
+pub fn to_table_case(non_table_case_string: String) -> String {
     let sentenceable_string: String = to_sentence_case(non_table_case_string.clone());
     let words: Vec<&str> = sentenceable_string.split(' ').collect();
     let mut sentence: String = "".to_string();
-    for word_index in 0..(words.len() - 1) {
+    for (word_index, _) in words.iter().enumerate().take((words.len() - 1)){
         if word_index == 0 {
-            sentence = format!("{}", words[word_index]);
+            sentence = words[word_index].to_string();
         } else {
             sentence = format!("{} {}", sentence, words[word_index]);
         }
     }
     sentence = format!("{} {}", sentence, to_plural(words[words.len() - 1].to_string()));
-    return to_snake_case(sentence);
+    to_snake_case(sentence)
 }
 
-/// Determines if a `String` is table-case
+/// Determines if a `String` is `table-case`
 ///
 /// #Examples
 /// ```
@@ -163,6 +163,6 @@ pub fn to_table_case<'a>(non_table_case_string: String) -> String {
 ///     let asserted_bool: bool = is_table_case(mock_string);
 ///     assert!(asserted_bool == false);
 /// ```
-pub fn is_table_case<'a>(test_string: String) -> bool {
-    return test_string.to_string() == to_table_case(test_string);
+pub fn is_table_case(test_string: String) -> bool {
+    test_string.clone() == to_table_case(test_string)
 }
