@@ -1,6 +1,3 @@
-use std::ascii::*;
-use regex::Regex;
-
 /// Converts a `String` to lowercase `String`
 ///
 /// #Examples
@@ -15,12 +12,13 @@ use regex::Regex;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_lower_case<'a>(non_camelized_string: String) -> String {
-    let mut result:String = "".to_string();
-    for character in non_camelized_string.chars() {
-        result = format!("{}{}", result, character.to_ascii_lowercase());
-    }
-    return result
+pub fn to_lower_case<'a>(non_lower_string : String) -> String {
+    // See https://github.com/calebmer/inflections/blob/master/src/case.rs#L37 for where this
+    // implementation comes from.
+    non_lower_string
+        .chars()
+        .flat_map(char::to_lowercase)
+        .collect()
 }
 
 /// Determines if a `String` is lowercase
@@ -57,10 +55,5 @@ pub fn to_lower_case<'a>(non_camelized_string: String) -> String {
 ///
 /// ```
 pub fn is_lower_case<'a>(test_string: String) -> bool{
-    let lower_matcher = Regex::new(r"^[a-z| |_|-]+$").unwrap();
-    let mut is_lower_case = false;
-    if lower_matcher.is_match(test_string.as_ref()){
-        is_lower_case = true;
-    }
-    return is_lower_case;
+    return test_string == to_lower_case(test_string.clone())
 }
