@@ -1,4 +1,4 @@
-#![allow(trivial_regex)]
+#![cfg_attr(feature="clippy", allow(trivial_regex))]
 use regex::Regex;
 use string::constants::UNACCONTABLE_WORDS;
 

@@ -1,7 +1,7 @@
 #![deny(warnings)]
-#![feature(plugin)]
-#![plugin(clippy)]
-#![allow(doc_markdown)]
+#![cfg_attr(feature="clippy", feature(plugin))]
+#![cfg_attr(feature="clippy", plugin(clippy))]
+#![cfg_attr(feature="clippy", allow(doc_markdown))]
 
 //! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 //!
