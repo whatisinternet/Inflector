@@ -1,3 +1,4 @@
+#![cfg_attr(feature="clippy", allow(trivial_regex))]
 use regex::Regex;
 use string::constants::UNACCONTABLE_WORDS;
 
@@ -95,22 +96,22 @@ const PLURAL_RULES: [&'static str; 20] = [
 ///
 /// ```
 ///
-pub fn to_plural<'a>(non_plural_string: String) -> String {
+pub fn to_plural(non_plural_string: String) -> String {
     if UNACCONTABLE_WORDS.contains(&non_plural_string.as_ref()) {
-        return non_plural_string;
+        non_plural_string
     } else {
         let plural_regexes: [Regex; 20] = plural_rules_regexes();
         for plural_index in 0..plural_regexes.len() {
-            if plural_regexes[plural_index].is_match(&non_plural_string.as_ref()) {
+            if plural_regexes[plural_index].is_match(&non_plural_string){
                 return format!("{}{}", non_plural_string, PLURAL_RULES[plural_index]);
             }
         }
 
-        return format!("{}s", non_plural_string);
+        format!("{}s", non_plural_string)
     }
 }
-    fn plural_rules_regexes<'a>() -> [Regex; 20] {
-        return [
+    fn plural_rules_regexes() -> [Regex; 20] {
+        [
             Regex::new(r"^(ox)$").unwrap(),
             Regex::new(r"^(ax|test)is$").unwrap(),
             Regex::new(r"(octop|vir)us$").unwrap(),
@@ -131,6 +132,6 @@ pub fn to_plural<'a>(non_plural_string: String) -> String {
             Regex::new(r"^(oxen)$").unwrap(),
             Regex::new(r"(quiz)$").unwrap(),
             Regex::new(r"s$").unwrap(),
-        ];
+        ]
 
     }

@@ -1,6 +1,6 @@
 [package]
 name = "Inflector"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
@@ -21,3 +21,7 @@ path = "src/lib.rs"
 
 [dependencies]
 regex = "0.1.41"
+clippy = {version = "*", optional = true}
+
+[features]
+default=[]

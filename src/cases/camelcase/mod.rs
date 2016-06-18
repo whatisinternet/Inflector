@@ -87,11 +87,11 @@ use cases::snakecase::to_snake_case;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
-    return to_camel_from_snake(to_snake_case(non_camelized_string));
+pub fn to_camel_case(non_camelized_string: String) -> String {
+    to_camel_from_snake(to_snake_case(non_camelized_string))
 }
 
-    fn to_camel_from_snake<'a>(non_camelized_string: String) -> String{
+    fn to_camel_from_snake(non_camelized_string: String) -> String{
         let mut result:String = "".to_string();
         let mut new_word: bool = false;
 
@@ -105,7 +105,7 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
                 result = format!("{}{}", result, character.to_ascii_lowercase());
             }
         }
-        return result
+        result
     }
 
 /// Determines if a `String` is camelCase bool``
@@ -210,7 +210,7 @@ pub fn to_camel_case<'a>(non_camelized_string: String) -> String {
 ///     let asserted_bool: bool = is_camel_case(mock_string);
 ///     assert!(asserted_bool == false);
 /// ```
-pub fn is_camel_case<'a>(test_string: String) -> bool{
+pub fn is_camel_case(test_string: String) -> bool{
     let camel_matcher = Regex::new(r"(^|[A-Z])([^-|^_|^ ]*[a-z0-9]+[A-Z][a-z0-9]+)").unwrap();
     let kebab_snake_matcher = Regex::new(r"[-|_| ]").unwrap();
     if camel_matcher.is_match(test_string.as_ref())
@@ -218,5 +218,5 @@ pub fn is_camel_case<'a>(test_string: String) -> bool{
         && !is_class_case(test_string){
             return true;
         }
-    return false;
+    false
 }

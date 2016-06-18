@@ -1,6 +1,3 @@
-use std::ascii::*;
-use regex::Regex;
-
 /// Converts a `String` to uppercase `String`
 ///
 /// #Examples
@@ -15,12 +12,11 @@ use regex::Regex;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_upper_case<'a>(non_camelized_string: String) -> String {
-    let mut result:String = "".to_string();
-    for character in non_camelized_string.chars() {
-        result = format!("{}{}", result, character.to_ascii_uppercase());
-    }
-    return result
+pub fn to_upper_case(non_upper_string: String) -> String {
+    non_upper_string
+        .chars()
+        .flat_map(char::to_uppercase)
+        .collect()
 }
 
 /// Determines if a `String` is UPPERCASE
@@ -57,11 +53,6 @@ pub fn to_upper_case<'a>(non_camelized_string: String) -> String {
 ///
 /// ```
 
-pub fn is_upper_case<'a>(test_string: String) -> bool{
-    let upper_matcher = Regex::new(r"^[A-Z| |_|-]+$").unwrap();
-    let mut is_upper_case = false;
-    if upper_matcher.is_match(test_string.as_ref()){
-        is_upper_case = true;
-    }
-    return is_upper_case;
+pub fn is_upper_case(test_string: String) -> bool{
+    test_string == to_upper_case(test_string.to_owned())
 }

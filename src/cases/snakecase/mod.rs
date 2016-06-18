@@ -3,7 +3,7 @@ use regex::Regex;
 
 use cases::lowercase::to_lower_case;
 
-/// Converts a `String` to snake_case `String`
+/// Converts a `String` to `snake_case` `String`
 ///
 /// #Examples
 /// ```
@@ -94,16 +94,16 @@ use cases::lowercase::to_lower_case;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
-    if non_snake_case_string.contains(" ")
-        || non_snake_case_string.contains("_")
-        || non_snake_case_string.contains("-") {
-        return to_snake_from_sentence_or_kebab(non_snake_case_string);
+pub fn to_snake_case(non_snake_case_string: String) -> String {
+    if non_snake_case_string.contains(' ')
+        || non_snake_case_string.contains('_')
+        || non_snake_case_string.contains('-') {
+        to_snake_from_sentence_or_kebab(non_snake_case_string)
     } else {
-        return to_snake_from_camel_or_class(non_snake_case_string);
+        to_snake_from_camel_or_class(non_snake_case_string)
     }
 }
-    fn to_snake_from_camel_or_class <'a>(non_snake_case_string: String) -> String {
+    fn to_snake_from_camel_or_class (non_snake_case_string: String) -> String {
         let mut result:String = "".to_string();
         let mut first_character: bool = true;
         for character in non_snake_case_string.chars() {
@@ -114,14 +114,14 @@ pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
                 first_character = false;
             }
         }
-        return result
+        result
     }
 
-    fn to_snake_from_sentence_or_kebab<'a>(non_snake_case_string: String) -> String {
-        return to_lower_case(non_snake_case_string.replace(" ", "_").replace("-", "_"));
+    fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
+        to_lower_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
     }
 
-/// Determines of a `String` is snake_case
+/// Determines of a `String` is `snake_case`
 ///
 /// #Examples
 /// ```
@@ -214,10 +214,10 @@ pub fn to_snake_case<'a>(non_snake_case_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_snake_case<'a>(test_string: String) -> bool{
+pub fn is_snake_case(test_string: String) -> bool{
     let snake_matcher = Regex::new(r"(?:[^-|^ ]?=^|[_])([a-z]+)").unwrap();
     if snake_matcher.is_match(test_string.as_ref()){
         return true;
     }
-    return false;
+    false
 }

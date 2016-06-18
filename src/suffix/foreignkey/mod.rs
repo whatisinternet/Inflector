@@ -2,7 +2,7 @@ use regex::Regex;
 
 use cases::snakecase::to_snake_case;
 
-/// Converts a `String` to a foreign_key
+/// Converts a `String` to a `foreign_key`
 ///
 /// #Examples
 /// ```
@@ -93,25 +93,22 @@ use cases::snakecase::to_snake_case;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn to_foreign_key<'a>(non_foreign_key_string: String) -> String {
+pub fn to_foreign_key(non_foreign_key_string: String) -> String {
     if is_foreign_key(non_foreign_key_string.clone()){
-        return non_foreign_key_string;
+        non_foreign_key_string
+    } else if non_foreign_key_string.contains("::") {
+        let split_string: Vec<&str> = non_foreign_key_string.split("::").collect();
+        safe_convert(split_string[split_string.len() - 1].to_string())
     } else {
-        if non_foreign_key_string.contains("::") {
-            let split_string: Vec<&str> = non_foreign_key_string.split("::").collect();
-            return safe_convert(split_string[split_string.len() - 1].to_string());
-
-        } else {
-            return safe_convert(non_foreign_key_string);
-        }
+        safe_convert(non_foreign_key_string)
     }
 }
-    fn safe_convert<'a>(safe_string: String) -> String{
+    fn safe_convert(safe_string: String) -> String{
         let snake_cased: String = to_snake_case(safe_string);
-        return format!("{}{}", snake_cased, "_id");
+        format!("{}{}", snake_cased, "_id")
     }
 
-/// Determines if a `String` is a foreign_key
+/// Determines if a `String` is a `foreign_key`
 ///
 /// #Examples
 /// ```
@@ -184,14 +181,13 @@ pub fn to_foreign_key<'a>(non_foreign_key_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_foreign_key<'a>(test_string: String) -> bool{
+pub fn is_foreign_key(test_string: String) -> bool{
     let foreign_key_matcher= Regex::new(r"(?:[^-|^ ]?=^|[_])([a-z]+)").unwrap();
     let upcase_matcher = Regex::new(r"[A-Z]").unwrap();
-    let mut is_foreign_key: bool = false;
     if foreign_key_matcher.is_match(test_string.as_ref())
         && !upcase_matcher.is_match(test_string.as_ref())
         && test_string.ends_with("_id"){
-            is_foreign_key= true;
+            return true;
         }
-    return is_foreign_key;
+    false
 }

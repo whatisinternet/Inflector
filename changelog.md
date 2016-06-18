@@ -1,3 +1,13 @@
+# 0.2.1
+
+## Features:
+
+- Replaced custom implementation of lower and uppercase with Rust default
+
+## Breaking changes:
+
+- Rust 1.2 or greater required
+
 # 0.2.0
 
 ## Features:

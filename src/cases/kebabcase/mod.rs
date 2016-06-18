@@ -2,7 +2,7 @@ use regex::Regex;
 
 use cases::snakecase::to_snake_case;
 
-/// Converts a `String` to kebab-case `String`
+/// Converts a `String` to `kebab-case` `String`
 ///
 /// #Examples
 /// ```
@@ -88,14 +88,14 @@ use cases::snakecase::to_snake_case;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn is_kebab_case<'a>(test_string: String) -> bool{
+pub fn is_kebab_case(test_string: String) -> bool{
     let kebab_matcher = Regex::new(r"(?:[^_]?=^|[-])([a-z]+)").unwrap();
     let upcase_matcher = Regex::new(r"[A-Z]").unwrap();
-    return kebab_matcher.is_match(test_string.as_ref())
+    kebab_matcher.is_match(test_string.as_ref())
         && !upcase_matcher.is_match(test_string.as_ref())
 }
 
-/// Determines if a `String` is kebab-case
+/// Determines if a `String` is `kebab-case`
 ///
 /// #Examples
 /// ```
@@ -174,9 +174,9 @@ pub fn is_kebab_case<'a>(test_string: String) -> bool{
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-pub fn to_kebab_case<'a>(non_kebab_case_string: String) -> String {
-    return to_kebab_from_snake(to_snake_case(non_kebab_case_string));
+pub fn to_kebab_case(non_kebab_case_string: String) -> String {
+    to_kebab_from_snake(to_snake_case(non_kebab_case_string))
 }
-    fn to_kebab_from_snake<'a>(non_kebab_case_string: String) -> String {
-        return non_kebab_case_string.replace("_", "-");
+    fn to_kebab_from_snake(non_kebab_case_string: String) -> String {
+        non_kebab_case_string.replace("_", "-")
     }
