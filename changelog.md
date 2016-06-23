@@ -1,3 +1,14 @@
+# 0.3.0
+
+## Fixes:
+
+- Resolves issues with pluralize not always correctly pluralizing strings.
+  Thanks, @weiznich!
+
+## Breaking changes:
+
+- Dropping support for Rust versions below stable
+
 # 0.2.1
 
 ## Features:

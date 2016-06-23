@@ -21,16 +21,9 @@ Documentation can be found here at the README or via rust docs below.
 
 ### As a [crate](http://crates.io)
 
-#### If above 1.3
 ```toml
 [dependencies]
-Inflector = "0.2.1"
-```
-
-#### Otherwise
-```toml
-[dependencies]
-Inflector = "0.2.0"
+Inflector = "0.3.0"
 ```
 
 ### Compile yourself:
