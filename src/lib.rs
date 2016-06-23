@@ -17,6 +17,8 @@
 //! assert!(is_camel_cased == true);
 //! ```
 extern crate regex;
+#[macro_use]
+extern crate lazy_static;
 /// Provides case inflections
 /// - Camel case
 /// - Class case
