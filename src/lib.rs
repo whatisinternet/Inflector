@@ -1,9 +1,9 @@
 #![deny(warnings)]
 #![cfg_attr(feature="clippy", feature(plugin))]
 #![cfg_attr(feature="clippy", plugin(clippy))]
-#![cfg_attr(feature="clippy", allow(doc_markdown))]
 
-//! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+//! [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector) [![Clippy Linting Result](https://clippy.bashy.io/github/whatisinternet/inflector/master/badge.svg)](https://clippy.bashy.io/github/whatisinternet/inflector/master/log)
+
 //!
 //! Adds String based inflections for Rust. Snake, kebab, camel,
 //! sentence, class, title, upper, and lower cases as well as ordinalize,

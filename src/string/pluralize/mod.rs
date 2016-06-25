@@ -68,10 +68,7 @@ macro_rules! special_cases{
 ///
 /// #Examples
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // pluralize_foo_bar_to_foo_bars() {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "foo_bars".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
@@ -79,10 +76,7 @@ macro_rules! special_cases{
 ///
 /// ```
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // pluralizes_ox_to_oxen() {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "ox".to_string();
 ///     let expected_string: String = "oxen".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
@@ -90,10 +84,7 @@ macro_rules! special_cases{
 ///
 /// ```
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // pluralizes_crate_to_crates() {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "crate".to_string();
 ///     let expected_string: String = "crates".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
@@ -101,10 +92,7 @@ macro_rules! special_cases{
 ///
 /// ```
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // pluralizes_boxes_to_boxes() {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "boxes".to_string();
 ///     let expected_string: String = "boxes".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
@@ -112,10 +100,7 @@ macro_rules! special_cases{
 ///
 /// ```
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // does_not_pluralize_vengeance) {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "vengeance".to_string();
 ///     let expected_string: String = "vengeance".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
@@ -123,10 +108,7 @@ macro_rules! special_cases{
 ///
 /// ```
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // does_not_pluralize_yoga() {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "yoga".to_string();
 ///     let expected_string: String = "yoga".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
@@ -134,10 +116,7 @@ macro_rules! special_cases{
 ///
 /// ```
 /// ```
-/// use inflector::string::pluralize::to_plural;
-///
-///
-/// // does_pluralize_geometry() {
+///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "geometry".to_string();
 ///     let expected_string: String = "geometries".to_string();
 ///     let asserted_string: String = to_plural(mock_string);

@@ -38,10 +38,7 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// #Examples
 /// ```
-/// use inflector::string::singularize::to_singular;
-///
-///
-/// // singularize_foo_bars_to_foo_bar() {
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "foo_bars".to_string();
 ///     let expected_string: String = "foo_bar".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
@@ -49,10 +46,7 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// ```
 /// ```
-/// use inflector::string::singularize::to_singular;
-///
-///
-/// // singularizes_oxen_to_ox() {
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "oxen".to_string();
 ///     let expected_string: String = "ox".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
@@ -60,10 +54,7 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// ```
 /// ```
-/// use inflector::string::singularize::to_singular;
-///
-///
-/// // singularizes_crates_to_crate() {
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "crates".to_string();
 ///     let expected_string: String = "crate".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
@@ -71,10 +62,7 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// ```
 /// ```
-/// use inflector::string::singularize::to_singular;
-///
-///
-/// // singularizes_boxes_to_box() {
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "boxes".to_string();
 ///     let expected_string: String = "box".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
@@ -82,10 +70,7 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// ```
 /// ```
-/// use inflector::string::singularize::to_singular;
-///
-///
-/// // does_not_singularize_vengeance {
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "vengeance".to_string();
 ///     let expected_string: String = "vengeance".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
@@ -93,10 +78,7 @@ const SINGULAR_RULES: [&'static str; 27] = [
 ///
 /// ```
 /// ```
-/// use inflector::string::singularize::to_singular;
-///
-///
-/// // does_not_singularize_yoga() {
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "yoga".to_string();
 ///     let expected_string: String = "yoga".to_string();
 ///     let asserted_string: String = to_singular(mock_string);

@@ -2,10 +2,7 @@
 ///
 /// #Examples
 /// ```
-/// use inflector::cases::lowercase::to_lower_case;
-///
-///
-/// // upcase_FoObAR_as_foobar() {
+///     use inflector::cases::lowercase::to_lower_case;
 ///     let mock_string: String = "FoObAR".to_string();
 ///     let expected_string: String = "foobar".to_string();
 ///     let asserted_string: String = to_lower_case(mock_string);
@@ -25,30 +22,21 @@ pub fn to_lower_case(non_lower_string : String) -> String {
 ///
 /// #Examples
 /// ```
-/// use inflector::cases::lowercase::is_lower_case;
-///
-///
-/// // returns_truthy_value_for_is_lower_case_when_lowercase() {
+///     use inflector::cases::lowercase::is_lower_case;
 ///     let mock_string: String = "foobarisareallyreallylongstring".to_string();
 ///     let asserted_bool: bool = is_lower_case(mock_string);
 ///     assert!(asserted_bool == true);
 ///
 /// ```
 /// ```
-/// use inflector::cases::lowercase::is_lower_case;
-///
-///
-/// // returns_falsey_value_for_is_lower_case_when_Startcased() {
+///     use inflector::cases::lowercase::is_lower_case;
 ///     let mock_string: String = "Foobarisareallyreallylongstring".to_string();
 ///     let asserted_bool: bool = is_lower_case(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::cases::lowercase::is_lower_case;
-///
-///
-/// // returns_falsey_value_for_is_lower_case_when_uppercase() {
+///     use inflector::cases::lowercase::is_lower_case;
 ///     let mock_string: String = "FOOBARSTRINGTHATISREALLYREALLYLONG".to_string();
 ///     let asserted_bool: bool = is_lower_case(mock_string);
 ///     assert!(asserted_bool == false);

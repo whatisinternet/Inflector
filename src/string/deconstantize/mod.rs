@@ -2,10 +2,7 @@
 ///
 /// #Examples
 /// ```
-/// use inflector::string::deconstantize::deconstantize;
-///
-///
-/// // deconstantize_Bar_as_Bar() {
+///     use inflector::string::deconstantize::deconstantize;
 ///     let mock_string: String = "Bar".to_string();
 ///     let expected_string: String = "".to_string();
 ///     let asserted_string: String = deconstantize(mock_string);
@@ -13,10 +10,7 @@
 ///
 /// ```
 /// ```
-/// use inflector::string::deconstantize::deconstantize;
-///
-///
-/// // deconstantize_namespace_Bar_as_Bar() {
+///     use inflector::string::deconstantize::deconstantize;
 ///     let mock_string: String = "::Bar".to_string();
 ///     let expected_string: String = "".to_string();
 ///     let asserted_string: String = deconstantize(mock_string);
@@ -24,10 +18,7 @@
 ///
 /// ```
 /// ```
-/// use inflector::string::deconstantize::deconstantize;
-///
-///
-/// // deconstantize_Foo_namespace_Bar_as_Bar() {
+///     use inflector::string::deconstantize::deconstantize;
 ///     let mock_string: String = "Foo::Bar".to_string();
 ///     let expected_string: String = "Foo".to_string();
 ///     let asserted_string: String = deconstantize(mock_string);
@@ -35,10 +26,7 @@
 ///
 /// ```
 /// ```
-/// use inflector::string::deconstantize::deconstantize;
-///
-///
-/// // deconstantize_Test_namespace_Foo_namespace_Bar_as_Bar() {
+///     use inflector::string::deconstantize::deconstantize;
 ///     let mock_string: String = "Test::Foo::Bar".to_string();
 ///     let expected_string: String = "Foo".to_string();
 ///     let asserted_string: String = deconstantize(mock_string);
