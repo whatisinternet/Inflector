@@ -4,6 +4,10 @@
 
 - Resolves issues with pluralize not always correctly pluralizing strings.
   Thanks, @weiznich!
+- Resolves issues with silently failing test on table case
+- Resolves issues with clippy
+- Replaces complex code used for is_*_case checks with simple conversion and
+  check equality.
 
 ## Breaking changes:
 
