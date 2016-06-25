@@ -89,23 +89,23 @@ use string::singularize::to_singular;
 pub fn to_class_case(non_class_case_string: String) -> String {
     to_class_from_snake(to_snake_case(non_class_case_string))
 }
-    fn to_class_from_snake(non_class_case_string: String) -> String {
-        let singularized_word: String = to_singular(non_class_case_string);
-        let mut result:String = "".to_string();
-        let mut new_word: bool = true;
+fn to_class_from_snake(non_class_case_string: String) -> String {
+    let singularized_word: String = to_singular(non_class_case_string);
+    let mut result: String = "".to_string();
+    let mut new_word: bool = true;
 
-        for character in singularized_word.chars() {
-            if character.to_string() == "_" {
-                new_word = true;
-            } else if new_word {
-                result = format!("{}{}", result, character.to_ascii_uppercase());
-                new_word = false;
-            } else {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-            }
+    for character in singularized_word.chars() {
+        if character.to_string() == "_" {
+            new_word = true;
+        } else if new_word {
+            result = format!("{}{}", result, character.to_ascii_uppercase());
+            new_word = false;
+        } else {
+            result = format!("{}{}", result, character.to_ascii_lowercase());
         }
-        result
     }
+    result
+}
 
 /// Determines if a `String` is `ClassCase` `bool`
 ///
@@ -199,6 +199,6 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-pub fn is_class_case(test_string: String) -> bool{
+pub fn is_class_case(test_string: String) -> bool {
     test_string == to_class_case(test_string.clone())
 }

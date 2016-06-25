@@ -10,8 +10,7 @@
 ///
 /// ```
 pub fn to_upper_case(non_upper_string: String) -> String {
-    non_upper_string
-        .chars()
+    non_upper_string.chars()
         .flat_map(char::to_uppercase)
         .collect()
 }
@@ -41,6 +40,6 @@ pub fn to_upper_case(non_upper_string: String) -> String {
 ///
 /// ```
 
-pub fn is_upper_case(test_string: String) -> bool{
+pub fn is_upper_case(test_string: String) -> bool {
     test_string == to_upper_case(test_string.to_owned())
 }

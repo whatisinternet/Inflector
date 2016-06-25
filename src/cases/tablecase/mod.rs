@@ -64,14 +64,16 @@ pub fn to_table_case(non_table_case_string: String) -> String {
     let sentenceable_string: String = to_sentence_case(non_table_case_string.clone());
     let words: Vec<&str> = sentenceable_string.split(' ').collect();
     let mut sentence: String = "".to_string();
-    for (word_index, _) in words.iter().enumerate().take((words.len() - 1)){
+    for (word_index, _) in words.iter().enumerate().take((words.len() - 1)) {
         if word_index == 0 {
             sentence = words[word_index].to_string();
         } else {
             sentence = format!("{} {}", sentence, words[word_index]);
         }
     }
-    sentence = format!("{} {}", sentence, to_plural(words[words.len() - 1].to_string()));
+    sentence = format!("{} {}",
+                       sentence,
+                       to_plural(words[words.len() - 1].to_string()));
     to_snake_case(sentence)
 }
 

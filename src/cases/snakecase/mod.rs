@@ -69,31 +69,30 @@ use cases::lowercase::to_lower_case;
 ///
 /// ```
 pub fn to_snake_case(non_snake_case_string: String) -> String {
-    if non_snake_case_string.contains(' ')
-        || non_snake_case_string.contains('_')
-        || non_snake_case_string.contains('-') {
+    if non_snake_case_string.contains(' ') || non_snake_case_string.contains('_') ||
+       non_snake_case_string.contains('-') {
         to_snake_from_sentence_or_kebab(non_snake_case_string)
     } else {
         to_snake_from_camel_or_class(non_snake_case_string)
     }
 }
-    fn to_snake_from_camel_or_class (non_snake_case_string: String) -> String {
-        let mut result:String = "".to_string();
-        let mut first_character: bool = true;
-        for character in non_snake_case_string.chars() {
-            if character == character.to_ascii_uppercase() && !first_character {
-                result = format!("{}_{}", result, character.to_ascii_lowercase());
-            } else {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-                first_character = false;
-            }
+fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
+    let mut result: String = "".to_string();
+    let mut first_character: bool = true;
+    for character in non_snake_case_string.chars() {
+        if character == character.to_ascii_uppercase() && !first_character {
+            result = format!("{}_{}", result, character.to_ascii_lowercase());
+        } else {
+            result = format!("{}{}", result, character.to_ascii_lowercase());
+            first_character = false;
         }
-        result
     }
+    result
+}
 
-    fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
-        to_lower_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
-    }
+fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
+    to_lower_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
+}
 
 /// Determines of a `String` is `snake_case`
 ///
@@ -161,6 +160,6 @@ pub fn to_snake_case(non_snake_case_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_snake_case(test_string: String) -> bool{
+pub fn is_snake_case(test_string: String) -> bool {
     test_string == to_snake_case(test_string.clone())
 }

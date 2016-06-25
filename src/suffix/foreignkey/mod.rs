@@ -70,7 +70,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 pub fn to_foreign_key(non_foreign_key_string: String) -> String {
-    if is_foreign_key(non_foreign_key_string.clone()){
+    if is_foreign_key(non_foreign_key_string.clone()) {
         non_foreign_key_string
     } else if non_foreign_key_string.contains("::") {
         let split_string: Vec<&str> = non_foreign_key_string.split("::").collect();
@@ -79,10 +79,10 @@ pub fn to_foreign_key(non_foreign_key_string: String) -> String {
         safe_convert(non_foreign_key_string)
     }
 }
-    fn safe_convert(safe_string: String) -> String{
-        let snake_cased: String = to_snake_case(safe_string);
-        format!("{}{}", snake_cased, "_id")
-    }
+fn safe_convert(safe_string: String) -> String {
+    let snake_cased: String = to_snake_case(safe_string);
+    format!("{}{}", snake_cased, "_id")
+}
 
 /// Determines if a `String` is a `foreign_key`
 ///
@@ -136,13 +136,12 @@ pub fn to_foreign_key(non_foreign_key_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_foreign_key(test_string: String) -> bool{
-    let foreign_key_matcher= Regex::new(r"(?:[^-|^ ]?=^|[_])([a-z]+)").unwrap();
+pub fn is_foreign_key(test_string: String) -> bool {
+    let foreign_key_matcher = Regex::new(r"(?:[^-|^ ]?=^|[_])([a-z]+)").unwrap();
     let upcase_matcher = Regex::new(r"[A-Z]").unwrap();
-    if foreign_key_matcher.is_match(test_string.as_ref())
-        && !upcase_matcher.is_match(test_string.as_ref())
-        && test_string.ends_with("_id"){
-            return true;
-        }
+    if foreign_key_matcher.is_match(test_string.as_ref()) &&
+       !upcase_matcher.is_match(test_string.as_ref()) && test_string.ends_with("_id") {
+        return true;
+    }
     false
 }

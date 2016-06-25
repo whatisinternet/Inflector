@@ -166,7 +166,10 @@ mod tests {
                    as_item! {
                        #[test]
                        fn $singular(){
-                           assert_eq!(stringify!($plural), super::to_plural(stringify!($singular).to_string()));
+                           assert_eq!(
+                               stringify!($plural),
+                               super::to_plural(stringify!($singular).to_string())
+                               );
                        }
                    }
             )*

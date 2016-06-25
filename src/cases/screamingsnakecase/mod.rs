@@ -61,31 +61,30 @@ use cases::uppercase::to_upper_case;
 ///
 /// ```
 pub fn to_screaming_snake_case(non_snake_case_string: String) -> String {
-    if non_snake_case_string.contains(' ')
-        || non_snake_case_string.contains('_')
-        || non_snake_case_string.contains('-') {
+    if non_snake_case_string.contains(' ') || non_snake_case_string.contains('_') ||
+       non_snake_case_string.contains('-') {
         to_snake_from_sentence_or_kebab(non_snake_case_string)
     } else {
         to_snake_from_camel_or_class(non_snake_case_string)
     }
 }
-    fn to_snake_from_camel_or_class (non_snake_case_string: String) -> String {
-        let mut result:String = "".to_string();
-        let mut first_character: bool = true;
-        for character in non_snake_case_string.chars() {
-            if character == character.to_ascii_uppercase() && !first_character {
-                result = format!("{}_{}", result, character.to_ascii_uppercase());
-            } else {
-                result = format!("{}{}", result, character.to_ascii_uppercase());
-                first_character = false;
-            }
+fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
+    let mut result: String = "".to_string();
+    let mut first_character: bool = true;
+    for character in non_snake_case_string.chars() {
+        if character == character.to_ascii_uppercase() && !first_character {
+            result = format!("{}_{}", result, character.to_ascii_uppercase());
+        } else {
+            result = format!("{}{}", result, character.to_ascii_uppercase());
+            first_character = false;
         }
-        result
     }
+    result
+}
 
-    fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
-        to_upper_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
-    }
+fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
+    to_upper_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
+}
 
 /// Determines of a `String` is `SCREAMING_SNAKE_CASE`
 ///
@@ -146,6 +145,6 @@ pub fn to_screaming_snake_case(non_snake_case_string: String) -> String {
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_screaming_snake_case(test_string: String) -> bool{
+pub fn is_screaming_snake_case(test_string: String) -> bool {
     test_string == to_screaming_snake_case(test_string.clone())
 }

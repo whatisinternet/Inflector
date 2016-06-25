@@ -57,7 +57,7 @@ use cases::snakecase::to_snake_case;
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-pub fn is_kebab_case(test_string: String) -> bool{
+pub fn is_kebab_case(test_string: String) -> bool {
     test_string == to_kebab_case(test_string.clone())
 }
 
@@ -130,6 +130,6 @@ pub fn is_kebab_case(test_string: String) -> bool{
 pub fn to_kebab_case(non_kebab_case_string: String) -> String {
     to_kebab_from_snake(to_snake_case(non_kebab_case_string))
 }
-    fn to_kebab_from_snake(non_kebab_case_string: String) -> String {
-        non_kebab_case_string.replace("_", "-")
-    }
+fn to_kebab_from_snake(non_kebab_case_string: String) -> String {
+    non_kebab_case_string.replace("_", "-")
+}
