@@ -13,7 +13,6 @@
 ## Are you submitting code?
 
 - Have all files been run through [rustfmt](https://github.com/rust-lang-nursery/rustfmt)?
-- Have all files been run through [rust-clippy](https://github.com/Manishearth/rust-clippy)?
 - Have you added doc tests and do they pass?
 - Do all other tests pass?
 - Have you filled out the pull request template?
