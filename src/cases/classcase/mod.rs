@@ -1,5 +1,4 @@
 use std::ascii::*;
-use regex::Regex;
 
 use cases::snakecase::to_snake_case;
 use string::singularize::to_singular;
@@ -8,9 +7,7 @@ use string::singularize::to_singular;
 ///
 /// #Examples
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_FooBar_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "FooBar".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -19,9 +16,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_FooBars_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "FooBars".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -30,8 +25,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-/// // ClassCase_Foo_Bar_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "Foo Bar".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -40,9 +34,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_foo_dash_bar_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "foo-bar".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -51,9 +43,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_fooBar_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "fooBar".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -62,9 +52,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_FOO_BAR_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "FOO_BAR".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -73,9 +61,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_foo_bar_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -84,9 +70,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_foo_bars_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "foo_bars".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -95,9 +79,7 @@ use string::singularize::to_singular;
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::to_class_case;
-///
-/// // ClassCase_Foo_space_bar_as_FooBar() {
+///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "Foo bar".to_string();
 ///     let expected_string: String = "FooBar".to_string();
 ///     let asserted_string: String = to_class_case(mock_string);
@@ -107,31 +89,29 @@ use string::singularize::to_singular;
 pub fn to_class_case(non_class_case_string: String) -> String {
     to_class_from_snake(to_snake_case(non_class_case_string))
 }
-    fn to_class_from_snake(non_class_case_string: String) -> String {
-        let singularized_word: String = to_singular(non_class_case_string);
-        let mut result:String = "".to_string();
-        let mut new_word: bool = true;
+fn to_class_from_snake(non_class_case_string: String) -> String {
+    let singularized_word: String = to_singular(non_class_case_string);
+    let mut result: String = "".to_string();
+    let mut new_word: bool = true;
 
-        for character in singularized_word.chars() {
-            if character.to_string() == "_" {
-                new_word = true;
-            } else if new_word {
-                result = format!("{}{}", result, character.to_ascii_uppercase());
-                new_word = false;
-            } else {
-                result = format!("{}{}", result, character.to_ascii_lowercase());
-            }
+    for character in singularized_word.chars() {
+        if character.to_string() == "_" {
+            new_word = true;
+        } else if new_word {
+            result = format!("{}{}", result, character.to_ascii_uppercase());
+            new_word = false;
+        } else {
+            result = format!("{}{}", result, character.to_ascii_lowercase());
         }
-        result
     }
+    result
+}
 
 /// Determines if a `String` is `ClassCase` `bool`
 ///
 /// #Examples
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-/// // returns_truthy_value_for_is_class_case_when_start_cased() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "Foo".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == true);
@@ -139,9 +119,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-/// // returns_falsey_value_for_is_class_case_when_downcased() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "foo".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -149,10 +127,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_pluralClassCase() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "FooBarIsAReallyReallyLongStrings".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -161,10 +136,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 ///
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_truthy_value_for_is_class_case_when_class() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "FooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == true);
@@ -172,10 +144,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_kebab() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -183,10 +152,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_table() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "foo_bar_is_a_really_really_long_strings".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -195,10 +161,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 ///
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_camel() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "fooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -206,10 +169,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_screaming_snake() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "FOO_BAR_STRING_THAT_IS_REALLY_REALLY_LONG".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -217,10 +177,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_snake() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "foo_bar_string_that_is_really_really_long".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -228,10 +185,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_sentence() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "Foo bar string that is really really long".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
@@ -239,23 +193,12 @@ pub fn to_class_case(non_class_case_string: String) -> String {
 /// ```
 ///
 /// ```
-/// use inflector::cases::classcase::is_class_case;
-///
-///
-/// // returns_falsey_value_for_is_class_case_when_title() {
+///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "Foo Bar Is A Really Really Long String".to_string();
 ///     let asserted_bool: bool = is_class_case(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-pub fn is_class_case(test_string: String) -> bool{
-    let class_matcher = Regex::new(r"(^[A-Z])([^-|^_|^ ]*[a-z0-9]+)").unwrap();
-    let space_matcher = Regex::new(r" +").unwrap();
-    let singularized_word: String = to_singular(test_string.clone());
-    if class_matcher.is_match(test_string.as_ref())
-        && !space_matcher.is_match(test_string.as_ref())
-        && singularized_word == test_string{
-        return true;
-    }
-    false
+pub fn is_class_case(test_string: String) -> bool {
+    test_string == to_class_case(test_string.clone())
 }

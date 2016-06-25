@@ -2,10 +2,7 @@
 ///
 /// #Examples
 /// ```
-/// use inflector::string::demodulize::demodulize;
-///
-///
-/// // demodulize_Bar_as_Bar() {
+///     use inflector::string::demodulize::demodulize;
 ///     let mock_string: String = "Bar".to_string();
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
@@ -13,10 +10,7 @@
 ///
 /// ```
 /// ```
-/// use inflector::string::demodulize::demodulize;
-///
-///
-/// // demodulize_namespace_Bar_as_Bar() {
+///     use inflector::string::demodulize::demodulize;
 ///     let mock_string: String = "::Bar".to_string();
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
@@ -24,10 +18,7 @@
 ///
 /// ```
 /// ```
-/// use inflector::string::demodulize::demodulize;
-///
-///
-/// // demodulize_Foo_namespace_Bar_as_Bar() {
+///     use inflector::string::demodulize::demodulize;
 ///     let mock_string: String = "Foo::Bar".to_string();
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
@@ -35,10 +26,7 @@
 ///
 /// ```
 /// ```
-/// use inflector::string::demodulize::demodulize;
-///
-///
-/// // demodulize_Test_namespace_Foo_namespace_Bar_as_Bar() {
+///     use inflector::string::demodulize::demodulize;
 ///     let mock_string: String = "Test::Foo::Bar".to_string();
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);

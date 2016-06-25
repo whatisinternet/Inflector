@@ -2,10 +2,7 @@
 ///
 /// #Examples
 /// ```
-/// use inflector::cases::uppercase::to_upper_case;
-///
-///
-/// // upcase_FoObAR_as_foobar() {
+///     use inflector::cases::uppercase::to_upper_case;
 ///     let mock_string: String = "FoObAR".to_string();
 ///     let expected_string: String = "FOOBAR".to_string();
 ///     let asserted_string: String = to_upper_case(mock_string);
@@ -13,8 +10,7 @@
 ///
 /// ```
 pub fn to_upper_case(non_upper_string: String) -> String {
-    non_upper_string
-        .chars()
+    non_upper_string.chars()
         .flat_map(char::to_uppercase)
         .collect()
 }
@@ -23,36 +19,27 @@ pub fn to_upper_case(non_upper_string: String) -> String {
 ///
 /// #Examples
 /// ```
-/// use inflector::cases::uppercase::is_upper_case;
-///
-///
-/// // returns_falsey_value_for_is_upper_case_when_uppercase() {
+///     use inflector::cases::uppercase::is_upper_case;
 ///     let mock_string: String = "FOOBARSTRINGTHATISREALLYREALLYLONG".to_string();
 ///     let asserted_bool: bool = is_upper_case(mock_string);
 ///     assert!(asserted_bool == true);
 ///
 /// ```
 /// ```
-/// use inflector::cases::uppercase::is_upper_case;
-///
-///
-/// // returns_truthy_value_for_is_upper_case_when_uppercase() {
+///     use inflector::cases::uppercase::is_upper_case;
 ///     let mock_string: String = "foobarisareallyreallylongstring".to_string();
 ///     let asserted_bool: bool = is_upper_case(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::cases::uppercase::is_upper_case;
-///
-///
-/// // returns_falsey_value_for_is_upper_case_when_Startcased() {
+///     use inflector::cases::uppercase::is_upper_case;
 ///     let mock_string: String = "Foobarisareallyreallylongstring".to_string();
 ///     let asserted_bool: bool = is_upper_case(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 
-pub fn is_upper_case(test_string: String) -> bool{
+pub fn is_upper_case(test_string: String) -> bool {
     test_string == to_upper_case(test_string.to_owned())
 }

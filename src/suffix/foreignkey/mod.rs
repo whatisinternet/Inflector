@@ -6,10 +6,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// #Examples
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_foo_bar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "foo_bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -17,10 +14,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_Foo_space_bar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "Foo bar".to_string();
 ///     let expected_string: String = "foo_bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -28,10 +22,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_Foo_space_Bar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "Foo Bar".to_string();
 ///     let expected_string: String = "foo_bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -39,10 +30,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_Foo_namespace_Bar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "Foo::Bar".to_string();
 ///     let expected_string: String = "bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -50,10 +38,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_Test_namespace_Foo_namespace_Bar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "Test::Foo::Bar".to_string();
 ///     let expected_string: String = "bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -61,10 +46,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_FooBar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "FooBar".to_string();
 ///     let expected_string: String = "foo_bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -72,10 +54,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_fooBar_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "fooBar".to_string();
 ///     let expected_string: String = "foo_bar_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -83,10 +62,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::to_foreign_key;
-///
-///
-/// // foreign_key_fooBar3_as_foo_bar() {
+///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "fooBar3".to_string();
 ///     let expected_string: String = "foo_bar_3_id".to_string();
 ///     let asserted_string: String = to_foreign_key(mock_string);
@@ -94,7 +70,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 pub fn to_foreign_key(non_foreign_key_string: String) -> String {
-    if is_foreign_key(non_foreign_key_string.clone()){
+    if is_foreign_key(non_foreign_key_string.clone()) {
         non_foreign_key_string
     } else if non_foreign_key_string.contains("::") {
         let split_string: Vec<&str> = non_foreign_key_string.split("::").collect();
@@ -103,91 +79,69 @@ pub fn to_foreign_key(non_foreign_key_string: String) -> String {
         safe_convert(non_foreign_key_string)
     }
 }
-    fn safe_convert(safe_string: String) -> String{
-        let snake_cased: String = to_snake_case(safe_string);
-        format!("{}{}", snake_cased, "_id")
-    }
+fn safe_convert(safe_string: String) -> String {
+    let snake_cased: String = to_snake_case(safe_string);
+    format!("{}{}", snake_cased, "_id")
+}
 
 /// Determines if a `String` is a `foreign_key`
 ///
 /// #Examples
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_falsey_value_for_is_foreign_key_when_sentence() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "Foo bar string that is really really long".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_falsey_value_for_is_foreign_key_when_kebab() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_falsey_value_for_is_foreign_key_when_class() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "FooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_falsey_value_for_is_foreign_key_when_title() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "Foo Bar Is A Really Really Long String".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_falsey_value_for_is_foreign_key_when_camel() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "fooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_falsey_value_for_is_foreign_key_when_snake() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "foo_bar_string_that_is_really_really_long".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```
-/// use inflector::suffix::foreignkey::is_foreign_key;
-///
-///
-/// // returns_truthy_value_for_is_foreign_key_when_foreign_key() {
+///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "foo_bar_string_that_is_really_really_long_id".to_string();
 ///     let asserted_bool: bool = is_foreign_key(mock_string);
 ///     assert!(asserted_bool == true);
 ///
 /// ```
-pub fn is_foreign_key(test_string: String) -> bool{
-    let foreign_key_matcher= Regex::new(r"(?:[^-|^ ]?=^|[_])([a-z]+)").unwrap();
+pub fn is_foreign_key(test_string: String) -> bool {
+    let foreign_key_matcher = Regex::new(r"(?:[^-|^ ]?=^|[_])([a-z]+)").unwrap();
     let upcase_matcher = Regex::new(r"[A-Z]").unwrap();
-    if foreign_key_matcher.is_match(test_string.as_ref())
-        && !upcase_matcher.is_match(test_string.as_ref())
-        && test_string.ends_with("_id"){
-            return true;
-        }
+    if foreign_key_matcher.is_match(test_string.as_ref()) &&
+       !upcase_matcher.is_match(test_string.as_ref()) && test_string.ends_with("_id") {
+        return true;
+    }
     false
 }
