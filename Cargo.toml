@@ -1,6 +1,6 @@
 [package]
 name = "Inflector"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
@@ -20,5 +20,5 @@ name = "inflector"
 path = "src/lib.rs"
 
 [dependencies]
-regex = "0.1.41"
+regex = "0.1.73"
 lazy_static = "0.2.1"
