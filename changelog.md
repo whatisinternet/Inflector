@@ -1,3 +1,10 @@
+# 0.3.1
+
+## Fixes:
+
+- Fixes issue https://github.com/rust-lang/rust/pull/34660
+- Updates Regex to 0.1.73 for latest fixes
+
 # 0.3.0
 
 ## Fixes:
