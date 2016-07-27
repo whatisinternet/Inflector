@@ -1,16 +1,17 @@
+#![deny(warnings)]
 use regex::Regex;
 use string::constants::UNACCONTABLE_WORDS;
 
 macro_rules! add_rule{
-    ($r:ident, $rule:expr => $replace:expr) =>{
+    ($r:ident, $rule:expr => $replace:expr) => {
         $r.push((Regex::new($rule).unwrap(), $replace));
     }
 }
 
 macro_rules! rules{
-    ($r:ident; $($rule:expr => $replace:expr), *) =>{
+    ($r:ident; $($rule:expr => $replace:expr), *) => {
         $(
-            add_rule!($r, $rule => $replace)
+            add_rule!{$r, $rule => $replace}
         )*
     }
 }
