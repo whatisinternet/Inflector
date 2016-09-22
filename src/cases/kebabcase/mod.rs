@@ -133,3 +133,24 @@ pub fn to_kebab_case(non_kebab_case_string: String) -> String {
 fn to_kebab_from_snake(non_kebab_case_string: String) -> String {
     non_kebab_case_string.replace("_", "-")
 }
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_kebab(b: &mut Bencher) {
+        b.iter(|| super::to_kebab_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_kebab(b: &mut Bencher) {
+        b.iter(|| super::is_kebab_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_kebab_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_kebab_from_snake("test_test_test".to_string()));
+    }
+}
