@@ -43,3 +43,19 @@ pub fn to_upper_case(non_upper_string: String) -> String {
 pub fn is_upper_case(test_string: String) -> bool {
     test_string == to_upper_case(test_string.to_owned())
 }
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_upper(b: &mut Bencher) {
+        b.iter(|| super::to_upper_case("Foo BAR".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_upper(b: &mut Bencher) {
+        b.iter(|| super::is_upper_case("Foo bar".to_string()));
+    }
+}
