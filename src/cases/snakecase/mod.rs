@@ -76,6 +76,7 @@ pub fn to_snake_case(non_snake_case_string: String) -> String {
         to_snake_from_camel_or_class(non_snake_case_string)
     }
 }
+
 fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
     let mut result: String = "".to_string();
     let mut first_character: bool = true;
@@ -162,4 +163,50 @@ fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
 /// ```
 pub fn is_snake_case(test_string: String) -> bool {
     test_string == to_snake_case(test_string.clone())
+}
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_snake(b: &mut Bencher) {
+        b.iter(|| super::to_snake_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_snake(b: &mut Bencher) {
+        b.iter(|| super::is_snake_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_kebab(b: &mut Bencher) {
+        b.iter(|| super::to_snake_from_sentence_or_kebab("test-test-test".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_upper_kebab(b: &mut Bencher) {
+        b.iter(|| super::to_snake_from_sentence_or_kebab("TEST-TEST-TEST".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_snake_from_sentence_or_kebab("test_case".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_sentence(b: &mut Bencher) {
+        b.iter(|| super::to_snake_from_sentence_or_kebab("The quick brown fox".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_camel(b: &mut Bencher) {
+        b.iter(|| super::to_snake_from_camel_or_class("testCase".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_class(b: &mut Bencher) {
+        b.iter(|| super::to_snake_from_camel_or_class("TestCase".to_string()));
+    }
 }
