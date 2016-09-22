@@ -76,7 +76,6 @@ pub fn to_table_case(non_table_case_string: String) -> String {
                        to_plural(words[words.len() - 1].to_string()));
     to_snake_case(sentence)
 }
-
 /// Determines if a `String` is `table-case`
 ///
 /// #Examples
@@ -138,4 +137,20 @@ pub fn to_table_case(non_table_case_string: String) -> String {
 /// ```
 pub fn is_table_case(test_string: String) -> bool {
     test_string.clone() == to_table_case(test_string)
+}
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_table_case(b: &mut Bencher) {
+        b.iter(|| super::to_table_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_table_case(b: &mut Bencher) {
+        b.iter(|| super::is_table_case("Foo bar".to_string()));
+    }
 }
