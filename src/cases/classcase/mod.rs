@@ -202,3 +202,24 @@ fn to_class_from_snake(non_class_case_string: String) -> String {
 pub fn is_class_case(test_string: String) -> bool {
     test_string == to_class_case(test_string.clone())
 }
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_class_case(b: &mut Bencher) {
+        b.iter(|| super::to_class_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_class(b: &mut Bencher) {
+        b.iter(|| super::is_class_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_class_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_class_from_snake("foo_bar".to_string()));
+    }
+}
