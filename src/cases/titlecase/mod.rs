@@ -72,7 +72,6 @@ fn to_title_from_snake(non_sentence_case_string: String) -> String {
     }
     result.trim().to_string()
 }
-
 /// Determines if a `String` is `Title Case`
 ///
 /// #Examples
@@ -134,4 +133,25 @@ fn to_title_from_snake(non_sentence_case_string: String) -> String {
 /// ```
 pub fn is_title_case(test_string: String) -> bool {
     test_string == to_title_case(test_string.clone())
+}
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_title(b: &mut Bencher) {
+        b.iter(|| super::to_title_case("Foo BAR".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_title(b: &mut Bencher) {
+        b.iter(|| super::is_title_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_title_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_title_from_snake("foo_bar".to_string()));
+    }
 }
