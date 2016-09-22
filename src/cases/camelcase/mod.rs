@@ -182,3 +182,24 @@ pub fn is_camel_case(test_string: String) -> bool {
     }
     false
 }
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_camel(b: &mut Bencher) {
+        b.iter(|| super::to_camel_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_camel(b: &mut Bencher) {
+        b.iter(|| super::is_camel_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_camel_from_sname(b: &mut Bencher) {
+        b.iter(|| super::to_camel_from_snake("foo_bar".to_string()));
+    }
+}
