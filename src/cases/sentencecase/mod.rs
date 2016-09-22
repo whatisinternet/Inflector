@@ -140,3 +140,24 @@ fn to_sentence_from_snake(non_sentence_case_string: String) -> String {
 pub fn is_sentence_case(test_string: String) -> bool {
     test_string == to_sentence_case(test_string.clone())
 }
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_sentence(b: &mut Bencher) {
+        b.iter(|| super::to_sentence_case("Foo BAR".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_sentence(b: &mut Bencher) {
+        b.iter(|| super::is_sentence_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_sentence_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_sentence_from_snake("foo_bar".to_string()));
+    }
+}
