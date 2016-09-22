@@ -44,3 +44,19 @@ pub fn to_lower_case(non_lower_string: String) -> String {
 pub fn is_lower_case(test_string: String) -> bool {
     test_string == to_lower_case(test_string.clone())
 }
+
+#[cfg(test)]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_lower(b: &mut Bencher) {
+        b.iter(|| super::to_lower_case("Foo BAR".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_lower(b: &mut Bencher) {
+        b.iter(|| super::is_lower_case("Foo bar".to_string()));
+    }
+}
