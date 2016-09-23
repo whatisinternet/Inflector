@@ -1,5 +1,6 @@
 use std::ascii::*;
 
+use cases::snakecase::to_snake_case;
 /// Converts a `String` to `SCREAMING_SNAKE_CASE` `String`
 ///
 /// #Examples
@@ -60,29 +61,7 @@ use std::ascii::*;
 ///
 /// ```
 pub fn to_screaming_snake_case(non_snake_case_string: String) -> String {
-    if non_snake_case_string.contains(' ') || non_snake_case_string.contains('_') ||
-       non_snake_case_string.contains('-') {
-        to_snake_from_sentence_or_kebab(non_snake_case_string)
-    } else {
-        to_snake_from_camel_or_class(non_snake_case_string)
-    }
-}
-fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
-    let mut result: String = "".to_string();
-    let mut first_character: bool = true;
-    for character in non_snake_case_string.chars() {
-        if character == character.to_ascii_uppercase() && !first_character {
-            result = format!("{}_{}", result, character.to_ascii_uppercase());
-        } else {
-            result = format!("{}{}", result, character.to_ascii_uppercase());
-            first_character = false;
-        }
-    }
-    result
-}
-
-fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
-    non_snake_case_string.replace(" ", "_").replace("-", "_").to_uppercase()
+    to_snake_case(non_snake_case_string).to_uppercase()
 }
 
 /// Determines of a `String` is `SCREAMING_SNAKE_CASE`
@@ -162,35 +141,5 @@ mod tests {
     #[bench]
     fn bench_is_screaming_snake(b: &mut Bencher) {
         b.iter(|| super::is_screaming_snake_case("Foo bar".to_string()));
-    }
-
-    #[bench]
-    fn bench_screaming_snake_from_kebab(b: &mut Bencher) {
-        b.iter(|| super::to_snake_from_sentence_or_kebab("test-test-test".to_string()));
-    }
-
-    #[bench]
-    fn bench_screaming_snake_from_upper_kebab(b: &mut Bencher) {
-        b.iter(|| super::to_snake_from_sentence_or_kebab("TEST-TEST-TEST".to_string()));
-    }
-
-    #[bench]
-    fn bench_screaming_snake_from_screaming_snake(b: &mut Bencher) {
-        b.iter(|| super::to_snake_from_sentence_or_kebab("test_case".to_string()));
-    }
-
-    #[bench]
-    fn bench_screaming_snake_from_sentence(b: &mut Bencher) {
-        b.iter(|| super::to_snake_from_sentence_or_kebab("The quick brown fox".to_string()));
-    }
-
-    #[bench]
-    fn bench_screaming_snake_from_camel(b: &mut Bencher) {
-        b.iter(|| super::to_snake_from_camel_or_class("testCase".to_string()));
-    }
-
-    #[bench]
-    fn bench_screaming_snake_from_class(b: &mut Bencher) {
-        b.iter(|| super::to_snake_from_camel_or_class("TestCase".to_string()));
     }
 }
