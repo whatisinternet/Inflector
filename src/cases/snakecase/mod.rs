@@ -1,3 +1,4 @@
+use std::ascii::*;
 /// Converts a `String` to `snake_case` `String`
 ///
 /// #Examples
@@ -73,22 +74,22 @@ pub fn to_snake_case(non_snake_case_string: String) -> String {
         let tokens: Vec<&str> = non_snake_case_string.split(seperators).collect();
         tokens.join("_").to_lowercase()
     } else {
-        let converted: Vec<String> = non_snake_case_string
-            .chars()
-            .enumerate()
-            .map(|(i, s)|
-                 if (s.is_uppercase() == true || s.is_numeric()) && (i > 0 as usize) {
-                     format!("_{}", s)
-                 } else {
-                     s.to_string()
-                 }
-                 )
-            .collect();
-
-        converted
-            .join("")
-            .to_lowercase()
+        to_snake_from_camel_or_class(non_snake_case_string)
     }
+}
+
+fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
+    let mut result: String = "".to_string();
+    let mut first_character: bool = true;
+    for character in non_snake_case_string.chars() {
+        if character == character.to_ascii_uppercase() && !first_character {
+            result = format!("{}_{}", result, character.to_ascii_lowercase());
+        } else {
+            result = format!("{}{}", result, character.to_ascii_lowercase());
+            first_character = false;
+        }
+    }
+    result
 }
 
 /// Determines of a `String` is `snake_case`
