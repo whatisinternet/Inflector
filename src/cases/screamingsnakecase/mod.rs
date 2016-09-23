@@ -1,5 +1,4 @@
 use std::ascii::*;
-use cases::uppercase::to_upper_case;
 
 /// Converts a `String` to `SCREAMING_SNAKE_CASE` `String`
 ///
@@ -83,7 +82,7 @@ fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
 }
 
 fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
-    to_upper_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
+    non_snake_case_string.replace(" ", "_").replace("-", "_").to_uppercase()
 }
 
 /// Determines of a `String` is `SCREAMING_SNAKE_CASE`

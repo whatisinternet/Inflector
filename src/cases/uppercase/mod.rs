@@ -9,6 +9,7 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
+#[deprecated(since="0.3.2", note="Please use the standard `.to_uppercase()`")]
 pub fn to_upper_case(non_upper_string: String) -> String {
     non_upper_string.chars()
         .flat_map(char::to_uppercase)
@@ -39,7 +40,7 @@ pub fn to_upper_case(non_upper_string: String) -> String {
 ///     assert!(asserted_bool == false);
 ///
 /// ```
-
+#[deprecated(since="0.3.2", note="Please use the standard `.is_uppercase()`")]
 pub fn is_upper_case(test_string: String) -> bool {
     test_string == to_upper_case(test_string.to_owned())
 }

@@ -9,6 +9,7 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
+#[deprecated(since="0.3.2", note="Please use the standard `.to_lowercase()`")]
 pub fn to_lower_case(non_lower_string: String) -> String {
     // See https://github.com/calebmer/inflections/blob/master/src/case.rs#L37 for where this
     // implementation comes from.
@@ -41,6 +42,7 @@ pub fn to_lower_case(non_lower_string: String) -> String {
 ///     assert!(asserted_bool == false);
 ///
 /// ```
+#[deprecated(since="0.3.2", note="Please use the standard `.is_lowercase()`")]
 pub fn is_lower_case(test_string: String) -> bool {
     test_string == to_lower_case(test_string.clone())
 }
