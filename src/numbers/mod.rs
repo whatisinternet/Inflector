@@ -1,3 +1,4 @@
+#![deny(warnings)]
 /// Provides ordinalization of a string.
 ///
 /// Example string "1" becomes "1st"

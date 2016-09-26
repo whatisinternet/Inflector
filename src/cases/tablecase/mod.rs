@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use string::pluralize::to_plural;
 use cases::case::*;
 /// Converts a `String` to `table-case` `String`
@@ -126,7 +127,7 @@ pub fn is_table_case(test_string: String) -> bool {
     test_string.clone() == to_table_case(test_string)
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

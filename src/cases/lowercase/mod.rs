@@ -47,7 +47,7 @@ pub fn is_lower_case(test_string: String) -> bool {
     test_string == to_lower_case(test_string.clone())
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

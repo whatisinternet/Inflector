@@ -45,7 +45,7 @@ pub fn is_upper_case(test_string: String) -> bool {
     test_string == to_upper_case(test_string.to_owned())
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

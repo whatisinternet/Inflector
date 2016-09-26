@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use std::ascii::*;
 use string::singularize::to_singular;
 /// Converts a `String` to `ClassCase` `String`
@@ -204,7 +205,7 @@ pub fn is_class_case(test_string: String) -> bool {
     test_string == to_class_case(test_string.clone())
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

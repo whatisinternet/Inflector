@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use cases::case::*;
 /// Converts a `String` to `Sentence case` `String`
 ///
@@ -125,7 +126,7 @@ pub fn is_sentence_case(test_string: String) -> bool {
     test_string == to_sentence_case(test_string.clone())
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use cases::case::*;
 /// Converts a `String` to `SCREAMING_SNAKE_CASE` `String`
 ///
@@ -126,7 +127,7 @@ pub fn is_screaming_snake_case(test_string: String) -> bool {
 }
 
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

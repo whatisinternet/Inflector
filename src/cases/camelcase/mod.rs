@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use std::ascii::*;
 /// Converts a `String` to camelCase `String`
 ///
@@ -175,7 +176,7 @@ pub fn is_camel_case(test_string: String) -> bool {
     to_camel_case(test_string.clone()) == test_string
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

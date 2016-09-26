@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use std::ascii::*;
 /// Converts a `String` to `Title Case` `String`
 ///
@@ -136,7 +137,7 @@ pub fn is_title_case(test_string: String) -> bool {
     test_string == to_title_case(test_string.clone())
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

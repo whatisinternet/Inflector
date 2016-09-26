@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use cases::case::*;
 /// Determines if a `String` is `kebab-case`
 ///
@@ -131,7 +132,7 @@ pub fn to_kebab_case(non_kebab_case_string: String) -> String {
     to_case_snake_like(non_kebab_case_string, "-", "lower")
 }
 
-#[cfg(test)]
+#[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;

@@ -1,3 +1,4 @@
+#![deny(warnings)]
 use std::ascii::*;
 
 pub fn to_case_snake_like(
