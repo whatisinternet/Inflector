@@ -1,3 +1,83 @@
+# 0.3.2
+
+## Fixes:
+
+- Fixes issue https://github.com/rust-lang/rust/pull/3466://github.com/whatisinternet/inflector/issues/18
+- Fixes performance issues overall
+
+## Benchmarks:
+```shell
+test cases::camelcase::tests::bench_camel0                      ... bench:         139 ns/iter (+/- 40)
+test cases::camelcase::tests::bench_camel1                      ... bench:         138 ns/iter (+/- 31)
+test cases::camelcase::tests::bench_camel2                      ... bench:         138 ns/iter (+/- 41)
+test cases::camelcase::tests::bench_is_camel                    ... bench:         184 ns/iter (+/- 90)
+test cases::classcase::tests::bench_class_case                  ... bench:       2,383 ns/iter (+/- 557)
+test cases::classcase::tests::bench_class_from_snake            ... bench:       2,393 ns/iter (+/- 1,120)
+test cases::classcase::tests::bench_is_class                    ... bench:       2,443 ns/iter (+/- 1,060)
+test cases::kebabcase::tests::bench_is_kebab                    ... bench:         182 ns/iter (+/- 60)
+test cases::kebabcase::tests::bench_kebab                       ... bench:         161 ns/iter (+/- 98)
+test cases::kebabcase::tests::bench_kebab_from_snake            ... bench:         264 ns/iter (+/- 144)
+test cases::lowercase::tests::bench_is_lower                    ... bench:         358 ns/iter (+/- 154)
+test cases::lowercase::tests::bench_lower                       ... bench:         347 ns/iter (+/- 220)
+test cases::screamingsnakecase::tests::bench_is_screaming_snake ... bench:         194 ns/iter (+/- 35)
+test cases::screamingsnakecase::tests::bench_screaming_snake    ... bench:         173 ns/iter (+/- 97)
+test cases::sentencecase::tests::bench_is_sentence              ... bench:         377 ns/iter (+/- 83)
+test cases::sentencecase::tests::bench_sentence                 ... bench:         337 ns/iter (+/- 155)
+test cases::sentencecase::tests::bench_sentence_from_snake      ... bench:         370 ns/iter (+/- 176)
+test cases::snakecase::tests::bench_is_snake                    ... bench:         191 ns/iter (+/- 98)
+test cases::snakecase::tests::bench_snake_from_camel            ... bench:         156 ns/iter (+/- 25)
+test cases::snakecase::tests::bench_snake_from_snake            ... bench:         289 ns/iter (+/- 136)
+test cases::snakecase::tests::bench_snake_from_title            ... bench:         157 ns/iter (+/- 68)
+test cases::tablecase::tests::bench_is_table_case               ... bench:       2,253 ns/iter (+/- 978)
+test cases::tablecase::tests::bench_table_case                  ... bench:       2,227 ns/iter (+/- 704)
+test cases::titlecase::tests::bench_is_title                    ... bench:         787 ns/iter (+/- 362)
+test cases::titlecase::tests::bench_title                       ... bench:         826 ns/iter (+/- 317)
+test cases::titlecase::tests::bench_title_from_snake            ... bench:         747 ns/iter (+/- 230)
+test cases::uppercase::tests::bench_is_upper                    ... bench:         347 ns/iter (+/- 111)
+test cases::uppercase::tests::bench_upper                       ... bench:         328 ns/iter (+/- 42)
+```
+
+## OLD Benchmarks:
+```shell
+test cases::camelcase::tests::bench_camel                                         ... bench:       1,825 ns/iter (+/- 346)
+test cases::camelcase::tests::bench_camel_from_sname                              ... bench:       1,223 ns/iter (+/- 289)
+test cases::camelcase::tests::bench_is_camel                                      ... bench:      49,416 ns/iter (+/- 593)
+test cases::classcase::tests::bench_class_case                                    ... bench: 160,985,376 ns/iter (+/- 5,173,751)
+test cases::classcase::tests::bench_class_from_snake                              ... bench: 161,533,425 ns/iter (+/- 4,167,305)
+test cases::classcase::tests::bench_is_class                                      ... bench: 161,352,118 ns/iter (+/- 3,793,478)
+test cases::kebabcase::tests::bench_is_kebab                                      ... bench:         793 ns/iter (+/- 400)
+test cases::kebabcase::tests::bench_kebab                                         ... bench:         752 ns/iter (+/- 310)
+test cases::kebabcase::tests::bench_kebab_from_snake                              ... bench:         210 ns/iter (+/- 32)
+test cases::lowercase::tests::bench_is_lower                                      ... bench:         340 ns/iter (+/- 86)
+test cases::lowercase::tests::bench_lower                                         ... bench:         306 ns/iter (+/- 173)
+test cases::screamingsnakecase::tests::bench_is_screaming_snake                   ... bench:         635 ns/iter (+/- 210)
+test cases::screamingsnakecase::tests::bench_screaming_snake                      ... bench:         610 ns/iter (+/- 87)
+test cases::screamingsnakecase::tests::bench_screaming_snake_from_camel           ... bench:         961 ns/iter (+/- 579)
+test cases::screamingsnakecase::tests::bench_screaming_snake_from_class           ... bench:         894 ns/iter (+/- 352)
+test cases::screamingsnakecase::tests::bench_screaming_snake_from_kebab           ... bench:         877 ns/iter (+/- 571)
+test cases::screamingsnakecase::tests::bench_screaming_snake_from_screaming_snake ... bench:         584 ns/iter (+/- 304)
+test cases::screamingsnakecase::tests::bench_screaming_snake_from_sentence        ... bench:       1,123 ns/iter (+/- 630)
+test cases::screamingsnakecase::tests::bench_screaming_snake_from_upper_kebab     ... bench:         914 ns/iter (+/- 435)
+test cases::sentencecase::tests::bench_is_sentence                                ... bench:       2,714 ns/iter (+/- 796)
+test cases::sentencecase::tests::bench_sentence                                   ... bench:       2,678 ns/iter (+/- 1,357)
+test cases::sentencecase::tests::bench_sentence_from_snake                        ... bench:       2,100 ns/iter (+/- 1,046)
+test cases::snakecase::tests::bench_is_snake                                      ... bench:         626 ns/iter (+/- 191)
+test cases::snakecase::tests::bench_snake                                         ... bench:         581 ns/iter (+/- 298)
+test cases::snakecase::tests::bench_snake_from_camel                              ... bench:         882 ns/iter (+/- 328)
+test cases::snakecase::tests::bench_snake_from_class                              ... bench:         883 ns/iter (+/- 193)
+test cases::snakecase::tests::bench_snake_from_kebab                              ... bench:         922 ns/iter (+/- 360)
+test cases::snakecase::tests::bench_snake_from_sentence                           ... bench:       1,209 ns/iter (+/- 539)
+test cases::snakecase::tests::bench_snake_from_snake                              ... bench:         637 ns/iter (+/- 386)
+test cases::snakecase::tests::bench_snake_from_upper_kebab                        ... bench:         876 ns/iter (+/- 488)
+test cases::tablecase::tests::bench_is_table_case                                 ... bench:       5,784 ns/iter (+/- 1,129)
+test cases::tablecase::tests::bench_table_case                                    ... bench:       5,754 ns/iter (+/- 1,460)
+test cases::titlecase::tests::bench_is_title                                      ... bench:       2,847 ns/iter (+/- 1,553)
+test cases::titlecase::tests::bench_title                                         ... bench:       2,799 ns/iter (+/- 1,309)
+test cases::titlecase::tests::bench_title_from_snake                              ... bench:       2,202 ns/iter (+/- 697)
+test cases::uppercase::tests::bench_is_upper                                      ... bench:         357 ns/iter (+/- 55)
+test cases::uppercase::tests::bench_upper                                         ... bench:         311 ns/iter (+/- 135)
+```
+
 # 0.3.1
 
 ## Fixes:

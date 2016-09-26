@@ -1,4 +1,5 @@
-#![deny(warnings)]
+// #![deny(warnings)]
+#![cfg_attr(feature = "unstable", feature(test))]
 
 //! Adds String based inflections for Rust. Snake, kebab, camel,
 //! sentence, class, title, upper, and lower cases as well as ordinalize,

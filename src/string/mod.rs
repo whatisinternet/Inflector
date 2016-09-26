@@ -1,3 +1,4 @@
+#![deny(warnings)]
 /// Provides demodulize a string.
 ///
 /// Example string `Foo::Bar` becomes `Bar`

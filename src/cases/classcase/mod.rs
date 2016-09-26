@@ -1,8 +1,6 @@
+#![deny(warnings)]
 use std::ascii::*;
-
-use cases::snakecase::to_snake_case;
 use string::singularize::to_singular;
-
 /// Converts a `String` to `ClassCase` `String`
 ///
 /// #Examples
@@ -87,26 +85,30 @@ use string::singularize::to_singular;
 ///
 /// ```
 pub fn to_class_case(non_class_case_string: String) -> String {
-    to_class_from_snake(to_snake_case(non_class_case_string))
-}
-fn to_class_from_snake(non_class_case_string: String) -> String {
-    let singularized_word: String = to_singular(non_class_case_string);
-    let mut result: String = "".to_string();
     let mut new_word: bool = true;
-
-    for character in singularized_word.chars() {
-        if character.to_string() == "_" {
-            new_word = true;
-        } else if new_word {
-            result = format!("{}{}", result, character.to_ascii_uppercase());
-            new_word = false;
-        } else {
-            result = format!("{}{}", result, character.to_ascii_lowercase());
-        }
-    }
-    result
+    let mut last_char: char = ' ';
+    let class_plural = non_class_case_string
+        .chars()
+        .fold("".to_string(), |mut result, character|
+            if character == '-' || character == '_' || character == ' ' {
+                new_word = true;
+                result
+            } else if new_word || (
+                (last_char.is_lowercase() && character.is_uppercase()) &&
+                (last_char != ' ')
+                ){
+                new_word = false;
+                result.push(character.to_ascii_uppercase());
+                result
+            } else {
+                last_char = character;
+                result.push(character.to_ascii_lowercase());
+                result
+            }
+        );
+    let split: (&str, &str) = class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));
+    format!("{}{}", split.0, to_singular(split.1.to_string()))
 }
-
 /// Determines if a `String` is `ClassCase` `bool`
 ///
 /// #Examples
@@ -201,4 +203,25 @@ fn to_class_from_snake(non_class_case_string: String) -> String {
 /// ```
 pub fn is_class_case(test_string: String) -> bool {
     test_string == to_class_case(test_string.clone())
+}
+
+#[cfg(all(feature = "unstable", test))]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_class_case(b: &mut Bencher) {
+        b.iter(|| super::to_class_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_class(b: &mut Bencher) {
+        b.iter(|| super::is_class_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_class_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_class_case("foo_bar".to_string()));
+    }
 }

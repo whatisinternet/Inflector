@@ -1,6 +1,5 @@
-use std::ascii::*;
-use cases::lowercase::to_lower_case;
-
+#![deny(warnings)]
+use cases::case::*;
 /// Converts a `String` to `snake_case` `String`
 ///
 /// #Examples
@@ -69,29 +68,7 @@ use cases::lowercase::to_lower_case;
 ///
 /// ```
 pub fn to_snake_case(non_snake_case_string: String) -> String {
-    if non_snake_case_string.contains(' ') || non_snake_case_string.contains('_') ||
-       non_snake_case_string.contains('-') {
-        to_snake_from_sentence_or_kebab(non_snake_case_string)
-    } else {
-        to_snake_from_camel_or_class(non_snake_case_string)
-    }
-}
-fn to_snake_from_camel_or_class(non_snake_case_string: String) -> String {
-    let mut result: String = "".to_string();
-    let mut first_character: bool = true;
-    for character in non_snake_case_string.chars() {
-        if character == character.to_ascii_uppercase() && !first_character {
-            result = format!("{}_{}", result, character.to_ascii_lowercase());
-        } else {
-            result = format!("{}{}", result, character.to_ascii_lowercase());
-            first_character = false;
-        }
-    }
-    result
-}
-
-fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
-    to_lower_case(non_snake_case_string.replace(" ", "_").replace("-", "_"))
+    to_case_snake_like(non_snake_case_string, "_", "lower")
 }
 
 /// Determines of a `String` is `snake_case`
@@ -162,4 +139,30 @@ fn to_snake_from_sentence_or_kebab(non_snake_case_string: String) -> String {
 /// ```
 pub fn is_snake_case(test_string: String) -> bool {
     test_string == to_snake_case(test_string.clone())
+}
+
+#[cfg(all(feature = "unstable", test))]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_snake_from_title(b: &mut Bencher) {
+        b.iter(|| super::to_snake_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_camel(b: &mut Bencher) {
+        b.iter(|| super::to_snake_case("fooBar".to_string()));
+    }
+
+    #[bench]
+    fn bench_snake_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_snake_case("foo_bar_bar_bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_snake(b: &mut Bencher) {
+        b.iter(|| super::is_snake_case("Foo bar".to_string()));
+    }
 }

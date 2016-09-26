@@ -1,6 +1,5 @@
+#![deny(warnings)]
 use std::ascii::*;
-use cases::snakecase::to_snake_case;
-
 /// Converts a `String` to `Title Case` `String`
 ///
 /// #Examples
@@ -53,26 +52,28 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 pub fn to_title_case(non_title_case_string: String) -> String {
-    to_title_from_snake(to_snake_case(non_title_case_string))
+    let mut new_word: bool = true;
+    let mut last_char: char = ' ';
+    non_title_case_string
+        .chars()
+        .fold("".to_string(), |result, character|
+            if character == '-' || character == '_' || character == ' ' {
+                new_word = true;
+                result
+            } else if new_word || (
+                (last_char.is_lowercase() && character.is_uppercase()) &&
+                (last_char != ' ')
+                ){
+                new_word = false;
+                format!("{} {}", result, character.to_ascii_uppercase())
+                    .trim()
+                    .to_string()
+            } else {
+                last_char = character;
+                format!("{}{}", result, character.to_ascii_lowercase())
+            }
+        )
 }
-
-fn to_title_from_snake(non_sentence_case_string: String) -> String {
-    let mut result: String = "".to_string();
-    let mut first_character: bool = true;
-    for character in non_sentence_case_string.chars() {
-        if character.to_string() != "_" && character.to_string() != "-" && !first_character {
-            result = format!("{}{}", result, character.to_ascii_lowercase());
-            first_character = false
-        } else if character.to_string() == "_" || character.to_string() == "-" {
-            first_character = true;
-        } else {
-            result = format!("{} {}", result, character.to_ascii_uppercase());
-            first_character = false;
-        }
-    }
-    result.trim().to_string()
-}
-
 /// Determines if a `String` is `Title Case`
 ///
 /// #Examples
@@ -134,4 +135,25 @@ fn to_title_from_snake(non_sentence_case_string: String) -> String {
 /// ```
 pub fn is_title_case(test_string: String) -> bool {
     test_string == to_title_case(test_string.clone())
+}
+
+#[cfg(all(feature = "unstable", test))]
+mod tests {
+    extern crate test;
+    use self::test::Bencher;
+
+    #[bench]
+    fn bench_title(b: &mut Bencher) {
+        b.iter(|| super::to_title_case("Foo BAR".to_string()));
+    }
+
+    #[bench]
+    fn bench_is_title(b: &mut Bencher) {
+        b.iter(|| super::is_title_case("Foo bar".to_string()));
+    }
+
+    #[bench]
+    fn bench_title_from_snake(b: &mut Bencher) {
+        b.iter(|| super::to_title_case("foo_bar".to_string()));
+    }
 }
