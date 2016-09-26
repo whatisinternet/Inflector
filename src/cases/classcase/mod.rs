@@ -88,7 +88,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
     let mut last_char: char = ' ';
     let class_plural = non_class_case_string
         .chars()
-        .fold("".to_string(), |result, character|
+        .fold("".to_string(), |mut result, character|
             if character == '-' || character == '_' || character == ' ' {
                 new_word = true;
                 result
@@ -97,10 +97,12 @@ pub fn to_class_case(non_class_case_string: String) -> String {
                 (last_char != ' ')
                 ){
                 new_word = false;
-                format!("{}{}", result, character.to_ascii_uppercase())
+                result.push(character.to_ascii_uppercase());
+                result
             } else {
                 last_char = character;
-                format!("{}{}", result, character.to_ascii_lowercase())
+                result.push(character.to_ascii_lowercase());
+                result
             }
         );
     let split: (&str, &str) = class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));

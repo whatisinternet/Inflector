@@ -71,7 +71,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
     let mut last_char: char = ' ';
     non_camelized_string
         .chars()
-        .fold("".to_string(), |result, character|
+        .fold("".to_string(), |mut result, character|
             if character == '-' || character == '_' || character == ' ' {
                 new_word = true;
                 result
@@ -80,10 +80,12 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
                 (last_char != ' ')
                 ){
                 new_word = false;
-                format!("{}{}", result, character.to_ascii_uppercase())
+                result.push(character.to_ascii_uppercase());
+                result
             } else {
                 last_char = character;
-                format!("{}{}", result, character.to_ascii_lowercase())
+                result.push(character.to_ascii_lowercase());
+                result
             }
         )
 }
@@ -180,21 +182,35 @@ mod tests {
 
     #[bench]
     fn bench_camel0(b: &mut Bencher) {
-        b.iter(|| super::to_camel_case("Foo bar".to_string()));
+        b.iter(|| {
+            let test_string = "Foo bar".to_string();
+            super::to_camel_case(test_string)
+        });
     }
 
     #[bench]
     fn bench_camel1(b: &mut Bencher) {
-        b.iter(|| super::to_camel_case("foo_bar".to_string()));
+        b.iter(|| {
+            let test_string = "foo_bar".to_string();
+            super::to_camel_case(test_string)
+        }
+        );
     }
 
     #[bench]
     fn bench_camel2(b: &mut Bencher) {
-        b.iter(|| super::to_camel_case("fooBar".to_string()));
+        b.iter(|| {
+            let test_string = "fooBar".to_string();
+            super::to_camel_case(test_string)
+        });
     }
 
     #[bench]
     fn bench_is_camel(b: &mut Bencher) {
-        b.iter(|| super::is_camel_case("Foo bar".to_string()));
+        b.iter(|| {
+            let test_string: String  = "Foo bar".to_string();
+            super::is_camel_case(test_string)
+        }
+        );
     }
 }
