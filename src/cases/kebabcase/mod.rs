@@ -1,4 +1,4 @@
-use cases::snakecase::to_snake_case;
+use cases::case::*;
 /// Determines if a `String` is `kebab-case`
 ///
 /// #Examples
@@ -128,10 +128,7 @@ pub fn is_kebab_case(test_string: String) -> bool {
 ///
 /// ```
 pub fn to_kebab_case(non_kebab_case_string: String) -> String {
-    to_kebab_from_snake(to_snake_case(non_kebab_case_string))
-}
-fn to_kebab_from_snake(non_kebab_case_string: String) -> String {
-    non_kebab_case_string.replace("_", "-")
+    to_case_snake_like(non_kebab_case_string, "-", "lower")
 }
 
 #[cfg(test)]
@@ -151,6 +148,6 @@ mod tests {
 
     #[bench]
     fn bench_kebab_from_snake(b: &mut Bencher) {
-        b.iter(|| super::to_kebab_from_snake("test_test_test".to_string()));
+        b.iter(|| super::to_kebab_case("test_test_test".to_string()));
     }
 }

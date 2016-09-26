@@ -1,5 +1,6 @@
 // #![deny(warnings)]
 #![feature(test)]
+#![feature(unboxed_closures)]
 
 //! Adds String based inflections for Rust. Snake, kebab, camel,
 //! sentence, class, title, upper, and lower cases as well as ordinalize,

@@ -47,3 +47,5 @@ pub mod uppercase;
 ///
 /// Example string `LOWERCASE`
 pub mod lowercase;
+
+mod case;

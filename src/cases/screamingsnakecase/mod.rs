@@ -1,6 +1,4 @@
-use std::ascii::*;
-
-use cases::snakecase::to_snake_case;
+use cases::case::*;
 /// Converts a `String` to `SCREAMING_SNAKE_CASE` `String`
 ///
 /// #Examples
@@ -61,7 +59,7 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 pub fn to_screaming_snake_case(non_snake_case_string: String) -> String {
-    to_snake_case(non_snake_case_string).to_uppercase()
+    to_case_snake_like(non_snake_case_string, "_", "upper")
 }
 
 /// Determines of a `String` is `SCREAMING_SNAKE_CASE`

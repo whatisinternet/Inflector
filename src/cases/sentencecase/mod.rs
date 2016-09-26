@@ -1,6 +1,4 @@
-use std::ascii::*;
-use cases::snakecase::to_snake_case;
-
+use cases::case::*;
 /// Converts a `String` to `Sentence case` `String`
 ///
 /// #Examples
@@ -53,24 +51,10 @@ use cases::snakecase::to_snake_case;
 ///
 /// ```
 pub fn to_sentence_case(non_sentence_case_string: String) -> String {
-    to_sentence_from_snake(to_snake_case(non_sentence_case_string))
+    let snake_cased: String = to_case_snake_like(non_sentence_case_string, " ", "lower");
+    let split_on_first: (&str, &str) = snake_cased.split_at(1);
+    format!("{}{}", split_on_first.0.to_uppercase(), split_on_first.1)
 }
-fn to_sentence_from_snake(non_sentence_case_string: String) -> String {
-    let mut result: String = "".to_string();
-    let mut first_character: bool = true;
-    for character in non_sentence_case_string.chars() {
-        if character.to_string() != "_" && character.to_string() != "-" && !first_character {
-            result = format!("{}{}", result, character.to_ascii_lowercase());
-        } else if character.to_string() == "_" || character.to_string() == "-" {
-            result = format!("{} ", result);
-        } else {
-            result = format!("{}{}", result, character.to_ascii_uppercase());
-            first_character = false;
-        }
-    }
-    result
-}
-
 /// Determines of a `String` is `Sentence case`
 ///
 /// #Examples
@@ -158,6 +142,6 @@ mod tests {
 
     #[bench]
     fn bench_sentence_from_snake(b: &mut Bencher) {
-        b.iter(|| super::to_sentence_from_snake("foo_bar".to_string()));
+        b.iter(|| super::to_sentence_case("foo_bar".to_string()));
     }
 }
