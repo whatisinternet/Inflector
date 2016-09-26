@@ -1,5 +1,4 @@
 use regex::Regex;
-use regex::Captures;
 use string::constants::UNACCONTABLE_WORDS;
 /// Converts a `String` to singularized `String`
 ///
