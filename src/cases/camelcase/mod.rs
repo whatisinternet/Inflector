@@ -3,7 +3,7 @@ use std::ascii::*;
 /// Converts a `String` to camelCase `String`
 ///
 /// #Examples
-/// ```0
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "fooBar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -11,7 +11,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```1
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "FOO_BAR".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -19,7 +19,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```2
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "Foo Bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -27,7 +27,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```3
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "foo_bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -35,7 +35,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```4
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "Foo bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -43,7 +43,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```5
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "foo-bar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -51,7 +51,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```6
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "FooBar".to_string();
 ///     let expected_string: String = "fooBar".to_string();
@@ -59,7 +59,7 @@ use std::ascii::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-/// ```7
+/// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "FooBar3".to_string();
 ///     let expected_string: String = "fooBar3".to_string();
@@ -75,6 +75,10 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
         .fold("".to_string(), |mut result, character|
             if character == '-' || character == '_' || character == ' ' {
                 new_word = true;
+                result
+            } else if character.is_numeric() {
+                new_word = true;
+                result.push(character);
                 result
             } else if new_word || (
                 (last_char.is_lowercase() && character.is_uppercase()) &&
@@ -94,7 +98,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 /// Determines if a `String` is camelCase bool``
 ///
 /// #Examples
-/// ```0
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "Foo".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -102,7 +106,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```1
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "foo".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -110,7 +114,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```2
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -118,7 +122,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```3
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "FooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -126,7 +130,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```4
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "fooBarIsAReallyReally3LongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -134,7 +138,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```5
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "fooBarIsAReallyReallyLongString".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -142,7 +146,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```6
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "FOO_BAR_STRING_THAT_IS_REALLY_REALLY_LONG".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -150,7 +154,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```7
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "foo_bar_string_that_is_really_really_long".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -158,7 +162,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```8
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "Foo bar string that is really really long".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
@@ -166,7 +170,7 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 ///
 ///
 /// ```
-/// ```9
+/// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "Foo Bar Is A Really Really Long String".to_string();
 ///     let asserted_bool: bool = is_camel_case(mock_string);
