@@ -1,8 +1,15 @@
+# 0.3.3
+
+## Fixes:
+
+- Fixes issue where camel case tests were not run
+- Fixes issue with camel case with numbers
+
 # 0.3.2
 
 ## Fixes:
 
-- Fixes issue https://github.com/rust-lang/rust/pull/3466://github.com/whatisinternet/inflector/issues/18
+- Fixes issue https://github.com/whatisinternet/inflector/issues/18
 - Fixes performance issues overall
 
 ## Benchmarks:
