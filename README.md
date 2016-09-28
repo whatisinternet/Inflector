@@ -13,7 +13,7 @@ acting on String types.
 
 Documentation can be found here at the README or via rust docs below.
 
-[Rust docs with examples](http://whatisinternet.github.io/inflector/doc/inflector/)
+[Rust docs with examples](https://docs.rs/Inflector)
 
 -----
 
