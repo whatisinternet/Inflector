@@ -56,29 +56,46 @@ fn to_snake_like_from_camel_or_class(
     replace_with: &str,
     case: &str
     ) -> String {
-    let mut first_character: bool = true;
-    convertable_string
-        .chars()
-        .fold("".to_string(), |mut acc, character|
-              if character == character.to_ascii_uppercase() && !first_character {
-                  if case == "lower" {
-                    acc.push(replace_with.chars().nth(0).unwrap_or('_'));
-                    acc.push(character.to_ascii_lowercase());
-                    acc
-                  } else {
-                    acc.push(replace_with.chars().nth(0).unwrap_or('_'));
-                    acc.push(character.to_ascii_uppercase());
-                    acc
-                  }
-              } else {
-                  first_character = false;
-                  if case == "lower" {
-                    acc.push(character.to_ascii_lowercase());
-                    acc
-                  } else {
-                    acc.push(character.to_ascii_uppercase());
-                    acc
-                  }
-              }
-        )
+    let mut prev_character_was_ucase: bool = false;
+    let mut fragment: String = String::new();
+    let mut result: Vec<String> = vec![];
+
+    for character in convertable_string.chars() {
+        let character_is_ucase = character == character.to_ascii_uppercase();
+
+        if fragment.len() != 0 {
+            if character_is_ucase && !prev_character_was_ucase {
+                result.push(fragment);
+                fragment = String::new();
+            } else if !character_is_ucase && prev_character_was_ucase {
+                let count = fragment.chars().count();
+
+                // last uppercase letter in a run of uppercase 
+                // letters is the start of a new capitalised word:
+
+                let ucase_run: String = fragment.chars().take(count - 1).collect();
+                let new_fragment: String = fragment.chars().skip(count - 1).collect();
+
+                if ucase_run.len() != 0 {
+                    result.push(ucase_run);
+                }
+
+                fragment = new_fragment;
+            }
+        }
+
+        if case == "lower" {
+            fragment.push(character.to_ascii_lowercase());
+        } else {
+            fragment.push(character.to_ascii_uppercase());
+        }
+
+        prev_character_was_ucase = character_is_ucase;
+    }
+
+    if fragment.len() != 0 {
+        result.push(fragment);
+    }
+
+    result.join(&replace_with.chars().nth(0).unwrap_or('_').to_string())
 }
