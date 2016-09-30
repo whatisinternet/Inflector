@@ -1,6 +1,6 @@
 [package]
 name = "Inflector"
-version = "0.3.3"
+version = "0.3.4"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
@@ -13,6 +13,8 @@ Adds String based inflections for Rust. Snake, kebab, camel, sentence, class, ti
 """
 keywords = ["string", "case", "camel", "snake", "inflection"]
 
+[features]
+unstable = []
 
 [lib]
 crate_type = ["dylib", "rlib"]

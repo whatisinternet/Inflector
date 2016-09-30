@@ -25,6 +25,7 @@ extern crate lazy_static;
 /// - Sentence case
 /// - Snake case
 /// - Upper case
+/// - Pascal case
 pub mod cases;
 /// Provides number inflections
 /// - Ordinalize
@@ -46,6 +47,9 @@ use cases::classcase::is_class_case;
 
 use cases::camelcase::to_camel_case;
 use cases::camelcase::is_camel_case;
+
+use cases::pascalcase::to_pascal_case;
+use cases::pascalcase::is_pascal_case;
 
 use cases::snakecase::to_snake_case;
 use cases::snakecase::is_snake_case;
@@ -89,6 +93,9 @@ pub trait Inflector {
 
     fn to_camel_case(&self) -> String;
     fn is_camel_case(&self) -> bool;
+
+    fn to_pascal_case(&self) -> String;
+    fn is_pascal_case(&self) -> bool;
 
     fn to_table_case(&self) -> String;
     fn is_table_case(&self) -> bool;
@@ -139,6 +146,12 @@ impl<'c> Inflector for String {
     }
     fn is_camel_case(&self) -> bool {
         is_camel_case(self.to_string())
+    }
+    fn to_pascal_case(&self) -> String {
+        to_pascal_case(self.to_string())
+    }
+    fn is_pascal_case(&self) -> bool {
+        is_pascal_case(self.to_string())
     }
     fn to_table_case(&self) -> String {
         to_table_case(self.to_string())
@@ -226,6 +239,12 @@ impl<'c> Inflector for str {
     }
     fn is_camel_case(&self) -> bool {
         is_camel_case(self.to_string())
+    }
+    fn to_pascal_case(&self) -> String {
+        to_pascal_case(self.to_string())
+    }
+    fn is_pascal_case(&self) -> bool {
+        is_pascal_case(self.to_string())
     }
     fn to_table_case(&self) -> String {
         to_table_case(self.to_string())

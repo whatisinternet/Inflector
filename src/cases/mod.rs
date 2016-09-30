@@ -48,4 +48,9 @@ pub mod uppercase;
 /// Example string `LOWERCASE`
 pub mod lowercase;
 
+/// Provides conversion to pascal case strings.
+///
+/// Example string `PascalCase`
+pub mod pascalcase;
+
 mod case;
