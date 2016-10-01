@@ -1,3 +1,49 @@
+# 0.4.0
+
+## Fixes:
+
+- Fixes issue where strings like `HTTPParty` becomes `h_t_t_p_party` instead of `http_party` as it should -- Thanks @cmsd2
+
+## New features:
+
+- Adds PascalCase
+
+## Benchmarks:
+```shell
+test cases::camelcase::tests::bench_camel0                      ... bench:         142 ns/iter (+/- 28)
+test cases::camelcase::tests::bench_camel1                      ... bench:         143 ns/iter (+/- 30)
+test cases::camelcase::tests::bench_camel2                      ... bench:         138 ns/iter (+/- 80)
+test cases::camelcase::tests::bench_is_camel                    ... bench:         171 ns/iter (+/- 103)
+test cases::classcase::tests::bench_class_case                  ... bench:       2,369 ns/iter (+/- 658)
+test cases::classcase::tests::bench_class_from_snake            ... bench:       2,378 ns/iter (+/- 914)
+test cases::classcase::tests::bench_is_class                    ... bench:       2,541 ns/iter (+/- 294)
+test cases::kebabcase::tests::bench_is_kebab                    ... bench:         180 ns/iter (+/- 35)
+test cases::kebabcase::tests::bench_kebab                       ... bench:         156 ns/iter (+/- 91)
+test cases::kebabcase::tests::bench_kebab_from_snake            ... bench:         248 ns/iter (+/- 143)
+test cases::lowercase::tests::bench_is_lower                    ... bench:         340 ns/iter (+/- 91)
+test cases::lowercase::tests::bench_lower                       ... bench:         301 ns/iter (+/- 124)
+test cases::pascalcase::tests::bench_is_pascal                  ... bench:         163 ns/iter (+/- 65)
+test cases::pascalcase::tests::bench_pascal0                    ... bench:         140 ns/iter (+/- 78)
+test cases::pascalcase::tests::bench_pascal1                    ... bench:         140 ns/iter (+/- 40)
+test cases::pascalcase::tests::bench_pascal2                    ... bench:         138 ns/iter (+/- 105)
+test cases::screamingsnakecase::tests::bench_is_screaming_snake ... bench:         193 ns/iter (+/- 27)
+test cases::screamingsnakecase::tests::bench_screaming_snake    ... bench:         161 ns/iter (+/- 84)
+test cases::sentencecase::tests::bench_is_sentence              ... bench:         394 ns/iter (+/- 85)
+test cases::sentencecase::tests::bench_sentence                 ... bench:         365 ns/iter (+/- 186)
+test cases::sentencecase::tests::bench_sentence_from_snake      ... bench:         333 ns/iter (+/- 178)
+test cases::snakecase::tests::bench_is_snake                    ... bench:         190 ns/iter (+/- 74)
+test cases::snakecase::tests::bench_snake_from_camel            ... bench:         155 ns/iter (+/- 44)
+test cases::snakecase::tests::bench_snake_from_snake            ... bench:         280 ns/iter (+/- 161)
+test cases::snakecase::tests::bench_snake_from_title            ... bench:         156 ns/iter (+/- 31)
+test cases::tablecase::tests::bench_is_table_case               ... bench:       2,388 ns/iter (+/- 431)
+test cases::tablecase::tests::bench_table_case                  ... bench:       2,240 ns/iter (+/- 446)
+test cases::titlecase::tests::bench_is_title                    ... bench:         786 ns/iter (+/- 135)
+test cases::titlecase::tests::bench_title                       ... bench:         826 ns/iter (+/- 278)
+test cases::titlecase::tests::bench_title_from_snake            ... bench:         723 ns/iter (+/- 256)
+test cases::uppercase::tests::bench_is_upper                    ... bench:         351 ns/iter (+/- 85)
+test cases::uppercase::tests::bench_upper                       ... bench:         332 ns/iter (+/- 48)
+```
+
 # 0.3.3
 
 ## Fixes:
