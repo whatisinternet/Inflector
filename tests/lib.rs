@@ -197,6 +197,11 @@ fn str_trait_to_snake_case_abbrev_two() {
 }
 
 #[test]
+fn str_trait_to_snake_case_abbrev_three() {
+    assert_eq!("theTLAForHTTP".to_snake_case(), "the_tla_for_http".to_string());
+}
+
+#[test]
 fn str_trait_is_snake_case() {
     assert_eq!("foo_foo".is_snake_case(), true);
 }
