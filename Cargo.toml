@@ -1,6 +1,6 @@
 [package]
 name = "Inflector"
-version = "0.3.4"
+version = "0.4.0"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
