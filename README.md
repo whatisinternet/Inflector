@@ -62,6 +62,9 @@ extern crate inflector;
 // use inflector::cases::camelcase::to_camel_case;
 // use inflector::cases::camelcase::is_camel_case;
 
+// use inflector::cases::pascalcase::to_pascal_case;
+// use inflector::cases::pascalcase::is_pascal_case;
+
 // use inflector::cases::screamingsnakecase::to_screamingsnake_case;
 // use inflector::cases::screamingsnakecase::is_screamingsnake_case;
 
@@ -118,6 +121,10 @@ to_class_case(String) -> String
 
 ```rust
 to_camel_case(String) -> String
+```
+
+```rust
+to_pascal_case(String) -> String
 ```
 
 ```rust
@@ -186,6 +193,10 @@ is_class_case(String) -> bool
 
 ```rust
 is_camel_case(String) -> bool
+```
+
+```rust
+is_pascal_case(String) -> bool
 ```
 
 ```rust
