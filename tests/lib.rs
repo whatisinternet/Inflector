@@ -187,6 +187,21 @@ fn str_trait_to_snake_case() {
 }
 
 #[test]
+fn str_trait_to_snake_case_abbrev() {
+    assert_eq!("TheTLAFactory".to_snake_case(), "the_tla_factory".to_string());
+}
+
+#[test]
+fn str_trait_to_snake_case_abbrev_two() {
+    assert_eq!("theTLAFactory".to_snake_case(), "the_tla_factory".to_string());
+}
+
+#[test]
+fn str_trait_to_snake_case_abbrev_three() {
+    assert_eq!("theTLAForHTTP".to_snake_case(), "the_tla_for_http".to_string());
+}
+
+#[test]
 fn str_trait_is_snake_case() {
     assert_eq!("foo_foo".is_snake_case(), true);
 }

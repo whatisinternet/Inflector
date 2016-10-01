@@ -56,29 +56,35 @@ fn to_snake_like_from_camel_or_class(
     replace_with: &str,
     case: &str
     ) -> String {
-    let mut first_character: bool = true;
+        let mut first_character: bool = true;
     convertable_string
         .chars()
-        .fold("".to_string(), |mut acc, character|
-              if character == character.to_ascii_uppercase() && !first_character {
-                  if case == "lower" {
-                    acc.push(replace_with.chars().nth(0).unwrap_or('_'));
-                    acc.push(character.to_ascii_lowercase());
-                    acc
-                  } else {
-                    acc.push(replace_with.chars().nth(0).unwrap_or('_'));
-                    acc.push(character.to_ascii_uppercase());
-                    acc
-                  }
+        .enumerate()
+        .fold("".to_string(), |mut acc, char_with_index|
+              if char_with_index.1 == char_with_index.1.to_ascii_uppercase() &&
+                  !first_character &&
+                  (convertable_string.chars().nth(char_with_index.0 + 1).unwrap_or('A').is_lowercase() ||
+                  convertable_string.chars().nth(char_with_index.0 - 1).unwrap_or('A').is_lowercase()
+                  )
+                  {
+                      if case == "lower" {
+                          acc.push(replace_with.chars().nth(0).unwrap_or('_'));
+                          acc.push(char_with_index.1.to_ascii_lowercase());
+                          acc
+                      } else {
+                          acc.push(replace_with.chars().nth(0).unwrap_or('_'));
+                          acc.push(char_with_index.1.to_ascii_uppercase());
+                          acc
+                      }
               } else {
-                  first_character = false;
-                  if case == "lower" {
-                    acc.push(character.to_ascii_lowercase());
-                    acc
-                  } else {
-                    acc.push(character.to_ascii_uppercase());
-                    acc
-                  }
+                    first_character = false;
+                    if case == "lower" {
+                        acc.push(char_with_index.1.to_ascii_lowercase());
+                        acc
+                    } else {
+                        acc.push(char_with_index.1.to_ascii_uppercase());
+                        acc
+                    }
               }
         )
 }

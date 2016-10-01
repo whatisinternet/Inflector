@@ -21,6 +21,14 @@ use cases::case::*;
 /// ```
 /// ```
 ///     use inflector::cases::snakecase::to_snake_case;
+///     let mock_string: String = "HTTPFooBar".to_string();
+///     let expected_string: String = "http_foo_bar".to_string();
+///     let asserted_string: String = to_snake_case(mock_string);
+///     assert!(asserted_string == expected_string);
+///
+/// ```
+/// ```
+///     use inflector::cases::snakecase::to_snake_case;
 ///     let mock_string: String = "Foo bar".to_string();
 ///     let expected_string: String = "foo_bar".to_string();
 ///     let asserted_string: String = to_snake_case(mock_string);
