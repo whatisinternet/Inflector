@@ -1,7 +1,7 @@
 // #![deny(warnings)]
 #![cfg_attr(feature = "unstable", feature(test))]
 
-//! Adds String based inflections for Rust. Snake, kebab, camel,
+//! Adds String based inflections for Rust. Snake, kebab, train, camel,
 //! sentence, class, title, upper, and lower cases as well as ordinalize,
 //! deordinalize, demodulize, deconstantize, and foreign key are supported as
 //! both traits and pure functions acting on String types.
@@ -19,6 +19,7 @@ extern crate lazy_static;
 /// - Camel case
 /// - Class case
 /// - Kebab case
+/// - Train case
 /// - Lower case
 /// - Screaming snake case
 /// - Table case
@@ -59,6 +60,9 @@ use cases::screamingsnakecase::is_screaming_snake_case;
 
 use cases::kebabcase::to_kebab_case;
 use cases::kebabcase::is_kebab_case;
+
+use cases::traincase::to_train_case;
+use cases::traincase::is_train_case;
 
 use cases::sentencecase::to_sentence_case;
 use cases::sentencecase::is_sentence_case;
@@ -108,6 +112,9 @@ pub trait Inflector {
 
     fn to_kebab_case(&self) -> String;
     fn is_kebab_case(&self) -> bool;
+
+    fn to_train_case(&self) -> String;
+    fn is_train_case(&self) -> bool;
 
     fn to_sentence_case(&self) -> String;
     fn is_sentence_case(&self) -> bool;
@@ -176,6 +183,12 @@ impl<'c> Inflector for String {
     }
     fn is_kebab_case(&self) -> bool {
         is_kebab_case(self.to_string())
+    }
+    fn to_train_case(&self) -> String {
+        to_train_case(self.to_string())
+    }
+    fn is_train_case(&self) -> bool {
+        is_train_case(self.to_string())
     }
     fn to_sentence_case(&self) -> String {
         to_sentence_case(self.to_string())
@@ -269,6 +282,12 @@ impl<'c> Inflector for str {
     }
     fn is_kebab_case(&self) -> bool {
         is_kebab_case(self.to_string())
+    }
+    fn to_train_case(&self) -> String {
+        to_train_case(self.to_string())
+    }
+    fn is_train_case(&self) -> bool {
+        is_train_case(self.to_string())
     }
     fn to_sentence_case(&self) -> String {
         to_sentence_case(self.to_string())
