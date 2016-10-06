@@ -130,6 +130,7 @@ pub fn is_train_case(test_string: String) -> bool {
 /// ```
 pub fn to_train_case(non_train_case_string: String) -> String {
     let mut new_word: bool = true;
+    let mut first_word: bool = true;
     let mut last_char: char = ' ';
     let r = non_train_case_string
         .chars()
@@ -146,7 +147,10 @@ pub fn to_train_case(non_train_case_string: String) -> String {
                 (last_char != ' ')
                 ){
                 new_word = false;
-                result.push('-');
+                if !first_word {
+                    result.push('-');
+                }
+                first_word = false;
                 result.push(character.to_ascii_uppercase());
                 result
             } else {
@@ -154,8 +158,7 @@ pub fn to_train_case(non_train_case_string: String) -> String {
                 result.push(character.to_ascii_lowercase());
                 result
             }
-        );
-        r[1..r.len()].to_owned()
+        )
 }
 
 #[cfg(all(feature = "unstable", test))]
