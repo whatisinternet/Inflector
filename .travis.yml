@@ -8,6 +8,3 @@ rust:
 matrix:
   allow_failures:
     - rust: nightly
-
-# Do benchmark on Travis. #
-script: cargo bench --features=unstable
