@@ -132,7 +132,7 @@ pub fn to_train_case(non_train_case_string: String) -> String {
     let mut new_word: bool = true;
     let mut first_word: bool = true;
     let mut last_char: char = ' ';
-    let r = non_train_case_string
+    non_train_case_string
         .chars()
         .fold("".to_string(), |mut result, character|
             if character == '-' || character == '_' || character == ' ' {
