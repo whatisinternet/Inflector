@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use std::ascii::*;
 /// Determines if a `String` is `Train-Case`
 ///
 /// #Examples
@@ -129,14 +129,33 @@ pub fn is_train_case(test_string: String) -> bool {
 ///
 /// ```
 pub fn to_train_case(non_train_case_string: String) -> String {
-    let kebab_case_string = to_case_snake_like(non_train_case_string, "-", "lower");
-    let split = kebab_case_string.split("-");
-    let mut train_case_string = Vec::new();
-    let kebab_case_parts: Vec<&str> = split.collect();
-    for c in kebab_case_parts {
-        train_case_string.push(format!("{}{}", &c[0..1].to_uppercase(), &c[1..c.len()]));
-    }
-    train_case_string.join("-")
+    let mut new_word: bool = true;
+    let mut last_char: char = ' ';
+    let r = non_train_case_string
+        .chars()
+        .fold("".to_string(), |mut result, character|
+            if character == '-' || character == '_' || character == ' ' {
+                new_word = true;
+                result
+            } else if character.is_numeric() {
+                new_word = true;
+                result.push(character);
+                result
+            } else if new_word || (
+                (last_char.is_lowercase() && character.is_uppercase()) &&
+                (last_char != ' ')
+                ){
+                new_word = false;
+                result.push('-');
+                result.push(character.to_ascii_uppercase());
+                result
+            } else {
+                last_char = character;
+                result.push(character.to_ascii_lowercase());
+                result
+            }
+        );
+        r[1..r.len()].to_owned()
 }
 
 #[cfg(all(feature = "unstable", test))]
