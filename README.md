@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 
-Adds String based inflections for Rust. Snake, kebab, camel,
+Adds String based inflections for Rust. Snake, kebab, train, camel,
 sentence, class, title, upper, and lower cases as well as ordinalize,
 deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize/singularize are supported as both traits and pure functions
 acting on String types.
@@ -74,6 +74,9 @@ extern crate inflector;
 // use inflector::cases::kebabcase::to_kebab_case;
 // use inflector::cases::kebabcase::is_kebab_case;
 
+// use inflector::cases::traincase::to_train_case;
+// use inflector::cases::traincase::is_train_case;
+
 // use inflector::cases::sentencecase::to_sentence_case;
 // use inflector::cases::sentencecase::is_sentence_case;
 
@@ -137,6 +140,10 @@ to_snake_case(String) -> String
 
 ```rust
 to_kebab_case(String) -> String
+```
+
+```rust
+to_train_case(String) -> String
 ```
 
 ```rust
@@ -209,6 +216,10 @@ is_snake_case(String) -> bool
 
 ```rust
 is_kebab_case(String) -> bool
+```
+
+```rust
+is_train_case(String) -> bool
 ```
 
 ```rust

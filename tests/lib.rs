@@ -62,6 +62,16 @@ fn string_trait_is_kebab_case() {
 }
 
 #[test]
+fn string_trait_to_train_case() {
+    assert_eq!("FooFoo".to_string().to_train_case(), "Foo-Foo".to_string());
+}
+
+#[test]
+fn string_trait_is_train_case() {
+    assert_eq!("Foo-Foo".to_string().is_train_case(), true);
+}
+
+#[test]
 fn string_trait_to_sentence_case() {
     assert_eq!("fooFoo".to_string().to_sentence_case(), "Foo foo".to_string());
 }
@@ -214,6 +224,16 @@ fn str_trait_to_kebab_case() {
 #[test]
 fn str_trait_is_kebab_case() {
     assert_eq!("foo-foo".is_kebab_case(), true);
+}
+
+#[test]
+fn str_trait_to_train_case() {
+	assert_eq!("fooFoo".to_train_case(), "Foo-Foo".to_string());
+}
+
+#[test]
+fn str_trait_is_train_case() {
+	assert_eq!("Foo-Foo".is_train_case(), true);
 }
 
 #[test]

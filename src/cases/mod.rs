@@ -23,6 +23,11 @@ pub mod screamingsnakecase;
 /// Example string `kebab-case`
 pub mod kebabcase;
 
+/// Provides conversion to and detection of train case strings.
+///
+/// Example string `Train-Case`
+pub mod traincase;
+
 /// Provides conversion to and detection of sentence case strings.
 ///
 /// Example string `Sentence case`
