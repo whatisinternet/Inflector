@@ -1,3 +1,13 @@
+# 0.5.0
+
+## New features:
+
+- Adds Train-Case thanks to @stpettersens
+
+## Fixes:
+
+- Fixes performance issues with Title Case
+
 # 0.4.0
 
 ## Fixes:

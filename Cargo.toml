@@ -1,11 +1,11 @@
 [package]
 name = "Inflector"
-version = "0.4.0"
+version = "0.5.0"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
 repository = "https://github.com/whatisinternet/inflector"
-documentation = "http://whatisinternet.github.io/inflector/doc/inflector/"
+documentation = "https://docs.rs/Inflector"
 homepage = "https://github.com/whatisinternet/inflector"
 license="BSD-2-Clause"
 description = """
