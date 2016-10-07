@@ -53,24 +53,33 @@ use std::ascii::*;
 /// ```
 pub fn to_title_case(non_title_case_string: String) -> String {
     let mut new_word: bool = true;
+    let mut first_word: bool = true;
     let mut last_char: char = ' ';
     non_title_case_string
         .chars()
-        .fold("".to_string(), |result, character|
+        .fold("".to_string(), |mut result, character|
             if character == '-' || character == '_' || character == ' ' {
                 new_word = true;
+                result
+            } else if character.is_numeric() {
+                new_word = true;
+                result.push(character);
                 result
             } else if new_word || (
                 (last_char.is_lowercase() && character.is_uppercase()) &&
                 (last_char != ' ')
                 ){
                 new_word = false;
-                format!("{} {}", result, character.to_ascii_uppercase())
-                    .trim()
-                    .to_string()
+                if !first_word {
+                    result.push(' ');
+                }
+                first_word = false;
+                result.push(character.to_ascii_uppercase());
+                result
             } else {
                 last_char = character;
-                format!("{}{}", result, character.to_ascii_lowercase())
+                result.push(character.to_ascii_lowercase());
+                result
             }
         )
 }
