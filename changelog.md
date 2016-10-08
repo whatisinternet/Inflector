@@ -1,3 +1,9 @@
+# 0.5.1
+
+## Non-breaking change:
+
+- Refactored Title, Pascal, Train and Camel cases to be unified.
+
 # 0.5.0
 
 ## New features:
