@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use std::ascii::*;
+use cases::case::*;
 /// Converts a `String` to camelCase `String`
 ///
 /// #Examples
@@ -68,31 +68,14 @@ use std::ascii::*;
 ///
 /// ```
 pub fn to_camel_case(non_camelized_string: String) -> String {
-    let mut new_word: bool = false;
-    let mut last_char: char = ' ';
-    non_camelized_string
-        .chars()
-        .fold("".to_string(), |mut result, character|
-            if character == '-' || character == '_' || character == ' ' {
-                new_word = true;
-                result
-            } else if character.is_numeric() {
-                new_word = true;
-                result.push(character);
-                result
-            } else if new_word || (
-                (last_char.is_lowercase() && character.is_uppercase()) &&
-                (last_char != ' ')
-                ){
-                new_word = false;
-                result.push(character.to_ascii_uppercase());
-                result
-            } else {
-                last_char = character;
-                result.push(character.to_ascii_lowercase());
-                result
-            }
-        )
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false
+    };
+    to_case_camel_like(non_camelized_string, options)
 }
 
 /// Determines if a `String` is camelCase bool``

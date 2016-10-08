@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use std::ascii::*;
+use cases::case::*;
 use string::singularize::to_singular;
 /// Converts a `String` to `ClassCase` `String`
 ///
@@ -85,27 +85,14 @@ use string::singularize::to_singular;
 ///
 /// ```
 pub fn to_class_case(non_class_case_string: String) -> String {
-    let mut new_word: bool = true;
-    let mut last_char: char = ' ';
-    let class_plural = non_class_case_string
-        .chars()
-        .fold("".to_string(), |mut result, character|
-            if character == '-' || character == '_' || character == ' ' {
-                new_word = true;
-                result
-            } else if new_word || (
-                (last_char.is_lowercase() && character.is_uppercase()) &&
-                (last_char != ' ')
-                ){
-                new_word = false;
-                result.push(character.to_ascii_uppercase());
-                result
-            } else {
-                last_char = character;
-                result.push(character.to_ascii_lowercase());
-                result
-            }
-        );
+    let options = CamelOptions {
+        new_word: true,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false
+    };
+    let class_plural: String = to_case_camel_like(non_class_case_string, options);
     let split: (&str, &str) = class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));
     format!("{}{}", split.0, to_singular(split.1.to_string()))
 }
