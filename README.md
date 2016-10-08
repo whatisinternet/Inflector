@@ -23,7 +23,7 @@ Documentation can be found here at the README or via rust docs below.
 
 ```toml
 [dependencies]
-Inflector = "0.5.0"
+Inflector = "0.5.1"
 ```
 
 ### Compile yourself:
