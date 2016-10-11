@@ -17,9 +17,7 @@ keywords = ["string", "case", "camel", "snake", "inflection"]
 unstable = []
 
 [lib]
-crate_type = ["dylib", "rlib"]
 name = "inflector"
-path = "src/lib.rs"
 
 [dependencies]
 regex = "0.1.73"
