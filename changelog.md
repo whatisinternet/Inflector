@@ -1,3 +1,13 @@
+# 0.6.0
+
+## Breaking changes:
+
+- Removed lower and upper case. -- Use the built in [Rust implementations](https://doc.rust-lang.org/std/string/struct.String.html#method.to_uppercase)
+
+## Non-breaking change:
+
+- Removed lib definitions. -- Thanks @kanerogers
+
 # 0.5.1
 
 ## Non-breaking change:

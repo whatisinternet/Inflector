@@ -92,26 +92,6 @@ fn string_trait_is_title_case() {
 }
 
 #[test]
-fn string_trait_to_upper_case() {
-    assert_eq!("fooFoo".to_string().to_upper_case(), "FOOFOO".to_string());
-}
-
-#[test]
-fn string_trait_is_upper_case() {
-    assert_eq!("FOOFOO".to_string().is_upper_case(), true);
-}
-
-#[test]
-fn string_trait_to_lower_case() {
-    assert_eq!("fooFoo".to_string().to_lower_case(), "foofoo".to_string());
-}
-
-#[test]
-fn string_trait_is_lower_case() {
-    assert_eq!("foo".to_string().is_lower_case(), true);
-}
-
-#[test]
 fn string_trait_ordinalize() {
     assert_eq!("1".to_string().ordinalize(), "1st".to_string());
 }
@@ -254,26 +234,6 @@ fn str_trait_to_title_case() {
 #[test]
 fn str_trait_is_title_case() {
     assert_eq!("Foo Foo".is_title_case(), true);
-}
-
-#[test]
-fn str_trait_to_upper_case() {
-    assert_eq!("fooFoo".to_upper_case(), "FOOFOO".to_string());
-}
-
-#[test]
-fn str_trait_is_upper_case() {
-    assert_eq!("FOOFOO".is_upper_case(), true);
-}
-
-#[test]
-fn str_trait_to_lower_case() {
-    assert_eq!("fooFoo".to_lower_case(), "foofoo".to_string());
-}
-
-#[test]
-fn str_trait_is_lower_case() {
-    assert_eq!("foo".is_lower_case(), true);
 }
 
 #[test]
