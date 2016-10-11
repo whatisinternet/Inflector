@@ -1,8 +1,8 @@
-// #![deny(warnings)]
+#![deny(warnings)]
 #![cfg_attr(feature = "unstable", feature(test))]
 
 //! Adds String based inflections for Rust. Snake, kebab, train, camel,
-//! sentence, class, title, upper, and lower cases as well as ordinalize,
+//! sentence, class, and title cases as well as ordinalize,
 //! deordinalize, demodulize, deconstantize, and foreign key are supported as
 //! both traits and pure functions acting on String types.
 //!
@@ -20,12 +20,10 @@ extern crate lazy_static;
 /// - Class case
 /// - Kebab case
 /// - Train case
-/// - Lower case
 /// - Screaming snake case
 /// - Table case
 /// - Sentence case
 /// - Snake case
-/// - Upper case
 /// - Pascal case
 pub mod cases;
 /// Provides number inflections
@@ -73,12 +71,6 @@ use cases::titlecase::is_title_case;
 use cases::tablecase::to_table_case;
 use cases::tablecase::is_table_case;
 
-use cases::uppercase::to_upper_case;
-use cases::uppercase::is_upper_case;
-
-use cases::lowercase::to_lower_case;
-use cases::lowercase::is_lower_case;
-
 use numbers::ordinalize::ordinalize;
 use numbers::deordinalize::deordinalize;
 
@@ -121,12 +113,6 @@ pub trait Inflector {
 
     fn to_title_case(&self) -> String;
     fn is_title_case(&self) -> bool;
-
-    fn to_upper_case(&self) -> String;
-    fn is_upper_case(&self) -> bool;
-
-    fn to_lower_case(&self) -> String;
-    fn is_lower_case(&self) -> bool;
 
     fn ordinalize(&self) -> String;
     fn deordinalize(&self) -> String;
@@ -201,18 +187,6 @@ impl<'c> Inflector for String {
     }
     fn is_title_case(&self) -> bool {
         is_title_case(self.to_string())
-    }
-    fn to_upper_case(&self) -> String {
-        to_upper_case(self.to_string())
-    }
-    fn is_upper_case(&self) -> bool {
-        is_upper_case(self.to_string())
-    }
-    fn to_lower_case(&self) -> String {
-        to_lower_case(self.to_string())
-    }
-    fn is_lower_case(&self) -> bool {
-        is_lower_case(self.to_string())
     }
     fn ordinalize(&self) -> String {
         ordinalize(self.to_string())
@@ -300,18 +274,6 @@ impl<'c> Inflector for str {
     }
     fn is_title_case(&self) -> bool {
         is_title_case(self.to_string())
-    }
-    fn to_upper_case(&self) -> String {
-        to_upper_case(self.to_string())
-    }
-    fn is_upper_case(&self) -> bool {
-        is_upper_case(self.to_string())
-    }
-    fn to_lower_case(&self) -> String {
-        to_lower_case(self.to_string())
-    }
-    fn is_lower_case(&self) -> bool {
-        is_lower_case(self.to_string())
     }
     fn ordinalize(&self) -> String {
         ordinalize(self.to_string())
