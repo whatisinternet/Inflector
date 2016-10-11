@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 
 Adds String based inflections for Rust. Snake, kebab, train, camel,
-sentence, class, title, upper, and lower cases as well as ordinalize,
+sentence, class, and title cases as well as ordinalize,
 deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize/singularize are supported as both traits and pure functions
 acting on String types.
 
@@ -23,7 +23,7 @@ Documentation can be found here at the README or via rust docs below.
 
 ```toml
 [dependencies]
-Inflector = "0.5.1"
+Inflector = "*"
 ```
 
 ### Compile yourself:
@@ -53,7 +53,7 @@ Or
 
 ```rust
 ...
-// to use methods like to_lower_case(String);
+// to use methods like to_snake_case(String);
 extern crate inflector;
 
 // use inflector::cases::classcase::to_class_case;
@@ -85,15 +85,6 @@ extern crate inflector;
 
 // use inflector::cases::tablecase::to_table_case;
 // use inflector::cases::tablecase::is_table_case;
-
-// use inflector::cases::uppercase::to_upper_case;
-// use inflector::cases::uppercase::is_upper_case;
-
-// use inflector::cases::lowercase::to_lower_case;
-// use inflector::cases::lowercase::is_lower_case;
-
-// use inflector::cases::::to_lower_case;
-// use inflector::cases::lowercase::is_lower_case;
 
 // use inflector::numbers::ordinalize::ordinalize;
 // use inflector::numbers::deordinalize::deordinalize;
@@ -156,14 +147,6 @@ to_title_case(String) -> String
 
 ```rust
 to_table_case(String) -> String
-```
-
-```rust
-to_upper_case(String) -> String
-```
-
-```rust
-to_lower_case(String) -> String
 ```
 
 ```rust
@@ -232,14 +215,6 @@ is_title_case(String) -> bool
 
 ```rust
 is_table_case(String) -> bool
-```
-
-```rust
-is_upper_case(String) -> bool
-```
-
-```rust
-is_lower_case(String) -> bool
 ```
 
 ```rust
