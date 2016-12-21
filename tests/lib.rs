@@ -37,54 +37,6 @@ macro_rules! number_tests {
     }
 }
 
-macro_rules! benchmarks {
-    ( $($test_name:ident => $imp_trait:ident => $to_cast:expr), *) => {
-        $(
-            #[bench]
-            fn $test_name(b: &mut Bencher) {
-                b.iter(|| {
-                    $to_cast.$imp_trait()
-                });
-            }
-        )*
-    }
-}
-
-
-#[cfg(all(feature = "unstable", test))]
-mod tests {
-    extern crate test;
-    use self::test::Bencher;
-
-    benchmarks![
-        benchmark_str_to_class => to_class_case => "foo",
-        benchmark_str_is_class => is_class_case => "Foo",
-        benchmark_str_to_camel => to_camel_case => "foo_bar",
-        benchmark_str_is_camel => is_camel_case => "fooBar",
-        benchmark_str_to_table => to_table_case => "fooBar",
-        benchmark_str_is_table => is_table_case => "foo_bars",
-        benchmark_str_to_screaming_snake => to_screaming_snake_case => "fooBar",
-        benchmark_str_is_screaming_snake => is_screaming_snake_case => "FOO_BAR",
-        benchmark_str_to_snake => to_snake_case => "fooBar",
-        benchmark_str_is_snake => is_snake_case => "foo_bar",
-        benchmark_str_to_kebab => to_kebab_case => "fooBar",
-        benchmark_str_is_kebab => is_kebab_case => "foo-bar",
-        benchmark_str_to_train => to_train_case => "fooBar",
-        benchmark_str_is_train => is_train_case => "Foo-Bar",
-        benchmark_str_to_sentence => to_sentence_case => "fooBar",
-        benchmark_str_is_sentence => is_sentence_case => "Foo bar",
-        benchmark_str_to_title => to_title_case => "fooBar",
-        benchmark_str_is_title => is_title_case => "Foo Bar",
-        benchmark_str_ordinalize  => ordinalize => "1",
-        benchmark_str_deordinalize  => deordinalize => "1st",
-        benchmark_str_to_foreign_key => to_foreign_key => "Foo::Bar",
-        benchmark_str_is_foreign_key => is_foreign_key => "bar_id",
-        benchmark_str_demodulize => demodulize => "Foo::Bar",
-        benchmark_str_deconstantize => deconstantize => "Foo::Bar",
-        benchmark_str_pluralize => to_plural => "crate",
-        benchmark_str_singular => to_singular => "crates",
-    ];
-}
 
 str_tests![
     str_to_class => to_class_case => "foo" => "Foo".to_string(),
