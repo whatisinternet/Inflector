@@ -7,6 +7,8 @@
 - Changed the way that traits are implemented to use macros. Thus reducing
   duplication issues seen previously for each type that wanted to implement
   Inflector
+- Better documentation for new users
+- Cleaned up documentation
 
 # 0.6.0
 

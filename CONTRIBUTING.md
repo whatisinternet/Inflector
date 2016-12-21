@@ -48,7 +48,7 @@ Traits now both easy to add and easy to test. Just follow the next steps:
 
 ### Adding the trait
 - `src/lib.rs`
-1. Add the function signature to the Inflector trait
+- Add the function signature to the Inflector trait
 ```rust
 //...
 use string::singularize::to_singular;
@@ -59,16 +59,16 @@ pub trait Inflector { // Or InflectorNumbers
     //...
 }
 ```
-2. Add the function name an return type to either `implement_string_for` or
+- Add the function name an return type to either `implement_string_for` or
    `implement_number_for`
 ```rust
   your_trait => [return_type]
 ```
-3. Add a benchmark following the current convention
+- Add a benchmark following the current convention
 
 ### Add the trait tests
 - `tests/lib.rs`
-1. Add your trait following the current convention and the test will be
+- Add your trait following the current convention and the test will be
    automatically generated
 
 Thank you for your help! :heart:
