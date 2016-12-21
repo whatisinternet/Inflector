@@ -1,3 +1,13 @@
+# 1.0.0
+
+## Non-breaking change:
+
+- Updated dependencies on `regex` and `lazy_static` to be the current latest
+- Added traits for various number types on ordinalize.
+- Changed the way that traits are implemented to use macros. Thus reducing
+  duplication issues seen previously for each type that wanted to implement
+  Inflector
+
 # 0.6.0
 
 ## Breaking changes:
