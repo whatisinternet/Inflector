@@ -2,6 +2,7 @@
 extern crate inflector;
 
 use inflector::Inflector;
+use inflector::InflectorNumbers;
 
 macro_rules! str_tests {
     ( $($test_name:ident => $imp_trait:ident => $to_cast:expr => $casted:expr), *) => {
@@ -31,7 +32,7 @@ macro_rules! number_tests {
             #[test]
             fn $test_name() {
                 let to_cast: $typ = $to_cast;
-                assert_eq!(to_cast.to_string().$imp_trait(), $casted)
+                assert_eq!(to_cast.$imp_trait(), $casted)
             }
         )*
     }
