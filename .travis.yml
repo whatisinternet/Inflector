@@ -1,9 +1,13 @@
 language: rust
 
+sudo: false
+
 rust:
   - stable
   - beta
   - nightly
+
+cache: cargo
 
 after_success:
   - if [ "$TRAVIS_RUST_VERSION" == "nightly" ]; then
