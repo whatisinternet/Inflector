@@ -142,8 +142,8 @@ pub fn to_plural(non_plural_string: String) -> String {
         ];
         for &(ref rule, replace) in RULES.iter().rev() {
             if let Some(c) = rule.captures(&non_plural_string) {
-                if let Some(c) = c.at(1) {
-                    return format!("{}{}", c, replace);
+                if let Some(c) = c.get(1) {
+                    return format!("{}{}", c.as_str(), replace);
                 }
             }
         }
