@@ -202,3 +202,21 @@ mod tests {
         );
     }
 }
+
+#[cfg(test)]
+mod pascal_tests{
+    use ::cases::pascalcase::to_pascal_case;
+    define_tests![
+        to_pascal_case;
+        test_camel_case_to_pascal_case=>             "fooBar"    => "FooBar",
+        test_class_case_to_pascal_case =>            "FooBar"    => "FooBar",
+        test_screaming_snake_case_to_pascal_case =>  "FOO_BAR"   => "FooBar",
+        test_kebab_case_to_pascal_case =>            "foo-bar"   => "FooBar",
+        test_pascal_case_to_pascal_case =>           "FooBar"    => "FooBar",
+        test_sentence_case_to_pascal_case =>         "Foo bar"   => "FooBar",
+        test_snake_case_to_pascal_case =>            "foo_bar"   => "FooBar",
+        test_title_case_to_pascal_case =>            "Foo Bar"   => "FooBar",
+        test_table_case_to_pascal_case =>            "foo_bars"  => "FooBars",
+        test_train_case_to_pascal_case =>            "Foo-Bars"  => "FooBars"
+    ];
+}

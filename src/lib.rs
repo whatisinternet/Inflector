@@ -211,7 +211,6 @@ macro_rules! benchmarks {
     }
 }
 
-
 #[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;

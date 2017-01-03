@@ -142,3 +142,21 @@ mod tests {
         b.iter(|| super::is_screaming_snake_case("Foo bar".to_string()));
     }
 }
+
+#[cfg(test)]
+mod screaming_snake_tests{
+    use ::cases::screamingsnakecase::to_screaming_snake_case;
+    define_tests![
+        to_screaming_snake_case;
+        test_camel_case_to_screaming_snake_case=>             "fooBar"    => "FOO_BAR",
+        test_class_case_to_screaming_snake_case =>            "FooBar"    => "FOO_BAR",
+        test_screaming_snake_case_to_screaming_snake_case =>  "FOO_BAR"   => "FOO_BAR",
+        test_kebab_case_to_screaming_snake_case =>            "foo-bar"   => "FOO_BAR",
+        test_pascal_case_to_screaming_snake_case =>           "FooBar"    => "FOO_BAR",
+        test_sentence_case_to_screaming_snake_case =>         "Foo bar"   => "FOO_BAR",
+        test_snake_case_to_screaming_snake_case =>            "foo_bar"   => "FOO_BAR",
+        test_title_case_to_screaming_snake_case =>            "Foo Bar"   => "FOO_BAR",
+        test_table_case_to_screaming_snake_case =>            "foo_bars"  => "FOO_BARS",
+        test_train_case_to_screaming_snake_case =>            "Foo-Bars"  => "FOO_BARS"
+    ];
+}

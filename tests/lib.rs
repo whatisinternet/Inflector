@@ -38,7 +38,6 @@ macro_rules! number_tests {
     }
 }
 
-
 str_tests![
     str_to_class => to_class_case => "foo" => "Foo".to_string(),
     str_is_class => is_class_case => "Foo" => true,

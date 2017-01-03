@@ -1,5 +1,6 @@
 #![deny(warnings)]
 use cases::case::*;
+
 /// Converts a `String` to camelCase `String`
 ///
 /// #Examples
@@ -63,6 +64,14 @@ use cases::case::*;
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "FooBar3".to_string();
 ///     let expected_string: String = "fooBar3".to_string();
+///     let asserted_string: String = to_camel_case(mock_string);
+///     assert!(asserted_string == expected_string);
+///
+/// ```
+/// ```
+///     use inflector::cases::camelcase::to_camel_case;
+///     let mock_string: String = "Foo-Bar".to_string();
+///     let expected_string: String = "fooBar".to_string();
 ///     let asserted_string: String = to_camel_case(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -201,4 +210,23 @@ mod tests {
         }
         );
     }
+}
+
+
+#[cfg(test)]
+mod camel_tests{
+    use ::cases::camelcase::to_camel_case;
+    define_tests![
+        to_camel_case;
+        test_camel_case_to_camel_case => "fooBar" => "fooBar",
+        test_class_case_to_camel_case => "FooBar" => "fooBar",
+        test_screaming_snake_case_to_camel_case => "FOO_BAR" => "fooBar",
+        test_kebab_case_to_camel_case => "foo-bar" => "fooBar",
+        test_pascal_case_to_camel_case => "FooBar" => "fooBar",
+        test_sentence_case_to_camel_case => "Foo bar" => "fooBar",
+        test_snake_case_to_camel_case => "foo_bar" => "fooBar",
+        test_title_case_to_camel_case => "Foo Bar" => "fooBar",
+        test_table_case_to_camel_case => "foo_bars" => "fooBars",
+        test_train_case_to_camel_case => "Foo-Bars" => "fooBars"
+    ];
 }

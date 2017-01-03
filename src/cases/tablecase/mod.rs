@@ -142,3 +142,21 @@ mod tests {
         b.iter(|| super::is_table_case("Foo bar".to_string()));
     }
 }
+
+#[cfg(test)]
+mod table_tests{
+    use ::cases::tablecase::to_table_case;
+    define_tests![
+        to_table_case;
+        test_camel_case_to_table_case=>             "fooBar"    => "foo_bars",
+        test_class_case_to_table_case =>            "FooBar"    => "foo_bars",
+        test_screaming_snake_case_to_table_case =>  "FOO_BAR"   => "foo_bars",
+        test_kebab_case_to_table_case =>            "foo-bar"   => "foo_bars",
+        test_pascal_case_to_table_case =>           "FooBar"    => "foo_bars",
+        test_sentence_case_to_table_case =>         "Foo bar"   => "foo_bars",
+        test_snake_case_to_table_case =>            "foo_bar"   => "foo_bars",
+        test_title_case_to_table_case =>            "Foo Bar"   => "foo_bars",
+        test_table_case_to_table_case =>            "foo_bars"  => "foo_bars",
+        test_train_case_to_table_case =>            "Foo-Bars"  => "foo_bars"
+    ];
+}

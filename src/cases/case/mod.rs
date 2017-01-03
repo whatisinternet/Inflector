@@ -1,6 +1,18 @@
 #![deny(warnings)]
 use std::ascii::*;
 
+#[macro_export]
+macro_rules! define_tests{
+    ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
+        $(
+            #[test]
+            fn $test_name() {
+                assert!($method($to_convert.to_string()) == $expected.to_string())
+            }
+        )*
+    }
+}
+
 pub struct CamelOptions {
     pub new_word: bool,
     pub last_char: char,

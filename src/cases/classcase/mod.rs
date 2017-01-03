@@ -212,3 +212,21 @@ mod tests {
         b.iter(|| super::to_class_case("foo_bar".to_string()));
     }
 }
+
+#[cfg(test)]
+mod class_tests{
+    use ::cases::classcase::to_class_case;
+    define_tests![
+        to_class_case;
+        test_camel_case_to_class_case=>             "fooBar"    => "FooBar",
+        test_class_case_to_class_case =>            "FooBar"    => "FooBar",
+        test_screaming_snake_case_to_class_case =>  "FOO_BAR"   => "FooBar",
+        test_kebab_case_to_class_case =>            "foo-bar"   => "FooBar",
+        test_pascal_case_to_class_case =>           "FooBar"    => "FooBar",
+        test_sentence_case_to_class_case =>         "Foo bar"   => "FooBar",
+        test_snake_case_to_class_case =>            "foo_bar"   => "FooBar",
+        test_title_case_to_class_case =>            "Foo Bar"   => "FooBar",
+        test_table_case_to_class_case =>            "foo_bars"  => "FooBar",
+        test_train_case_to_class_case =>            "Foo-Bars"  => "FooBar"
+    ];
+}
