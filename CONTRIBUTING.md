@@ -1,10 +1,10 @@
-# Thank you!
+# Thank you! :heart:
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Getting started
-- If you don't have rust installed install [rustup](https://www.rustup.rs/)
-- For normal development master must run on stable
+- If you don't have rust installed: Install [rustup](https://www.rustup.rs/)
+- For normal development on `master` run on stable
   - `rustup toolchain install stable`
   - `rustup default stable`
 
@@ -12,12 +12,15 @@ This project is intended to be a safe, welcoming space for collaboration, and co
   - `rustup toolchain install nightly`
   - `rustup default nightly`
 
-## Github steps
+## Git/GitHub steps
 1. Fork it ( https://github.com/whatisinternet/inflector/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+3. Add test for the new feature (conversions to all different casts MUST also
+   pass)
+4. Write some code to pass the tests
+5. Commit your changes (`git commit -am 'Add some feature'`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create a new Pull Request
 
 ### Running the tests
 - `cargo test`
@@ -39,12 +42,12 @@ This project is intended to be a safe, welcoming space for collaboration, and co
 
 - Have you added doc tests and do they pass?
 - Do all other tests pass?
-- Have you added trait tests (if applicable)
+- Have you added trait tests? (If applicable)
 - Have you filled out the pull request template?
 
 
 ## Adding a trait
-Traits now both easy to add and easy to test. Just follow the next steps:
+Traits are now both easy to add and easy to test. Just follow the next steps:
 
 ### Adding the trait
 - `src/lib.rs`

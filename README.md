@@ -33,7 +33,7 @@ Inflector = "*"
 3. Library: cd inflector && cargo build --release --lib
 4. You can find the library in target/release
 
-## Usage:
+## Usage / Example:
 
 ```rust
 ...
