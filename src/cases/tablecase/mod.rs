@@ -3,7 +3,6 @@ use string::pluralize::to_plural;
 use cases::case::*;
 /// Converts a `String` to `table-case` `String`
 ///
-/// #Examples
 /// ```
 /// use inflector::cases::tablecase::to_table_case;
 /// let mock_string: String = "foo-bar".to_string();
@@ -65,8 +64,6 @@ pub fn to_table_case(non_table_case_string: String) -> String {
     format!("{}{}", split.0, to_plural(split.1.to_string()))
 }
 /// Determines if a `String` is `table-case`
-///
-/// #Examples
 ///
 /// ```
 ///     use inflector::cases::tablecase::is_table_case;

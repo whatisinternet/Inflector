@@ -1,6 +1,5 @@
 /// Deorginalizes a `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::numbers::deordinalize::deordinalize;
 ///     let mock_string: String = "0.1".to_string();

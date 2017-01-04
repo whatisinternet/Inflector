@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Determines if a `String` is `Train-Case`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::traincase::is_train_case;
 ///     let mock_string: String = "Foo-Bar-String-That-Is-Really-Really-Long".to_string();
@@ -65,7 +64,6 @@ pub fn is_train_case(test_string: String) -> bool {
 
 /// Converts a `String` to `Train-Case` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::traincase::to_train_case;
 ///     let mock_string: String = "foo-bar".to_string();

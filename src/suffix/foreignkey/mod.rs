@@ -2,7 +2,6 @@ use cases::snakecase::to_snake_case;
 
 /// Converts a `String` to a `foreign_key`
 ///
-/// #Examples
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: String = "foo_bar".to_string();
@@ -86,7 +85,6 @@ fn safe_convert(safe_string: String) -> String {
 
 /// Determines if a `String` is a `foreign_key`
 ///
-/// #Examples
 /// ```
 ///     use inflector::suffix::foreignkey::is_foreign_key;
 ///     let mock_string: String = "Foo bar string that is really really long".to_string();

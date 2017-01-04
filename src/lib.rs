@@ -1,4 +1,4 @@
-#![deny(warnings)]
+#![deny(warnings, unused_variables, missing_docs, unsafe_code, unused_extern_crates)]
 #![cfg_attr(feature = "unstable", feature(test))]
 
 //! Adds String based inflections for Rust. Snake, kebab, train, camel,
@@ -83,6 +83,7 @@ use string::deconstantize::deconstantize;
 use string::pluralize::to_plural;
 use string::singularize::to_singular;
 
+#[allow(missing_docs)]
 pub trait Inflector {
     fn to_class_case(&self) -> String;
     fn is_class_case(&self) -> bool;
@@ -127,6 +128,7 @@ pub trait Inflector {
     fn to_singular(&self) -> String;
 }
 
+#[allow(missing_docs)]
 pub trait InflectorNumbers {
     fn ordinalize(&self) -> String;
 }

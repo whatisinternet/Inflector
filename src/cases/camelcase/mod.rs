@@ -3,7 +3,6 @@ use cases::case::*;
 
 /// Converts a `String` to camelCase `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "fooBar".to_string();
@@ -89,7 +88,6 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
 
 /// Determines if a `String` is camelCase bool``
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "Foo".to_string();

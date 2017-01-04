@@ -46,7 +46,6 @@ macro_rules! special_cases{
 ///     let mock_string: String = "oxen".to_string();
 ///     let expected_string: String = "ox".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
-///     println!("{} {}", asserted_string, expected_string);
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
@@ -55,7 +54,6 @@ macro_rules! special_cases{
 ///     let mock_string: String = "boxes".to_string();
 ///     let expected_string: String = "box".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
-///     println!("{} {}", asserted_string, expected_string);
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```

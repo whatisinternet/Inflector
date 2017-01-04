@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Converts a `String` to `Sentence case` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::sentencecase::to_sentence_case;
 ///     let mock_string: String = "Foo bar".to_string();
@@ -58,7 +57,6 @@ pub fn to_sentence_case(non_sentence_case_string: String) -> String {
 }
 /// Determines of a `String` is `Sentence case`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::sentencecase::is_sentence_case;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();

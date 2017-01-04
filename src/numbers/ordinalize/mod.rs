@@ -1,6 +1,5 @@
 /// Orginalizes a `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::numbers::ordinalize::ordinalize;
 ///     let mock_string: String = "a".to_string();

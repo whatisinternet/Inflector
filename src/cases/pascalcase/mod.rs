@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Converts a `String` to pascalCase `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::pascalcase::to_pascal_case;
 ///     let mock_string: String = "fooBar".to_string();
@@ -80,7 +79,6 @@ pub fn to_pascal_case(non_pascalized_string: String) -> String {
 
 /// Determines if a `String` is pascalCase bool``
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::pascalcase::is_pascal_case;
 ///     let mock_string: String = "Foo".to_string();

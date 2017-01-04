@@ -1,6 +1,7 @@
+use cases::classcase::to_class_case;
+
 /// Demodulize a `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::string::demodulize::demodulize;
 ///     let mock_string: String = "Bar".to_string();
@@ -33,8 +34,6 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-use cases::classcase::to_class_case;
-
 pub fn demodulize(non_demodulize_string: String) -> String {
     if non_demodulize_string.contains("::") {
         let split_string: Vec<&str> = non_demodulize_string.split("::").collect();

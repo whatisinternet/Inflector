@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Converts a `String` to `SCREAMING_SNAKE_CASE` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::screamingsnakecase::to_screaming_snake_case;
 ///     let mock_string: String = "foo_bar".to_string();
@@ -65,7 +64,6 @@ pub fn to_screaming_snake_case(non_snake_case_string: String) -> String {
 
 /// Determines of a `String` is `SCREAMING_SNAKE_CASE`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::screamingsnakecase::is_screaming_snake_case;
 ///     let mock_string: String = "Foo bar string that is really really long".to_string();

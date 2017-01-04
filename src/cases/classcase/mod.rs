@@ -3,7 +3,6 @@ use cases::case::*;
 use string::singularize::to_singular;
 /// Converts a `String` to `ClassCase` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "FooBar".to_string();
@@ -96,9 +95,9 @@ pub fn to_class_case(non_class_case_string: String) -> String {
     let split: (&str, &str) = class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));
     format!("{}{}", split.0, to_singular(split.1.to_string()))
 }
+
 /// Determines if a `String` is `ClassCase` `bool`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "Foo".to_string();

@@ -1,8 +1,7 @@
 #![deny(warnings)]
-use std::ascii::*;
+use cases::case::*;
 /// Converts a `String` to `Title Case` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::titlecase::to_title_case;
 ///     let mock_string: String = "Foo bar".to_string();

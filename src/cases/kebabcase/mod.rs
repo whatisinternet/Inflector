@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Determines if a `String` is `kebab-case`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::kebabcase::is_kebab_case;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
@@ -62,10 +61,8 @@ pub fn is_kebab_case(test_string: String) -> bool {
     test_string == to_kebab_case(test_string.clone())
 }
 
-
 /// Converts a `String` to `kebab-case` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::kebabcase::to_kebab_case;
 ///     let mock_string: String = "foo-bar".to_string();

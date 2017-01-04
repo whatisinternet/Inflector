@@ -1,6 +1,7 @@
+use cases::classcase::to_class_case;
+
 /// Deconstantizes a `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::string::deconstantize::deconstantize;
 ///     let mock_string: String = "Bar".to_string();
@@ -33,8 +34,6 @@
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-use cases::classcase::to_class_case;
-
 pub fn deconstantize(non_deconstantized_string: String) -> String {
     if non_deconstantized_string.contains("::") {
         let split_string: Vec<&str> = non_deconstantized_string.split("::").collect();

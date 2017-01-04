@@ -66,7 +66,6 @@ macro_rules! special_cases{
 
 /// Converts a `String` to pluralized `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::string::pluralize::to_plural;
 ///     let mock_string: String = "foo_bar".to_string();
