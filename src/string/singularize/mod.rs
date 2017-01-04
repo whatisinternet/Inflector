@@ -1,8 +1,22 @@
 use regex::Regex;
 use string::constants::UNACCONTABLE_WORDS;
+
+macro_rules! special_cases{
+    ($s:ident, $($singular: expr => $plural:expr), *) => {
+        match &$s[..] {
+            $(
+                $singular => {
+                    return $plural.to_string();
+                },
+            )*
+            _ => ()
+        }
+    }
+}
+
+
 /// Converts a `String` to singularized `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "foo_bars".to_string();
@@ -29,9 +43,19 @@ use string::constants::UNACCONTABLE_WORDS;
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
+///     let mock_string: String = "oxen".to_string();
+///     let expected_string: String = "ox".to_string();
+///     let asserted_string: String = to_singular(mock_string);
+///     println!("{} {}", asserted_string, expected_string);
+///     assert!(asserted_string == expected_string);
+///
+/// ```
+/// ```
+///     use inflector::string::singularize::to_singular;
 ///     let mock_string: String = "boxes".to_string();
 ///     let expected_string: String = "box".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
+///     println!("{} {}", asserted_string, expected_string);
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
@@ -52,24 +76,13 @@ use string::constants::UNACCONTABLE_WORDS;
 ///
 /// ```
 ///
-macro_rules! special_cases{
-    ($s:ident, $($singular: expr => $plural:expr), *) => {
-        match &$s[..] {
-            $(
-                $singular => {
-                    return $plural.to_string();
-                },
-            )*
-            _ => ()
-        }
-    }
-}
 pub fn to_singular(non_singular_string: String) -> String {
     if UNACCONTABLE_WORDS.contains(&non_singular_string.as_ref()) {
         non_singular_string
     } else {
         special_cases![non_singular_string,
             "oxen" => "ox",
+            "boxes" => "box",
             "men" => "man",
             "women" => "woman",
             "dice" => "die",
@@ -91,7 +104,6 @@ pub fn to_singular(non_singular_string: String) -> String {
         format!("{}", non_singular_string)
     }
 }
-
 
 macro_rules! add_rule{
     ($r:ident, $rule:expr => $replace:expr) => {
