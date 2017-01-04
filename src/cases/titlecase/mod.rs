@@ -51,40 +51,18 @@ use cases::case::*;
 ///
 /// ```
 pub fn to_title_case(non_title_case_string: String) -> String {
-    let mut new_word: bool = true;
-    let mut first_word: bool = true;
-    let mut last_char: char = ' ';
-    non_title_case_string
-        .chars()
-        .fold("".to_string(), |mut result, character|
-            if character == '-' || character == '_' || character == ' ' {
-                new_word = true;
-                result
-            } else if character.is_numeric() {
-                new_word = true;
-                result.push(character);
-                result
-            } else if new_word || (
-                (last_char.is_lowercase() && character.is_uppercase()) &&
-                (last_char != ' ')
-                ){
-                new_word = false;
-                if !first_word {
-                    result.push(' ');
-                }
-                first_word = false;
-                result.push(character.to_ascii_uppercase());
-                result
-            } else {
-                last_char = character;
-                result.push(character.to_ascii_lowercase());
-                result
-            }
-        )
+    let options = CamelOptions {
+        new_word: true,
+        last_char: ' ',
+        first_word: true,
+        injectable_char: ' ',
+        has_seperator: true
+    };
+    to_case_camel_like(non_title_case_string, options)
 }
+
 /// Determines if a `String` is `Title Case`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::titlecase::is_title_case;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
