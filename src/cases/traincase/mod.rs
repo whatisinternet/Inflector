@@ -158,21 +158,4 @@ mod tests {
         b.iter(|| super::to_train_case("test_test_test".to_string()));
     }
 }
-
-#[cfg(test)]
-mod train_tests{
-    use ::cases::traincase::to_train_case;
-    define_tests![
-        to_train_case;
-        test_camel_case_to_train_case=>             "fooBar"    => "Foo-Bar",
-        test_class_case_to_train_case =>            "FooBar"    => "Foo-Bar",
-        test_screaming_snake_case_to_train_case =>  "FOO_BAR"   => "Foo-Bar",
-        test_kebab_case_to_train_case =>            "foo-bar"   => "Foo-Bar",
-        test_pascal_case_to_train_case =>           "FooBar"    => "Foo-Bar",
-        test_sentence_case_to_train_case =>         "Foo bar"   => "Foo-Bar",
-        test_snake_case_to_train_case =>            "foo_bar"   => "Foo-Bar",
-        test_title_case_to_train_case =>            "Foo Bar"   => "Foo-Bar",
-        test_table_case_to_train_case =>            "foo_bars"  => "Foo-Bars",
-        test_train_case_to_train_case =>            "Foo-Bars"  => "Foo-Bars"
-    ];
-}
+define_test_group!(train_tests, to_train_case, traincase, "Foo-Bar", "Foo-Bars");

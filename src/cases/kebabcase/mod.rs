@@ -150,20 +150,4 @@ mod tests {
     }
 }
 
-#[cfg(test)]
-mod kebab_tests{
-    use ::cases::kebabcase::to_kebab_case;
-    define_tests![
-        to_kebab_case;
-        test_camel_case_to_kebab_case=>             "fooBar"    => "foo-bar",
-        test_class_case_to_kebab_case =>            "FooBar"    => "foo-bar",
-        test_screaming_snake_case_to_kebab_case =>  "FOO_BAR"   => "foo-bar",
-        test_kebab_case_to_kebab_case =>            "foo-bar"   => "foo-bar",
-        test_pascal_case_to_kebab_case =>           "FooBar"    => "foo-bar",
-        test_sentence_case_to_kebab_case =>         "Foo bar"   => "foo-bar",
-        test_snake_case_to_kebab_case =>            "foo_bar"   => "foo-bar",
-        test_title_case_to_kebab_case =>            "Foo Bar"   => "foo-bar",
-        test_table_case_to_kebab_case =>            "foo_bars"  => "foo-bars",
-        test_train_case_to_kebab_case =>            "Foo-Bars"  => "foo-bars"
-    ];
-}
+define_test_group!(kebab_tests, to_kebab_case, kebabcase, "foo-bar", "foo-bars");

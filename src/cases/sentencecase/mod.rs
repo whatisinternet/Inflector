@@ -151,20 +151,4 @@ mod tests {
     }
 }
 
-#[cfg(test)]
-mod sentence_tests{
-    use ::cases::sentencecase::to_sentence_case;
-    define_tests![
-        to_sentence_case;
-        test_camel_case_to_sentence_case=>             "fooBar"    => "Foo bar",
-        test_class_case_to_sentence_case =>            "FooBar"    => "Foo bar",
-        test_screaming_snake_case_to_sentence_case =>  "FOO_BAR"   => "Foo bar",
-        test_kebab_case_to_sentence_case =>            "foo-bar"   => "Foo bar",
-        test_pascal_case_to_sentence_case =>           "FooBar"    => "Foo bar",
-        test_sentence_case_to_sentence_case =>         "Foo bar"   => "Foo bar",
-        test_snake_case_to_sentence_case =>            "foo_bar"   => "Foo bar",
-        test_title_case_to_sentence_case =>            "Foo Bar"   => "Foo bar",
-        test_table_case_to_sentence_case =>            "foo_bars"  => "Foo bars",
-        test_train_case_to_sentence_case =>            "Foo-Bars"  => "Foo bars"
-    ];
-}
+define_test_group!(sentence_tests, to_sentence_case, sentencecase, "Foo bar", "Foo bars");

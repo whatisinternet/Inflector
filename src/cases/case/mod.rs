@@ -1,18 +1,6 @@
 #![deny(warnings)]
 use std::ascii::*;
 
-#[macro_export]
-macro_rules! define_tests{
-    ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
-        $(
-            #[test]
-            fn $test_name() {
-                assert!($method($to_convert.to_string()) == $expected.to_string())
-            }
-        )*
-    }
-}
-
 pub struct CamelOptions {
     pub new_word: bool,
     pub last_char: char,
@@ -150,4 +138,38 @@ fn to_snake_like_from_camel_or_class(
                     }
               }
         )
+}
+
+#[macro_export]
+macro_rules! define_test_group {
+    ($module_name: ident, $method: ident, $use_mod: ident, $expected: expr, $expected_plural: expr) => {
+        #[cfg(test)]
+        mod $module_name {
+            use ::cases::$use_mod::$method;
+            define_tests![
+                $method;
+                from_camel_case             => "fooBar"     => $expected,
+                from_class_case             => "FooBar"     => $expected,
+                from_screaming_snake_case   => "FOO_BAR"    => $expected,
+                from_kebab_case             => "foo-bar"    => $expected,
+                from_pascal_case            => "FooBar"     => $expected,
+                from_sentence_case          => "Foo bar"    => $expected,
+                from_snake_case             => "foo_bar"    => $expected,
+                from_title_case             => "Foo Bar"    => $expected,
+                from_table_case             => "foo_bars"   => $expected_plural,
+                from_train_case             => "Foo-Bars"   => $expected_plural
+            ];
+        }
+    }
+}
+
+macro_rules! define_tests{
+    ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
+        $(
+            #[test]
+            fn $test_name() {
+                assert_eq!($method($to_convert.to_string()), $expected.to_string())
+            }
+        )*
+    }
 }
