@@ -72,7 +72,8 @@ pub fn to_pascal_case(non_pascalized_string: String) -> String {
         last_char: ' ',
         first_word: false,
         injectable_char: ' ',
-        has_seperator: false
+        has_seperator: false,
+        inverted: false
     };
     to_case_camel_like(non_pascalized_string, options)
 }

@@ -81,7 +81,8 @@ pub fn to_camel_case(non_camelized_string: String) -> String {
         last_char: ' ',
         first_word: false,
         injectable_char: ' ',
-        has_seperator: false
+        has_seperator: false,
+        inverted: false
     };
     to_case_camel_like(non_camelized_string, options)
 }

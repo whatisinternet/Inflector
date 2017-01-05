@@ -18,7 +18,8 @@ pub struct CamelOptions {
     pub last_char: char,
     pub first_word: bool,
     pub injectable_char: char,
-    pub has_seperator: bool
+    pub has_seperator: bool,
+    pub inverted: bool
 }
 
 pub fn to_case_snake_like(
@@ -59,8 +60,12 @@ pub fn to_case_camel_like(
                 if !first_word && camel_options.has_seperator {
                     result.push(camel_options.injectable_char);
                 }
+                if !camel_options.inverted || first_word {
+                    result.push(character.to_ascii_uppercase());
+                } else {
+                    result.push(character.to_ascii_lowercase());
+                }
                 first_word = false;
-                result.push(character.to_ascii_uppercase());
                 result
             } else {
                 last_char = character;
@@ -70,6 +75,7 @@ pub fn to_case_camel_like(
         )
 }
 
+#[inline]
 fn to_snake_like_from_snake_like(
     convertable_string: String,
     replace_with: &str,
@@ -107,6 +113,7 @@ fn to_snake_like_from_snake_like(
         )
 }
 
+#[inline]
 fn to_snake_like_from_camel_or_class(
     convertable_string: String,
     replace_with: &str,

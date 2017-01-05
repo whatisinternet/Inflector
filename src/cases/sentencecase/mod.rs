@@ -51,9 +51,15 @@ use cases::case::*;
 ///
 /// ```
 pub fn to_sentence_case(non_sentence_case_string: String) -> String {
-    let snake_cased: String = to_case_snake_like(non_sentence_case_string, " ", "lower");
-    let split_on_first: (&str, &str) = snake_cased.split_at(1);
-    format!("{}{}", split_on_first.0.to_uppercase(), split_on_first.1)
+    let options = CamelOptions {
+        new_word: true,
+        last_char: ' ',
+        first_word: true,
+        injectable_char: ' ',
+        has_seperator: true,
+        inverted: true
+    };
+    to_case_camel_like(non_sentence_case_string, options)
 }
 /// Determines of a `String` is `Sentence case`
 ///

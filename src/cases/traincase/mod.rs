@@ -132,7 +132,8 @@ pub fn to_train_case(non_train_case_string: String) -> String {
         last_char: ' ',
         first_word: true,
         injectable_char: '-',
-        has_seperator: true
+        has_seperator: true,
+        inverted: false
     };
     to_case_camel_like(non_train_case_string, options)
 }

@@ -137,6 +137,7 @@ pub trait InflectorNumbers {
 macro_rules! define_implementations {
     ( $slf:ident; $($imp_trait:ident => $typ:ident), *) => {
         $(
+            #[inline]
             fn $imp_trait(&$slf) -> $typ {
                 $imp_trait($slf.to_string())
             }
