@@ -5,7 +5,6 @@
 //! sentence, class, and title cases as well as ordinalize,
 //! deordinalize, demodulize, deconstantize, and foreign key are supported as
 //! both traits and pure functions acting on String types.
-//!
 //! ```rust
 //! use inflector::Inflector;
 //! let camel_case_string: String = "some_string".to_camel_case();
@@ -196,10 +195,15 @@ macro_rules! implement_number_for {
     }
 }
 
-implement_string_for![Inflector;
-String, str];
-implement_number_for![InflectorNumbers;
-i8, i16, i32, i64, u8, u16, u32, u64, isize, usize, f32, f64];
+implement_string_for![
+    Inflector;
+    String, str
+];
+
+implement_number_for![
+    InflectorNumbers;
+    i8, i16, i32, i64, u8, u16, u32, u64, isize, usize, f32, f64
+];
 
 macro_rules! benchmarks {
     ( $($test_name:ident => $imp_trait:ident => $to_cast:expr), *) => {

@@ -141,4 +141,8 @@ mod tests {
     }
 }
 
-define_test_group!(screaming_snake_tests, to_screaming_snake_case, screamingsnakecase, "FOO_BAR", "FOO_BARS");
+define_test_group!(screaming_snake_tests,
+                   to_screaming_snake_case,
+                   screamingsnakecase,
+                   "FOO_BAR",
+                   "FOO_BARS");

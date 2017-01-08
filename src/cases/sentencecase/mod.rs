@@ -57,7 +57,7 @@ pub fn to_sentence_case(non_sentence_case_string: String) -> String {
         first_word: true,
         injectable_char: ' ',
         has_seperator: true,
-        inverted: true
+        inverted: true,
     };
     to_case_camel_like(non_sentence_case_string, options)
 }
@@ -151,4 +151,8 @@ mod tests {
     }
 }
 
-define_test_group!(sentence_tests, to_sentence_case, sentencecase, "Foo bar", "Foo bars");
+define_test_group!(sentence_tests,
+                   to_sentence_case,
+                   sentencecase,
+                   "Foo bar",
+                   "Foo bars");

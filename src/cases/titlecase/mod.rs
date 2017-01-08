@@ -57,7 +57,7 @@ pub fn to_title_case(non_title_case_string: String) -> String {
         first_word: true,
         injectable_char: ' ',
         has_seperator: true,
-        inverted: false
+        inverted: false,
     };
     to_case_camel_like(non_title_case_string, options)
 }

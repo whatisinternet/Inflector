@@ -49,4 +49,3 @@ pub mod tablecase;
 ///
 /// Example string `PascalCase`
 pub mod pascalcase;
-

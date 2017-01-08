@@ -140,4 +140,8 @@ mod tests {
     }
 }
 
-define_test_group!(table_tests, to_table_case, tablecase, "foo_bars", "foo_bars");
+define_test_group!(table_tests,
+                   to_table_case,
+                   tablecase,
+                   "foo_bars",
+                   "foo_bars");
