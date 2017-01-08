@@ -1,3 +1,26 @@
+# 0.7.0
+
+## New features:
+
+- Added traits for various number types on ordinalize.
+
+## Possible breaking change:
+
+- Fixed issue with Boxes to Box which may cause breakages for some people
+
+## Non-breaking change:
+
+- Updated dependencies on `regex` and `lazy_static` to be the current latest
+- Changed the way that traits are implemented to use macros. Thus reducing
+  duplication issues seen previously for each type that wanted to implement
+  Inflector
+- More tests for conversion between different string formats
+- Better documentation for new users
+- Cleaned up documentation
+
+## Notes:
+- This is a pre-release for 1.0.0
+
 # 0.6.0
 
 ## Breaking changes:

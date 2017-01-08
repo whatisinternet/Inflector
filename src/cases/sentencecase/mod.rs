@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Converts a `String` to `Sentence case` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::sentencecase::to_sentence_case;
 ///     let mock_string: String = "Foo bar".to_string();
@@ -52,13 +51,18 @@ use cases::case::*;
 ///
 /// ```
 pub fn to_sentence_case(non_sentence_case_string: String) -> String {
-    let snake_cased: String = to_case_snake_like(non_sentence_case_string, " ", "lower");
-    let split_on_first: (&str, &str) = snake_cased.split_at(1);
-    format!("{}{}", split_on_first.0.to_uppercase(), split_on_first.1)
+    let options = CamelOptions {
+        new_word: true,
+        last_char: ' ',
+        first_word: true,
+        injectable_char: ' ',
+        has_seperator: true,
+        inverted: true,
+    };
+    to_case_camel_like(non_sentence_case_string, options)
 }
 /// Determines of a `String` is `Sentence case`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::sentencecase::is_sentence_case;
 ///     let mock_string: String = "foo-bar-string-that-is-really-really-long".to_string();
@@ -146,3 +150,9 @@ mod tests {
         b.iter(|| super::to_sentence_case("foo_bar".to_string()));
     }
 }
+
+define_test_group!(sentence_tests,
+                   to_sentence_case,
+                   sentencecase,
+                   "Foo bar",
+                   "Foo bars");

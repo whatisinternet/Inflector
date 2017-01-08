@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Converts a `String` to pascalCase `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::pascalcase::to_pascal_case;
 ///     let mock_string: String = "fooBar".to_string();
@@ -73,14 +72,14 @@ pub fn to_pascal_case(non_pascalized_string: String) -> String {
         last_char: ' ',
         first_word: false,
         injectable_char: ' ',
-        has_seperator: false
+        has_seperator: false,
+        inverted: false,
     };
     to_case_camel_like(non_pascalized_string, options)
 }
 
 /// Determines if a `String` is pascalCase bool``
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::pascalcase::is_pascal_case;
 ///     let mock_string: String = "Foo".to_string();
@@ -181,8 +180,7 @@ mod tests {
         b.iter(|| {
             let test_string = "foo_bar".to_string();
             super::to_pascal_case(test_string)
-        }
-        );
+        });
     }
 
     #[bench]
@@ -196,9 +194,14 @@ mod tests {
     #[bench]
     fn bench_is_pascal(b: &mut Bencher) {
         b.iter(|| {
-            let test_string: String  = "Foo bar".to_string();
+            let test_string: String = "Foo bar".to_string();
             super::is_pascal_case(test_string)
-        }
-        );
+        });
     }
 }
+
+define_test_group!(pascal_tests,
+                   to_pascal_case,
+                   pascalcase,
+                   "FooBar",
+                   "FooBars");

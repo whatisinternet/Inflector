@@ -1,6 +1,6 @@
 [package]
 name = "Inflector"
-version = "0.6.0"
+version = "0.7.0"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
@@ -20,5 +20,5 @@ unstable = []
 name = "inflector"
 
 [dependencies]
-regex = "0.1.73"
-lazy_static = "0.2.1"
+regex = "0.2"
+lazy_static = "0.2.2"

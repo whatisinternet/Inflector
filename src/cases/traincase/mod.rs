@@ -2,7 +2,6 @@
 use cases::case::*;
 /// Determines if a `String` is `Train-Case`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::traincase::is_train_case;
 ///     let mock_string: String = "Foo-Bar-String-That-Is-Really-Really-Long".to_string();
@@ -65,7 +64,6 @@ pub fn is_train_case(test_string: String) -> bool {
 
 /// Converts a `String` to `Train-Case` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::traincase::to_train_case;
 ///     let mock_string: String = "foo-bar".to_string();
@@ -134,7 +132,8 @@ pub fn to_train_case(non_train_case_string: String) -> String {
         last_char: ' ',
         first_word: true,
         injectable_char: '-',
-        has_seperator: true
+        has_seperator: true,
+        inverted: false,
     };
     to_case_camel_like(non_train_case_string, options)
 }
@@ -159,3 +158,4 @@ mod tests {
         b.iter(|| super::to_train_case("test_test_test".to_string()));
     }
 }
+define_test_group!(train_tests, to_train_case, traincase, "Foo-Bar", "Foo-Bars");

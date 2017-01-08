@@ -3,7 +3,6 @@ use cases::case::*;
 use string::singularize::to_singular;
 /// Converts a `String` to `ClassCase` `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::classcase::to_class_case;
 ///     let mock_string: String = "FooBar".to_string();
@@ -90,15 +89,17 @@ pub fn to_class_case(non_class_case_string: String) -> String {
         last_char: ' ',
         first_word: false,
         injectable_char: ' ',
-        has_seperator: false
+        has_seperator: false,
+        inverted: false,
     };
     let class_plural: String = to_case_camel_like(non_class_case_string, options);
-    let split: (&str, &str) = class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));
+    let split: (&str, &str) =
+        class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));
     format!("{}{}", split.0, to_singular(split.1.to_string()))
 }
+
 /// Determines if a `String` is `ClassCase` `bool`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::classcase::is_class_case;
 ///     let mock_string: String = "Foo".to_string();
@@ -212,3 +213,5 @@ mod tests {
         b.iter(|| super::to_class_case("foo_bar".to_string()));
     }
 }
+
+define_test_group!(class_tests, to_class_case, classcase, "FooBar", "FooBar");

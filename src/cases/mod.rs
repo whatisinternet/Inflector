@@ -1,3 +1,5 @@
+#[macro_use]
+mod case;
 /// Provides conversion to and detection of class case strings.
 ///
 /// Example string `ClassCase`
@@ -47,5 +49,3 @@ pub mod tablecase;
 ///
 /// Example string `PascalCase`
 pub mod pascalcase;
-
-mod case;

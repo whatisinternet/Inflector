@@ -1,8 +1,8 @@
 #![deny(warnings)]
 use cases::case::*;
+
 /// Converts a `String` to camelCase `String`
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::camelcase::to_camel_case;
 ///     let mock_string: String = "fooBar".to_string();
@@ -67,20 +67,28 @@ use cases::case::*;
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
+/// ```
+///     use inflector::cases::camelcase::to_camel_case;
+///     let mock_string: String = "Foo-Bar".to_string();
+///     let expected_string: String = "fooBar".to_string();
+///     let asserted_string: String = to_camel_case(mock_string);
+///     assert!(asserted_string == expected_string);
+///
+/// ```
 pub fn to_camel_case(non_camelized_string: String) -> String {
     let options = CamelOptions {
         new_word: false,
         last_char: ' ',
         first_word: false,
         injectable_char: ' ',
-        has_seperator: false
+        has_seperator: false,
+        inverted: false,
     };
     to_case_camel_like(non_camelized_string, options)
 }
 
 /// Determines if a `String` is camelCase bool``
 ///
-/// #Examples
 /// ```
 ///     use inflector::cases::camelcase::is_camel_case;
 ///     let mock_string: String = "Foo".to_string();
@@ -181,8 +189,7 @@ mod tests {
         b.iter(|| {
             let test_string = "foo_bar".to_string();
             super::to_camel_case(test_string)
-        }
-        );
+        });
     }
 
     #[bench]
@@ -196,9 +203,11 @@ mod tests {
     #[bench]
     fn bench_is_camel(b: &mut Bencher) {
         b.iter(|| {
-            let test_string: String  = "Foo bar".to_string();
+            let test_string: String = "Foo bar".to_string();
             super::is_camel_case(test_string)
-        }
-        );
+        });
     }
 }
+
+
+define_test_group!(camel_tests, to_camel_case, camelcase, "fooBar", "fooBars");
