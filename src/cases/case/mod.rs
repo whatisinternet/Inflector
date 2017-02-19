@@ -97,37 +97,90 @@ fn to_snake_like_from_camel_or_class(convertable_string: String,
     let mut first_character: bool = true;
     convertable_string.chars()
         .enumerate()
-        .fold("".to_string(),
-              |mut acc, char_with_index| if char_with_index.1 ==
-                                            char_with_index.1.to_ascii_uppercase() &&
-                                            !first_character &&
-                                            (convertable_string.chars()
-                  .nth(char_with_index.0 + 1)
-                  .unwrap_or('A')
-                  .is_lowercase() ||
-                                             convertable_string.chars()
-                  .nth(char_with_index.0 - 1)
-                  .unwrap_or('A')
-                  .is_lowercase()) {
-                  if case == "lower" {
-                      acc.push(replace_with.chars().nth(0).unwrap_or('_'));
-                      acc.push(char_with_index.1.to_ascii_lowercase());
-                      acc
-                  } else {
-                      acc.push(replace_with.chars().nth(0).unwrap_or('_'));
-                      acc.push(char_with_index.1.to_ascii_uppercase());
-                      acc
-                  }
+        .fold("".to_string(), |acc, char_with_index|
+              if requires_seperator(char_with_index, first_character, &convertable_string) {
+                  snake_like_with_seperator(acc, replace_with, char_with_index.1, case)
               } else {
                   first_character = false;
-                  if case == "lower" {
-                      acc.push(char_with_index.1.to_ascii_lowercase());
-                      acc
-                  } else {
-                      acc.push(char_with_index.1.to_ascii_uppercase());
-                      acc
-                  }
+                  snake_like_no_seperator(acc, char_with_index.1, case)
               })
+}
+
+#[inline]
+fn append_on_new_word(mut result: String, first_word: bool, character: char, camel_options: &CamelOptions) -> String {
+    if not_first_word_and_has_seperator(first_word, &camel_options) {
+        result.push(camel_options.injectable_char);
+    }
+    if first_word_or_not_inverted(first_word, &camel_options) {
+        result.push(character.to_ascii_uppercase());
+    } else {
+        result.push(character.to_ascii_lowercase());
+    }
+    result
+}
+
+#[inline]
+fn not_first_word_and_has_seperator(first_word: bool, camel_options: &CamelOptions) -> bool {
+    !first_word && camel_options.has_seperator
+}
+
+#[inline]
+fn first_word_or_not_inverted(first_word: bool, camel_options: &CamelOptions) -> bool {
+    !camel_options.inverted || first_word
+}
+
+
+#[inline]
+fn last_char_lower_current_is_upper_or_new_word(new_word: bool, last_char: &char, character: &char) -> bool{
+    new_word ||
+        ((last_char.is_lowercase() && character.is_uppercase()) &&
+         (*last_char != ' '))
+}
+
+#[inline]
+fn char_is_seperator(character: &char) -> bool {
+    *character == '-' || *character == '_' || *character == ' '
+}
+
+#[inline]
+fn requires_seperator(char_with_index: (usize, char), first_character: bool, convertable_string: &str) -> bool {
+    char_is_uppercase(char_with_index.1) &&
+        !first_character &&
+        next_or_previous_char_is_lowercase(&convertable_string, char_with_index.0)
+}
+
+#[inline]
+fn snake_like_no_seperator(mut accumlator: String, current_char: char, case: &str) -> String {
+    if case == "lower" {
+        accumlator.push(current_char.to_ascii_lowercase());
+        accumlator
+    } else {
+        accumlator.push(current_char.to_ascii_uppercase());
+        accumlator
+    }
+}
+
+#[inline]
+fn snake_like_with_seperator(mut accumlator: String, replace_with: &str, current_char: char, case: &str) -> String {
+    if case == "lower" {
+        accumlator.push(replace_with.chars().nth(0).unwrap_or('_'));
+        accumlator.push(current_char.to_ascii_lowercase());
+        accumlator
+    } else {
+        accumlator.push(replace_with.chars().nth(0).unwrap_or('_'));
+        accumlator.push(current_char.to_ascii_uppercase());
+        accumlator
+    }
+}
+
+#[inline]
+fn next_or_previous_char_is_lowercase(convertable_string: &str, char_with_index: usize) -> bool {
+    convertable_string.chars().nth(char_with_index + 1).unwrap_or('A').is_lowercase() ||
+        convertable_string.chars().nth(char_with_index - 1).unwrap_or('A').is_lowercase()
+}
+#[inline]
+fn char_is_uppercase(test_char: char) -> bool {
+    test_char == test_char.to_ascii_uppercase()
 }
 
 #[macro_export]
@@ -180,4 +233,192 @@ macro_rules! define_tests{
             }
         )*
     }
+}
+
+#[test]
+fn test_char_is_uppercase_when_it_is() {
+    assert_eq!(char_is_uppercase('A'), true)
+}
+
+#[test]
+fn test_char_is_uppercase_when_it_is_not() {
+    assert_eq!(char_is_uppercase('a'), false)
+}
+
+#[test]
+fn test_next_or_previous_char_is_lowercase_true() {
+    assert_eq!(next_or_previous_char_is_lowercase("TestWWW", 3), true)
+}
+
+#[test]
+fn test_next_or_previous_char_is_lowercase_false() {
+    assert_eq!(next_or_previous_char_is_lowercase("TestWWW", 5), false)
+}
+
+#[test]
+fn snake_like_with_seperator_lowers() {
+    assert_eq!(snake_like_with_seperator("".to_string(), "^", 'c', "lower"), "^c".to_string())
+}
+
+#[test]
+fn snake_like_with_seperator_upper() {
+    assert_eq!(snake_like_with_seperator("".to_string(), "^", 'c', "upper"), "^C".to_string())
+}
+
+#[test]
+fn snake_like_no_seperator_lower() {
+    assert_eq!(snake_like_no_seperator("".to_string(), 'C', "lower"), "c".to_string())
+}
+
+#[test]
+fn snake_like_no_seperator_upper() {
+    assert_eq!(snake_like_no_seperator("".to_string(), 'c', "upper"), "C".to_string())
+}
+
+#[test]
+fn requires_seperator_upper_not_first_wrap_is_safe_current_upper() {
+    assert_eq!(requires_seperator((2, 'C'), false, "test"), true)
+}
+
+#[test]
+fn requires_seperator_upper_not_first_wrap_is_safe_current_lower() {
+    assert_eq!(requires_seperator((2, 'c'), false, "test"), false)
+}
+
+#[test]
+fn requires_seperator_upper_first_wrap_is_safe_current_upper() {
+    assert_eq!(requires_seperator((0, 'T'), true, "Test"), false)
+}
+
+#[test]
+fn requires_seperator_upper_first_wrap_is_safe_current_lower() {
+    assert_eq!(requires_seperator((0, 't'), true, "Test"), false)
+}
+
+#[test]
+fn requires_seperator_upper_first_wrap_is_safe_current_lower_next_is_too() {
+    assert_eq!(requires_seperator((0, 't'), true, "test"), false)
+}
+
+#[test]
+fn test_char_is_seperator_dash() {
+    assert_eq!(char_is_seperator(&'-'), true)
+}
+
+#[test]
+fn test_char_is_seperator_underscore() {
+    assert_eq!(char_is_seperator(&'_'), true)
+}
+
+#[test]
+fn test_char_is_seperator_space() {
+    assert_eq!(char_is_seperator(&' '), true)
+}
+
+#[test]
+fn test_char_is_seperator_when_not() {
+    assert_eq!(char_is_seperator(&'A'), false)
+}
+
+#[test]
+fn test_last_char_lower_current_is_upper_or_new_word_with_new_word() {
+    assert_eq!(last_char_lower_current_is_upper_or_new_word(true, &' ', &'-'), true)
+}
+
+#[test]
+fn test_last_char_lower_current_is_upper_or_new_word_last_char_space() {
+    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, &' ', &'-'), false)
+}
+
+#[test]
+fn test_last_char_lower_current_is_upper_or_new_word_last_char_lower_current_upper() {
+    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, &'a', &'A'), true)
+}
+
+#[test]
+fn test_last_char_lower_current_is_upper_or_new_word_last_char_upper_current_upper() {
+    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, &'A', &'A'), false)
+}
+
+#[test]
+fn test_last_char_lower_current_is_upper_or_new_word_last_char_upper_current_lower() {
+    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, &'A', &'a'), false)
+}
+
+#[test]
+fn test_first_word_or_not_inverted_with_first_word() {
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false,
+        inverted: false,
+    };
+    assert_eq!(first_word_or_not_inverted(true, &options), true)
+}
+
+#[test]
+fn test_first_word_or_not_inverted_not_first_word_not_inverted() {
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false,
+        inverted: false,
+    };
+    assert_eq!(first_word_or_not_inverted(false, &options), true)
+}
+
+#[test]
+fn test_first_word_or_not_inverted_not_first_word_is_inverted() {
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false,
+        inverted: true,
+    };
+    assert_eq!(first_word_or_not_inverted(false, &options), false)
+}
+
+#[test]
+fn test_not_first_word_and_has_seperator_is_first_and_not_seperator() {
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false,
+        inverted: false,
+    };
+    assert_eq!(not_first_word_and_has_seperator(true, &options), false)
+}
+
+#[test]
+fn test_not_first_word_and_has_seperator_not_first_and_not_seperator() {
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false,
+        inverted: false,
+    };
+    assert_eq!(not_first_word_and_has_seperator(false, &options), false)
+}
+
+#[test]
+fn test_not_first_word_and_has_seperator_not_first_and_has_seperator() {
+    let options = CamelOptions {
+        new_word: false,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: true,
+        inverted: false,
+    };
+    assert_eq!(not_first_word_and_has_seperator(false, &options), true)
 }
