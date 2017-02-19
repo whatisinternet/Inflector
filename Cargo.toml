@@ -11,7 +11,8 @@ license="BSD-2-Clause"
 description = """
 Adds String based inflections for Rust. Snake, kebab, camel, sentence, class, title and table cases as well as ordinalize, deordinalize, demodulize, foreign key, and pluralize/singularize are supported as both traits and pure functions acting on String types.
 """
-keywords = ["pluralize", "case", "camel", "snake", "inflection"]
+keywords = ["pluralize", "string", "camel", "snake", "inflection"]
+categories = ["text-processing", "value-formatting"]
 
 
 [features]
