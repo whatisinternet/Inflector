@@ -24,27 +24,17 @@ pub fn to_case_camel_like(convertable_string: String, camel_options: CamelOption
     let mut first_word: bool = camel_options.first_word;
     let mut last_char: char = camel_options.last_char;
     convertable_string.chars()
-        .fold("".to_string(),
-              |mut result, character| if character == '-' || character == '_' || character == ' ' {
+        .fold("".to_string(), |mut result, character|
+              if char_is_seperator(&character) {
                   new_word = true;
                   result
               } else if character.is_numeric() {
                   new_word = true;
                   result.push(character);
                   result
-              } else if new_word ||
-                                                ((last_char.is_lowercase() &&
-                                                  character.is_uppercase()) &&
-                                                 (last_char != ' ')) {
+              } else if last_char_lower_current_is_upper_or_new_word(new_word, &last_char, &character) {
                   new_word = false;
-                  if !first_word && camel_options.has_seperator {
-                      result.push(camel_options.injectable_char);
-                  }
-                  if !camel_options.inverted || first_word {
-                      result.push(character.to_ascii_uppercase());
-                  } else {
-                      result.push(character.to_ascii_lowercase());
-                  }
+                  result = append_on_new_word(result, first_word, character, &camel_options);
                   first_word = false;
                   result
               } else {
@@ -55,37 +45,19 @@ pub fn to_case_camel_like(convertable_string: String, camel_options: CamelOption
 }
 
 #[inline]
-fn to_snake_like_from_snake_like(convertable_string: String,
-                                 replace_with: &str,
-                                 case: &str)
-                                 -> String {
+fn to_snake_like_from_snake_like(convertable_string: String, replace_with: &str, case: &str) -> String {
     let mut new_word: bool = false;
     let mut last_char: char = ' ';
     convertable_string.chars()
-        .fold("".to_string(),
-              |mut result, character| if character == '-' || character == '_' || character == ' ' {
+        .fold("".to_string(), |mut result, character|
+              if char_is_seperator(&character) {
                   new_word = true;
                   result.push(replace_with.chars().nth(0).unwrap_or('_'));
                   result
-              } else if new_word ||
-                                                ((last_char.is_lowercase() &&
-                                                  character.is_uppercase()) &&
-                                                 (last_char != ' ')) {
-                  new_word = false;
-                  if case == "lower" {
-                      result.push(character.to_ascii_lowercase());
-                  } else {
-                      result.push(character.to_ascii_uppercase());
-                  }
-                  result
               } else {
+                  new_word = false;
                   last_char = character;
-                  if case == "lower" {
-                      result.push(character.to_ascii_lowercase());
-                  } else {
-                      result.push(character.to_ascii_uppercase());
-                  }
-                  result
+                  snake_like_no_seperator(result, character, case)
               })
 }
 
