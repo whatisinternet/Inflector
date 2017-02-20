@@ -14,5 +14,6 @@ if [ "${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}" != "master" ] && [ "$TRAVIS
     git checkout ${TRAVIS_COMMIT} && \
     cargo bench --features=unstable > benches-variable && \
     cargo install cargo-benchcmp --force && \
-    /home/travis/.cargo/bin/cargo-benchcmp benches-control benches-variable;
+    export PATH=/home/travis/.cargo/bin:$PATH && \
+    cargo benchcmp benches-control benches-variable;
 fi
