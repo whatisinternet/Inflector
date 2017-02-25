@@ -1,7 +1,7 @@
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use cases::classcase::to_class_case;
 
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 /// Deconstantizes a `String`
 ///
 /// ```

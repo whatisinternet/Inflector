@@ -42,7 +42,7 @@ macro_rules! gated_str_tests {
     ( $($test_name:ident => $imp_trait:ident => $to_cast:expr => $casted:expr), *) => {
         $(
             #[test]
-            #[cfg(not(feature = "without_full"))]
+            #[cfg(not(feature = "lightweight"))]
             fn $test_name() {
                 assert_eq!($to_cast.$imp_trait(), $casted)
             }
@@ -54,7 +54,7 @@ macro_rules! gated_string_tests {
     ( $($test_name:ident => $imp_trait:ident => $to_cast:expr => $casted:expr), *) => {
         $(
             #[test]
-            #[cfg(not(feature = "without_full"))]
+            #[cfg(not(feature = "lightweight"))]
             fn $test_name() {
                 assert_eq!($to_cast.to_string().$imp_trait(), $casted)
             }
@@ -66,7 +66,7 @@ macro_rules! gated_number_tests {
     ( $($test_name:ident => $imp_trait:ident => $typ:ident => $to_cast:expr => $casted:expr), *) => {
         $(
             #[test]
-            #[cfg(not(feature = "without_full"))]
+            #[cfg(not(feature = "lightweight"))]
             fn $test_name() {
                 let to_cast: $typ = $to_cast;
                 assert_eq!(to_cast.$imp_trait(), $casted)

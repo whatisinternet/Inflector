@@ -11,10 +11,10 @@
 //! let is_camel_cased: bool= camel_case_string.is_camel_case();
 //! assert!(is_camel_cased == true);
 //! ```
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 extern crate regex;
 
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 #[macro_use] extern crate lazy_static;
 /// Provides case inflections
 /// - Camel case
@@ -39,13 +39,13 @@ pub mod suffix;
 /// - Demodulize
 /// - Pluralize
 /// - Singularize
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 pub mod string;
 
 
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use cases::classcase::to_class_case;
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use cases::classcase::is_class_case;
 
 use cases::camelcase::to_camel_case;
@@ -72,9 +72,9 @@ use cases::sentencecase::is_sentence_case;
 use cases::titlecase::to_title_case;
 use cases::titlecase::is_title_case;
 
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use cases::tablecase::to_table_case;
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use cases::tablecase::is_table_case;
 
 use numbers::ordinalize::ordinalize;
@@ -83,14 +83,14 @@ use numbers::deordinalize::deordinalize;
 use suffix::foreignkey::to_foreign_key;
 use suffix::foreignkey::is_foreign_key;
 
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use string::demodulize::demodulize;
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use string::deconstantize::deconstantize;
 
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use string::pluralize::to_plural;
-#[cfg(not(feature = "without_full"))]
+#[cfg(not(feature = "lightweight"))]
 use string::singularize::to_singular;
 
 #[allow(missing_docs)]
@@ -126,22 +126,22 @@ pub trait Inflector {
     fn to_foreign_key(&self) -> String;
     fn is_foreign_key(&self) -> bool;
 
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn demodulize(&self) -> String;
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn deconstantize(&self) -> String;
 
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn to_class_case(&self) -> String;
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn is_class_case(&self) -> bool;
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn to_table_case(&self) -> String;
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn is_table_case(&self) -> bool;
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn to_plural(&self) -> String;
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     fn to_singular(&self) -> String;
 }
 
@@ -167,7 +167,7 @@ macro_rules! define_gated_implementations {
     ( $slf:ident; $($imp_trait:ident => $typ:ident), *) => {
         $(
             #[inline]
-            #[cfg(not(feature = "without_full"))]
+            #[cfg(not(feature = "lightweight"))]
             fn $imp_trait(&$slf) -> $typ {
                 $imp_trait($slf.to_string())
             }
@@ -296,7 +296,7 @@ mod tests {
         benchmark_string_is_foreign_key => is_foreign_key => "bar_id".to_string()
     ];
 
-    #[cfg(not(feature = "without_full"))]
+    #[cfg(not(feature = "lightweight"))]
     benchmarks![
         benchmark_str_to_class => to_class_case => "foo",
         benchmark_str_is_class => is_class_case => "Foo",

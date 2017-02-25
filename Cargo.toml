@@ -17,7 +17,7 @@ keywords = ["pluralize", "case", "camel", "snake", "inflection"]
 [features]
 default = ['regex', 'lazy_static']
 unstable = []
-without_full = []
+lightweight = []
 
 [lib]
 name = "inflector"

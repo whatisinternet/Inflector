@@ -114,13 +114,13 @@ deconstantize. Then in your `cargo.toml` you should specify:
 ```toml
 [dependencies.Inflector]
 version = "*"
-features = ["without_full"]
+features = ["lightweight"]
 ```
 
 To test this crate locally with features off try:
 
 ```shell
-cargo test --features=without_full --no-default-features
+cargo test --features=lightweight --no-default-features
 ```
 
 ## [Contributing](CONTRIBUTING.md)
