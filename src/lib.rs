@@ -11,9 +11,11 @@
 //! let is_camel_cased: bool= camel_case_string.is_camel_case();
 //! assert!(is_camel_cased == true);
 //! ```
+#[cfg(not(feature = "without_full"))]
 extern crate regex;
-#[macro_use]
-extern crate lazy_static;
+
+#[cfg(not(feature = "without_full"))]
+#[macro_use] extern crate lazy_static;
 /// Provides case inflections
 /// - Camel case
 /// - Class case
@@ -37,10 +39,13 @@ pub mod suffix;
 /// - Demodulize
 /// - Pluralize
 /// - Singularize
+#[cfg(not(feature = "without_full"))]
 pub mod string;
 
 
+#[cfg(not(feature = "without_full"))]
 use cases::classcase::to_class_case;
+#[cfg(not(feature = "without_full"))]
 use cases::classcase::is_class_case;
 
 use cases::camelcase::to_camel_case;
@@ -67,7 +72,9 @@ use cases::sentencecase::is_sentence_case;
 use cases::titlecase::to_title_case;
 use cases::titlecase::is_title_case;
 
+#[cfg(not(feature = "without_full"))]
 use cases::tablecase::to_table_case;
+#[cfg(not(feature = "without_full"))]
 use cases::tablecase::is_table_case;
 
 use numbers::ordinalize::ordinalize;
@@ -76,25 +83,24 @@ use numbers::deordinalize::deordinalize;
 use suffix::foreignkey::to_foreign_key;
 use suffix::foreignkey::is_foreign_key;
 
+#[cfg(not(feature = "without_full"))]
 use string::demodulize::demodulize;
+#[cfg(not(feature = "without_full"))]
 use string::deconstantize::deconstantize;
 
+#[cfg(not(feature = "without_full"))]
 use string::pluralize::to_plural;
+#[cfg(not(feature = "without_full"))]
 use string::singularize::to_singular;
 
 #[allow(missing_docs)]
 pub trait Inflector {
-    fn to_class_case(&self) -> String;
-    fn is_class_case(&self) -> bool;
 
     fn to_camel_case(&self) -> String;
     fn is_camel_case(&self) -> bool;
 
     fn to_pascal_case(&self) -> String;
     fn is_pascal_case(&self) -> bool;
-
-    fn to_table_case(&self) -> String;
-    fn is_table_case(&self) -> bool;
 
     fn to_snake_case(&self) -> String;
     fn is_snake_case(&self) -> bool;
@@ -120,12 +126,25 @@ pub trait Inflector {
     fn to_foreign_key(&self) -> String;
     fn is_foreign_key(&self) -> bool;
 
+    #[cfg(not(feature = "without_full"))]
     fn demodulize(&self) -> String;
+    #[cfg(not(feature = "without_full"))]
     fn deconstantize(&self) -> String;
 
+    #[cfg(not(feature = "without_full"))]
+    fn to_class_case(&self) -> String;
+    #[cfg(not(feature = "without_full"))]
+    fn is_class_case(&self) -> bool;
+    #[cfg(not(feature = "without_full"))]
+    fn to_table_case(&self) -> String;
+    #[cfg(not(feature = "without_full"))]
+    fn is_table_case(&self) -> bool;
+    #[cfg(not(feature = "without_full"))]
     fn to_plural(&self) -> String;
+    #[cfg(not(feature = "without_full"))]
     fn to_singular(&self) -> String;
 }
+
 
 #[allow(missing_docs)]
 pub trait InflectorNumbers {
@@ -144,19 +163,27 @@ macro_rules! define_implementations {
     }
 }
 
+macro_rules! define_gated_implementations {
+    ( $slf:ident; $($imp_trait:ident => $typ:ident), *) => {
+        $(
+            #[inline]
+            #[cfg(not(feature = "without_full"))]
+            fn $imp_trait(&$slf) -> $typ {
+                $imp_trait($slf.to_string())
+            }
+        )*
+    }
+}
+
 macro_rules! implement_string_for {
     ( $trt:ident; $($typ:ident), *) => {
         $(
             impl $trt for $typ {
                 define_implementations![self;
-                    to_class_case => String,
-                    is_class_case => bool,
                     to_camel_case => String,
                     is_camel_case => bool,
                     to_pascal_case => String,
                     is_pascal_case => bool,
-                    to_table_case => String,
-                    is_table_case => bool,
                     to_screaming_snake_case => String,
                     is_screaming_snake_case => bool,
                     to_snake_case => String,
@@ -172,11 +199,17 @@ macro_rules! implement_string_for {
                     to_foreign_key => String,
                     is_foreign_key => bool,
                     ordinalize => String,
-                    deordinalize => String,
-                    demodulize => String,
-                    deconstantize => String,
+                    deordinalize => String
+                ];
+                define_gated_implementations![self;
+                    to_class_case => String,
+                    is_class_case => bool,
+                    to_table_case => String,
+                    is_table_case => bool,
                     to_plural => String,
-                    to_singular => String
+                    to_singular => String,
+                    demodulize => String,
+                    deconstantize => String
                 ];
             }
         )*
@@ -225,12 +258,8 @@ mod tests {
     use ::Inflector;
 
     benchmarks![
-        benchmark_str_to_class => to_class_case => "foo",
-        benchmark_str_is_class => is_class_case => "Foo",
         benchmark_str_to_camel => to_camel_case => "foo_bar",
         benchmark_str_is_camel => is_camel_case => "fooBar",
-        benchmark_str_to_table => to_table_case => "fooBar",
-        benchmark_str_is_table => is_table_case => "foo_bars",
         benchmark_str_to_screaming_snake => to_screaming_snake_case => "fooBar",
         benchmark_str_is_screaming_snake => is_screaming_snake_case => "FOO_BAR",
         benchmark_str_to_snake => to_snake_case => "fooBar",
@@ -247,16 +276,8 @@ mod tests {
         benchmark_str_deordinalize  => deordinalize => "1st",
         benchmark_str_to_foreign_key => to_foreign_key => "Foo::Bar",
         benchmark_str_is_foreign_key => is_foreign_key => "bar_id",
-        benchmark_str_demodulize => demodulize => "Foo::Bar",
-        benchmark_str_deconstantize => deconstantize => "Foo::Bar",
-        benchmark_str_pluralize => to_plural => "crate",
-        benchmark_str_singular => to_singular => "crates",
-        benchmark_string_to_class => to_class_case => "foo".to_string(),
-        benchmark_string_is_class => is_class_case => "Foo".to_string(),
         benchmark_string_to_camel => to_camel_case => "foo_bar".to_string(),
         benchmark_string_is_camel => is_camel_case => "fooBar".to_string(),
-        benchmark_string_to_table => to_table_case => "fooBar".to_string(),
-        benchmark_string_is_table => is_table_case => "foo_bars".to_string(),
         benchmark_string_to_screaming_snake => to_screaming_snake_case => "fooBar".to_string(),
         benchmark_string_is_screaming_snake => is_screaming_snake_case => "FOO_BAR".to_string(),
         benchmark_string_to_snake => to_snake_case => "fooBar".to_string(),
@@ -272,10 +293,26 @@ mod tests {
         benchmark_string_ordinalize  => ordinalize => "1".to_string(),
         benchmark_string_deordinalize  => deordinalize => "1st".to_string(),
         benchmark_string_to_foreign_key => to_foreign_key => "Foo::Bar".to_string(),
-        benchmark_string_is_foreign_key => is_foreign_key => "bar_id".to_string(),
+        benchmark_string_is_foreign_key => is_foreign_key => "bar_id".to_string()
+    ];
+
+    #[cfg(not(feature = "without_full"))]
+    benchmarks![
+        benchmark_str_to_class => to_class_case => "foo",
+        benchmark_str_is_class => is_class_case => "Foo",
+        benchmark_str_to_table => to_table_case => "fooBar",
+        benchmark_str_is_table => is_table_case => "foo_bars",
+        benchmark_str_pluralize => to_plural => "crate",
+        benchmark_str_singular => to_singular => "crates",
+        benchmark_string_to_class => to_class_case => "foo".to_string(),
+        benchmark_string_is_class => is_class_case => "Foo".to_string(),
+        benchmark_string_to_table => to_table_case => "fooBar".to_string(),
+        benchmark_string_is_table => is_table_case => "foo_bars".to_string(),
+        benchmark_string_pluralize => to_plural => "crate".to_string(),
+        benchmark_string_singular => to_singular => "crates".to_string(),
         benchmark_string_demodulize => demodulize => "Foo::Bar".to_string(),
         benchmark_string_deconstantize => deconstantize => "Foo::Bar".to_string(),
-        benchmark_string_pluralize => to_plural => "crate".to_string(),
-        benchmark_string_singular => to_singular => "crates".to_string()
+        benchmark_str_demodulize => demodulize => "Foo::Bar",
+        benchmark_str_deconstantize => deconstantize => "Foo::Bar"
     ];
 }

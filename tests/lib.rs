@@ -38,13 +38,47 @@ macro_rules! number_tests {
     }
 }
 
+macro_rules! gated_str_tests {
+    ( $($test_name:ident => $imp_trait:ident => $to_cast:expr => $casted:expr), *) => {
+        $(
+            #[test]
+            #[cfg(not(feature = "without_full"))]
+            fn $test_name() {
+                assert_eq!($to_cast.$imp_trait(), $casted)
+            }
+        )*
+    }
+}
+
+macro_rules! gated_string_tests {
+    ( $($test_name:ident => $imp_trait:ident => $to_cast:expr => $casted:expr), *) => {
+        $(
+            #[test]
+            #[cfg(not(feature = "without_full"))]
+            fn $test_name() {
+                assert_eq!($to_cast.to_string().$imp_trait(), $casted)
+            }
+        )*
+    }
+}
+
+macro_rules! gated_number_tests {
+    ( $($test_name:ident => $imp_trait:ident => $typ:ident => $to_cast:expr => $casted:expr), *) => {
+        $(
+            #[test]
+            #[cfg(not(feature = "without_full"))]
+            fn $test_name() {
+                let to_cast: $typ = $to_cast;
+                assert_eq!(to_cast.$imp_trait(), $casted)
+            }
+        )*
+    }
+}
+
+
 str_tests![
-    str_to_class => to_class_case => "foo" => "Foo".to_string(),
-    str_is_class => is_class_case => "Foo" => true,
     str_to_camel => to_camel_case => "foo_bar" => "fooBar".to_string(),
     str_is_camel => is_camel_case => "fooBar" => true,
-    str_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
-    str_is_table => is_table_case => "foo_bars" => true,
     str_to_screaming_snake => to_screaming_snake_case => "fooBar" => "FOO_BAR".to_string(),
     str_is_screaming_snake => is_screaming_snake_case => "FOO_BAR" => true,
     str_to_snake => to_snake_case => "fooBar" => "foo_bar".to_string(),
@@ -60,20 +94,23 @@ str_tests![
     str_ordinalize  => ordinalize => "1" => "1st".to_string(),
     str_deordinalize  => deordinalize => "1st" => "1".to_string(),
     str_to_foreign_key => to_foreign_key => "Foo::Bar" => "bar_id".to_string(),
-    str_is_foreign_key => is_foreign_key => "bar_id" => true,
-    str_demodulize => demodulize => "Foo::Bar" => "Bar".to_string(),
-    str_deconstantize => deconstantize => "Foo::Bar" => "Foo".to_string(),
+    str_is_foreign_key => is_foreign_key => "bar_id" => true
+];
+
+gated_str_tests![
+    str_to_class => to_class_case => "foo" => "Foo".to_string(),
+    str_is_class => is_class_case => "Foo" => true,
+    str_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
+    str_is_table => is_table_case => "foo_bars" => true,
     str_pluralize => to_plural => "crate" => "crates".to_string(),
-    str_singular => to_singular => "crates" => "crate".to_string()
+    str_singular => to_singular => "crates" => "crate".to_string(),
+    str_demodulize => demodulize => "Foo::Bar" => "Bar".to_string(),
+    str_deconstantize => deconstantize => "Foo::Bar" => "Foo".to_string()
 ];
 
 string_tests![
-    string_to_class => to_class_case => "foo" => "Foo".to_string(),
-    string_is_class => is_class_case => "Foo" => true,
     string_to_camel => to_camel_case => "foo_bar" => "fooBar".to_string(),
     string_is_camel => is_camel_case => "fooBar" => true,
-    string_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
-    string_is_table => is_table_case => "foo_bars" => true,
     string_to_screaming_snake => to_screaming_snake_case => "fooBar" => "FOO_BAR".to_string(),
     string_is_screaming_snake => is_screaming_snake_case => "FOO_BAR" => true,
     string_to_snake => to_snake_case => "fooBar" => "foo_bar".to_string(),
@@ -89,11 +126,18 @@ string_tests![
     string_ordinalize  => ordinalize => "1" => "1st".to_string(),
     string_deordinalize  => deordinalize => "1st" => "1".to_string(),
     string_to_foreign_key => to_foreign_key => "Foo::Bar" => "bar_id".to_string(),
-    string_is_foreign_key => is_foreign_key => "bar_id" => true,
-    string_demodulize => demodulize => "Foo::Bar" => "Bar".to_string(),
-    string_deconstantize => deconstantize => "Foo::Bar" => "Foo".to_string(),
+    string_is_foreign_key => is_foreign_key => "bar_id" => true
+];
+
+gated_string_tests![
+    string_to_class => to_class_case => "foo" => "Foo".to_string(),
+    string_is_class => is_class_case => "Foo" => true,
+    string_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
+    string_is_table => is_table_case => "foo_bars" => true,
     string_pluralize => to_plural => "crate" => "crates".to_string(),
-    string_singular => to_singular => "crates" => "crate".to_string()
+    string_singular => to_singular => "crates" => "crate".to_string(),
+    string_demodulize => demodulize => "Foo::Bar" => "Bar".to_string(),
+    string_deconstantize => deconstantize => "Foo::Bar" => "Foo".to_string()
 ];
 
 number_tests![
