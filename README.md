@@ -106,6 +106,23 @@ fn main() {
 
 ```
 
+## Advanced installation and usage:
+
+If the project doesn't require singularize, pluralize, class, table, demodulize,
+deconstantize. Then in your `cargo.toml` you should specify:
+
+```toml
+[dependencies.Inflector]
+version = "*"
+features = ["without_full"]
+```
+
+To test this crate locally with features off try:
+
+```shell
+cargo test --features=without_full --no-default-features
+```
+
 ## [Contributing](CONTRIBUTING.md)
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
