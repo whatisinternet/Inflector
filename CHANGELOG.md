@@ -1,3 +1,21 @@
+# 0.8.0
+
+## New features:
+
+- Feature gated pluralize, singularize, class_case, table_case, demodulize, and
+  deconstantize. This can be activated by passing --features=lightweight. See
+  README
+
+
+## Possible breaking change:
+
+- Feature gated items are on by default, meaning that you'll get the full
+  version of the crate if you install as normal. See README if you want to use
+  the lightweight version.
+- Although the application still passes all tests, substantial portions of the
+  core of the conversion code have been method extracted and may have caused a
+  change for some people. Please file an issue if this is a problem for you.
+
 # 0.7.0
 
 ## New features:
