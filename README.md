@@ -115,6 +115,14 @@ deconstantize. Then in your `cargo.toml` you should specify:
 [dependencies.Inflector]
 version = "*"
 features = ["lightweight"]
+default-features = false
+```
+
+Or
+
+```toml
+Inflector = {version="*", features=["lightweight"], default-features=false}
+
 ```
 
 To test this crate locally with features off try:
