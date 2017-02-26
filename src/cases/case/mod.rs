@@ -143,20 +143,34 @@ macro_rules! define_test_group {
             define_tests![
                 $method;
                 from_camel_case             => "fooBar"     => $expected,
-                from_class_case             => "FooBar"     => $expected,
                 from_screaming_snake_case   => "FOO_BAR"    => $expected,
                 from_kebab_case             => "foo-bar"    => $expected,
                 from_pascal_case            => "FooBar"     => $expected,
                 from_sentence_case          => "Foo bar"    => $expected,
                 from_snake_case             => "foo_bar"    => $expected,
                 from_title_case             => "Foo Bar"    => $expected,
-                from_table_case             => "foo_bars"   => $expected_plural,
                 from_train_case             => "Foo-Bars"   => $expected_plural
+            ];
+            define_gated_tests![
+                $method;
+                from_class_case             => "FooBar"     => $expected,
+                from_table_case             => "foo_bars"   => $expected_plural
             ];
         }
     }
 }
 
+macro_rules! define_gated_tests{
+    ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
+        $(
+            #[test]
+            #[cfg(not(feature = "lightweight"))]
+            fn $test_name() {
+                assert_eq!($method($to_convert.to_string()), $expected.to_string())
+            }
+        )*
+    }
+}
 macro_rules! define_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(

@@ -1,6 +1,9 @@
 #![deny(warnings)]
+#[cfg(not(feature = "lightweight"))]
 use string::pluralize::to_plural;
+#[cfg(not(feature = "lightweight"))]
 use cases::case::*;
+#[cfg(not(feature = "lightweight"))]
 /// Converts a `String` to `table-case` `String`
 ///
 /// ```
@@ -63,6 +66,8 @@ pub fn to_table_case(non_table_case_string: String) -> String {
     let split: (&str, &str) = snaked.split_at(snaked.rfind('_').unwrap_or(0));
     format!("{}{}", split.0, to_plural(split.1.to_string()))
 }
+
+#[cfg(not(feature = "lightweight"))]
 /// Determines if a `String` is `table-case`
 ///
 /// ```
@@ -125,6 +130,7 @@ pub fn is_table_case(test_string: String) -> bool {
 }
 
 #[cfg(all(feature = "unstable", test))]
+#[cfg(not(feature = "lightweight"))]
 mod tests {
     extern crate test;
     use self::test::Bencher;
@@ -140,6 +146,7 @@ mod tests {
     }
 }
 
+#[cfg(not(feature = "lightweight"))]
 define_test_group!(table_tests,
                    to_table_case,
                    tablecase,
