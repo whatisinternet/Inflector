@@ -1,0 +1,11 @@
+#!/bin/sh
+
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
+cargo bench --features=unstable>variable &&\
+git stash && \
+git checkout master && \
+cargo bench --features=unstable>control &&\
+cargo benchcmp control variable --threshold 10 &&\
+git checkout $branch &&\
+git stash apply
