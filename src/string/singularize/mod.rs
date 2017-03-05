@@ -122,6 +122,7 @@ lazy_static!{
     static ref RULES: Vec<(Regex, &'static str)> = {
     let mut r = Vec::new();
     rules![r;
+     r"(\w*)s$" => "",
      r"(n)ews$" => "ews",
      r"(\w*)(o)es$" => "",
      r"(\w*)([ti])a$" => "um",
@@ -131,7 +132,7 @@ lazy_static!{
      r"(\w*)(hive)s$" => "",
      r"(\w*)(tive)s$" => "",
      r"(\w*)([lr])ves$" => "f",
-     r"(\w*)([^aeiouy]|qu)ies$" => "y",
+     r"(\w*([^aeiouy]|qu))ies$" => "y",
      r"(s)eries$" => "eries",
      r"(m)ovies$" => "ovie",
      r"(\w*)(x|ch|ss|sh)es$" => "",
@@ -147,11 +148,17 @@ lazy_static!{
      r"(matr)ices$" => "ix",
      r"(quiz)zes$" => "",
      r"(database)s$" => "",
-     r"(\w*)s$" => "",
      r"(\w*)(ss)$" => ""
          ];
      r
     };
+}
+
+#[test]
+fn singularize_ies_suffix() {
+    assert_eq!("reply", to_singular("replies".to_owned()));
+    assert_eq!("lady", to_singular("ladies".to_owned()));
+    assert_eq!("soliloquy", to_singular("soliloquies".to_owned()));
 }
 
 #[test]
