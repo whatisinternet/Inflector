@@ -3,6 +3,8 @@
 ## Bugfixes:
 
 - Fixed singularize issues with `/ies/`. Thanks @mthjones
+- Fixed issue with feature gates which may have caused downstream api
+  incompatibilities.
 
 # 0.8.0
 
