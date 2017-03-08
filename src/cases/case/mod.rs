@@ -184,7 +184,7 @@ macro_rules! define_gated_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
             #[test]
-            #[cfg(not(feature = "lightweight"))]
+            #[cfg(feature = "heavyweight")]
             fn $test_name() {
                 assert_eq!($method($to_convert.to_string()), $expected.to_string())
             }

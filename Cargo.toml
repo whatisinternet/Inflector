@@ -1,6 +1,6 @@
 [package]
 name = "Inflector"
-version = "0.8.0"
+version = "0.8.1"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 exclude = [".travis.yml", ".gitignore"]
 readme = "README.md"
@@ -16,9 +16,9 @@ categories = ["text-processing", "value-formatting"]
 
 
 [features]
-default = ['regex', 'lazy_static']
+default = ['heavyweight']
 unstable = []
-lightweight = []
+heavyweight = ['regex', 'lazy_static']
 
 [lib]
 name = "inflector"

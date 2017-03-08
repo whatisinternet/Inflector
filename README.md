@@ -109,26 +109,25 @@ fn main() {
 ## Advanced installation and usage:
 
 If the project doesn't require singularize, pluralize, class, table, demodulize,
-deconstantize. Then in your `cargo.toml` you should specify:
+deconstantize. Then in your `cargo.toml` you may wish to specify:
 
 ```toml
 [dependencies.Inflector]
 version = "*"
-features = ["lightweight"]
 default-features = false
 ```
 
 Or
 
 ```toml
-Inflector = {version="*", features=["lightweight"], default-features=false}
+Inflector = {version="*", default-features=false}
 
 ```
 
 To test this crate locally with features off try:
 
 ```shell
-cargo test --features=lightweight --no-default-features
+cargo test --no-default-features
 ```
 
 ## [Contributing](CONTRIBUTING.md)

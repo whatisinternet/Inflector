@@ -1,10 +1,12 @@
 language: rust
 cache: cargo
 sudo: false
+os:
+  - linux
 rust:
   - stable
   - beta
   - nightly
 after_success:
-  - cargo test --features=lightweight --no-default-features
+  - cargo test --no-default-features
   - ./travis-after-success.sh
