@@ -16,9 +16,9 @@ categories = ["text-processing", "value-formatting"]
 
 
 [features]
-default = ['regex', 'lazy_static']
+default = ['heavyweight']
 unstable = []
-lightweight = []
+heavyweight = ['regex', 'lazy_static']
 
 [lib]
 name = "inflector"

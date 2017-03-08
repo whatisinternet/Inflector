@@ -1,7 +1,7 @@
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 use cases::classcase::to_class_case;
 
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 /// Demodulize a `String`
 ///
 /// ```

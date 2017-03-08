@@ -1,9 +1,9 @@
 #![deny(warnings)]
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 use cases::case::*;
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 use string::singularize::to_singular;
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 /// Converts a `String` to `ClassCase` `String`
 ///
 /// ```
@@ -101,7 +101,7 @@ pub fn to_class_case(non_class_case_string: String) -> String {
     format!("{}{}", split.0, to_singular(split.1.to_string()))
 }
 
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 /// Determines if a `String` is `ClassCase` `bool`
 ///
 /// ```
@@ -198,7 +198,7 @@ pub fn is_class_case(test_string: String) -> bool {
 }
 
 #[cfg(all(feature = "unstable", test))]
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 mod tests {
     extern crate test;
     use self::test::Bencher;
@@ -219,5 +219,5 @@ mod tests {
     }
 }
 
-#[cfg(not(feature = "lightweight"))]
+#[cfg(feature = "heavyweight")]
 define_test_group!(class_tests, to_class_case, classcase, "FooBar", "FooBar");
