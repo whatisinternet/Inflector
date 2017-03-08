@@ -1,3 +1,9 @@
+# 0.8.1
+
+## Bugfixes:
+
+- Fixed singularize issues with `/ies/`. Thanks @mthjones
+
 # 0.8.0
 
 ## New features:
