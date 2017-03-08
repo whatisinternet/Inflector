@@ -57,7 +57,7 @@ fn to_snake_like_from_snake_like(convertable_string: &str, replace_with: &str, c
               } else {
                   new_word = false;
                   last_char = character;
-                  snake_like_no_seperator(result, character, case)
+                  snake_like_no_seperator(result, &character, case)
               })
 }
 
@@ -74,7 +74,7 @@ fn to_snake_like_from_camel_or_class(convertable_string: &str,
                   snake_like_with_seperator(acc, replace_with, &char_with_index.1, case)
               } else {
                   first_character = false;
-                  snake_like_no_seperator(acc, char_with_index.1, case)
+                  snake_like_no_seperator(acc, &char_with_index.1, case)
               })
 }
 
@@ -118,7 +118,7 @@ fn requires_seperator(char_with_index: (usize, char), first_character: bool, con
 }
 
 #[inline]
-fn snake_like_no_seperator(mut accumlator: String, current_char: char, case: &str) -> String {
+fn snake_like_no_seperator(mut accumlator: String, current_char: &char, case: &str) -> String {
     if case == "lower" {
         accumlator.push(current_char.to_ascii_lowercase());
         accumlator
@@ -234,12 +234,12 @@ fn snake_like_with_seperator_upper() {
 
 #[test]
 fn snake_like_no_seperator_lower() {
-    assert_eq!(snake_like_no_seperator("".to_owned(), 'C', "lower"), "c".to_string())
+    assert_eq!(snake_like_no_seperator("".to_owned(), &'C', "lower"), "c".to_string())
 }
 
 #[test]
 fn snake_like_no_seperator_upper() {
-    assert_eq!(snake_like_no_seperator("".to_owned(), 'c', "upper"), "C".to_string())
+    assert_eq!(snake_like_no_seperator("".to_owned(), &'c', "upper"), "C".to_string())
 }
 
 #[test]
