@@ -10,16 +10,16 @@ pub struct CamelOptions {
     pub inverted: bool,
 }
 
-pub fn to_case_snake_like(convertable_string: String, replace_with: &str, case: &str) -> String {
+pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
     let seperators: &[char] = &[' ', '-', '_'];
     if convertable_string.contains(seperators) {
-        to_snake_like_from_snake_like(convertable_string, replace_with, case)
+        to_snake_like_from_snake_like(&convertable_string, replace_with, case)
     } else {
-        to_snake_like_from_camel_or_class(convertable_string, replace_with, case)
+        to_snake_like_from_camel_or_class(&convertable_string, replace_with, case)
     }
 }
 
-pub fn to_case_camel_like(convertable_string: String, camel_options: CamelOptions) -> String {
+pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions) -> String {
     let mut new_word: bool = camel_options.new_word;
     let mut first_word: bool = camel_options.first_word;
     let mut last_char: char = camel_options.last_char;
@@ -45,7 +45,7 @@ pub fn to_case_camel_like(convertable_string: String, camel_options: CamelOption
 }
 
 #[inline]
-fn to_snake_like_from_snake_like(convertable_string: String, replace_with: &str, case: &str) -> String {
+fn to_snake_like_from_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
     let mut new_word: bool = false;
     let mut last_char: char = ' ';
     convertable_string.chars()
@@ -62,7 +62,7 @@ fn to_snake_like_from_snake_like(convertable_string: String, replace_with: &str,
 }
 
 #[inline]
-fn to_snake_like_from_camel_or_class(convertable_string: String,
+fn to_snake_like_from_camel_or_class(convertable_string: &str,
                                      replace_with: &str,
                                      case: &str)
                                      -> String {
@@ -186,7 +186,7 @@ macro_rules! define_gated_tests{
             #[test]
             #[cfg(feature = "heavyweight")]
             fn $test_name() {
-                assert_eq!($method($to_convert.to_string()), $expected.to_string())
+                assert_eq!($method($to_convert), $expected.to_string())
             }
         )*
     }
@@ -196,7 +196,7 @@ macro_rules! define_tests{
         $(
             #[test]
             fn $test_name() {
-                assert_eq!($method($to_convert.to_string()), $expected.to_string())
+                assert_eq!($method($to_convert), $expected.to_string())
             }
         )*
     }
@@ -224,22 +224,22 @@ fn test_next_or_previous_char_is_lowercase_false() {
 
 #[test]
 fn snake_like_with_seperator_lowers() {
-    assert_eq!(snake_like_with_seperator("".to_string(), "^", &'c', "lower"), "^c".to_string())
+    assert_eq!(snake_like_with_seperator("".to_owned(), "^", &'c', "lower"), "^c".to_string())
 }
 
 #[test]
 fn snake_like_with_seperator_upper() {
-    assert_eq!(snake_like_with_seperator("".to_string(), "^", &'c', "upper"), "^C".to_string())
+    assert_eq!(snake_like_with_seperator("".to_owned(), "^", &'c', "upper"), "^C".to_string())
 }
 
 #[test]
 fn snake_like_no_seperator_lower() {
-    assert_eq!(snake_like_no_seperator("".to_string(), 'C', "lower"), "c".to_string())
+    assert_eq!(snake_like_no_seperator("".to_owned(), 'C', "lower"), "c".to_string())
 }
 
 #[test]
 fn snake_like_no_seperator_upper() {
-    assert_eq!(snake_like_no_seperator("".to_string(), 'c', "upper"), "C".to_string())
+    assert_eq!(snake_like_no_seperator("".to_owned(), 'c', "upper"), "C".to_string())
 }
 
 #[test]

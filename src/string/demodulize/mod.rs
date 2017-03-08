@@ -2,11 +2,11 @@
 use cases::classcase::to_class_case;
 
 #[cfg(feature = "heavyweight")]
-/// Demodulize a `String`
+/// Demodulize a `&str`
 ///
 /// ```
 ///     use inflector::string::demodulize::demodulize;
-///     let mock_string: String = "Bar".to_string();
+///     let mock_string: &str = "Bar";
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -14,7 +14,7 @@ use cases::classcase::to_class_case;
 /// ```
 /// ```
 ///     use inflector::string::demodulize::demodulize;
-///     let mock_string: String = "::Bar".to_string();
+///     let mock_string: &str = "::Bar";
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -22,7 +22,7 @@ use cases::classcase::to_class_case;
 /// ```
 /// ```
 ///     use inflector::string::demodulize::demodulize;
-///     let mock_string: String = "Foo::Bar".to_string();
+///     let mock_string: &str = "Foo::Bar";
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -30,17 +30,17 @@ use cases::classcase::to_class_case;
 /// ```
 /// ```
 ///     use inflector::string::demodulize::demodulize;
-///     let mock_string: String = "Test::Foo::Bar".to_string();
+///     let mock_string: &str = "Test::Foo::Bar";
 ///     let expected_string: String = "Bar".to_string();
 ///     let asserted_string: String = demodulize(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
-pub fn demodulize(non_demodulize_string: String) -> String {
+pub fn demodulize(non_demodulize_string: &str) -> String {
     if non_demodulize_string.contains("::") {
         let split_string: Vec<&str> = non_demodulize_string.split("::").collect();
-        to_class_case(split_string[split_string.len() - 1].to_string())
+        to_class_case(split_string[split_string.len() - 1])
     } else {
-        non_demodulize_string
+        non_demodulize_string.to_string()
     }
 }

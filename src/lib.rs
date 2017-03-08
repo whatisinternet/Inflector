@@ -157,7 +157,18 @@ macro_rules! define_implementations {
         $(
             #[inline]
             fn $imp_trait(&$slf) -> $typ {
-                $imp_trait($slf.to_string())
+                $imp_trait($slf)
+            }
+        )*
+    }
+}
+
+macro_rules! define_number_implementations {
+    ( $slf:ident; $($imp_trait:ident => $typ:ident), *) => {
+        $(
+            #[inline]
+            fn $imp_trait(&$slf) -> $typ {
+                $imp_trait(&$slf.to_string())
             }
         )*
     }
@@ -169,7 +180,7 @@ macro_rules! define_gated_implementations {
             #[inline]
             #[cfg(feature = "heavyweight")]
             fn $imp_trait(&$slf) -> $typ {
-                $imp_trait($slf.to_string())
+                $imp_trait($slf)
             }
         )*
     }
@@ -220,7 +231,7 @@ macro_rules! implement_number_for {
     ( $trt:ident; $($typ:ident), *) => {
         $(
             impl $trt for $typ {
-                define_implementations![self;
+                define_number_implementations![self;
                     ordinalize => String
                 ];
             }
