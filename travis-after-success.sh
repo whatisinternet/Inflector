@@ -17,3 +17,18 @@ if [ "${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}" != "master" ] && [ "$TRAVIS
     export PATH=/home/travis/.cargo/bin:$PATH && \
     cargo benchcmp benches-control benches-variable --threshold 7;
 fi
+if [ "$TRAVIS_RUST_VERSION" == "stable" ]; then
+  wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz && \
+  tar xzf master.tar.gz &&\
+  cd kcov-master && \
+  mkdir build && \
+  cd build && \
+  cmake .. && \
+  make && \
+  sudo make install && \
+  cd ../.. && \
+  rm -rf kcov-master && \
+  for file in target/debug/inflector-*; do mkdir -p "target/cov/$(basename $file)"; kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file"; done && \
+  bash <(curl -s https://codecov.io/bash) && \
+  echo "Uploaded code coverage"
+fi
