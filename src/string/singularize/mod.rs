@@ -15,11 +15,11 @@ macro_rules! special_cases{
 }
 
 
-/// Converts a `String` to singularized `String`
+/// Converts a `&str` to singularized `String`
 ///
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "foo_bars".to_string();
+///     let mock_string: &str = "foo_bars";
 ///     let expected_string: String = "foo_bar".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -27,7 +27,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "oxen".to_string();
+///     let mock_string: &str = "oxen";
 ///     let expected_string: String = "ox".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -35,7 +35,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "crates".to_string();
+///     let mock_string: &str = "crates";
 ///     let expected_string: String = "crate".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -43,7 +43,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "oxen".to_string();
+///     let mock_string: &str = "oxen";
 ///     let expected_string: String = "ox".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -51,7 +51,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "boxes".to_string();
+///     let mock_string: &str = "boxes";
 ///     let expected_string: String = "box".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -59,7 +59,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "vengeance".to_string();
+///     let mock_string: &str = "vengeance";
 ///     let expected_string: String = "vengeance".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
@@ -67,16 +67,16 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::singularize::to_singular;
-///     let mock_string: String = "yoga".to_string();
+///     let mock_string: &str = "yoga";
 ///     let expected_string: String = "yoga".to_string();
 ///     let asserted_string: String = to_singular(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
 /// ```
 ///
-pub fn to_singular(non_singular_string: String) -> String {
+pub fn to_singular(non_singular_string: &str) -> String {
     if UNACCONTABLE_WORDS.contains(&non_singular_string.as_ref()) {
-        non_singular_string
+        non_singular_string.to_string()
     } else {
         special_cases![non_singular_string,
             "oxen" => "ox",
@@ -156,15 +156,15 @@ lazy_static!{
 
 #[test]
 fn singularize_ies_suffix() {
-    assert_eq!("reply", to_singular("replies".to_owned()));
-    assert_eq!("lady", to_singular("ladies".to_owned()));
-    assert_eq!("soliloquy", to_singular("soliloquies".to_owned()));
+    assert_eq!("reply", to_singular("replies"));
+    assert_eq!("lady", to_singular("ladies"));
+    assert_eq!("soliloquy", to_singular("soliloquies"));
 }
 
 #[test]
 fn singularize_string_if_a_regex_will_match() {
-    let expected_string: String = "ox".to_string();
-    let asserted_string: String = to_singular("oxen".to_string());
+    let expected_string: String= "ox".to_string();
+    let asserted_string: String = to_singular("oxen");
     assert!(expected_string == asserted_string);
 
 }
@@ -172,7 +172,7 @@ fn singularize_string_if_a_regex_will_match() {
 #[test]
 fn singularize_string_returns_none_option_if_no_match() {
     let expected_string: String = "bacon".to_string();
-    let asserted_string: String = to_singular("bacon".to_string());
+    let asserted_string: String = to_singular("bacon");
 
     assert!(expected_string == asserted_string);
 

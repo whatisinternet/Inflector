@@ -1,12 +1,13 @@
 # Rust Inflector
 
 
-[![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+[![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![codecov](https://codecov.io/gh/whatisinternet/inflector/branch/master/graph/badge.svg)](https://codecov.io/gh/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+
 
 Adds String based inflections for Rust. Snake, kebab, train, camel,
 sentence, class, and title cases as well as ordinalize,
 deordinalize, demodulize, deconstantize, foreign key, table case, and pluralize/singularize are supported as both traits and pure functions
-acting on String types.
+acting on &str and String types.
 
 -----
 ## Documentation:
@@ -53,7 +54,7 @@ Or
 
 ```rust
 ...
-// to use methods like to_snake_case(String);
+// to use methods like to_snake_case(&str);
 extern crate inflector;
 
 // use inflector::cases::classcase::to_class_case;
@@ -100,7 +101,7 @@ extern crate inflector;
 ...
 fn main() {
 ...
-  let camel_case_string: String = to_camel_case("some_string".to_string());
+  let camel_case_string: String = to_camel_case("some_string");
 ...
 }
 

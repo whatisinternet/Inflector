@@ -109,35 +109,35 @@ gated_str_tests![
 ];
 
 string_tests![
-    string_to_camel => to_camel_case => "foo_bar" => "fooBar".to_string(),
-    string_is_camel => is_camel_case => "fooBar" => true,
-    string_to_screaming_snake => to_screaming_snake_case => "fooBar" => "FOO_BAR".to_string(),
-    string_is_screaming_snake => is_screaming_snake_case => "FOO_BAR" => true,
-    string_to_snake => to_snake_case => "fooBar" => "foo_bar".to_string(),
-    string_is_snake => is_snake_case => "foo_bar" => true,
-    string_to_kebab => to_kebab_case => "fooBar" => "foo-bar".to_string(),
-    string_is_kebab => is_kebab_case => "foo-bar" => true,
-    string_to_train => to_train_case => "fooBar" => "Foo-Bar".to_string(),
-    string_is_train => is_train_case => "Foo-Bar" => true,
-    string_to_sentence => to_sentence_case => "fooBar" => "Foo bar".to_string(),
-    string_is_sentence => is_sentence_case => "Foo bar" => true,
-    string_to_title => to_title_case => "fooBar" => "Foo Bar".to_string(),
-    string_is_title => is_title_case => "Foo Bar" => true,
-    string_ordinalize  => ordinalize => "1" => "1st".to_string(),
-    string_deordinalize  => deordinalize => "1st" => "1".to_string(),
-    string_to_foreign_key => to_foreign_key => "Foo::Bar" => "bar_id".to_string(),
-    string_is_foreign_key => is_foreign_key => "bar_id" => true
+    string_to_camel => to_camel_case => "foo_bar".to_string() => "fooBar".to_string(),
+    string_is_camel => is_camel_case => "fooBar".to_string() => true,
+    string_to_screaming_snake => to_screaming_snake_case => "fooBar".to_string() => "FOO_BAR".to_string(),
+    string_is_screaming_snake => is_screaming_snake_case => "FOO_BAR".to_string() => true,
+    string_to_snake => to_snake_case => "fooBar".to_string() => "foo_bar".to_string(),
+    string_is_snake => is_snake_case => "foo_bar".to_string() => true,
+    string_to_kebab => to_kebab_case => "fooBar".to_string() => "foo-bar".to_string(),
+    string_is_kebab => is_kebab_case => "foo-bar".to_string() => true,
+    string_to_train => to_train_case => "fooBar".to_string() => "Foo-Bar".to_string(),
+    string_is_train => is_train_case => "Foo-Bar".to_string() => true,
+    string_to_sentence => to_sentence_case => "fooBar".to_string() => "Foo bar".to_string(),
+    string_is_sentence => is_sentence_case => "Foo bar".to_string() => true,
+    string_to_title => to_title_case => "fooBar".to_string() => "Foo Bar".to_string(),
+    string_is_title => is_title_case => "Foo Bar".to_string() => true,
+    string_ordinalize  => ordinalize => "1".to_string() => "1st".to_string(),
+    string_deordinalize  => deordinalize => "1st".to_string() => "1".to_string(),
+    string_to_foreign_key => to_foreign_key => "Foo::Bar".to_string() => "bar_id".to_string(),
+    string_is_foreign_key => is_foreign_key => "bar_id".to_string() => true
 ];
 
 gated_string_tests![
-    string_to_class => to_class_case => "foo" => "Foo".to_string(),
-    string_is_class => is_class_case => "Foo" => true,
-    string_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
-    string_is_table => is_table_case => "foo_bars" => true,
-    string_pluralize => to_plural => "crate" => "crates".to_string(),
-    string_singular => to_singular => "crates" => "crate".to_string(),
-    string_demodulize => demodulize => "Foo::Bar" => "Bar".to_string(),
-    string_deconstantize => deconstantize => "Foo::Bar" => "Foo".to_string()
+    string_to_class => to_class_case => "foo".to_string() => "Foo".to_string(),
+    string_is_class => is_class_case => "Foo".to_string() => true,
+    string_to_table => to_table_case => "fooBar".to_string() => "foo_bars".to_string(),
+    string_is_table => is_table_case => "foo_bars".to_string() => true,
+    string_pluralize => to_plural => "crate".to_string() => "crates".to_string(),
+    string_singular => to_singular => "crates".to_string() => "crate".to_string(),
+    string_demodulize => demodulize => "Foo::Bar".to_string() => "Bar".to_string(),
+    string_deconstantize => deconstantize => "Foo::Bar".to_string() => "Foo".to_string()
 ];
 
 number_tests![

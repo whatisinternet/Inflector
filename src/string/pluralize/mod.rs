@@ -64,11 +64,11 @@ macro_rules! special_cases{
 }
 
 
-/// Converts a `String` to pluralized `String`
+/// Converts a `&str` to pluralized `String`
 ///
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "foo_bar".to_string();
+///     let mock_string: &str = "foo_bar";
 ///     let expected_string: String = "foo_bars".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
@@ -76,7 +76,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "ox".to_string();
+///     let mock_string: &str = "ox";
 ///     let expected_string: String = "oxen".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
@@ -84,7 +84,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "crate".to_string();
+///     let mock_string: &str = "crate";
 ///     let expected_string: String = "crates".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
@@ -92,7 +92,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "boxes".to_string();
+///     let mock_string: &str = "boxes";
 ///     let expected_string: String = "boxes".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
@@ -100,7 +100,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "vengeance".to_string();
+///     let mock_string: &str = "vengeance";
 ///     let expected_string: String = "vengeance".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
@@ -108,7 +108,7 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "yoga".to_string();
+///     let mock_string: &str = "yoga";
 ///     let expected_string: String = "yoga".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
@@ -116,16 +116,16 @@ macro_rules! special_cases{
 /// ```
 /// ```
 ///     use inflector::string::pluralize::to_plural;
-///     let mock_string: String = "geometry".to_string();
+///     let mock_string: &str = "geometry";
 ///     let expected_string: String = "geometries".to_string();
 ///     let asserted_string: String = to_plural(mock_string);
 ///     assert_eq!(asserted_string, expected_string);
 ///
 /// ```
 ///
-pub fn to_plural(non_plural_string: String) -> String {
+pub fn to_plural(non_plural_string: &str) -> String {
     if UNACCONTABLE_WORDS.contains(&non_plural_string.as_ref()) {
-        non_plural_string
+        non_plural_string.to_string()
     } else {
         special_cases![non_plural_string,
             "ox" => "oxen",
@@ -167,7 +167,7 @@ mod tests {
                        fn $singular(){
                            assert_eq!(
                                stringify!($plural),
-                               super::to_plural(stringify!($singular).to_string())
+                               super::to_plural(stringify!($singular))
                                );
                        }
                    }
@@ -177,7 +177,7 @@ mod tests {
 
     #[test]
     fn boxes() {
-        assert_eq!("boxes", super::to_plural("box".to_string()));
+        assert_eq!("boxes", super::to_plural("box"));
     }
 
     make_tests!{
@@ -188,6 +188,7 @@ mod tests {
         axis => axes;
         knife => knives;
         agendum => agenda;
-        elf => elves
+        elf => elves;
+        zoology => zoology
     }
 }

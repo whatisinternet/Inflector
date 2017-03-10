@@ -1,3 +1,16 @@
+# 0.9.0
+
+## Breaking changes:
+- Changed type signature for all casting methods to use `&str`. This gives the
+  crate a >10% increase in performance in a majority of conversions. Although
+  most users only use:
+     `"my_string".to_camel_case()`
+  or
+    `"myString".to_string().to_snake_case()`
+  For those using the `to_camel_case("something".to_string())` this will be a
+  breaking change as the new syntax demands `to_camel_case("something")`.
+
+
 # 0.8.1
 
 ## Bugfixes:
