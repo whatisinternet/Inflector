@@ -14,6 +14,8 @@ Adds String based inflections for Rust. Snake, kebab, camel, sentence, class, ti
 keywords = ["pluralize", "string", "camel", "snake", "inflection"]
 categories = ["text-processing", "value-formatting"]
 
+[badges]
+travis-ci = { repository = "whatisinternet/inflector" }
 
 [features]
 default = ['heavyweight']
