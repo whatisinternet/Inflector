@@ -188,6 +188,7 @@ mod tests {
         axis => axes;
         knife => knives;
         agendum => agenda;
-        elf => elves
+        elf => elves;
+        zoology => zoology
     }
 }
