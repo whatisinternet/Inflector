@@ -1,3 +1,9 @@
+# 0.9.1
+
+## Non-breaking changes:
+- Changed from `fold` to `for in` which resulted in a average 10-20% boost in
+  performance for all castings using the case module.
+
 # 0.9.0
 
 ## Breaking changes:
