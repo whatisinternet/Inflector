@@ -149,12 +149,14 @@ fn char_is_uppercase(test_char: char) -> bool {
 macro_rules! define_test_group {
     ($module_name: ident,
      $method: ident,
+     $is_method: ident,
      $use_mod: ident,
      $expected: expr,
      $expected_plural: expr) => {
         #[cfg(test)]
         mod $module_name {
             use ::cases::$use_mod::$method;
+            use ::cases::$use_mod::$is_method;
             define_tests![
                 $method;
                 from_camel_case             => "fooBar"     => $expected,
@@ -165,6 +167,14 @@ macro_rules! define_test_group {
                 from_snake_case             => "foo_bar"    => $expected,
                 from_title_case             => "Foo Bar"    => $expected,
                 from_train_case             => "Foo-Bars"   => $expected_plural
+            ];
+            define_is_tests![
+                $is_method;
+                test_is => $expected
+            ];
+            define_is_not_tests![
+                $is_method;
+                test_is_not => "fOOOOBB_-Bar"
             ];
             define_gated_tests![
                 $method;
@@ -186,12 +196,35 @@ macro_rules! define_gated_tests{
         )*
     }
 }
+
 macro_rules! define_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
             #[test]
             fn $test_name() {
                 assert_eq!($method($to_convert), $expected.to_owned())
+            }
+        )*
+    }
+}
+
+macro_rules! define_is_tests{
+    ($method: ident; $($test_name:ident => $expected:expr ), *) => {
+        $(
+            #[test]
+            fn $test_name() {
+                assert_eq!($method($expected), true)
+            }
+        )*
+    }
+}
+
+macro_rules! define_is_not_tests{
+    ($method: ident; $($test_name:ident => $expected:expr ), *) => {
+        $(
+            #[test]
+            fn $test_name() {
+                assert_eq!($method($expected), false)
             }
         )*
     }

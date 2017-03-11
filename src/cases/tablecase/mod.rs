@@ -149,6 +149,7 @@ mod tests {
 #[cfg(feature = "heavyweight")]
 define_test_group!(table_tests,
                    to_table_case,
+                   is_table_case,
                    tablecase,
                    "foo_bars",
                    "foo_bars");

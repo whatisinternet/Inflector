@@ -145,4 +145,4 @@ mod tests {
     }
 }
 
-define_test_group!(title_tests, to_title_case, titlecase, "Foo Bar", "Foo Bars");
+define_test_group!(title_tests, to_title_case, is_title_case, titlecase, "Foo Bar", "Foo Bars");

@@ -202,6 +202,7 @@ mod tests {
 
 define_test_group!(pascal_tests,
                    to_pascal_case,
+                   is_pascal_case,
                    pascalcase,
                    "FooBar",
                    "FooBars");
