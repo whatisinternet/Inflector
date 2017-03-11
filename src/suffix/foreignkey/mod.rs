@@ -5,7 +5,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "foo_bar";
-///     let expected_string: String = "foo_bar_id".to_string();
+///     let expected_string: String = "foo_bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -13,7 +13,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "Foo bar";
-///     let expected_string: String = "foo_bar_id".to_string();
+///     let expected_string: String = "foo_bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -21,7 +21,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "Foo Bar";
-///     let expected_string: String = "foo_bar_id".to_string();
+///     let expected_string: String = "foo_bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -29,7 +29,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "Foo::Bar";
-///     let expected_string: String = "bar_id".to_string();
+///     let expected_string: String = "bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -37,7 +37,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "Test::Foo::Bar";
-///     let expected_string: String = "bar_id".to_string();
+///     let expected_string: String = "bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -45,7 +45,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "FooBar";
-///     let expected_string: String = "foo_bar_id".to_string();
+///     let expected_string: String = "foo_bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -53,7 +53,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "fooBar";
-///     let expected_string: String = "foo_bar_id".to_string();
+///     let expected_string: String = "foo_bar_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -61,7 +61,7 @@ use cases::snakecase::to_snake_case;
 /// ```
 ///     use inflector::suffix::foreignkey::to_foreign_key;
 ///     let mock_string: &str = "fooBar3";
-///     let expected_string: String = "foo_bar_3_id".to_string();
+///     let expected_string: String = "foo_bar_3_id".to_owned();
 ///     let asserted_string: String = to_foreign_key(mock_string);
 ///     assert!(asserted_string == expected_string);
 ///
@@ -69,13 +69,13 @@ use cases::snakecase::to_snake_case;
 pub fn to_foreign_key(non_foreign_key_string: &str) -> String {
     if non_foreign_key_string.contains("::") {
         let split_string: Vec<&str> = non_foreign_key_string.split("::").collect();
-        safe_convert(split_string[split_string.len() - 1].to_string())
+        safe_convert(split_string[split_string.len() - 1])
     } else {
-        safe_convert(non_foreign_key_string.to_string())
+        safe_convert(non_foreign_key_string)
     }
 }
-fn safe_convert(safe_string: String) -> String {
-    let snake_cased: String = to_snake_case(&safe_string);
+fn safe_convert(safe_string: &str) -> String {
+    let snake_cased: String = to_snake_case(safe_string);
     if snake_cased.ends_with("_id") {
         snake_cased
     } else {
