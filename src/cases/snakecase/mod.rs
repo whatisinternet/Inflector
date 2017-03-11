@@ -133,7 +133,7 @@ pub fn to_snake_case(non_snake_case_string: &str) -> String {
 ///     use inflector::cases::snakecase::is_snake_case;
 ///     let mock_string: &str = "foo_bar1_string_that_is_really_really_long";
 ///     let asserted_bool: bool = is_snake_case(mock_string);
-///     assert!(asserted_bool == true);
+///     assert!(asserted_bool == false);
 ///
 /// ```
 /// ```

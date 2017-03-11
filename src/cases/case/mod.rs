@@ -11,12 +11,21 @@ pub struct CamelOptions {
 }
 
 pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
-    let seperators: &[char] = &[' ', '-', '_'];
-    if convertable_string.contains(seperators) {
-        to_snake_like_from_snake_like(&convertable_string, replace_with, case)
-    } else {
-        to_snake_like_from_camel_or_class(&convertable_string, replace_with, case)
+    let mut first_character: bool = true;
+    let mut result: String = "".to_owned();
+    for char_with_index in convertable_string.chars().enumerate() {
+        if char_is_seperator(char_with_index.1.to_owned()) {
+            first_character = true;
+            result.push(replace_with.chars().nth(0).unwrap_or('_'));
+        } else if requires_seperator(char_with_index, first_character, &convertable_string) {
+            first_character = false;
+            result = snake_like_with_seperator(result, replace_with, &char_with_index.1, case)
+        } else {
+            first_character = false;
+            result = snake_like_no_seperator(result, &char_with_index.1, case)
+        }
     }
+    result
 }
 
 pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions) -> String {
@@ -37,37 +46,6 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
         } else {
             last_char = character;
             result.push(character.to_ascii_lowercase());
-        }
-    }
-    result
-}
-
-#[inline]
-fn to_snake_like_from_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
-    let mut result: String = "".to_owned();
-    for character in convertable_string.chars() {
-        if char_is_seperator(character.to_owned()) {
-            result.push(replace_with.chars().nth(0).unwrap_or('_'));
-        } else {
-            result = snake_like_no_seperator(result, &character, case)
-        }
-    }
-    result
-}
-
-#[inline]
-fn to_snake_like_from_camel_or_class(convertable_string: &str,
-                                     replace_with: &str,
-                                     case: &str)
-                                     -> String {
-    let mut first_character: bool = true;
-    let mut result: String = "".to_owned();
-    for char_with_index in convertable_string.chars().enumerate() {
-        if requires_seperator(char_with_index, first_character, &convertable_string) {
-            result = snake_like_with_seperator(result, replace_with, &char_with_index.1, case)
-        } else {
-            first_character = false;
-            result = snake_like_no_seperator(result, &char_with_index.1, case)
         }
     }
     result
@@ -109,7 +87,7 @@ fn char_is_seperator(character: char) -> bool {
 fn requires_seperator(char_with_index: (usize, char), first_character: bool, convertable_string: &str) -> bool {
     !first_character &&
         char_is_uppercase(char_with_index.1) &&
-        next_or_previous_char_is_lowercase(convertable_string, char_with_index.0)
+            next_or_previous_char_is_lowercase(convertable_string, char_with_index.0)
 }
 
 #[inline]

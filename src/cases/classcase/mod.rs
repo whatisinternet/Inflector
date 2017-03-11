@@ -194,7 +194,7 @@ pub fn to_class_case(non_class_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_class_case(test_string: &str) -> bool {
-    test_string == to_class_case(test_string.clone())
+    to_class_case(&test_string.clone()) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]
