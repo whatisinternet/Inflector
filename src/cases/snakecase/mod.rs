@@ -173,4 +173,11 @@ mod tests {
     }
 }
 
+#[test]
+fn test_with_numbers_snake_case() {
+    let mock_string: &str = "foo_bar_1_string_that_is_really_really_long";
+    let asserted_bool: bool = is_snake_case(mock_string);
+    assert!(asserted_bool == true);
+}
+
 define_test_group!(snake_tests, to_snake_case, snakecase, "foo_bar", "foo_bars");
