@@ -173,11 +173,4 @@ mod tests {
     }
 }
 
-#[test]
-fn test_with_numbers_snake_case() {
-    let expected_string: String = "foo_bar_3".to_string();
-    let asserted_string: String = to_snake_case("fooBar3");
-    assert!(asserted_string == expected_string);
-}
-
 define_test_group!(snake_tests, to_snake_case, is_snake_case, snakecase, "foo_bar", "foo_bars");
