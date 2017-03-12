@@ -30,5 +30,5 @@ if [ "${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}" != "master" ] && [ "$TRAVIS
     cargo bench --features=unstable > benches-variable && \
     cargo install cargo-benchcmp --force && \
     export PATH=/home/travis/.cargo/bin:$PATH && \
-    cargo benchcmp benches-control benches-variable --threshold 7;
+    cargo benchcmp benches-control benches-variable --threshold 7 --variance;
 fi
