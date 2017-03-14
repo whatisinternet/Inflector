@@ -150,4 +150,4 @@ mod tests {
     }
 }
 
-define_test_group!(kebab_tests, to_kebab_case, kebabcase, "foo-bar", "foo-bars");
+define_test_group!(kebab_tests, to_kebab_case, is_kebab_case, kebabcase, "foo-bar", "foo-bars");

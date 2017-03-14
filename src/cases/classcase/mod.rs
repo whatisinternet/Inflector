@@ -194,7 +194,7 @@ pub fn to_class_case(non_class_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_class_case(test_string: &str) -> bool {
-    test_string == to_class_case(test_string.clone())
+    to_class_case(&test_string.clone()) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]
@@ -220,4 +220,4 @@ mod tests {
 }
 
 #[cfg(feature = "heavyweight")]
-define_test_group!(class_tests, to_class_case, classcase, "FooBar", "FooBar");
+define_test_group!(class_tests, to_class_case, is_class_case, classcase, "FooBar", "FooBar");

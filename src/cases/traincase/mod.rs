@@ -158,4 +158,4 @@ mod tests {
         b.iter(|| super::to_train_case("test_test_test"));
     }
 }
-define_test_group!(train_tests, to_train_case, traincase, "Foo-Bar", "Foo-Bars");
+define_test_group!(train_tests, to_train_case, is_train_case, traincase, "Foo-Bar", "Foo-Bars");

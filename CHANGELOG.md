@@ -1,3 +1,21 @@
+# 0.10.0
+
+## Non-breaking changes:
+- Changed from `fold` to `for in` which resulted in a average 10-20% boost in
+  performance for all castings using the case module.
+
+## Fixes:
+- Fixed issue with snake case like strings where numbers were incorrectly
+  permitted to be next to a string e.g. `string1` was considered valid when it
+  should have been `string_1`. This has been corrected as part of the above
+  change.
+
+## Why is this not 0.9.1?
+- The change in this case are all on private API. This normally wouldn't cause a
+  breaking change as there are extensive tests wrapping all methods. This
+  however doesn't preclude an edge case that hasn't been considered. I've
+  deemed it safer to call this a 0.x.0 release for that reason.
+
 # 0.9.0
 
 ## Breaking changes:
@@ -13,7 +31,7 @@
 
 # 0.8.1
 
-## Bugfixes:
+## Fixes:
 
 - Fixed singularize issues with `/ies/`. Thanks @mthjones
 - Fixed issue with feature gates which may have caused downstream api

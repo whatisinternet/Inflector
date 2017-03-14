@@ -11,71 +11,44 @@ pub struct CamelOptions {
 }
 
 pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
-    let seperators: &[char] = &[' ', '-', '_'];
-    if convertable_string.contains(seperators) {
-        to_snake_like_from_snake_like(&convertable_string, replace_with, case)
-    } else {
-        to_snake_like_from_camel_or_class(&convertable_string, replace_with, case)
+    let mut first_character: bool = true;
+    let mut result: String = "".to_owned();
+    for char_with_index in convertable_string.chars().enumerate() {
+        if char_is_seperator(char_with_index.1.to_owned()) {
+            first_character = true;
+            result.push(replace_with.chars().nth(0).unwrap_or('_'));
+        } else if requires_seperator(char_with_index, first_character, &convertable_string) {
+            first_character = false;
+            result = snake_like_with_seperator(result, replace_with, &char_with_index.1, case)
+        } else {
+            first_character = false;
+            result = snake_like_no_seperator(result, &char_with_index.1, case)
+        }
     }
+    result
 }
 
 pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions) -> String {
     let mut new_word: bool = camel_options.new_word;
     let mut first_word: bool = camel_options.first_word;
     let mut last_char: char = camel_options.last_char;
-    convertable_string.chars()
-        .fold("".to_string(), |mut result, character|
-              if char_is_seperator(character) {
-                  new_word = true;
-                  result
-              } else if character.is_numeric() {
-                  new_word = true;
-                  result.push(character);
-                  result
-              } else if last_char_lower_current_is_upper_or_new_word(new_word, last_char, character) {
-                  new_word = false;
-                  result = append_on_new_word(result, first_word, character, &camel_options);
-                  first_word = false;
-                  result
-              } else {
-                  last_char = character;
-                  result.push(character.to_ascii_lowercase());
-                  result
-              })
-}
-
-#[inline]
-fn to_snake_like_from_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
-    let mut new_word: bool = false;
-    let mut last_char: char = ' ';
-    convertable_string.chars()
-        .fold("".to_string(), |mut result, character|
-              if char_is_seperator(character) {
-                  new_word = true;
-                  result.push(replace_with.chars().nth(0).unwrap_or('_'));
-                  result
-              } else {
-                  new_word = false;
-                  last_char = character;
-                  snake_like_no_seperator(result, &character, case)
-              })
-}
-
-#[inline]
-fn to_snake_like_from_camel_or_class(convertable_string: &str,
-                                     replace_with: &str,
-                                     case: &str)
-                                     -> String {
-    let mut first_character: bool = true;
-    convertable_string.chars()
-        .enumerate()
-        .fold("".to_string(), |acc, char_with_index|
-              if requires_seperator(char_with_index, first_character, &convertable_string) {
-                  snake_like_with_seperator(acc, replace_with, &char_with_index.1, case)
-              } else {
-                  first_character = false;
-                  snake_like_no_seperator(acc, &char_with_index.1, case)
-              })
+    let mut result: String = "".to_owned();
+    for character in convertable_string.chars() {
+        if char_is_seperator(character) {
+            new_word = true;
+        } else if character.is_numeric() {
+            new_word = true;
+            result.push(character);
+        } else if last_char_lower_current_is_upper_or_new_word(new_word, last_char, character) {
+            new_word = false;
+            result = append_on_new_word(result, first_word, character, &camel_options);
+            first_word = false;
+        } else {
+            last_char = character;
+            result.push(character.to_ascii_lowercase());
+        }
+    }
+    result
 }
 
 #[inline]
@@ -114,7 +87,7 @@ fn char_is_seperator(character: char) -> bool {
 fn requires_seperator(char_with_index: (usize, char), first_character: bool, convertable_string: &str) -> bool {
     !first_character &&
         char_is_uppercase(char_with_index.1) &&
-        next_or_previous_char_is_lowercase(convertable_string, char_with_index.0)
+            next_or_previous_char_is_lowercase(convertable_string, char_with_index.0)
 }
 
 #[inline]
@@ -154,12 +127,14 @@ fn char_is_uppercase(test_char: char) -> bool {
 macro_rules! define_test_group {
     ($module_name: ident,
      $method: ident,
+     $is_method: ident,
      $use_mod: ident,
      $expected: expr,
      $expected_plural: expr) => {
         #[cfg(test)]
         mod $module_name {
             use ::cases::$use_mod::$method;
+            use ::cases::$use_mod::$is_method;
             define_tests![
                 $method;
                 from_camel_case             => "fooBar"     => $expected,
@@ -170,6 +145,14 @@ macro_rules! define_test_group {
                 from_snake_case             => "foo_bar"    => $expected,
                 from_title_case             => "Foo Bar"    => $expected,
                 from_train_case             => "Foo-Bars"   => $expected_plural
+            ];
+            define_is_tests![
+                $is_method;
+                test_is => $expected
+            ];
+            define_is_not_tests![
+                $is_method;
+                test_is_not => "fOOOOBB_-Bar"
             ];
             define_gated_tests![
                 $method;
@@ -186,17 +169,40 @@ macro_rules! define_gated_tests{
             #[test]
             #[cfg(feature = "heavyweight")]
             fn $test_name() {
-                assert_eq!($method($to_convert), $expected.to_string())
+                assert_eq!($method($to_convert), $expected.to_owned())
             }
         )*
     }
 }
+
 macro_rules! define_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
             #[test]
             fn $test_name() {
-                assert_eq!($method($to_convert), $expected.to_string())
+                assert_eq!($method($to_convert), $expected.to_owned())
+            }
+        )*
+    }
+}
+
+macro_rules! define_is_tests{
+    ($method: ident; $($test_name:ident => $expected:expr ), *) => {
+        $(
+            #[test]
+            fn $test_name() {
+                assert_eq!($method($expected), true)
+            }
+        )*
+    }
+}
+
+macro_rules! define_is_not_tests{
+    ($method: ident; $($test_name:ident => $expected:expr ), *) => {
+        $(
+            #[test]
+            fn $test_name() {
+                assert_eq!($method($expected), false)
             }
         )*
     }
