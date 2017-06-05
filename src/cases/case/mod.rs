@@ -123,6 +123,7 @@ fn char_is_uppercase(test_char: char) -> bool {
     test_char == test_char.to_ascii_uppercase()
 }
 
+#[allow(unused_macros)]
 #[macro_export]
 macro_rules! define_test_group {
     ($module_name: ident,
@@ -163,6 +164,7 @@ macro_rules! define_test_group {
     }
 }
 
+#[allow(unused_macros)]
 macro_rules! define_gated_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
@@ -175,6 +177,7 @@ macro_rules! define_gated_tests{
     }
 }
 
+#[allow(unused_macros)]
 macro_rules! define_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
@@ -186,6 +189,7 @@ macro_rules! define_tests{
     }
 }
 
+#[allow(unused_macros)]
 macro_rules! define_is_tests{
     ($method: ident; $($test_name:ident => $expected:expr ), *) => {
         $(
@@ -197,6 +201,7 @@ macro_rules! define_is_tests{
     }
 }
 
+#[allow(unused_macros)]
 macro_rules! define_is_not_tests{
     ($method: ident; $($test_name:ident => $expected:expr ), *) => {
         $(

@@ -249,6 +249,7 @@ implement_number_for![
     i8, i16, i32, i64, u8, u16, u32, u64, isize, usize, f32, f64
 ];
 
+#[allow(unused_macros)]
 macro_rules! benchmarks {
     ( $($test_name:ident => $imp_trait:ident => $to_cast:expr), *) => {
         $(
