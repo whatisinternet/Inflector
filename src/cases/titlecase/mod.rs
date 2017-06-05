@@ -143,6 +143,11 @@ mod tests {
     fn bench_title_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_title_case("foo_bar"));
     }
+
 }
 
-define_test_group!(title_tests, to_title_case, is_title_case, titlecase, "Foo Bar", "Foo Bars");
+#[cfg(test)]
+mod tests {
+    define_test_group!(title_tests, to_title_case, is_title_case, titlecase, "Foo Bar", "Foo Bars");
+}
+

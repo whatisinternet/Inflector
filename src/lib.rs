@@ -12,11 +12,15 @@
 //! let is_camel_cased: bool= camel_case_string.is_camel_case();
 //! assert!(is_camel_cased == true);
 //! ```
+
 #[cfg(feature = "heavyweight")]
 extern crate regex;
 
 #[cfg(feature = "heavyweight")]
 #[macro_use] extern crate lazy_static;
+
+#[macro_use] mod utils;
+
 /// Provides case inflections
 /// - Camel case
 /// - Class case
@@ -250,25 +254,24 @@ implement_number_for![
     i8, i16, i32, i64, u8, u16, u32, u64, isize, usize, f32, f64
 ];
 
-#[allow(unused_macros)]
-macro_rules! benchmarks {
-    ( $($test_name:ident => $imp_trait:ident => $to_cast:expr), *) => {
-        $(
-            #[bench]
-            fn $test_name(b: &mut Bencher) {
-                b.iter(|| {
-                    $to_cast.$imp_trait()
-                });
-            }
-        )*
-    }
-}
-
 #[cfg(all(feature = "unstable", test))]
 mod tests {
     extern crate test;
     use self::test::Bencher;
     use ::Inflector;
+
+    macro_rules! benchmarks {
+        ( $($test_name:ident => $imp_trait:ident => $to_cast:expr), *) => {
+            $(
+                #[bench]
+                fn $test_name(b: &mut Bencher) {
+                    b.iter(|| {
+                        $to_cast.$imp_trait()
+                    });
+                }
+            )*
+        }
+    }
 
     benchmarks![
         benchmark_str_to_camel => to_camel_case => "foo_bar",

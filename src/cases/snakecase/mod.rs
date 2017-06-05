@@ -171,6 +171,10 @@ mod tests {
     fn bench_is_snake(b: &mut Bencher) {
         b.iter(|| super::is_snake_case("Foo bar"));
     }
+
 }
 
-define_test_group!(snake_tests, to_snake_case, is_snake_case, snakecase, "foo_bar", "foo_bars");
+#[cfg(test)]
+mod tests {
+    define_test_group!(snake_tests, to_snake_case, is_snake_case, snakecase, "foo_bar", "foo_bars");
+}

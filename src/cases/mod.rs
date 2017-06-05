@@ -1,4 +1,3 @@
-#[macro_use]
 mod case;
 /// Provides conversion to and detection of class case strings.
 ///

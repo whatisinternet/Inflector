@@ -139,11 +139,15 @@ mod tests {
     fn bench_is_screaming_snake(b: &mut Bencher) {
         b.iter(|| super::is_screaming_snake_case("Foo bar"));
     }
+
 }
 
-define_test_group!(screaming_snake_tests,
-                   to_screaming_snake_case,
-                   is_screaming_snake_case,
-                   screamingsnakecase,
-                   "FOO_BAR",
-                   "FOO_BARS");
+#[cfg(test)]
+mod tests {
+    define_test_group!(screaming_snake_tests,
+                    to_screaming_snake_case,
+                    is_screaming_snake_case,
+                    screamingsnakecase,
+                    "FOO_BAR",
+                    "FOO_BARS");
+}

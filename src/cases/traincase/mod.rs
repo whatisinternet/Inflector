@@ -157,5 +157,10 @@ mod tests {
     fn bench_train_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_train_case("test_test_test"));
     }
+
 }
-define_test_group!(train_tests, to_train_case, is_train_case, traincase, "Foo-Bar", "Foo-Bars");
+
+#[cfg(test)]
+mod tests {
+    define_test_group!(train_tests, to_train_case, is_train_case, traincase, "Foo-Bar", "Foo-Bars");
+}
