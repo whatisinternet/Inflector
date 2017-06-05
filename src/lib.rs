@@ -1,4 +1,5 @@
 #![deny(warnings, unused_variables, missing_docs, unsafe_code, unused_extern_crates)]
+#![allow(unknown_lints)]
 #![cfg_attr(feature = "unstable", feature(test))]
 
 //! Adds String based inflections for Rust. Snake, kebab, train, camel,

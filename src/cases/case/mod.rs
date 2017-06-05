@@ -1,4 +1,5 @@
 #![deny(warnings)]
+#![allow(unknown_lints)]
 use std::ascii::*;
 
 pub struct CamelOptions {
