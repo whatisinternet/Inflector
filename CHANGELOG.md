@@ -1,3 +1,9 @@
+# 0.11.0
+
+## Possible breaking change:
+- Moved `define_test_group` into utils. This should not break code for anyone,
+  but this is technically an API change since it's now a private module.
+
 # 0.10.1
 
 ## Non-breaking changes:
