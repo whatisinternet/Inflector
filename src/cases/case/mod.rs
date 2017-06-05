@@ -13,9 +13,10 @@ pub struct CamelOptions {
 
 pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
     let mut first_character: bool = true;
-    let mut result: String = "".to_owned();
-    for char_with_index in convertable_string.chars().enumerate() {
-        if char_is_seperator(char_with_index.1.to_owned()) {
+    let string_size: f64 =  convertable_string.len() as f64;
+    let mut result: String = String::with_capacity((string_size * 1.25) as usize);
+    for char_with_index  in convertable_string.char_indices() {
+        if char_is_seperator(&char_with_index.1) {
             first_character = true;
             result.push(replace_with.chars().nth(0).unwrap_or('_'));
         } else if requires_seperator(char_with_index, first_character, &convertable_string) {
@@ -26,6 +27,7 @@ pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &s
             result = snake_like_no_seperator(result, &char_with_index.1, case)
         }
     }
+    result.shrink_to_fit();
     result
 }
 
@@ -33,9 +35,10 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
     let mut new_word: bool = camel_options.new_word;
     let mut first_word: bool = camel_options.first_word;
     let mut last_char: char = camel_options.last_char;
-    let mut result: String = "".to_owned();
+    let string_size: usize =  convertable_string.len();
+    let mut result: String = String::with_capacity(string_size);
     for character in convertable_string.chars() {
-        if char_is_seperator(character) {
+        if char_is_seperator(&character) {
             new_word = true;
         } else if character.is_numeric() {
             new_word = true;
@@ -49,6 +52,7 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
             result.push(character.to_ascii_lowercase());
         }
     }
+    result.shrink_to_fit();
     result
 }
 
@@ -80,8 +84,8 @@ fn last_char_lower_current_is_upper_or_new_word(new_word: bool, last_char: char,
          (last_char != ' '))
 }
 
-fn char_is_seperator(character: char) -> bool {
-    character == '-' || character == '_' || character == ' '
+fn char_is_seperator(character: &char) -> bool {
+    character == &'-' || character == &'_' || character == &' '
 }
 
 #[inline]
@@ -191,22 +195,22 @@ fn requires_seperator_upper_first_wrap_is_safe_current_lower_next_is_too() {
 
 #[test]
 fn test_char_is_seperator_dash() {
-    assert_eq!(char_is_seperator('-'), true)
+    assert_eq!(char_is_seperator(&'-'), true)
 }
 
 #[test]
 fn test_char_is_seperator_underscore() {
-    assert_eq!(char_is_seperator('_'), true)
+    assert_eq!(char_is_seperator(&'_'), true)
 }
 
 #[test]
 fn test_char_is_seperator_space() {
-    assert_eq!(char_is_seperator(' '), true)
+    assert_eq!(char_is_seperator(&' '), true)
 }
 
 #[test]
 fn test_char_is_seperator_when_not() {
-    assert_eq!(char_is_seperator('A'), false)
+    assert_eq!(char_is_seperator(&'A'), false)
 }
 
 #[test]
