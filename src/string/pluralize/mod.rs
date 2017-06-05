@@ -19,7 +19,7 @@ macro_rules! rules{
 
 lazy_static!{
     static ref RULES: Vec<(Regex, &'static str)> = {
-        let mut r = Vec::new();
+        let mut r = Vec::with_capacity(24);
         rules![r;
                r"(\w*)s$" => "s",
                r"(\w*([^aeiou]ese))$" => "",
