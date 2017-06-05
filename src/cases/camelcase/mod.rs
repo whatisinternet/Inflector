@@ -209,5 +209,9 @@ mod tests {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    define_test_group!(camel_tests, to_camel_case, is_camel_case, camelcase, "fooBar", "fooBars");
+}
 
-define_test_group!(camel_tests, to_camel_case, is_camel_case, camelcase, "fooBar", "fooBars");
+

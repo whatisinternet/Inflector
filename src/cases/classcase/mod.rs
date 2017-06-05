@@ -219,5 +219,9 @@ mod tests {
     }
 }
 
+#[cfg(test)]
 #[cfg(feature = "heavyweight")]
-define_test_group!(class_tests, to_class_case, is_class_case, classcase, "FooBar", "FooBar");
+mod tests {
+    define_test_group!(class_tests, to_class_case, is_class_case, classcase, "FooBar", "FooBar");
+}
+

@@ -149,11 +149,15 @@ mod tests {
     fn bench_sentence_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_sentence_case("foo_bar"));
     }
+
 }
 
-define_test_group!(sentence_tests,
-                   to_sentence_case,
-                   is_sentence_case,
-                   sentencecase,
-                   "Foo bar",
-                   "Foo bars");
+#[cfg(test)]
+mod tests {
+    define_test_group!(sentence_tests,
+                    to_sentence_case,
+                    is_sentence_case,
+                    sentencecase,
+                    "Foo bar",
+                    "Foo bars");
+}
