@@ -1,3 +1,9 @@
+# 0.10.1
+
+## Non-breaking changes:
+- Added flags for unused macros. Any current macros with this flag with either
+  be moved or removed.
+
 # 0.10.0
 
 ## Non-breaking changes:

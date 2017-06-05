@@ -62,20 +62,6 @@ macro_rules! gated_string_tests {
     }
 }
 
-macro_rules! gated_number_tests {
-    ( $($test_name:ident => $imp_trait:ident => $typ:ident => $to_cast:expr => $casted:expr), *) => {
-        $(
-            #[test]
-            #[cfg(feature = "heavyweight")]
-            fn $test_name() {
-                let to_cast: $typ = $to_cast;
-                assert_eq!(to_cast.$imp_trait(), $casted)
-            }
-        )*
-    }
-}
-
-
 str_tests![
     str_to_camel => to_camel_case => "foo_bar" => "fooBar".to_string(),
     str_is_camel => is_camel_case => "fooBar" => true,

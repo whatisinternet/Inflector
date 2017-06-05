@@ -1,7 +1,7 @@
 # Rust Inflector
 
 
-[![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/inflector) [![codecov](https://codecov.io/gh/whatisinternet/inflector/branch/master/graph/badge.svg)](https://codecov.io/gh/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
+[![Build Status](https://travis-ci.org/whatisinternet/inflector.svg?branch=master)](https://travis-ci.org/whatisinternet/Inflector) [![codecov](https://codecov.io/gh/whatisinternet/Inflector/branch/master/graph/badge.svg)](https://codecov.io/gh/whatisinternet/inflector) [![Crates.io](https://img.shields.io/crates/v/inflector.svg)](https://crates.io/crates/inflector)
 
 
 Adds String based inflections for Rust. Snake, kebab, train, camel,
@@ -30,7 +30,7 @@ Inflector = "*"
 ### Compile yourself:
 
 1. Install [Rust and cargo](http://doc.crates.io/)
-2. git clone https://github.com/whatisinternet/inflector
+2. git clone https://github.com/whatisinternet/Inflector
 3. Library: cd inflector && cargo build --release --lib
 4. You can find the library in target/release
 
