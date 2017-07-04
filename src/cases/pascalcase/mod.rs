@@ -200,7 +200,8 @@ mod tests {
     }
 }
 
-#[cfg(test)]
+#[cfg(all(test))]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(pascal_tests,
                     to_pascal_case,

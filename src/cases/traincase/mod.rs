@@ -161,6 +161,7 @@ mod tests {
 }
 
 #[cfg(test)]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(train_tests, to_train_case, is_train_case, traincase, "Foo-Bar", "Foo-Bars");
 }

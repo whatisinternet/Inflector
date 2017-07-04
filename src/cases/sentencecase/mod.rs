@@ -153,6 +153,7 @@ mod tests {
 }
 
 #[cfg(test)]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(sentence_tests,
                     to_sentence_case,
