@@ -148,6 +148,7 @@ mod tests {
 
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(table_tests,
                     to_table_case,

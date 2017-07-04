@@ -175,6 +175,7 @@ mod tests {
 }
 
 #[cfg(test)]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(snake_tests, to_snake_case, is_snake_case, snakecase, "foo_bar", "foo_bars");
 }

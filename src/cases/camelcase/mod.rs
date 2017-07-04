@@ -210,6 +210,7 @@ mod tests {
 }
 
 #[cfg(test)]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(camel_tests, to_camel_case, is_camel_case, camelcase, "fooBar", "fooBars");
 }

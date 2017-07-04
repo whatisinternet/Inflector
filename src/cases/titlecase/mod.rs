@@ -147,6 +147,7 @@ mod tests {
 }
 
 #[cfg(test)]
+#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(title_tests, to_title_case, is_title_case, titlecase, "Foo Bar", "Foo Bars");
 }
