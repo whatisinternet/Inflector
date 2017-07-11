@@ -126,7 +126,7 @@ pub fn is_screaming_snake_case(test_string: &str) -> bool {
 
 
 #[cfg(all(feature = "unstable", test))]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
 
@@ -143,7 +143,6 @@ mod tests {
 }
 
 #[cfg(test)]
-#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(screaming_snake_tests,
                     to_screaming_snake_case,

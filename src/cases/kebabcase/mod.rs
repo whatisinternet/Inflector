@@ -130,7 +130,7 @@ pub fn to_kebab_case(non_kebab_case_string: &str) -> String {
 }
 
 #[cfg(all(feature = "unstable", test))]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
 
@@ -151,7 +151,6 @@ mod tests {
 }
 
 #[cfg(test)]
-#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(kebab_tests, to_kebab_case, is_kebab_case, kebabcase, "foo-bar", "foo-bars");
 }
