@@ -13,8 +13,7 @@ pub struct CamelOptions {
 
 pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
     let mut first_character: bool = true;
-    let string_size: f64 =  convertable_string.len() as f64;
-    let mut result: String = String::with_capacity((string_size * 1.25) as usize);
+    let mut result: String = String::with_capacity(convertable_string.len() * 2);
     for char_with_index  in convertable_string.char_indices() {
         if char_is_seperator(&char_with_index.1) {
             first_character = true;
@@ -27,7 +26,6 @@ pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &s
             result = snake_like_no_seperator(result, &char_with_index.1, case)
         }
     }
-    result.shrink_to_fit();
     result
 }
 
@@ -35,8 +33,7 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
     let mut new_word: bool = camel_options.new_word;
     let mut first_word: bool = camel_options.first_word;
     let mut last_char: char = camel_options.last_char;
-    let string_size: usize =  convertable_string.len();
-    let mut result: String = String::with_capacity(string_size);
+    let mut result: String = String::with_capacity(convertable_string.len() * 2);
     for character in convertable_string.chars() {
         if char_is_seperator(&character) {
             new_word = true;
@@ -52,7 +49,6 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
             result.push(character.to_ascii_lowercase());
         }
     }
-    result.shrink_to_fit();
     result
 }
 
