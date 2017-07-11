@@ -1,5 +1,4 @@
 #![deny(warnings, unused_variables, missing_docs, unsafe_code, unused_extern_crates)]
-#![allow(unknown_lints, unused_features)]
 #![cfg_attr(feature = "unstable", feature(test))]
 
 //! Adds String based inflections for Rust. Snake, kebab, train, camel,
@@ -255,7 +254,7 @@ implement_number_for![
 ];
 
 #[cfg(all(feature = "unstable", test))]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
     use ::Inflector;

@@ -131,7 +131,7 @@ pub fn is_sentence_case(test_string: &str) -> bool {
 }
 
 #[cfg(all(feature = "unstable", test))]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
 
@@ -153,7 +153,6 @@ mod tests {
 }
 
 #[cfg(test)]
-#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(sentence_tests,
                     to_sentence_case,

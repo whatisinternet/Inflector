@@ -139,7 +139,7 @@ pub fn to_train_case(non_train_case_string: &str) -> String {
 }
 
 #[cfg(all(feature = "unstable", test))]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
 
@@ -161,7 +161,6 @@ mod tests {
 }
 
 #[cfg(test)]
-#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(train_tests, to_train_case, is_train_case, traincase, "Foo-Bar", "Foo-Bars");
 }

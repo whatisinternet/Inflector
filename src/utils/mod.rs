@@ -39,7 +39,6 @@ macro_rules! define_test_group {
     }
 }
 
-#[cfg(not(feature = "unstable"))]
 macro_rules! define_gated_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
@@ -52,7 +51,6 @@ macro_rules! define_gated_tests{
     }
 }
 
-#[cfg(not(feature = "unstable"))]
 macro_rules! define_tests{
     ($method: ident; $($test_name:ident => $to_convert:expr => $expected:expr ), *) => {
         $(
@@ -64,7 +62,6 @@ macro_rules! define_tests{
     }
 }
 
-#[cfg(not(feature = "unstable"))]
 macro_rules! define_is_tests{
     ($method: ident; $($test_name:ident => $expected:expr ), *) => {
         $(
@@ -76,7 +73,6 @@ macro_rules! define_is_tests{
     }
 }
 
-#[cfg(not(feature = "unstable"))]
 macro_rules! define_is_not_tests{
     ($method: ident; $($test_name:ident => $expected:expr ), *) => {
         $(

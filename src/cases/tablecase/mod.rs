@@ -131,7 +131,7 @@ pub fn is_table_case(test_string: &str) -> bool {
 
 #[cfg(all(feature = "unstable", test))]
 #[cfg(feature = "heavyweight")]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
 
@@ -148,7 +148,6 @@ mod tests {
 
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
-#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(table_tests,
                     to_table_case,

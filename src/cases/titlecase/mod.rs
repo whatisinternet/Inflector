@@ -125,7 +125,7 @@ pub fn is_title_case(test_string: &str) -> bool {
 }
 
 #[cfg(all(feature = "unstable", test))]
-mod tests {
+mod benchmarks {
     extern crate test;
     use self::test::Bencher;
 
@@ -147,7 +147,6 @@ mod tests {
 }
 
 #[cfg(test)]
-#[cfg(not(feature = "unstable"))]
 mod tests {
     define_test_group!(title_tests, to_title_case, is_title_case, titlecase, "Foo Bar", "Foo Bars");
 }
