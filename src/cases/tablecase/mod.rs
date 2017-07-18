@@ -149,10 +149,123 @@ mod benchmarks {
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
 mod tests {
-    define_test_group!(table_tests,
-                    to_table_case,
-                    is_table_case,
-                    tablecase,
-                    "foo_bars",
-                    "foo_bars");
+    use ::to_table_case;
+    use ::is_table_case;
+
+    #[test]
+    fn from_camel_case() {
+        let convertable_string: String = "fooBar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_pascal_case() {
+        let convertable_string: String = "FooBar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_kebab_case() {
+        let convertable_string: String = "foo-bar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_sentence_case() {
+        let convertable_string: String = "Foo bar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_title_case() {
+        let convertable_string: String = "Foo Bar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_train_case() {
+        let convertable_string: String = "Foo-Bar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_screaming_snake_case() {
+        let convertable_string: String = "FOO_BAR".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_snake_case() {
+        let convertable_string: String = "foo_bar".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_table_case() {
+        let convertable_string: String = "foo_bars".to_owned();
+        let expected: String = "foo_bars".to_owned();
+        assert_eq!(to_table_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn is_correct_from_camel_case() {
+        let convertable_string: String = "fooBar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_pascal_case() {
+        let convertable_string: String = "FooBar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_kebab_case() {
+        let convertable_string: String = "foo-bar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_sentence_case() {
+        let convertable_string: String = "Foo bar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_title_case() {
+        let convertable_string: String = "Foo Bar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_train_case() {
+        let convertable_string: String = "Foo-Bar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_screaming_snake_case() {
+        let convertable_string: String = "FOO_BAR".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_snake_case() {
+        let convertable_string: String = "foo_bar".to_owned();
+        assert_eq!(is_table_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_table_case() {
+        let convertable_string: String = "foo_bars".to_owned();
+        assert_eq!(is_table_case(&convertable_string), true)
+    }
 }
