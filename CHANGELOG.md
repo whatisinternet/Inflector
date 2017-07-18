@@ -1,8 +1,8 @@
 # 0.11.0
 
-## Possible breaking change:
-- Moved `define_test_group` into utils. This should not break code for anyone,
-  but this is technically an API change since it's now a private module.
+## Non-breaking changes:
+- Removed magic macros for testing.
+- Added explict tests for all cases.
 
 # 0.10.1
 
