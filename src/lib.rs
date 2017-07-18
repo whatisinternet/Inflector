@@ -18,8 +18,6 @@ extern crate regex;
 #[cfg(feature = "heavyweight")]
 #[macro_use] extern crate lazy_static;
 
-#[macro_use] mod utils;
-
 /// Provides case inflections
 /// - Camel case
 /// - Class case

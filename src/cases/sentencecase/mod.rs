@@ -154,10 +154,110 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    define_test_group!(sentence_tests,
-                    to_sentence_case,
-                    is_sentence_case,
-                    sentencecase,
-                    "Foo bar",
-                    "Foo bars");
+    use ::to_sentence_case;
+    use ::is_sentence_case;
+
+    #[test]
+    fn from_camel_case() {
+        let convertable_string: String = "fooBar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_pascal_case() {
+        let convertable_string: String = "FooBar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_kebab_case() {
+        let convertable_string: String = "foo-bar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_sentence_case() {
+        let convertable_string: String = "Foo bar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_title_case() {
+        let convertable_string: String = "Foo Bar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_train_case() {
+        let convertable_string: String = "Foo-Bar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_screaming_snake_case() {
+        let convertable_string: String = "FOO_BAR".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn from_snake_case() {
+        let convertable_string: String = "foo_bar".to_owned();
+        let expected: String = "Foo bar".to_owned();
+        assert_eq!(to_sentence_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn is_correct_from_camel_case() {
+        let convertable_string: String = "fooBar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_pascal_case() {
+        let convertable_string: String = "FooBar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_kebab_case() {
+        let convertable_string: String = "foo-bar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_sentence_case() {
+        let convertable_string: String = "Foo bar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), true)
+    }
+
+    #[test]
+    fn is_correct_from_title_case() {
+        let convertable_string: String = "Foo Bar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_train_case() {
+        let convertable_string: String = "Foo-Bar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_screaming_snake_case() {
+        let convertable_string: String = "FOO_BAR".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
+
+    #[test]
+    fn is_correct_from_snake_case() {
+        let convertable_string: String = "foo_bar".to_owned();
+        assert_eq!(is_sentence_case(&convertable_string), false)
+    }
 }
