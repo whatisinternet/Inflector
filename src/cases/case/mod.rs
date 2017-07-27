@@ -121,7 +121,7 @@ fn next_or_previous_char_is_lowercase(convertable_string: &str, char_with_index:
 }
 
 fn char_is_uppercase(test_char: char) -> bool {
-    test_char == test_char.to_ascii_uppercase()
+    test_char.is_alphanumeric() && test_char == test_char.to_ascii_uppercase()
 }
 
 #[test]
@@ -132,6 +132,11 @@ fn test_char_is_uppercase_when_it_is() {
 #[test]
 fn test_char_is_uppercase_when_it_is_not() {
     assert_eq!(char_is_uppercase('a'), false)
+}
+
+#[test]
+fn test_char_is_uppercase_when_it_is_not_alphanumeric() {
+    assert_eq!(char_is_uppercase('/'), false)
 }
 
 #[test]
