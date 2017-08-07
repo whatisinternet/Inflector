@@ -1,5 +1,4 @@
 #![deny(warnings)]
-#![allow(unknown_lints)]
 use std::ascii::*;
 
 pub struct CamelOptions {
@@ -14,10 +13,12 @@ pub struct CamelOptions {
 pub fn to_case_snake_like(convertable_string: &str, replace_with: &str, case: &str) -> String {
     let mut first_character: bool = true;
     let mut result: String = String::with_capacity(convertable_string.len() * 2);
-    for char_with_index  in convertable_string.char_indices() {
+    for char_with_index in trim_right(convertable_string).char_indices() {
         if char_is_seperator(&char_with_index.1) {
-            first_character = true;
-            result.push(replace_with.chars().nth(0).unwrap_or('_'));
+            if !first_character {
+                first_character = true;
+                result.push(replace_with.chars().nth(0).unwrap_or('_'));
+            }
         } else if requires_seperator(char_with_index, first_character, &convertable_string) {
             first_character = false;
             result = snake_like_with_seperator(result, replace_with, &char_with_index.1, case)
@@ -81,7 +82,15 @@ fn last_char_lower_current_is_upper_or_new_word(new_word: bool, last_char: char,
 }
 
 fn char_is_seperator(character: &char) -> bool {
-    character == &'-' || character == &'_' || character == &' '
+    is_not_alphanumeric(*character)
+}
+
+fn trim_right(convertable_string: &str) -> &str {
+    convertable_string.trim_right_matches(is_not_alphanumeric)
+}
+
+fn is_not_alphanumeric(character: char) -> bool {
+    !character.is_alphanumeric()
 }
 
 #[inline]
@@ -123,6 +132,27 @@ fn next_or_previous_char_is_lowercase(convertable_string: &str, char_with_index:
 fn char_is_uppercase(test_char: char) -> bool {
     test_char == test_char.to_ascii_uppercase()
 }
+
+#[test]
+fn test_trim_bad_chars() {
+    assert_eq!("abc", trim_right("abc----^"))
+}
+
+#[test]
+fn test_trim_bad_chars_when_none_are_bad() {
+    assert_eq!("abc", trim_right("abc"))
+}
+
+#[test]
+fn test_is_not_alphanumeric_on_is_alphanumeric() {
+    assert!(!is_not_alphanumeric('a'))
+}
+
+#[test]
+fn test_is_not_alphanumeric_on_is_not_alphanumeric() {
+    assert!(is_not_alphanumeric('_'))
+}
+
 
 #[test]
 fn test_char_is_uppercase_when_it_is() {
