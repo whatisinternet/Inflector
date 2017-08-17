@@ -1,5 +1,9 @@
 # 0.11.0
 
+## Breaking changes:
+- Made snake case deal correctly with special characters. Behaviour now follows
+  rails infector
+
 ## Non-breaking changes:
 - Removed magic macros for testing.
 - Added explict tests for all cases.
