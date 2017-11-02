@@ -289,7 +289,56 @@ mod tests {
     }
 
     #[test]
-    fn is_correct_from_camel_case() {
+    fn from_case_with_loads_of_space() {
+        let convertable_string: String = "foo           bar".to_owned();
+        let expected: String = "FooBar".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn a_name_with_a_dot() {
+        let convertable_string: String = "Robert C. Martin".to_owned();
+        let expected: String = "RobertCMartin".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn random_text_with_bad_chars() {
+        let convertable_string: String = "Random text with *(bad) chars".to_owned();
+        let expected: String = "RandomTextWithBadChar".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn trailing_bad_chars() {
+        let convertable_string: String = "trailing bad_chars*(()())".to_owned();
+        let expected: String = "TrailingBadChar".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn leading_bad_chars() {
+        let convertable_string: String = "-!#$%leading bad chars".to_owned();
+        let expected: String = "LeadingBadChar".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn wrapped_in_bad_chars() {
+        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let expected: String = "WrappedInBadChar".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn has_a_sign() {
+        let convertable_string: String = "has a + sign".to_owned();
+        let expected: String = "HasASign".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn is_correct_from_class_case() {
         let convertable_string: String = "fooBar".to_owned();
         assert_eq!(is_class_case(&convertable_string), false)
     }

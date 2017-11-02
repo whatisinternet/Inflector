@@ -34,18 +34,24 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
     let mut new_word: bool = camel_options.new_word;
     let mut first_word: bool = camel_options.first_word;
     let mut last_char: char = camel_options.last_char;
+    let mut found_real_char: bool = false;
     let mut result: String = String::with_capacity(convertable_string.len() * 2);
-    for character in convertable_string.chars() {
-        if char_is_seperator(&character) {
+    for character in trim_right(convertable_string).chars() {
+        if char_is_seperator(&character) && found_real_char {
             new_word = true;
+        } else if !found_real_char && is_not_alphanumeric(character) {
+            continue;
         } else if character.is_numeric() {
+            found_real_char = true;
             new_word = true;
             result.push(character);
         } else if last_char_lower_current_is_upper_or_new_word(new_word, last_char, character) {
+            found_real_char = true;
             new_word = false;
             result = append_on_new_word(result, first_word, character, &camel_options);
             first_word = false;
         } else {
+            found_real_char = true;
             last_char = character;
             result.push(character.to_ascii_lowercase());
         }

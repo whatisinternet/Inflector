@@ -209,6 +209,55 @@ mod tests {
     }
 
     #[test]
+    fn from_case_with_loads_of_space() {
+        let convertable_string: String = "foo           bar".to_owned();
+        let expected: String = "Foo Bar".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn a_name_with_a_dot() {
+        let convertable_string: String = "Robert C. Martin".to_owned();
+        let expected: String = "Robert C Martin".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn random_text_with_bad_chars() {
+        let convertable_string: String = "Random text with *(bad) chars".to_owned();
+        let expected: String = "Random Text With Bad Chars".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn trailing_bad_chars() {
+        let convertable_string: String = "trailing bad_chars*(()())".to_owned();
+        let expected: String = "Trailing Bad Chars".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn leading_bad_chars() {
+        let convertable_string: String = "-!#$%leading bad chars".to_owned();
+        let expected: String = "Leading Bad Chars".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn wrapped_in_bad_chars() {
+        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let expected: String = "Wrapped In Bad Chars".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
+    fn has_a_sign() {
+        let convertable_string: String = "has a + sign".to_owned();
+        let expected: String = "Has A Sign".to_owned();
+        assert_eq!(to_title_case(&convertable_string), expected)
+    }
+
+    #[test]
     fn is_correct_from_camel_case() {
         let convertable_string: String = "fooBar".to_owned();
         assert_eq!(is_title_case(&convertable_string), false)
