@@ -1,5 +1,4 @@
 #![deny(warnings)]
-use std::ascii::*;
 
 pub struct CamelOptions {
     pub new_word: bool,
