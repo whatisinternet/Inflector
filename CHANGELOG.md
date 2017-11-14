@@ -1,3 +1,8 @@
+# 0.11.1
+
+## Non-breaking changes:
+- Removed unused case import to prevent a failure on nightly Rust
+
 # 0.11.0
 
 ## Breaking changes:
