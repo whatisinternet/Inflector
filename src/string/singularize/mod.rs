@@ -92,9 +92,11 @@ pub fn to_singular(non_singular_string: &str) -> String {
             "quizzes" => "quiz"
         ];
         for &(ref rule, replace) in RULES.iter().rev() {
-            if let Some(c) = rule.captures(&non_singular_string) {
-                if let Some(c) = c.get(1) {
-                    return format!("{}{}", c.as_str(), replace);
+            if let Some(captures) = rule.captures(&non_singular_string) {
+                if let Some(c) = captures.get(1) {
+                    let mut buf = String::new();
+                    captures.expand(&format!("{}{}", c.as_str(), replace), &mut buf);
+                    return buf;
                 }
             }
         }
@@ -123,6 +125,7 @@ lazy_static!{
     let mut r = Vec::with_capacity(27);
     rules![r;
      r"(\w*)s$" => "",
+     r"(\w*)(ss)$" => "$2",
      r"(n)ews$" => "ews",
      r"(\w*)(o)es$" => "",
      r"(\w*)([ti])a$" => "um",
@@ -135,7 +138,7 @@ lazy_static!{
      r"(\w*([^aeiouy]|qu))ies$" => "y",
      r"(s)eries$" => "eries",
      r"(m)ovies$" => "ovie",
-     r"(\w*)(x|ch|ss|sh)es$" => "",
+     r"(\w*)(x|ch|ss|sh)es$" => "$2",
      r"(m|l)ice$" => "ouse",
      r"(bus)(es)?$" => "",
      r"(shoe)s$" => "",
@@ -147,8 +150,7 @@ lazy_static!{
      r"(vert|ind)ices$" => "ex",
      r"(matr)ices$" => "ix",
      r"(quiz)zes$" => "",
-     r"(database)s$" => "",
-     r"(\w*)(ss)$" => ""
+     r"(database)s$" => ""
          ];
      r
     };
@@ -162,8 +164,17 @@ fn singularize_ies_suffix() {
 }
 
 #[test]
+fn singularize_ss_suffix() {
+    assert_eq!("glass", to_singular("glass"));
+    assert_eq!("access", to_singular("access"));
+    assert_eq!("glass", to_singular("glasses"));
+    assert_eq!("witch", to_singular("witches"));
+    assert_eq!("dish", to_singular("dishes"));
+}
+
+#[test]
 fn singularize_string_if_a_regex_will_match() {
-    let expected_string: String= "ox".to_owned();
+    let expected_string: String = "ox".to_owned();
     let asserted_string: String = to_singular("oxen");
     assert!(expected_string == asserted_string);
 
@@ -175,5 +186,4 @@ fn singularize_string_returns_none_option_if_no_match() {
     let asserted_string: String = to_singular("bacon");
 
     assert!(expected_string == asserted_string);
-
 }
