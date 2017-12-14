@@ -1,7 +1,7 @@
 # 0.11.1
 
 ## Non-breaking changes:
-- Removed unused case import to prevent a failure on nightly Rust
+- Will be removing ascii import when current nightly goes stable.
 
 # 0.11.0
 
