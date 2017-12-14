@@ -1,4 +1,7 @@
 #![deny(warnings)]
+#[allow(unknown_lints)]
+#[allow(unused_imports)]
+use std::ascii::*;
 
 pub struct CamelOptions {
     pub new_word: bool,
