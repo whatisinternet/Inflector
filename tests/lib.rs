@@ -66,6 +66,9 @@ str_tests![
     str_to_camel => to_camel_case => "foo_bar" => "fooBar".to_string(),
     str_is_camel => is_camel_case => "fooBar" => true,
     str_is_not_camel => is_camel_case => "foo_bar" => false,
+    str_to_class_cases => to_class_cases => "foo" => "Foo".to_string(),
+    str_is_class_cases => is_class_cases => "Foo" => true,
+    str_is_not_class_cases => is_class_cases => "foo" => false,
     str_to_screaming_snake => to_screaming_snake_case => "fooBar" => "FOO_BAR".to_string(),
     str_is_screaming_snake => is_screaming_snake_case => "FOO_BAR" => true,
     str_is_not_screaming_snake => is_screaming_snake_case => "foo_bar" => false,
@@ -92,9 +95,9 @@ str_tests![
 ];
 
 gated_str_tests![
-    str_to_class => to_class_case => "foo" => "Foo".to_string(),
-    str_is_class => is_class_case => "Foo" => true,
-    str_is_not_class => is_class_case => "foo" => false,
+    str_to_class_case => to_class_case => "foo" => "Foo".to_string(),
+    str_is_class_case => is_class_case => "Foo" => true,
+    str_is_not_class_case => is_class_case => "foo" => false,
     str_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
     str_is_table => is_table_case => "foo_bars" => true,
     str_is_not_table => is_table_case => "fooBars" => false,
@@ -108,6 +111,9 @@ string_tests![
     string_to_camel => to_camel_case => "foo_bar".to_string() => "fooBar".to_string(),
     string_is_camel => is_camel_case => "fooBar".to_string() => true,
     string_is_not_camel => is_camel_case => "foo_bar".to_string() => false,
+    string_to_class_cases => to_class_cases => "foo".to_string() => "Foo".to_string(),
+    string_is_class_cases => is_class_cases => "Foo".to_string() => true,
+    string_is_not_class_cases => is_class_cases => "ooBar".to_string() => false,
     string_to_screaming_snake => to_screaming_snake_case => "fooBar".to_string() => "FOO_BAR".to_string(),
     string_is_screaming_snake => is_screaming_snake_case => "FOO_BAR".to_string() => true,
     string_is_not_screaming_snake => is_screaming_snake_case => "foo_bar".to_string() => false,
@@ -134,9 +140,9 @@ string_tests![
 ];
 
 gated_string_tests![
-    string_to_class => to_class_case => "foo".to_string() => "Foo".to_string(),
-    string_is_class => is_class_case => "Foo".to_string() => true,
-    string_is_not_class => is_class_case => "ooBar".to_string() => false,
+    string_to_class_case => to_class_case => "foo".to_string() => "Foo".to_string(),
+    string_is_class_case => is_class_case => "Foo".to_string() => true,
+    string_is_not_class_case => is_class_case => "ooBar".to_string() => false,
     string_to_table => to_table_case => "fooBar".to_string() => "foo_bars".to_string(),
     string_is_table => is_table_case => "foo_bars".to_string() => true,
     string_is_not_table => is_table_case => "fooBar".to_string() => false,
