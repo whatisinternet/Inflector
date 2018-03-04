@@ -1,10 +1,15 @@
+# 0.11.2
+
+## Non-breaking changes:
+- Added class_cases and removed -- Thanks @Yoric
+  - Use pascal case
+- Updated lazy_static to 1.0.0
+
 # 0.11.1
 
 ## Non-breaking changes:
 - Fixed an issue where words ending in e.g. "-ches", such as "witches"; that
   would be singularized as "wit" instead of the expected "witch". -- Thanks nbaksalyar
-
-## Non-breaking changes:
 - Will be removing ascii import when current nightly goes stable.
 
 # 0.11.0
