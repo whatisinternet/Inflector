@@ -60,6 +60,9 @@ extern crate inflector;
 // use inflector::cases::classcase::to_class_case;
 // use inflector::cases::classcase::is_class_case;
 
+// use inflector::cases::classcases::to_class_cases;
+// use inflector::cases::classcases::is_class_cases;
+
 // use inflector::cases::camelcase::to_camel_case;
 // use inflector::cases::camelcase::is_camel_case;
 

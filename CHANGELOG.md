@@ -1,10 +1,14 @@
+# 0.12.0
+
+## Non-breaking changes:
+- Added class_cases -- Thanks @Yoric
+  - This is a non-singularized version of class_case
+
 # 0.11.1
 
 ## Non-breaking changes:
 - Fixed an issue where words ending in e.g. "-ches", such as "witches"; that
   would be singularized as "wit" instead of the expected "witch". -- Thanks nbaksalyar
-
-## Non-breaking changes:
 - Will be removing ascii import when current nightly goes stable.
 
 # 0.11.0
