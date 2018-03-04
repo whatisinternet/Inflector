@@ -50,9 +50,6 @@ use cases::classcase::to_class_case;
 #[cfg(feature = "heavyweight")]
 use cases::classcase::is_class_case;
 
-use cases::classcases::to_class_cases;
-use cases::classcases::is_class_cases;
-
 use cases::camelcase::to_camel_case;
 use cases::camelcase::is_camel_case;
 
@@ -141,9 +138,6 @@ pub trait Inflector {
     #[cfg(feature = "heavyweight")]
     fn is_class_case(&self) -> bool;
 
-    fn to_class_cases(&self) -> String;
-    fn is_class_cases(&self) -> bool;
-
     #[cfg(feature = "heavyweight")]
     fn to_table_case(&self) -> String;
     #[cfg(feature = "heavyweight")]
@@ -202,8 +196,6 @@ macro_rules! implement_string_for {
                 define_implementations![self;
                     to_camel_case => String,
                     is_camel_case => bool,
-                    to_class_cases => String,
-                    is_class_cases => bool,
                     to_pascal_case => String,
                     is_pascal_case => bool,
                     to_screaming_snake_case => String,

@@ -6,13 +6,6 @@ mod case;
 /// Example string `ClassCase`
 pub mod classcase;
 
-/// Provides conversion to and detection of class case strings.
-///
-/// This variant accepts plurals for strings.
-///
-/// Example string `ClassCases`
-pub mod classcases;
-
 /// Provides conversion to and detection of camel case strings.
 ///
 /// Example string `camelCase`

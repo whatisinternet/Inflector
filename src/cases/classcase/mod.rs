@@ -1,4 +1,5 @@
 #![deny(warnings)]
+use cases::case::*;
 #[cfg(feature = "heavyweight")]
 use string::singularize::to_singular;
 #[cfg(feature = "heavyweight")]
@@ -85,7 +86,15 @@ use string::singularize::to_singular;
 ///
 /// ```
 pub fn to_class_case(non_class_case_string: &str) -> String {
-    let class_plural = super::classcases::to_class_cases(non_class_case_string);
+    let options = CamelOptions {
+        new_word: true,
+        last_char: ' ',
+        first_word: false,
+        injectable_char: ' ',
+        has_seperator: false,
+        inverted: false,
+    };
+    let class_plural = to_case_camel_like(non_class_case_string, options);
     let split: (&str, &str) =
         class_plural.split_at(class_plural.rfind(char::is_uppercase).unwrap_or(0));
     format!("{}{}", split.0, to_singular(split.1))
