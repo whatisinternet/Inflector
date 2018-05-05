@@ -1,3 +1,8 @@
+# 0.11.3
+
+## Non-breaking changes:
+- Updated regex to 1.0.0 -- Thanks @Eijebong
+
 # 0.11.2
 
 ## Non-breaking changes:
