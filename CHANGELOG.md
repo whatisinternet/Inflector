@@ -1,3 +1,9 @@
+# 0.11.4
+
+## Non-breaking changes:
+- Resolved usage of deprecated method
+- Updated `regex` and `lazy_static` to current latest
+
 # 0.11.3
 
 ## Non-breaking changes:
