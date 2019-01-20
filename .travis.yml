@@ -1,25 +1,7 @@
 language: rust
-cache: cargo
-os:
-  - linux
-
 rust:
   - stable
   - beta
   - nightly
-
-before_install:
-  - sudo apt-get update
-
-addons:
-  apt:
-    packages:
-      - libcurl4-openssl-dev
-      - libelf-dev
-      - libdw-dev
-      - cmake
-      - gcc
-      - binutils-dev
-
-after_success:
-  - ./travis-after-success.sh
+matrix:
+  fast_finish: true
