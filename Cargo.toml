@@ -1,5 +1,5 @@
 [package]
-name = "Inflector"
+name = "inflector"
 version = "0.11.4"
 authors = ["Josh Teeter<joshteeter@gmail.com>"]
 include = [
@@ -19,7 +19,7 @@ keywords = ["pluralize", "Inflector", "camel", "snake", "inflection"]
 categories = ["text-processing", "value-formatting"]
 
 [badges]
-travis-ci = { repository = "whatisinternet/Inflector" }
+travis-ci = { repository = "whatisinternet/inflector" }
 
 [features]
 default = ['heavyweight']
