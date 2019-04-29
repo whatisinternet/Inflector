@@ -24,13 +24,13 @@ Documentation can be found here at the README or via rust docs below.
 
 ```toml
 [dependencies]
-Inflector = "*"
+inflector = "*"
 ```
 
 ### Compile yourself:
 
 1. Install [Rust and cargo](http://doc.crates.io/)
-2. git clone https://github.com/whatisinternet/Inflector
+2. git clone https://github.com/whatisinternet/inflector
 3. Library: cd inflector && cargo build --release --lib
 4. You can find the library in target/release
 
@@ -113,7 +113,7 @@ If the project doesn't require singularize, pluralize, class, table, demodulize,
 deconstantize. Then in your `cargo.toml` you may wish to specify:
 
 ```toml
-[dependencies.Inflector]
+[dependencies.inflector]
 version = "*"
 default-features = false
 ```
@@ -121,7 +121,7 @@ default-features = false
 Or
 
 ```toml
-Inflector = {version="*", default-features=false}
+inflector = {version="*", default-features=false}
 
 ```
 
