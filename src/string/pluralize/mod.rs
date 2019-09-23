@@ -41,8 +41,8 @@ lazy_static!{
                r"(\w*(x|ch|ss|sh|zz)es)$" => "",
                r"(\w*(x|ch|ss|sh|zz))$" => "es",
                r"(\w*(matr|cod|mur|sil|vert|ind|append))(?:ix|ex)$" => "ices",
-               r"(\w*(m|l)(?:ice|ouse))$" => "ice",
-               r"(\w*(pe)(?:rson|ople))$" => "ople",
+               r"(\w*(m|l))(?:ice|ouse)$" => "ice",
+               r"(\w*(pe))(?:rson|ople)$" => "ople",
                r"(\w*(child))(?:ren)?$" => "ren",
                r"(\w*eaux)$" => ""
         ];
