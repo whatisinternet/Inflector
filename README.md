@@ -1,3 +1,5 @@
+_This is a maintained fork of the original Inflector, written by @whatisinternet_.
+
 # Rust Inflector
 
 

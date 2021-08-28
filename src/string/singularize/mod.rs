@@ -14,7 +14,6 @@ macro_rules! special_cases{
     }
 }
 
-
 /// Converts a `&str` to singularized `String`
 ///
 /// ```
@@ -105,10 +104,10 @@ pub fn to_singular(non_singular_string: &str) -> String {
     }
 }
 
-macro_rules! add_rule{
+macro_rules! add_rule {
     ($r:ident, $rule:expr => $replace:expr) => {
         $r.push((Regex::new($rule).unwrap(), $replace));
-    }
+    };
 }
 
 macro_rules! rules{
@@ -119,40 +118,40 @@ macro_rules! rules{
     }
 }
 
-
-lazy_static!{
+lazy_static! {
     static ref RULES: Vec<(Regex, &'static str)> = {
-    let mut r = Vec::with_capacity(27);
-    rules![r;
-     r"(\w*)s$" => "",
-     r"(\w*)(ss)$" => "$2",
-     r"(n)ews$" => "ews",
-     r"(\w*)(o)es$" => "",
-     r"(\w*)([ti])a$" => "um",
-     r"((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)(sis|ses)$" => "sis",
-     r"(^analy)(sis|ses)$" => "sis",
-     r"(\w*)([^f])ves$" => "fe",
-     r"(\w*)(hive)s$" => "",
-     r"(\w*)(tive)s$" => "",
-     r"(\w*)([lr])ves$" => "f",
-     r"(\w*([^aeiouy]|qu))ies$" => "y",
-     r"(s)eries$" => "eries",
-     r"(m)ovies$" => "ovie",
-     r"(\w*)(x|ch|ss|sh)es$" => "$2",
-     r"(m|l)ice$" => "ouse",
-     r"(bus)(es)?$" => "",
-     r"(shoe)s$" => "",
-     r"(cris|test)(is|es)$" => "is",
-     r"^(a)x[ie]s$" => "xis",
-     r"(octop|vir)(us|i)$" => "us",
-     r"(alias|status)(es)?$" => "",
-     r"^(ox)en" => "",
-     r"(vert|ind)ices$" => "ex",
-     r"(matr)ices$" => "ix",
-     r"(quiz)zes$" => "",
-     r"(database)s$" => ""
-         ];
-     r
+        let mut r = Vec::with_capacity(27);
+        rules![r;
+        r"(\w*)s$" => "",
+        r"(\w*)(ss)$" => "$2",
+        r"(n)ews$" => "ews",
+        r"(\w*)(o)es$" => "",
+        r"(\w*)ia$" => "um",
+        r"(\w*)ta$" => "tum",
+        r"((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)(sis|ses)$" => "sis",
+        r"(^analy)(sis|ses)$" => "sis",
+        r"(\w*)([^f])ves$" => "fe",
+        r"(\w*)(hive)s$" => "",
+        r"(\w*)(tive)s$" => "",
+        r"(\w*)([lr])ves$" => "f",
+        r"(\w*([^aeiouy]|qu))ies$" => "y",
+        r"(s)eries$" => "eries",
+        r"(m)ovies$" => "ovie",
+        r"(\w*)(x|ch|ss|sh)es$" => "$2",
+        r"(m|l)ice$" => "ouse",
+        r"(bus)(es)?$" => "",
+        r"(shoe)s$" => "",
+        r"(cris|test)(is|es)$" => "is",
+        r"^(a)x[ie]s$" => "xis",
+        r"(octop|vir)(us|i)$" => "us",
+        r"(alias|status)(es)?$" => "",
+        r"^(ox)en" => "",
+        r"(vert|ind)ices$" => "ex",
+        r"(matr)ices$" => "ix",
+        r"(quiz)zes$" => "",
+        r"(database)s$" => ""
+            ];
+        r
     };
 }
 
@@ -177,7 +176,6 @@ fn singularize_string_if_a_regex_will_match() {
     let expected_string: String = "ox".to_owned();
     let asserted_string: String = to_singular("oxen");
     assert!(expected_string == asserted_string);
-
 }
 
 #[test]

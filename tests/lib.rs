@@ -98,8 +98,13 @@ gated_str_tests![
     str_to_table => to_table_case => "fooBar" => "foo_bars".to_string(),
     str_is_table => is_table_case => "foo_bars" => true,
     str_is_not_table => is_table_case => "fooBars" => false,
-    str_pluralize => to_plural => "crate" => "crates".to_string(),
+    str_pluralize_normal => to_plural => "crate" => "crates".to_string(),
+    str_pluralize_irregular_1 => to_plural => "person" => "people".to_string(),
+    str_pluralize_irregular_2 => to_plural => "mouse" => "mice".to_string(),
+    str_pluralize_irregular_3 => to_plural => "child" => "children".to_string(),
+    str_pluralize_already_plural => to_plural => "hooves" => "hooves".to_string(),
     str_singular => to_singular => "crates" => "crate".to_string(),
+    str_singular_2 => to_singular => "data" => "datum".to_string(),
     str_demodulize => demodulize => "Foo::Bar" => "Bar".to_string(),
     str_deconstantize => deconstantize => "Foo::Bar" => "Foo".to_string()
 ];
@@ -141,6 +146,10 @@ gated_string_tests![
     string_is_table => is_table_case => "foo_bars".to_string() => true,
     string_is_not_table => is_table_case => "fooBar".to_string() => false,
     string_pluralize => to_plural => "crate".to_string() => "crates".to_string(),
+    string_pluralize_irregular_1 => to_plural => "person".to_string() => "people".to_string(),
+    string_pluralize_irregular_2 => to_plural => "mouse".to_string() => "mice".to_string(),
+    string_pluralize_irregular_3 => to_plural => "child".to_string() => "children".to_string(),
+    string_pluralize_already_plural => to_plural => "hooves".to_string() => "hooves".to_string(),
     string_singular => to_singular => "crates".to_string() => "crate".to_string(),
     string_demodulize => demodulize => "Foo::Bar".to_string() => "Bar".to_string(),
     string_deconstantize => deconstantize => "Foo::Bar".to_string() => "Foo".to_string()

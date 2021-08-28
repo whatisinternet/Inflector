@@ -2,10 +2,10 @@
 use regex::Regex;
 use string::constants::UNACCONTABLE_WORDS;
 
-macro_rules! add_rule{
+macro_rules! add_rule {
     ($r:ident, $rule:expr => $replace:expr) => {
         $r.push((Regex::new($rule).unwrap(), $replace));
-    }
+    };
 }
 
 macro_rules! rules{
@@ -16,8 +16,7 @@ macro_rules! rules{
     }
 }
 
-
-lazy_static!{
+lazy_static! {
     static ref RULES: Vec<(Regex, &'static str)> = {
         let mut r = Vec::with_capacity(24);
         rules![r;
@@ -41,8 +40,8 @@ lazy_static!{
                r"(\w*(x|ch|ss|sh|zz)es)$" => "",
                r"(\w*(x|ch|ss|sh|zz))$" => "es",
                r"(\w*(matr|cod|mur|sil|vert|ind|append))(?:ix|ex)$" => "ices",
-               r"(\w*(m|l)(?:ice|ouse))$" => "ice",
-               r"(\w*(pe)(?:rson|ople))$" => "ople",
+               r"(\w*(m|l))(?:ice|ouse)$" => "ice",
+               r"(\w*(pe))(?:rson|ople)$" => "ople",
                r"(\w*(child))(?:ren)?$" => "ren",
                r"(\w*eaux)$" => ""
         ];
@@ -62,7 +61,6 @@ macro_rules! special_cases{
         }
     }
 }
-
 
 /// Converts a `&str` to pluralized `String`
 ///
@@ -151,12 +149,13 @@ pub fn to_plural(non_plural_string: &str) -> String {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
 
     macro_rules! as_item {
-        ($i:item) => { $i };
+        ($i:item) => {
+            $i
+        };
     }
 
     macro_rules! make_tests{
@@ -180,7 +179,7 @@ mod tests {
         assert_eq!("boxes", super::to_plural("box"));
     }
 
-    make_tests!{
+    make_tests! {
         geometry => geometries;
         ox => oxen;
         woman => women;
