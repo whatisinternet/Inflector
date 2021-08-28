@@ -221,8 +221,8 @@ mod benchmarks {
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
 mod tests {
-    use ::to_class_case;
-    use ::is_class_case;
+    use is_class_case;
+    use to_class_case;
 
     #[test]
     fn from_camel_case() {
@@ -324,7 +324,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "WrappedInBadChar".to_owned();
         assert_eq!(to_class_case(&convertable_string), expected)
     }
@@ -390,4 +391,3 @@ mod tests {
         assert_eq!(is_class_case(&convertable_string), true)
     }
 }
-

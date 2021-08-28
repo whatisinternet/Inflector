@@ -202,8 +202,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_pascal_case;
-    use ::is_pascal_case;
+    use is_pascal_case;
+    use to_pascal_case;
 
     #[test]
     fn from_camel_case() {
@@ -298,7 +298,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "WrappedInBadChars".to_owned();
         assert_eq!(to_pascal_case(&convertable_string), expected)
     }

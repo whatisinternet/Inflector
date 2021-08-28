@@ -171,13 +171,12 @@ mod benchmarks {
     fn bench_is_snake(b: &mut Bencher) {
         b.iter(|| super::is_snake_case("Foo bar"));
     }
-
 }
 
 #[cfg(test)]
 mod tests {
-    use ::to_snake_case;
-    use ::is_snake_case;
+    use is_snake_case;
+    use to_snake_case;
 
     #[test]
     fn from_camel_case() {
@@ -272,7 +271,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "wrapped_in_bad_chars".to_owned();
         assert_eq!(to_snake_case(&convertable_string), expected)
     }
