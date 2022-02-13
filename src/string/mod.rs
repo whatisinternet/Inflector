@@ -1,14 +1,14 @@
 #![deny(warnings)]
-/// Provides demodulize a string.
-///
-/// Example string `Foo::Bar` becomes `Bar`
-#[cfg(feature = "heavyweight")]
-pub mod demodulize;
 /// Provides deconstantizea string.
 ///
 /// Example string `Foo::Bar` becomes `Foo`
 #[cfg(feature = "heavyweight")]
 pub mod deconstantize;
+/// Provides demodulize a string.
+///
+/// Example string `Foo::Bar` becomes `Bar`
+#[cfg(feature = "heavyweight")]
+pub mod demodulize;
 /// Provides conversion to plural strings.
 ///
 /// Example string `FooBar` -> `FooBars`

@@ -152,8 +152,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use crate::to_kebab_case;
     use crate::is_kebab_case;
+    use crate::to_kebab_case;
 
     #[test]
     fn from_camel_case() {
@@ -259,4 +259,3 @@ mod tests {
         assert_eq!(is_kebab_case(&convertable_string), false)
     }
 }
-

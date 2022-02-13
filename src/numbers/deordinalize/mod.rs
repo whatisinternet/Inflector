@@ -108,7 +108,8 @@ pub fn deordinalize(non_ordinalized_string: &str) -> String {
     if non_ordinalized_string.contains('.') {
         non_ordinalized_string.to_owned()
     } else {
-        non_ordinalized_string.trim_end_matches("st")
+        non_ordinalized_string
+            .trim_end_matches("st")
             .trim_end_matches("nd")
             .trim_end_matches("rd")
             .trim_end_matches("th")

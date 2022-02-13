@@ -62,7 +62,12 @@ pub fn to_case_camel_like(convertable_string: &str, camel_options: CamelOptions)
 }
 
 #[inline]
-fn append_on_new_word(mut result: String, first_word: bool, character: char, camel_options: &CamelOptions) -> String {
+fn append_on_new_word(
+    mut result: String,
+    first_word: bool,
+    character: char,
+    camel_options: &CamelOptions,
+) -> String {
     if not_first_word_and_has_seperator(first_word, camel_options.has_seperator) {
         result.push(camel_options.injectable_char);
     }
@@ -82,11 +87,12 @@ fn first_word_or_not_inverted(first_word: bool, inverted: bool) -> bool {
     !inverted || first_word
 }
 
-
-fn last_char_lower_current_is_upper_or_new_word(new_word: bool, last_char: char, character: char) -> bool{
-    new_word ||
-        ((last_char.is_lowercase() && character.is_uppercase()) &&
-         (last_char != ' '))
+fn last_char_lower_current_is_upper_or_new_word(
+    new_word: bool,
+    last_char: char,
+    character: char,
+) -> bool {
+    new_word || ((last_char.is_lowercase() && character.is_uppercase()) && (last_char != ' '))
 }
 
 fn char_is_seperator(character: &char) -> bool {
@@ -102,10 +108,14 @@ fn is_not_alphanumeric(character: char) -> bool {
 }
 
 #[inline]
-fn requires_seperator(char_with_index: (usize, char), first_character: bool, convertable_string: &str) -> bool {
-    !first_character &&
-        char_is_uppercase(char_with_index.1) &&
-            next_or_previous_char_is_lowercase(convertable_string, char_with_index.0)
+fn requires_seperator(
+    char_with_index: (usize, char),
+    first_character: bool,
+    convertable_string: &str,
+) -> bool {
+    !first_character
+        && char_is_uppercase(char_with_index.1)
+        && next_or_previous_char_is_lowercase(convertable_string, char_with_index.0)
 }
 
 #[inline]
@@ -120,7 +130,12 @@ fn snake_like_no_seperator(mut accumlator: String, current_char: &char, case: &s
 }
 
 #[inline]
-fn snake_like_with_seperator(mut accumlator: String, replace_with: &str, current_char: &char, case: &str) -> String {
+fn snake_like_with_seperator(
+    mut accumlator: String,
+    replace_with: &str,
+    current_char: &char,
+    case: &str,
+) -> String {
     if case == "lower" {
         accumlator.push(replace_with.chars().nth(0).unwrap_or('_'));
         accumlator.push(current_char.to_ascii_lowercase());
@@ -133,8 +148,16 @@ fn snake_like_with_seperator(mut accumlator: String, replace_with: &str, current
 }
 
 fn next_or_previous_char_is_lowercase(convertable_string: &str, char_with_index: usize) -> bool {
-    convertable_string.chars().nth(char_with_index + 1).unwrap_or('A').is_lowercase() ||
-        convertable_string.chars().nth(char_with_index - 1).unwrap_or('A').is_lowercase()
+    convertable_string
+        .chars()
+        .nth(char_with_index + 1)
+        .unwrap_or('A')
+        .is_lowercase()
+        || convertable_string
+            .chars()
+            .nth(char_with_index - 1)
+            .unwrap_or('A')
+            .is_lowercase()
 }
 
 fn char_is_uppercase(test_char: char) -> bool {
@@ -161,7 +184,6 @@ fn test_is_not_alphanumeric_on_is_not_alphanumeric() {
     assert!(is_not_alphanumeric('_'))
 }
 
-
 #[test]
 fn test_char_is_uppercase_when_it_is() {
     assert_eq!(char_is_uppercase('A'), true)
@@ -184,22 +206,34 @@ fn test_next_or_previous_char_is_lowercase_false() {
 
 #[test]
 fn snake_like_with_seperator_lowers() {
-    assert_eq!(snake_like_with_seperator("".to_owned(), "^", &'c', "lower"), "^c".to_string())
+    assert_eq!(
+        snake_like_with_seperator("".to_owned(), "^", &'c', "lower"),
+        "^c".to_string()
+    )
 }
 
 #[test]
 fn snake_like_with_seperator_upper() {
-    assert_eq!(snake_like_with_seperator("".to_owned(), "^", &'c', "upper"), "^C".to_string())
+    assert_eq!(
+        snake_like_with_seperator("".to_owned(), "^", &'c', "upper"),
+        "^C".to_string()
+    )
 }
 
 #[test]
 fn snake_like_no_seperator_lower() {
-    assert_eq!(snake_like_no_seperator("".to_owned(), &'C', "lower"), "c".to_string())
+    assert_eq!(
+        snake_like_no_seperator("".to_owned(), &'C', "lower"),
+        "c".to_string()
+    )
 }
 
 #[test]
 fn snake_like_no_seperator_upper() {
-    assert_eq!(snake_like_no_seperator("".to_owned(), &'c', "upper"), "C".to_string())
+    assert_eq!(
+        snake_like_no_seperator("".to_owned(), &'c', "upper"),
+        "C".to_string()
+    )
 }
 
 #[test]
@@ -249,27 +283,42 @@ fn test_char_is_seperator_when_not() {
 
 #[test]
 fn test_last_char_lower_current_is_upper_or_new_word_with_new_word() {
-    assert_eq!(last_char_lower_current_is_upper_or_new_word(true, ' ', '-'), true)
+    assert_eq!(
+        last_char_lower_current_is_upper_or_new_word(true, ' ', '-'),
+        true
+    )
 }
 
 #[test]
 fn test_last_char_lower_current_is_upper_or_new_word_last_char_space() {
-    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, ' ', '-'), false)
+    assert_eq!(
+        last_char_lower_current_is_upper_or_new_word(false, ' ', '-'),
+        false
+    )
 }
 
 #[test]
 fn test_last_char_lower_current_is_upper_or_new_word_last_char_lower_current_upper() {
-    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, 'a', 'A'), true)
+    assert_eq!(
+        last_char_lower_current_is_upper_or_new_word(false, 'a', 'A'),
+        true
+    )
 }
 
 #[test]
 fn test_last_char_lower_current_is_upper_or_new_word_last_char_upper_current_upper() {
-    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, 'A', 'A'), false)
+    assert_eq!(
+        last_char_lower_current_is_upper_or_new_word(false, 'A', 'A'),
+        false
+    )
 }
 
 #[test]
 fn test_last_char_lower_current_is_upper_or_new_word_last_char_upper_current_lower() {
-    assert_eq!(last_char_lower_current_is_upper_or_new_word(false, 'A', 'a'), false)
+    assert_eq!(
+        last_char_lower_current_is_upper_or_new_word(false, 'A', 'a'),
+        false
+    )
 }
 
 #[test]

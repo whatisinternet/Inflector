@@ -1,4 +1,10 @@
-#![deny(warnings, unused_variables, missing_docs, unsafe_code, unused_extern_crates)]
+#![deny(
+    warnings,
+    unused_variables,
+    missing_docs,
+    unsafe_code,
+    unused_extern_crates
+)]
 #![cfg_attr(feature = "unstable", feature(test))]
 
 //! Adds String based inflections for Rust. Snake, kebab, train, camel,
@@ -16,7 +22,8 @@
 extern crate regex;
 
 #[cfg(feature = "heavyweight")]
-#[macro_use] extern crate lazy_static;
+#[macro_use]
+extern crate lazy_static;
 
 /// Provides case inflections
 /// - Camel case
@@ -33,9 +40,6 @@ pub mod cases;
 /// - Ordinalize
 /// - Deordinalize
 pub mod numbers;
-/// Provides suffix inflections
-/// - Foreign key
-pub mod suffix;
 /// Provides string inflections
 /// - Deconstantize
 /// - Demodulize
@@ -43,52 +47,54 @@ pub mod suffix;
 /// - Singularize
 #[cfg(feature = "heavyweight")]
 pub mod string;
+/// Provides suffix inflections
+/// - Foreign key
+pub mod suffix;
 
-
-#[cfg(feature = "heavyweight")]
-use crate::cases::classcase::to_class_case;
 #[cfg(feature = "heavyweight")]
 use crate::cases::classcase::is_class_case;
-
-use crate::cases::camelcase::to_camel_case;
-use crate::cases::camelcase::is_camel_case;
-
-use crate::cases::pascalcase::to_pascal_case;
-use crate::cases::pascalcase::is_pascal_case;
-
-use crate::cases::snakecase::to_snake_case;
-use crate::cases::snakecase::is_snake_case;
-
-use crate::cases::screamingsnakecase::to_screaming_snake_case;
-use crate::cases::screamingsnakecase::is_screaming_snake_case;
-
-use crate::cases::kebabcase::to_kebab_case;
-use crate::cases::kebabcase::is_kebab_case;
-
-use crate::cases::traincase::to_train_case;
-use crate::cases::traincase::is_train_case;
-
-use crate::cases::sentencecase::to_sentence_case;
-use crate::cases::sentencecase::is_sentence_case;
-
-use crate::cases::titlecase::to_title_case;
-use crate::cases::titlecase::is_title_case;
-
 #[cfg(feature = "heavyweight")]
-use crate::cases::tablecase::to_table_case;
+use crate::cases::classcase::to_class_case;
+
+use crate::cases::camelcase::is_camel_case;
+use crate::cases::camelcase::to_camel_case;
+
+use crate::cases::pascalcase::is_pascal_case;
+use crate::cases::pascalcase::to_pascal_case;
+
+use crate::cases::snakecase::is_snake_case;
+use crate::cases::snakecase::to_snake_case;
+
+use crate::cases::screamingsnakecase::is_screaming_snake_case;
+use crate::cases::screamingsnakecase::to_screaming_snake_case;
+
+use crate::cases::kebabcase::is_kebab_case;
+use crate::cases::kebabcase::to_kebab_case;
+
+use crate::cases::traincase::is_train_case;
+use crate::cases::traincase::to_train_case;
+
+use crate::cases::sentencecase::is_sentence_case;
+use crate::cases::sentencecase::to_sentence_case;
+
+use crate::cases::titlecase::is_title_case;
+use crate::cases::titlecase::to_title_case;
+
 #[cfg(feature = "heavyweight")]
 use crate::cases::tablecase::is_table_case;
-
-use crate::numbers::ordinalize::ordinalize;
-use crate::numbers::deordinalize::deordinalize;
-
-use crate::suffix::foreignkey::to_foreign_key;
-use crate::suffix::foreignkey::is_foreign_key;
-
 #[cfg(feature = "heavyweight")]
-use crate::string::demodulize::demodulize;
+use crate::cases::tablecase::to_table_case;
+
+use crate::numbers::deordinalize::deordinalize;
+use crate::numbers::ordinalize::ordinalize;
+
+use crate::suffix::foreignkey::is_foreign_key;
+use crate::suffix::foreignkey::to_foreign_key;
+
 #[cfg(feature = "heavyweight")]
 use crate::string::deconstantize::deconstantize;
+#[cfg(feature = "heavyweight")]
+use crate::string::demodulize::demodulize;
 
 #[cfg(feature = "heavyweight")]
 use crate::string::pluralize::to_plural;
@@ -97,7 +103,6 @@ use crate::string::singularize::to_singular;
 
 #[allow(missing_docs)]
 pub trait Inflector {
-
     fn to_camel_case(&self) -> String;
     fn is_camel_case(&self) -> bool;
 
@@ -148,12 +153,10 @@ pub trait Inflector {
     fn to_singular(&self) -> String;
 }
 
-
 #[allow(missing_docs)]
 pub trait InflectorNumbers {
     fn ordinalize(&self) -> String;
 }
-
 
 macro_rules! define_implementations {
     ( $slf:ident; $($imp_trait:ident => $typ:ident), *) => {
@@ -256,7 +259,7 @@ implement_number_for![
 mod benchmarks {
     extern crate test;
     use self::test::Bencher;
-    use ::Inflector;
+    use Inflector;
 
     macro_rules! benchmarks {
         ( $($test_name:ident => $imp_trait:ident => $to_cast:expr), *) => {
