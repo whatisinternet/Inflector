@@ -1,6 +1,6 @@
 #![deny(warnings)]
 use regex::Regex;
-use string::constants::UNACCONTABLE_WORDS;
+use crate::string::constants::UNACCONTABLE_WORDS;
 
 macro_rules! add_rule{
     ($r:ident, $rule:expr => $replace:expr) => {

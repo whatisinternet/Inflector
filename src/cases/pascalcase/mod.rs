@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to pascalCase `String`
 ///
 /// ```
@@ -202,8 +202,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_pascal_case;
-    use ::is_pascal_case;
+    use crate::to_pascal_case;
+    use crate::is_pascal_case;
 
     #[test]
     fn from_camel_case() {

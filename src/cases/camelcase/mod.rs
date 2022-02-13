@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 
 /// Converts a `&str` to camelCase `String`
 ///
@@ -211,8 +211,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_camel_case;
-    use ::is_camel_case;
+    use crate::to_camel_case;
+    use crate::is_camel_case;
 
     #[test]
     fn from_camel_case() {

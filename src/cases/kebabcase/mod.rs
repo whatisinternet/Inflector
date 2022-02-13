@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Determines if a `&str` is `kebab-case`
 ///
 /// ```
@@ -152,8 +152,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_kebab_case;
-    use ::is_kebab_case;
+    use crate::to_kebab_case;
+    use crate::is_kebab_case;
 
     #[test]
     fn from_camel_case() {

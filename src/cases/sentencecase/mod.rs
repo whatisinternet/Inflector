@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to `Sentence case` `String`
 ///
 /// ```
@@ -154,8 +154,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_sentence_case;
-    use ::is_sentence_case;
+    use crate::to_sentence_case;
+    use crate::is_sentence_case;
 
     #[test]
     fn from_camel_case() {

@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to `snake_case` `String`
 ///
 /// ```
@@ -176,8 +176,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_snake_case;
-    use ::is_snake_case;
+    use crate::to_snake_case;
+    use crate::is_snake_case;
 
     #[test]
     fn from_camel_case() {

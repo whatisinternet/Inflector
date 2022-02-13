@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to `Title Case` `String`
 ///
 /// ```
@@ -149,8 +149,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_title_case;
-    use ::is_title_case;
+    use crate::to_title_case;
+    use crate::is_title_case;
 
     #[test]
     fn from_camel_case() {

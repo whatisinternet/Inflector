@@ -1,5 +1,5 @@
 use regex::Regex;
-use string::constants::UNACCONTABLE_WORDS;
+use crate::string::constants::UNACCONTABLE_WORDS;
 
 macro_rules! special_cases{
     ($s:ident, $($singular: expr => $plural:expr), *) => {

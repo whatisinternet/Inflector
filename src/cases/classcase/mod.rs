@@ -1,7 +1,7 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 #[cfg(feature = "heavyweight")]
-use string::singularize::to_singular;
+use crate::string::singularize::to_singular;
 #[cfg(feature = "heavyweight")]
 /// Converts a `&str` to `ClassCase` `String`
 ///
@@ -221,8 +221,8 @@ mod benchmarks {
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
 mod tests {
-    use ::to_class_case;
-    use ::is_class_case;
+    use crate::to_class_case;
+    use crate::is_class_case;
 
     #[test]
     fn from_camel_case() {

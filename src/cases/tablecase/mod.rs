@@ -1,8 +1,8 @@
 #![deny(warnings)]
 #[cfg(feature = "heavyweight")]
-use string::pluralize::to_plural;
+use crate::string::pluralize::to_plural;
 #[cfg(feature = "heavyweight")]
-use cases::case::*;
+use crate::cases::case::*;
 #[cfg(feature = "heavyweight")]
 /// Converts a `&str` to `table-case` `String`
 ///
@@ -149,8 +149,8 @@ mod benchmarks {
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
 mod tests {
-    use ::to_table_case;
-    use ::is_table_case;
+    use crate::to_table_case;
+    use crate::is_table_case;
 
     #[test]
     fn from_camel_case() {

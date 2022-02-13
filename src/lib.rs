@@ -46,54 +46,54 @@ pub mod string;
 
 
 #[cfg(feature = "heavyweight")]
-use cases::classcase::to_class_case;
+use crate::cases::classcase::to_class_case;
 #[cfg(feature = "heavyweight")]
-use cases::classcase::is_class_case;
+use crate::cases::classcase::is_class_case;
 
-use cases::camelcase::to_camel_case;
-use cases::camelcase::is_camel_case;
+use crate::cases::camelcase::to_camel_case;
+use crate::cases::camelcase::is_camel_case;
 
-use cases::pascalcase::to_pascal_case;
-use cases::pascalcase::is_pascal_case;
+use crate::cases::pascalcase::to_pascal_case;
+use crate::cases::pascalcase::is_pascal_case;
 
-use cases::snakecase::to_snake_case;
-use cases::snakecase::is_snake_case;
+use crate::cases::snakecase::to_snake_case;
+use crate::cases::snakecase::is_snake_case;
 
-use cases::screamingsnakecase::to_screaming_snake_case;
-use cases::screamingsnakecase::is_screaming_snake_case;
+use crate::cases::screamingsnakecase::to_screaming_snake_case;
+use crate::cases::screamingsnakecase::is_screaming_snake_case;
 
-use cases::kebabcase::to_kebab_case;
-use cases::kebabcase::is_kebab_case;
+use crate::cases::kebabcase::to_kebab_case;
+use crate::cases::kebabcase::is_kebab_case;
 
-use cases::traincase::to_train_case;
-use cases::traincase::is_train_case;
+use crate::cases::traincase::to_train_case;
+use crate::cases::traincase::is_train_case;
 
-use cases::sentencecase::to_sentence_case;
-use cases::sentencecase::is_sentence_case;
+use crate::cases::sentencecase::to_sentence_case;
+use crate::cases::sentencecase::is_sentence_case;
 
-use cases::titlecase::to_title_case;
-use cases::titlecase::is_title_case;
-
-#[cfg(feature = "heavyweight")]
-use cases::tablecase::to_table_case;
-#[cfg(feature = "heavyweight")]
-use cases::tablecase::is_table_case;
-
-use numbers::ordinalize::ordinalize;
-use numbers::deordinalize::deordinalize;
-
-use suffix::foreignkey::to_foreign_key;
-use suffix::foreignkey::is_foreign_key;
+use crate::cases::titlecase::to_title_case;
+use crate::cases::titlecase::is_title_case;
 
 #[cfg(feature = "heavyweight")]
-use string::demodulize::demodulize;
+use crate::cases::tablecase::to_table_case;
 #[cfg(feature = "heavyweight")]
-use string::deconstantize::deconstantize;
+use crate::cases::tablecase::is_table_case;
+
+use crate::numbers::ordinalize::ordinalize;
+use crate::numbers::deordinalize::deordinalize;
+
+use crate::suffix::foreignkey::to_foreign_key;
+use crate::suffix::foreignkey::is_foreign_key;
 
 #[cfg(feature = "heavyweight")]
-use string::pluralize::to_plural;
+use crate::string::demodulize::demodulize;
 #[cfg(feature = "heavyweight")]
-use string::singularize::to_singular;
+use crate::string::deconstantize::deconstantize;
+
+#[cfg(feature = "heavyweight")]
+use crate::string::pluralize::to_plural;
+#[cfg(feature = "heavyweight")]
+use crate::string::singularize::to_singular;
 
 #[allow(missing_docs)]
 pub trait Inflector {

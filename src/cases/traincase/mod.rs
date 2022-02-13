@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Determines if a `&str` is `Train-Case`
 ///
 /// ```
@@ -162,8 +162,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_train_case;
-    use ::is_train_case;
+    use crate::to_train_case;
+    use crate::is_train_case;
 
     #[test]
     fn from_camel_case() {
