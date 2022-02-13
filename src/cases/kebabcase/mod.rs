@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Determines if a `&str` is `kebab-case`
 ///
 /// ```
@@ -58,7 +58,7 @@ use cases::case::*;
 ///
 /// ```
 pub fn is_kebab_case(test_string: &str) -> bool {
-    test_string == to_kebab_case(test_string.clone())
+    test_string == to_kebab_case(test_string)
 }
 
 /// Converts a `&str` to `kebab-case` `String`
@@ -152,8 +152,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_kebab_case;
-    use ::is_kebab_case;
+    use crate::is_kebab_case;
+    use crate::to_kebab_case;
 
     #[test]
     fn from_camel_case() {
@@ -259,4 +259,3 @@ mod tests {
         assert_eq!(is_kebab_case(&convertable_string), false)
     }
 }
-

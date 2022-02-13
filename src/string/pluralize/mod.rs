@@ -1,11 +1,11 @@
 #![deny(warnings)]
+use crate::string::constants::UNACCONTABLE_WORDS;
 use regex::Regex;
-use string::constants::UNACCONTABLE_WORDS;
 
-macro_rules! add_rule{
+macro_rules! add_rule {
     ($r:ident, $rule:expr => $replace:expr) => {
         $r.push((Regex::new($rule).unwrap(), $replace));
-    }
+    };
 }
 
 macro_rules! rules{
@@ -16,8 +16,7 @@ macro_rules! rules{
     }
 }
 
-
-lazy_static!{
+lazy_static! {
     static ref RULES: Vec<(Regex, &'static str)> = {
         let mut r = Vec::with_capacity(24);
         rules![r;
@@ -62,7 +61,6 @@ macro_rules! special_cases{
         }
     }
 }
-
 
 /// Converts a `&str` to pluralized `String`
 ///
@@ -124,7 +122,7 @@ macro_rules! special_cases{
 /// ```
 ///
 pub fn to_plural(non_plural_string: &str) -> String {
-    if UNACCONTABLE_WORDS.contains(&non_plural_string.as_ref()) {
+    if UNACCONTABLE_WORDS.contains(&non_plural_string) {
         non_plural_string.to_owned()
     } else {
         special_cases![non_plural_string,
@@ -140,7 +138,7 @@ pub fn to_plural(non_plural_string: &str) -> String {
             "quiz" => "quizzes"
         ];
         for &(ref rule, replace) in RULES.iter().rev() {
-            if let Some(c) = rule.captures(&non_plural_string) {
+            if let Some(c) = rule.captures(non_plural_string) {
                 if let Some(c) = c.get(1) {
                     return format!("{}{}", c.as_str(), replace);
                 }
@@ -151,12 +149,13 @@ pub fn to_plural(non_plural_string: &str) -> String {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
 
     macro_rules! as_item {
-        ($i:item) => { $i };
+        ($i:item) => {
+            $i
+        };
     }
 
     macro_rules! make_tests{
@@ -180,7 +179,7 @@ mod tests {
         assert_eq!("boxes", super::to_plural("box"));
     }
 
-    make_tests!{
+    make_tests! {
         geometry => geometries;
         ox => oxen;
         woman => women;

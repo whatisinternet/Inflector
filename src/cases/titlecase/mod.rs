@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to `Title Case` `String`
 ///
 /// ```
@@ -121,7 +121,7 @@ pub fn to_title_case(non_title_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_title_case(test_string: &str) -> bool {
-    test_string == to_title_case(test_string.clone())
+    test_string == to_title_case(test_string)
 }
 
 #[cfg(all(feature = "unstable", test))]
@@ -143,14 +143,12 @@ mod benchmarks {
     fn bench_title_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_title_case("foo_bar"));
     }
-
 }
-
 
 #[cfg(test)]
 mod tests {
-    use ::to_title_case;
-    use ::is_title_case;
+    use crate::is_title_case;
+    use crate::to_title_case;
 
     #[test]
     fn from_camel_case() {
@@ -245,7 +243,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "Wrapped In Bad Chars".to_owned();
         assert_eq!(to_title_case(&convertable_string), expected)
     }
@@ -305,4 +304,3 @@ mod tests {
         assert_eq!(is_title_case(&convertable_string), false)
     }
 }
-

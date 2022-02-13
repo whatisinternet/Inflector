@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to pascalCase `String`
 ///
 /// ```
@@ -159,7 +159,7 @@ pub fn to_pascal_case(non_pascalized_string: &str) -> String {
 ///     assert!(asserted_bool == false);
 /// ```
 pub fn is_pascal_case(test_string: &str) -> bool {
-    to_pascal_case(test_string.clone()) == test_string
+    to_pascal_case(test_string) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]
@@ -202,8 +202,8 @@ mod benchmarks {
 
 #[cfg(test)]
 mod tests {
-    use ::to_pascal_case;
-    use ::is_pascal_case;
+    use crate::is_pascal_case;
+    use crate::to_pascal_case;
 
     #[test]
     fn from_camel_case() {
@@ -298,7 +298,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "WrappedInBadChars".to_owned();
         assert_eq!(to_pascal_case(&convertable_string), expected)
     }

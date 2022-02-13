@@ -1,4 +1,4 @@
-use cases::snakecase::to_snake_case;
+use crate::cases::snakecase::to_snake_case;
 
 /// Converts a `&str` to a `foreign_key`
 ///
@@ -135,5 +135,5 @@ fn safe_convert(safe_string: &str) -> String {
 ///
 /// ```
 pub fn is_foreign_key(test_string: &str) -> bool {
-    to_foreign_key(test_string.clone()) == test_string
+    to_foreign_key(test_string) == test_string
 }

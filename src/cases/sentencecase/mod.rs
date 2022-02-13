@@ -1,5 +1,5 @@
 #![deny(warnings)]
-use cases::case::*;
+use crate::cases::case::*;
 /// Converts a `&str` to `Sentence case` `String`
 ///
 /// ```
@@ -127,7 +127,7 @@ pub fn to_sentence_case(non_sentence_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_sentence_case(test_string: &str) -> bool {
-    test_string == to_sentence_case(test_string.clone())
+    test_string == to_sentence_case(test_string)
 }
 
 #[cfg(all(feature = "unstable", test))]
@@ -149,13 +149,12 @@ mod benchmarks {
     fn bench_sentence_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_sentence_case("foo_bar"));
     }
-
 }
 
 #[cfg(test)]
 mod tests {
-    use ::to_sentence_case;
-    use ::is_sentence_case;
+    use crate::is_sentence_case;
+    use crate::to_sentence_case;
 
     #[test]
     fn from_camel_case() {
@@ -250,7 +249,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "Wrapped in bad chars".to_owned();
         assert_eq!(to_sentence_case(&convertable_string), expected)
     }
@@ -261,7 +261,6 @@ mod tests {
         let expected: String = "Has a sign".to_owned();
         assert_eq!(to_sentence_case(&convertable_string), expected)
     }
-
 
     #[test]
     fn is_correct_from_camel_case() {
