@@ -127,7 +127,7 @@ pub fn to_sentence_case(non_sentence_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_sentence_case(test_string: &str) -> bool {
-    test_string == to_sentence_case(test_string.clone())
+    test_string == to_sentence_case(test_string)
 }
 
 #[cfg(all(feature = "unstable", test))]

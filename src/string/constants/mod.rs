@@ -1,4 +1,4 @@
-pub const UNACCONTABLE_WORDS: [&'static str; 202] = [
+pub const UNACCONTABLE_WORDS: [&str; 202] = [
     "accommodation",
     "adulthood",
     "advertising",

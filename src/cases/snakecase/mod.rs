@@ -144,7 +144,7 @@ pub fn to_snake_case(non_snake_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_snake_case(test_string: &str) -> bool {
-    test_string == to_snake_case(test_string.clone())
+    test_string == to_snake_case(test_string)
 }
 
 #[cfg(all(feature = "unstable", test))]

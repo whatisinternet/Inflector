@@ -126,7 +126,7 @@ pub fn to_table_case(non_table_case_string: &str) -> String {
 ///     assert!(asserted_bool == false);
 /// ```
 pub fn is_table_case(test_string: &str) -> bool {
-    to_table_case(&test_string.clone()) == test_string
+    to_table_case(test_string) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]

@@ -159,7 +159,7 @@ pub fn to_pascal_case(non_pascalized_string: &str) -> String {
 ///     assert!(asserted_bool == false);
 /// ```
 pub fn is_pascal_case(test_string: &str) -> bool {
-    to_pascal_case(test_string.clone()) == test_string
+    to_pascal_case(test_string) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]

@@ -121,7 +121,7 @@ pub fn to_title_case(non_title_case_string: &str) -> String {
 ///
 /// ```
 pub fn is_title_case(test_string: &str) -> bool {
-    test_string == to_title_case(test_string.clone())
+    test_string == to_title_case(test_string)
 }
 
 #[cfg(all(feature = "unstable", test))]

@@ -84,7 +84,7 @@ pub fn to_camel_case(non_camelized_string: &str) -> String {
         has_seperator: false,
         inverted: false,
     };
-    to_case_camel_like(&non_camelized_string, options)
+    to_case_camel_like(non_camelized_string, options)
 }
 
 /// Determines if a `&str` is camelCase bool``
@@ -168,7 +168,7 @@ pub fn to_camel_case(non_camelized_string: &str) -> String {
 ///     assert!(asserted_bool == false);
 /// ```
 pub fn is_camel_case(test_string: &str) -> bool {
-    to_camel_case(&test_string.clone()) == test_string
+    to_camel_case(test_string) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]

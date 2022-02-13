@@ -58,7 +58,7 @@ use crate::cases::case::*;
 ///
 /// ```
 pub fn is_kebab_case(test_string: &str) -> bool {
-    test_string == to_kebab_case(test_string.clone())
+    test_string == to_kebab_case(test_string)
 }
 
 /// Converts a `&str` to `kebab-case` `String`

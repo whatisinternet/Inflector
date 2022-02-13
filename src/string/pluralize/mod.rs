@@ -122,7 +122,7 @@ macro_rules! special_cases{
 /// ```
 ///
 pub fn to_plural(non_plural_string: &str) -> String {
-    if UNACCONTABLE_WORDS.contains(&non_plural_string.as_ref()) {
+    if UNACCONTABLE_WORDS.contains(&non_plural_string) {
         non_plural_string.to_owned()
     } else {
         special_cases![non_plural_string,
@@ -138,7 +138,7 @@ pub fn to_plural(non_plural_string: &str) -> String {
             "quiz" => "quizzes"
         ];
         for &(ref rule, replace) in RULES.iter().rev() {
-            if let Some(c) = rule.captures(&non_plural_string) {
+            if let Some(c) = rule.captures(non_plural_string) {
                 if let Some(c) = c.get(1) {
                     return format!("{}{}", c.as_str(), replace);
                 }

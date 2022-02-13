@@ -113,7 +113,7 @@
 ///
 /// ```
 pub fn ordinalize(non_ordinalized_string: &str) -> String {
-    let chars: Vec<char> = non_ordinalized_string.clone().chars().collect();
+    let chars: Vec<char> = non_ordinalized_string.chars().collect();
     let last_number: char = chars[chars.len() - 1];
     if is_ordinalizable(last_number) {
         return non_ordinalized_string.to_owned();
