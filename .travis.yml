@@ -5,3 +5,6 @@ rust:
   - nightly
 matrix:
   fast_finish: true
+script:
+  - cargo test --verbose
+  - cargo fmt --all -- --check
