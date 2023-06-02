@@ -344,6 +344,13 @@ mod tests {
     }
 
     #[test]
+    fn has_special_singular_form_2() {
+        let convertable_string: String = "my_leaves".to_owned();
+        let expected: String = "MyLeaf".to_owned();
+        assert_eq!(to_class_case(&convertable_string), expected)
+    }
+
+    #[test]
     fn is_correct_from_class_case() {
         let convertable_string: String = "fooBar".to_owned();
         assert_eq!(is_class_case(&convertable_string), false)
