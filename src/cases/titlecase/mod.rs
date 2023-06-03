@@ -143,14 +143,12 @@ mod benchmarks {
     fn bench_title_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_title_case("foo_bar"));
     }
-
 }
-
 
 #[cfg(test)]
 mod tests {
-    use ::to_title_case;
-    use ::is_title_case;
+    use is_title_case;
+    use to_title_case;
 
     #[test]
     fn from_camel_case() {
@@ -245,7 +243,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "Wrapped In Bad Chars".to_owned();
         assert_eq!(to_title_case(&convertable_string), expected)
     }
@@ -305,4 +304,3 @@ mod tests {
         assert_eq!(is_title_case(&convertable_string), false)
     }
 }
-

@@ -61,7 +61,6 @@ pub fn is_train_case(test_string: &str) -> bool {
     test_string == to_train_case(test_string.clone())
 }
 
-
 /// Converts a `&str` to `Train-Case` `String`
 ///
 /// ```
@@ -157,13 +156,12 @@ mod benchmarks {
     fn bench_train_from_snake(b: &mut Bencher) {
         b.iter(|| super::to_train_case("test_test_test"));
     }
-
 }
 
 #[cfg(test)]
 mod tests {
-    use ::to_train_case;
-    use ::is_train_case;
+    use is_train_case;
+    use to_train_case;
 
     #[test]
     fn from_camel_case() {
@@ -258,7 +256,8 @@ mod tests {
 
     #[test]
     fn wrapped_in_bad_chars() {
-        let convertable_string: String = "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
+        let convertable_string: String =
+            "-!#$%wrapped in bad chars&*^*&(&*^&(<><?>><?><>))".to_owned();
         let expected: String = "Wrapped-In-Bad-Chars".to_owned();
         assert_eq!(to_train_case(&convertable_string), expected)
     }

@@ -1,8 +1,8 @@
 #![deny(warnings)]
 #[cfg(feature = "heavyweight")]
-use string::pluralize::to_plural;
-#[cfg(feature = "heavyweight")]
 use cases::case::*;
+#[cfg(feature = "heavyweight")]
+use string::pluralize::to_plural;
 #[cfg(feature = "heavyweight")]
 /// Converts a `&str` to `table-case` `String`
 ///
@@ -126,7 +126,7 @@ pub fn to_table_case(non_table_case_string: &str) -> String {
 ///     assert!(asserted_bool == false);
 /// ```
 pub fn is_table_case(test_string: &str) -> bool {
-     to_table_case(&test_string.clone()) == test_string
+    to_table_case(&test_string.clone()) == test_string
 }
 
 #[cfg(all(feature = "unstable", test))]
@@ -149,8 +149,8 @@ mod benchmarks {
 #[cfg(test)]
 #[cfg(feature = "heavyweight")]
 mod tests {
-    use ::to_table_case;
-    use ::is_table_case;
+    use is_table_case;
+    use to_table_case;
 
     #[test]
     fn from_camel_case() {
